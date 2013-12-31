@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218023506) do
+ActiveRecord::Schema.define(version: 20131231222017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,6 @@ ActiveRecord::Schema.define(version: 20131218023506) do
   add_index "authors", ["name", "publication_id"], name: "index_authors_on_name_and_publication_id", unique: true, using: :btree
   add_index "authors", ["publication_id"], name: "index_authors_on_publication_id", using: :btree
   add_index "authors", ["user_id"], name: "index_authors_on_user_id", using: :btree
-
-  create_table "collaborators", force: true do |t|
-    t.integer "inviter_id"
-    t.integer "invited_id"
-    t.boolean "accepted"
-  end
-
-  add_index "collaborators", ["invited_id", "inviter_id"], name: "index_collaborators_on_invited_id_and_inviter_id", unique: true, using: :btree
-  add_index "collaborators", ["inviter_id", "invited_id"], name: "index_collaborators_on_inviter_id_and_invited_id", unique: true, using: :btree
 
   create_table "external_users", force: true do |t|
     t.string   "first_name",  null: false
