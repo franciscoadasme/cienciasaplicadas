@@ -1,0 +1,39 @@
+en:
+  views:
+    publications:
+      index:
+        title: Publications
+        subtitle: Account
+        empty: No publications have been added yet.
+
+      import:
+        status:
+          existing_no_linked:
+            one: One existing publication was found but not linked to any user
+            other: '%{count} existing publications were found but not linked to any user'
+          existing_linked:
+            one: One existing publication was linked to one or more users
+            other: '%{count} existing publications were linked to one or more users'
+          ignored:
+            one: The following publication was ignored as it could not be linked to any existing user
+            other: "The following %{count} publications were ignored as they could not be linked to any existing user"
+          new_linked:
+            one: The following publication was created and linked to one or more existing users
+            other: 'The following %{count} publications were created and linked to one or more existing users'
+          invalid:
+            one: The following publication data was invalid
+            other: The following publications were invalid
+        go_back: 'Go back to Publications'
+
+      single:
+        meta: '%{journal}, %{year}: %{pages}'
+        view: View Publication
+        edit: Edit
+        hints:
+          link: Link publication
+          unlink: Unlink publication
+          view: Visit publication page
+          go_to_profile: "Go to %{user}'s profile"
+          edit: Edit Publication
+        confirm:
+          unlink: Are you sure you want to unlink this publication?

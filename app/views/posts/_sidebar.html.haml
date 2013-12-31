@@ -1,0 +1,12 @@
+%aside.sidebar-fixed.sidebar-post
+  .sidebar-header
+    = link_to @group.abbr, root_url, class: 'sidebar-brand'
+
+  - if @posts.try(:any?)
+    %ul.nav.sidebar-nav
+      - @posts.each do |post|
+        %li
+          = link_to post, class: ('active' if post == @post ), id: ('sidebar-active' if post == @post) do
+            = time_tag post.created_at, "#{distance_of_time_in_words_to_now post.created_at} ago", pubdate: true
+            %h5.post-title= post.title
+            %p.post-excerpt= excerpt post.body, length: 50

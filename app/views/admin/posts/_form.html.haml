@@ -1,0 +1,14 @@
+= vertical_form_for @post, url: (@post.persisted? ? admin_post_path(@post.id) : admin_posts_path) do |f|
+  - provide :notification do
+    = f.error_notification
+
+  .form-inputs
+    = f.input :title, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
+    = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
+
+  .form-group.form-actions
+    - unless @post.persisted?
+      = f.button :button, 'Draft', name: 'draft', class: 'btn-default', data: { disable_with: 'Saving draft...' }
+    = link_to 'Cancel', admin_posts_path, class: 'text-danger'
+    .pull-right
+      = f.button :submit, name: :publish, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }

@@ -1,0 +1,138 @@
+@import "reset";
+@import "variables";
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+#tbackground {
+  background-color: $body-color-bg;
+
+  td {
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: $base-font-weight;
+    line-height: $base-line-height;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.text-muted {
+  color: $text-color-muted;
+}
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+h1 {
+  margin: 0;
+  font-size: $font-size-big;
+  font-weight: $base-font-weight;
+  line-height: $font-size-big * 1.3333333333333;
+  text-transform: uppercase;
+  vertical-align: top;
+
+  &.inline {
+    display: inline;
+  }
+}
+
+p {
+  margin: 0;
+  padding-top: $base-font-size / 2;
+  padding-bottom: $base-font-size / 2;
+}
+
+a {
+  color: $link-color;
+}
+
+.btn {
+  padding-top: 12px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  background-color: $button-color-bg;
+  color: $button-color-content;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#theader {
+  background-color: $header-color-bg;
+  color: $header-color-content;
+  border-bottom: solid 1px darken($header-color-bg, 10%);
+}
+
+  #hlogo {
+    color: $header-color-content;
+
+    td {
+      font-size: $base-font-size * 1.25;
+      font-weight: 700;
+      line-height: $base-font-size * 1.25;
+      letter-spacing: 1px;
+
+      small {
+        font-size: $font-size-smallish;
+        font-weight: $base-font-weight;
+        letter-spacing: 0;
+      }
+
+      .text-muted {
+        color: lighten($header-color-bg, 35%);
+      }
+    }
+  }
+
+  #hlinks {
+    td {
+      font-size: $font-size-smallish;
+      text-align: right;
+
+      a {
+        margin-left: 12px;
+        color: $header-color-content;
+        text-decoration: none;
+
+        &:first-child { margin-left: 0; }
+      }
+    }
+  }
+
+#tcontent {
+  background-color: $body-color-content;
+
+  td {
+    text-align: center;
+  }
+}
+
+  #cheader {
+    text-align: center;
+  }
+
+#ccontent {
+  &.text-left td {
+    text-align: left;
+  }
+
+  &.text-right td {
+    text-align: right;
+  }
+}
+
+#tfooter {
+  background-color: darken($body-color-bg, 7%);
+  color: darken($body-color-bg, 60%);
+  border-top: solid 1px darken($body-color-bg, 20%);
+
+  td {
+    font-size: $font-size-smallish;
+  }
+
+  a {
+    color: darken($body-color-bg, 50%);
+  }
+}

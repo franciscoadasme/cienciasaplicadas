@@ -1,0 +1,14 @@
+- provide :header do
+  .map-canvas{ class: anim_class(1) }
+    #map.map
+    .widget
+      %h1
+        Get
+        %strong in touch
+        %br
+        %small Write or call to us
+      %address
+        = markdown @group.address || 'No address available'
+      = mail_to @group.email, 'Send a message', class: 'btn btn-primary btn-lg mailto'
+
+- provide :no_content, true

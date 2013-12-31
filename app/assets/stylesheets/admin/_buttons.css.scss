@@ -1,0 +1,19 @@
+a.facebook {
+  background-color: $color-facebook;
+  color: white;
+
+  &:hover {
+    background-color: lighten($color-facebook, 5%) !important;
+    color: white !important;
+  }
+}
+
+a.google {
+  background-color: $color-google;
+  color: white;
+
+  &:hover {
+    background-color: lighten($color-google, 5%) !important;
+    color: white !important;
+  }
+}

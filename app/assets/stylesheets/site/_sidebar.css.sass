@@ -1,0 +1,58 @@
+.sidebar-fixed
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  width: $sidebar-fixed-width
+  z-index: 1040
+
+.sidebar-header
+  margin: 0
+
+.sidebar-brand
+  display: block
+  padding: ($sidebar-header-height - $font-size-large)/2 + 1px $sidebar-padding-horizontal 0
+  height: $sidebar-header-height
+  font-size: $font-size-large
+  line-height: $font-size-large
+  font-weight: $font-weight-bold
+  vertical-align: bottom
+
+  &:hover
+    text-decoration: none
+
+.sidebar-widget
+  position: relative
+  margin: 0
+  padding: $sidebar-padding-vertical $sidebar-padding-horizontal
+
+  border-bottom-style: solid
+  border-bottom-width: 1px
+
+.sidebar-widget-header
+  h3, h4
+    margin: 5px 0
+    &:first-child
+      margin-top: 0
+    &:last-child
+      margin-bottom: 0
+
+  h3
+    font-size: $font-size-large
+  h4
+    font-size: $font-size-normal
+
+.sidebar-nav
+  a
+    font-size: $base-font-size
+
+  .active a
+    font-weight: $font-weight-bold
+
+.sidebar-nav-header
+  padding: $sidebar-padding-vertical * .75 $sidebar-padding-horizontal
+  font-weight: $font-weight-bold
+  text-transform: uppercase
+
+  .fa
+    margin-right: $sidebar-padding-horizontal * .25

@@ -1,0 +1,103 @@
+.gr-masthead
+  position: relative
+  height: 100%
+
+  color: white
+
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+    background-image: url(image_path('cbsm-panorama.jpg'))
+    background-position: center center
+    background-size: cover
+    background-repeat: no-repeat
+
+    filter: saturate(25%) sepia(25%) brightness(65%)
+    z-index: -1
+
+  .container
+    position: relative
+    top: 25%
+    padding: 0 50px
+    text-align: center
+
+  h1
+    font-size: 100px
+    line-height: 1
+    color: white
+
+    font-weight: $font-weight-regular
+    text-shadow: 5px 5px 0 rgba($color-primary-dark, .85), 10px 10px 0 rgba(black, .35)
+
+  p
+    font-size: $base-font-size * 1.25
+
+  p.lead
+    // padding-left: .25em
+    font-size: $base-font-size * 2
+    text-shadow: 2px 2px 0 rgba(black, .65)
+    font-weight: $font-weight-regular
+
+    // span
+    //   $spacing: $base-font-size * .5
+    //   $color-bg: rgba($color-primary, .65)
+      // padding: $spacing 0
+      // background-color: $color-bg
+      // box-shadow: $spacing 0 0 $color-bg, -$spacing 0 0 $color-bg
+      // line-height: $base-font-size * 3.35
+
+  // .text-muted
+  //   color: $color-primary
+
+  .btn-outline-inverse
+    margin: 20px 5px 20px 0
+    padding: 18px 24px
+    width: auto
+    font-size: $base-font-size * 1.25
+
+    background-color: $color-primary
+    border-color: $color-primary
+    color: white
+
+    &:hover,
+    &:focus,
+    &:active
+      color: white
+      background-color: $color-primary
+
+  .goto
+    position: absolute
+    bottom: 40px
+    left: 50%
+    display: inline-block
+    margin-left: -($font-size-icon + 20px * 2) / 2
+    padding: 20px
+    color: white
+    border: solid 1px white
+    border-radius: 50%
+    font-size: $font-size-icon
+    line-height: $font-size-icon
+    text-align: center
+    text-shadow: 0 1px 0 rgba(black, .35)
+    box-shadow: 0 1px 0 rgba(black, .35), inset 0 1px 0 rgba(black, .35)
+
+    .fa
+      width: $font-size-icon
+      height: $font-size-icon
+
+.content-index
+  position: relative
+
+  .gr-nav
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+
+  & > .container
+    padding-top: $navbar-height

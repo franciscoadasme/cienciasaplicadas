@@ -1,0 +1,94 @@
+CbsmWebsite::Application.routes.draw do
+  get "posts/index"
+  get "posts/show"
+  devise_for :users, path: 'auth', controllers: { sessions: 'auth/sessions', omniauth_callbacks: 'auth/omniauth_callbacks', passwords: 'auth/passwords' }, skip: [ :invitation ]
+  as :user do
+    scope 'admin/users/invitation' do
+      get :resend, to: 'admin/users/invitations#resend_invitation', as: :resend_user_invitation
+      post '/', to: 'admin/users/invitations#create', as: :user_invitation
+      get :new, to: 'admin/users/invitations#new', as: :new_user_invitation
+      patch '/', to: 'admin/users/invitations#update'
+      put '/', to: 'admin/users/invitations#update'
+    end
+    get 'invitation/accept', to: 'admin/users/invitations#edit', as: :accept_user_invitation
+  end
+
+  namespace :admin do
+    resources :pages, only: [ :edit, :update, :destroy ] do
+      member do
+        patch :publish
+        patch :trash
+        patch :restore
+        Group::PAGE_NAMES.each { |name| patch "mark_as_#{name}" }
+        patch :unmark
+      end
+      collection { post :sort  }
+    end
+
+    resources :posts, except: [ :show ] do
+      member do
+        patch :publish
+        patch :withhold
+      end
+    end
+
+    resource :account, only: [ :update ], controller: :account do
+      resources :pages, only: [ :index, :new, :create ]
+      get :profile, to: 'account#edit'
+      get :settings, to: 'settings#edit'
+      patch :settings, to: 'settings#update'
+      put :settings, to: 'settings#update'
+    end
+
+    resource :group, only: [ :update ], controller: :group do
+      resources :pages, only: [ :index, :new, :create ]
+      get :customize, to: 'group#edit'
+    end
+
+    resources :users, only: [ :index, :destroy ] do
+      member do
+        patch :promote
+        patch :demote
+
+        put :add_as_collaborator
+        delete :remove_as_collaborator
+      end
+    end
+
+    resources :publications, only: [ :index, :edit, :update ] do
+      member do
+        patch :link
+        delete :unlink
+      end
+
+      collection do
+        post :import
+      end
+    end
+
+    resources :projects, except: [ :show ]
+    resources :external_users, except: [ :show ]
+
+    resources :announcements, only: [ :new, :create ]
+
+    # Development only
+    get 'mailer(/:action(/:id(.:format)))', to: 'mailer#:action', as: nil
+  end
+  get 'admin', to: 'admin#dashboard'
+
+  resources :users, only: [ :index, :show ] do
+    member do
+      get 'projects/:project_id', to: 'projects#show', as: :project
+      get ':page_id', to: :show, as: :page
+      root to: redirect('/users/%{id}/about')
+    end
+  end
+  resources :posts, only: [ :index, :show ]
+  resources :projects, only: [ :show ]
+  %w(about people projects publications contact).each do |name|
+    get name, to: "site##{name}"
+  end
+  get ':page', to: 'site#show', as: :page
+
+  root to: 'site#index'
+end

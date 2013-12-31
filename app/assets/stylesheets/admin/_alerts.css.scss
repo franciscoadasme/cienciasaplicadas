@@ -1,0 +1,79 @@
+.alert {
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  background-color: $alert-color-bg;
+  border-width: 0 0 0 $alert-border-width;
+  border-radius: 0;
+  font-size: $font-size-small;
+}
+
+.alert-dismissable .close {
+  top: -1px;
+}
+
+.alert-warning,
+.alert-info,
+.alert-success,
+.alert-danger {
+  position: relative;
+  border-left-width: $alert-border-width * 4 + $font-size-icon;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: -$alert-border-width*2 - $font-size-icon;
+    margin-top: -$font-size-icon / 2;
+    width: $font-size-icon;
+    font-family: FontAwesome;
+    font-size: $font-size-icon;
+    font-style: normal;
+    font-weight: normal;
+    line-height: $font-size-icon;
+    text-align: center;
+  }
+}
+
+.alert-warning {
+  background-color: $alert-warning-color-bg;
+  border-color: $alert-warning-color-border;
+  color: $alert-warning-color-content;
+
+  &:before {
+    content: $alert-warning-icon;
+    background-color: $alert-warning-color-border;
+  }
+}
+
+.alert-info {
+  background-color: $alert-info-color-bg;
+  border-color: $alert-info-color-border;
+  color: $alert-info-color-content;
+
+  &:before {
+    content: $alert-info-icon;
+    background-color: $alert-info-color-border;
+  }
+}
+
+.alert-success {
+  background-color: $alert-success-color-bg;
+  border-color: $alert-success-color-border;
+  color: $alert-success-color-content;
+
+  &:before {
+    content: $alert-success-icon;
+    background-color: $alert-success-color-border;
+  }
+}
+
+.alert-danger {
+  background-color: $alert-danger-color-bg;
+  border-color: $alert-danger-color-border;
+  color: $alert-danger-color-content;
+
+  &:before {
+    content: $alert-danger-icon;
+    background-color: $alert-danger-color-border;
+  }
+}

@@ -1,0 +1,10 @@
+en:
+  controllers:
+    users:
+      add_as_collaborator:
+        flash:
+          success: '%{user} has been added as collaborator successfully.'
+          already_added: You are collaborators already. No need to add him/her again.
+      remove_as_collaborator:
+        flash:
+          success: '%{user} is no longer your collaborator.'

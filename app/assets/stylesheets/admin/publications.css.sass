@@ -1,0 +1,52 @@
+.list-group-item-publication
+  padding: 25px 20px
+
+  .list-group-item-heading
+    font-size: 20px
+    font-weight: $font-weight-regular
+
+  .list-group-item-actions
+    @extend .list-group-item-actions-fancy
+    position: absolute
+    right: 0
+    bottom: 0
+    left: 0
+    width: auto
+
+    background-color: transparent
+    border-color: transparent
+    z-index: 10800
+
+    &,
+    .btn
+      transition-duration: .2s
+      transition-delay: 0
+      transition-property: opacity, transform
+      visibility: hidden
+
+    .btn
+      opacity: 0
+      transform: scale(.5,.5)
+
+  &:hover
+    .list-group-item-actions
+      &,
+      .btn
+        visibility: visible
+        transition-delay: .5s
+
+      .btn
+        opacity: 1
+        transform: scale(1,1)
+
+.list-group-item-publication-authors
+  +delimited-list(";")
+  font-size: $font-size-smallish
+
+  &.no_linked
+    color: $text-muted
+    li:after
+      margin-left: 0
+
+  li:after
+    margin-left: -4px

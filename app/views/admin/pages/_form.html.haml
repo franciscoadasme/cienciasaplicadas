@@ -1,0 +1,38 @@
+- url = @page.persisted? ? admin_page_path(@page.id) : send("admin_#{top_level_controller}_pages_path")
+
+= vertical_form_for @page, url: url do |f|
+  - provide :notification do
+    = f.error_notification
+
+  .form-inputs
+    = f.input :title, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
+
+    .row
+      - at_group = (@page.associated_controller || top_level_controller) == 'group'
+      %div{ class: "col-xs-#{at_group ? 8 : 12}" }
+        = f.input :tagline, wrapper: :simple_wrapper, disabled: at_group && @page.marked?
+
+      - if at_group
+        .col-xs-4
+          = f.input :marked_as, wrapper: :simple_wrapper, collection: Group::PAGE_NAMES, label_method: -> (l) { l.titleize }, include_blank: (@page.marked? ? 'None' : 'Marked as')
+    %hr
+    = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
+
+  .form-group.form-actions
+    - unless @page.persisted?
+      = f.button :button, t('helpers.submit.page.draft'), name: 'draft', class: 'btn-default', data: { disable_with: 'Saving draft...' }
+
+    - title = t "helpers.submit.page.#{@page.persisted? ? 'back' : 'cancel'}"
+    - url = send "admin_#{@page.associated_controller || top_level_controller}_pages_path", status: @page.persisted? ? @page.status : 'published'
+    - html_options = { class: 'text-danger' }
+    - html_options[:confirm] = t('helpers.messages.page.cancel') unless @page.persisted?
+    = link_to title, url, html_options
+
+    .pull-right
+      = f.button :button, t('helpers.submit.page.preview'), name: 'preview', class: 'btn-default disabled' if @page.persisted?
+
+      - title_code = case
+        - when @page.drafted? then 'publish'
+        - when @page.persisted? then 'update'
+        - else 'create'
+      = f.button :submit, t("helpers.submit.page.#{title_code}"), name: 'publish', class: 'btn-primary', data: { disable_with: 'Submitting...' }

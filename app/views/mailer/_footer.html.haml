@@ -1,0 +1,17 @@
+- width, height, padding = 600, 60, 20
+- wleft, wright = 300, 300
+
+= mtable_tag id: 'tfooter', align: 'center', width: width do
+  %tr
+    %td
+      = mtable_tag width: wleft, align: 'left' do
+        = tspace_h padding
+        %td{ width: wleft - padding/2, height: height, valign: 'middle' }
+          Copyright © 2013-2014 #{@group.abbr}
+
+      - if content_for? :footer_link
+        = mtable_tag width: wright, align: 'right' do
+          %tr
+            %td.text-right{ width: wright - padding/2, height: height, valign: 'middle' }
+              = content_for :footer_link
+            = tspace_h padding

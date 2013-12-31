@@ -1,0 +1,10 @@
+- provide :title do
+  = image_tag display_user_image_url(@user), width: 24, height: 24
+  &nbsp;
+  %h1.inline= "#{@user.display_name} has sent you an announcement"
+- provide :ccontent_class, 'text-left'
+
+= mtable_tag width: '100%' do
+  %tr
+    %td
+      = markdown @content

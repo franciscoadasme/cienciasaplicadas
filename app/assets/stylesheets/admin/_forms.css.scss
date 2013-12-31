@@ -1,0 +1,247 @@
+.form-horizontal {
+  padding: 15px;
+  background-color: $body-color-content;
+
+  .form-group {
+    margin-bottom: 0;
+    background-color: #F7F7F7;
+
+    & > .control-label,
+    & > div:nth-child(2) {
+      padding: 18px;
+    }
+
+    & > div:nth-child(2) {
+      background-color: #FFFFFF;
+    }
+
+    input:not([type=submit]),
+    textarea {
+      margin-top: -7px;
+    }
+
+    &.has-error {
+      &,
+      & > div:nth-child(2) {
+        background-color: $color-quaternary-lighten;
+        color: $color-quaternary-lighten-contrast;
+      }
+    }
+  }
+
+  .has-warning {
+    &,
+    & > div:nth-child(2) {
+      background-color: $alert-warning-color-bg;
+    }
+  }
+
+  fieldset {
+    margin-bottom: 20px;
+
+    &:last-of-type { margin-bottom: 0; }
+  }
+
+  legend {
+    padding: 8px 5px;
+    border: none;
+  }
+
+  .control-label {
+    text-align: left;
+    font-weight: 300;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+
+  p.sectional {
+    position: relative;
+    top: -25px;
+    margin-bottom: 0;
+    padding: 5px;
+    font-size: .9em;
+    line-height: 1.5;
+  }
+
+  .form-actions {
+    padding: 30px 0 15px;
+    background-color: transparent;
+    text-align: right;
+
+    & > div {
+      padding: 0 18px;
+    }
+  }
+
+  .inset {
+    margin-left: 20px;
+  }
+}
+
+form hr {
+  margin-top: 5px;
+}
+
+.disabled {
+  color: $text-muted;
+
+  label {
+    cursor: not-allowed;
+  }
+}
+
+.form-group.check_boxes {
+  label.checkbox {
+    display: inline-block;
+    margin: 0 12px 0 0;
+    padding: 0;
+    font-weight: $base-font-weight;
+  }
+
+  input[type="checkbox"] {
+    float: none;
+    margin: 0;
+    margin-right: 8px;
+  }
+}
+
+.form-controls {
+  .boolean {
+    float: none !important;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    font-size: $font-size-smallish;
+    font-weight: $base-font-weight;
+    text-transform: none;
+  }
+
+  & > .boolean:first-child label {
+    margin-top: 0;
+  }
+
+  label.boolean {
+    display: block;
+    margin-top: 10px;
+
+    input[type="checkbox"] {
+      margin: 0 8px 0 0;
+    }
+  }
+
+  .inline {
+    display: inline;
+
+    .numeric {
+      display: inline;
+      width: 25%;
+    }
+  }
+}
+
+p.help-block {
+  margin-bottom: 0;
+  font-size: 13px;
+  color: $color-muted;
+}
+
+.has-error {
+  p.help-block {
+    display: none;
+  }
+}
+
+.form-actions {
+  & > a,
+  & > button,
+  & > input {
+    margin-right: 8px;
+    font-size: 14px;
+    vertical-align: baseline;
+  }
+
+  *:last-child {
+    margin-right: 0;
+  }
+}
+
+input[type="checkbox"].form-control {
+  display: inline;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  @include transition(none);
+}
+
+/*
+ * Custom signin form
+ */
+.signin-form {
+  padding: 28px 20px 0;
+  background-color: lighten($body-color-bg, 25%);
+  border: solid 3px rgba(black, .1);
+  border-radius: 3px;
+
+  .form-inputs {
+    .input {
+      margin-top: 16px;
+
+      &:first-child { margin-top: 0; }
+    }
+  }
+
+  .form-actions {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  label {
+    float: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    font-size: $font-size-small;
+    font-weight: $base-font-weight;
+
+    &:not(.checkbox) {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  div.boolean {
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  input[type="checkbox"] {
+    float: none;
+    margin: -3px 4px 0 0;
+  }
+
+  a {
+    position: relative;
+    display: block;
+    box-sizing: content-box;
+    left: -20px;
+    padding: 10px 20px;
+    width: 100%;
+    text-decoration: none;
+  }
+
+  .recover {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: $font-size-small;
+    text-align: center;
+  }
+
+  .separator {
+    padding: 0 20px 10px;
+    font-size: $font-size-small;
+    text-align: center;
+    color: $text-muted;
+  }
+}

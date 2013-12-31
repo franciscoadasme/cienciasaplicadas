@@ -1,0 +1,74 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Oh snap! Change a few things up and try submitting again."
+    # Labels and hints examples
+    labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+      group:
+        abbr: 'Abbreviation'
+        logo: 'Logo URL'
+        email: 'Email Address'
+        bio: 'Biography'
+
+      publication:
+        pages: Pages
+
+    placeholders:
+      page:
+        title: 'Title'
+        tagline: 'Shortened title (tagline)'
+      post:
+        title: 'Title'
+        body: 'Message'
+      publication:
+        start_page: From
+        end_page: to
+
+    hints:
+      user:
+        headline: 'Should describe in a nutshell your current job/activity/profession/state-of-mind (e.g. Research Assistant, Bioinformatician, etc.).'
+        nickname: A shortened representation of your name used for profile url address. A good convention is using the first letter of your first name put together with your first surname (e.g. John Doe &rarr; jdoe).
+        email: Be aware that by changing this you won't be able to sign in using the previous email and social integration will be lost if social account's email address is not change accordingly.
+      publication:
+        title: Be careful to change it since this is used to match existing publications during import.
+        volume: If your publication has been accepted but it's yet to be published, enter "In Press" keyphrase.
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+
+  helpers:
+    submit:
+      page:
+        create: "Publish Page"
+        update: "Save Changes"
+        cancel: "Cancel Page"
+        back: 'Back to list'
+        draft: "Save Draft"
+        preview: "Preview"
+        publish: 'Publish Page'
+
+      user:
+        update: 'Update My Account'
+
+    messages:
+      page:
+        cancel: |
+          Any page changes not saved as a draft will be lost if you cancel this page.
+
+          Are you sure you want to cancel?
+

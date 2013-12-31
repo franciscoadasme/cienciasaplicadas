@@ -1,0 +1,6 @@
+- provide :title, 'Editing page'
+- provide :subtitle do
+  = "#{@page.owner.display_name}'s" unless @page.owner.nil? || @page.owned_by?(current_user)
+  = @page.associated_controller
+
+= render 'form'

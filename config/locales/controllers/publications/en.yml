@@ -1,0 +1,17 @@
+en:
+  controllers:
+    publications:
+      update:
+        flash:
+          success: Publication was updated successfully.
+      link:
+        flash:
+          success: 'Publication was linked through "%{author}" successfully.'
+      unlink:
+        flash:
+          success: Publication was unlinked successfully.
+      import:
+        flash:
+          success:
+            one: Only one publication was found in the selected files. See below for details.
+            other: "A total of %{count} publications have been found in the selected files. See below for details."

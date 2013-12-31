@@ -1,0 +1,9 @@
+- if @page.present?
+  = render @page
+- else
+  %h1= 'Missing page'
+  %p.lead
+    Requested page doesn't exist yet.
+    %br
+    %small.text-muted
+      You should proceed to create it #{link_to 'here', new_admin_group_page_path} before this webpage goes live.

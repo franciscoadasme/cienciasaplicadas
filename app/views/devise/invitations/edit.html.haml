@@ -1,0 +1,30 @@
+- provide :title, t('devise.invitations.edit.header')
+- provide :raw_subtitle do
+  %small.raw= resource.email
+
+- provide :sidebar do
+  %ul.sidebar-menu
+    %li.sidebar-menu-header= t('devise.invitations.edit.social_integration.title')
+    %li.sidebar-menu-panel
+      = markdown t('devise.invitations.edit.social_integration.body')
+    %li.sidebar-menu-item= link_to fa_icon('facebook-square', text: 'Facebook'), omniauth_authorize_path(resource_name, :facebook), class: :facebook
+    %li.sidebar-menu-item= link_to fa_icon('google-plus-square', text: 'Google'), omniauth_authorize_path(resource_name, :google_oauth2), class: :google
+
+= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f|
+  - provide :notification do
+    = f.error_notification
+
+  = field_set_tag t('devise.invitations.edit.field_sets.credentials') do
+    = f.hidden_field :invitation_token
+    = f.input :nickname
+    = f.input :password
+    = f.input :password_confirmation
+
+  = field_set_tag t('devise.invitations.edit.field_sets.personal') do
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :image_url
+
+  .form-group.form-actions
+    .col-xs-offset-3.col-xs-9
+      = f.submit t("devise.invitations.edit.submit_button"), class: 'btn btn-primary', data: { disable_with: 'Submitting...' }

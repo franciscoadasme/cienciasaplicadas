@@ -1,0 +1,45 @@
+- hpadding, vpadding = 30, 40
+
+!!! Strict
+%html{ xmlns: 'http://www.w3.org/1999/xhtml' }
+  %head
+    %meta{ content: 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type' }
+    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
+    = stylesheet_link_tag 'mailer', media: 'all'
+    %title= @subject
+
+%body
+  %table#tbackground{ border: 0, cellpadding: 0, cellspacing: 0 }
+    %tr
+      %td{ valign: 'top' }
+        = tspace_v vpadding
+
+        = render 'mailer/header'
+
+        = tspace_v hpadding
+
+        / Content
+        = mtable_tag id: :tcontent, width: 600, align: 'center' do
+          %tr
+            = tspace_h hpadding
+            %td{ valign: 'top', width: 600 - hpadding * 2 }
+              = tspace_v vpadding
+
+              = mtable_tag width: '100%' do
+                %tr
+                  %td#cheader
+                    = content_for(:title) || content_tag(:h1, @subject)
+                %tr
+                  %td
+                    = tspace_v hpadding
+                %tr
+                  %td#ccontent{ class: content_for(:ccontent_class) }
+                    = yield
+
+              = tspace_v vpadding
+            = tspace_h hpadding
+        / End of Content
+
+        = render 'mailer/footer'
+
+        = tspace_v vpadding

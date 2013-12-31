@@ -1,0 +1,36 @@
+en:
+  devise:
+    invitations:
+      send_instructions: 'An invitation email has been sent to %{email}.'
+      invitation_token_invalid: 'The invitation token provided is not valid!'
+      updated: 'Your account information was set successfully. You are now signed in.'
+      no_invitations_remaining: "No invitations remaining"
+      invitation_removed: 'Your invitation was removed.'
+      new:
+        header: "Send invitation"
+        field_sets:
+          invite: 'Inviting colleagues'
+        sectionals:
+          invite: |
+            Users can only be created by accepting an invitation sent to them.
+            Just enter your colleague's email and a corresponding link will be sent to him/her, where he/she can customize his/her account details. New users will start as normal users, but you can promote them in the users section.
+        hints:
+          email: 'Be sure to check twice the email address before you submit it, otherwise no invitation will be received by your colleague.'
+        submit_button: "Send an invitation"
+      edit:
+        header: "Setting up account"
+        field_sets:
+          credentials: Credential Information
+          personal: Personal Information
+        social_integration:
+          title: Social integration
+          body: |
+            Alternatively, you can grant access to one of your social accounts to retrieve and fill you account information automatically.
+
+            Beware that you social account's email must match the entered one.
+
+        submit_button: "Activate it!"
+    mailer:
+      invitation_instructions:
+        subject: "%{invited_by} has given you access to an account at %{group}"
+        title: "%{invited_by} have invited you to join %{group}"

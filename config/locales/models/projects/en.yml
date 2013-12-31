@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    errors:
+      models:
+        project:
+          attributes:
+            leader:
+              exclusion: cannot be also in collaborators

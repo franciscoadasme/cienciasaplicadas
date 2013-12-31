@@ -1,0 +1,46 @@
+.list-group-item-project
+  margin-bottom: 20px
+  padding: 25px 20px
+
+  .list-group-item-heading
+    font-size: 20px
+
+  .list-group-item-actions
+    @extend .list-group-item-actions-fancy
+    +clearfix
+
+.list-group-item-collaborators
+  +delimited-list(",")
+
+  li:nth-last-child(-n+2):after
+    content: " and"
+
+  li:last-child:after
+    content: "."
+
+  a.user-external:after
+    +fa-icon
+    content: " \f08e"
+
+  span.user-external
+    color: $text-color
+
+.list-group-item-external-user
+  margin-bottom: 20px
+  padding: 25px 20px
+
+  .list-group-item-heading
+    font-size: 20px
+
+  .list-group-item-actions
+    @extend .list-group-item-actions-fancy
+    +clearfix
+
+.list-group-item-projects
+  +delimited-list(",")
+
+  li:nth-last-child(-n+2):after
+    content: ", and"
+
+  li:last-child:after
+    content: "."

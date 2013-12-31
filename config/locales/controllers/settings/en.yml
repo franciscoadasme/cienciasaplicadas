@@ -1,0 +1,4 @@
+en:
+  settings:
+    messages:
+      update_successful: 'Settings were successfully updated.'

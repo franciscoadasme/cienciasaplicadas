@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    attributes:
+      settings:
+        update_attributes_by_provider: Retrieve account information from social account when signing in with it
+        update_nickname_by_provider: Match my nickname to social username
+        update_image_by_provider: Update avatar automatically
+        deliver_notification_by_email: Deliver an email notification when an event occurs
+
+        autolink_on_import: Autolink publications that other users import
+        display_author_name: Display author name shown in the corresponding publication instead of your real name
+
+        include_lastname: 'Use full name as your display or public name instead of just your first name'
+        show_contact_page: Show a contact link in my public profile

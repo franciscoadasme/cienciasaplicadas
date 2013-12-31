@@ -1,0 +1,41 @@
+= simple_form_for @settings, url: settings_admin_account_path, method: :patch, html: { role: 'form' } do |f|
+  - provide :notification, t('simple_form.error_notification') unless @settings.errors.empty?
+
+  .form-group
+    = label_tag t('settings.edit.labels.social_integration'), nil, class: 'control-label col-xs-3'
+    .col-xs-9.form-controls
+      = f.input :update_attributes_by_provider, wrapper: :default
+      .inset
+        = f.input :update_nickname_by_provider, wrapper: :default, disabled: !@settings.should_update_attributes?
+        = f.input :update_image_by_provider, wrapper: :default, disabled: !@settings.should_update_attributes?
+
+      %p.help-block.text-right
+        - if current_user.provider
+          = t('settings.defaults.last_provider', provider: current_user.provider.split('_').first.titleize)
+        - else
+          = t('settings.defaults.no_provider')
+
+  .form-group
+    = label_tag tv('.labels.publications'), nil, class: 'control-label col-xs-3'
+    .col-xs-9.form-controls
+      = f.input :autolink_on_import, wrapper: :default
+      = f.input :display_author_name, wrapper: :default
+
+      %p.help-block.text-right
+        %strong= tv('.help.aliases') + ':'
+        = current_user.aliases.map(&:name).uniq.join('; ') + '.'
+
+  .form-group
+    = label_tag t('settings.edit.labels.notifications'), nil, class: 'control-label col-xs-3'
+    .col-xs-9.form-controls
+      = f.input :deliver_notification_by_email, wrapper: :default
+
+  .form-group
+    = label_tag t('settings.edit.labels.customization'), nil, class: 'control-label col-xs-3'
+    .col-xs-9.form-controls
+      = f.input :include_lastname, wrapper: :default
+      = f.input :show_contact_page, wrapper: :default
+
+  .form-group.form-actions
+    .col-xs-9.col-xs-offset-3
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Updating...' }

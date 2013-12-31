@@ -1,0 +1,62 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+body,
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  font-family: $base-font-family;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: $base-font-weight;
+  // -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: $base-font-size;
+}
+
+h2 {
+  margin-bottom: $heading-h2-margin;
+  color: $heading-h2-color-text;
+
+  &,
+  small {
+    text-transform: capitalize;
+  }
+
+  .raw {
+    text-transform: none;
+  }
+}
+
+.content p {
+  margin-bottom: $base-paragraph-margin;
+  line-height: $base-line-height;
+
+  & > a {
+    padding: $base-link-padding;
+    background-color: $link-color-bg;
+    color: $link-color-text;
+
+    &:hover {
+      background-color: $link-hover-color-bg;
+      color: $link-hover-color-text;
+      text-decoration: none;
+    }
+  }
+}
+
+hr {
+  border-top-color: rgba(black, .1);
+  border-bottom: 1px solid rgba(white, .5);
+}
+
+.text-primary { color: $text-color-primary; }
+
+.uppercase { text-transform: uppercase; }
+
+.fa { font-size: $font-size-icon; }
+.fa-lg { font-size: 1.333333333333em; }
+.fa-2x { font-size: 2em; }
+.fa-3x { font-size: 3em; }
+.fa-4x { font-size: 4em; }
+.fa-5x { font-size: 5em; }

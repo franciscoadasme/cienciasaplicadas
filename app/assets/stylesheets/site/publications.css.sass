@@ -1,0 +1,31 @@
+.list-publications
+  position: relative
+
+  .list-heading
+    position: absolute
+    right: 100%
+    margin-right: 16px
+
+    h2
+      color: $text-muted
+      line-height: 1
+
+  .list-item-meta
+    display: inline
+    margin-left: 4px
+
+  .list-footer
+    margin-bottom: 16px
+    text-align: right
+
+.list-authors
+  +delimited-list(";")
+  display: block !important
+
+  li:after
+    margin-left: -4px
+
+  &:before
+    content: "\f0da"
+    +fa-icon
+    color: $text-muted

@@ -1,0 +1,28 @@
+- provide :sidebar_fixed, render('users/sidebar') unless @user.nil?
+
+%h1
+  - unless @project.start_year.blank?
+    %div
+      %small.text-muted
+        - time_span = @project.start_year.to_s
+        - time_span += " &mdash; #{@project.end_year}" unless @project.end_year.blank?
+        = time_span.html_safe
+  = @project.title
+
+.lead.text-muted
+  Lead by
+  = link_to_user @project.leader
+  - if @project.all_collaborators.any?
+    in collaboration with
+    %ul.list-collaborators
+      - @project.all_collaborators.each do |user|
+        %li= link_to_user user
+
+  and sponsored by
+  %strong= @project.source_and_id
+
+= image_tag @project.image_url, class: 'thumbnail' unless @project.image_url.blank?
+
+- unless @project.description.blank?
+  .project-description
+    = markdown @project.description

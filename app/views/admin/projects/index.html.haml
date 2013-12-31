@@ -1,0 +1,8 @@
+- provide :widget do
+  = link_to fa_icon('plus', text: tv('.actions.new', no_action: true)), new_admin_project_path, class: 'btn btn-primary'
+
+- if @projects.any?
+  %ul.list-group.list-group-projects
+    = render @projects
+- else
+  %p.lead.text-center= tv('.none')

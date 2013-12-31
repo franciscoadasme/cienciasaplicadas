@@ -1,0 +1,14 @@
+= simple_form_for [ :admin, @external_user ], html: { role: 'form' } do |f|
+  - provide :notification do
+    = f.error_notification
+
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :institution
+  = f.input :city
+  = f.input :country
+  = f.input :website_url
+
+  .form-group.form-actions
+    .col-xs-9.col-xs-offset-3
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }

@@ -1,0 +1,13 @@
+%li.list-item-user.col-xs-4
+  = link_to user, class: 'user-portrait' do
+    = autosizing_image_tag display_user_image_url(user), size: 128
+    .list-item-actions.toggleable
+      = fa_icon 'search 2x'
+    - if user.publications.any?
+      %span.user-publication-count.toggleable
+        = fa_icon 'files-o', text: user.publications.count, title: 'Number of publications'
+
+  .list-item-header= user.full_name
+  .list-item-meta
+    %span.user-headline
+      = user.headline || "@#{user.nickname}"

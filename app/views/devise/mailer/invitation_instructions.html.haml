@@ -1,0 +1,30 @@
+- provide :title do
+  = image_tag display_user_image_url(@user.invited_by), width: 24, height: 24
+  &nbsp;
+  %h1.inline= t('devise.mailer.invitation_instructions.title', invited_by: @user.invited_by.display_name, group: @group.abbr)
+
+- provide :footer_link do
+  = link_to 'Destroy my unactived account!', '#'
+
+= mtable_tag width: '100%' do
+  %tr
+    %td
+      #{@user.invited_by.display_name} has sent you an invitation to join  #{@group.abbr}'s community (#{link_to root_url, root_url}). By clicking  the link below you will accept it and start setting your account, filling your personal and academic information. Then, you'll have access to administration panel where you can customize your public profile.
+
+  %tr
+    %td
+      = tspace_v 40
+
+  %tr
+    %td
+      = link_to 'Accept invitation', accept_invitation_url(@user, invitation_token: @token), class: 'btn'
+
+  %tr
+    %td
+      = tspace_v 40
+
+  %tr
+    %td
+      If you don't want to accept the invitation, please ignore this email.
+      %br/
+      Your account won't be created until you access the link above and set your credentials and account information.

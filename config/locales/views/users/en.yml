@@ -1,0 +1,16 @@
+en:
+  views:
+    users:
+      index:
+        single:
+          hints:
+            add_as_collaborator: Invite him/her as collaborator
+            remove_as_collaborator: Remove him/her as collaborator
+      _sidebar:
+        hints:
+          has_invitations:
+            one: "There is one user that hasn't accepted the invitation yet"
+            other: "There are %{count} users that haven't accepted their invitations yet"
+          has_collaborators:
+            one: "You have one collaborator"
+            other: "You have %{count} collaborators"

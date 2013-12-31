@@ -1,0 +1,30 @@
+- provide :title, params[:sorting] ? 'Sorting Pages' : 'Pages'
+- provide :widget do
+  / Sort button
+  - content = fa_icon('sort', text: params[:sorting] ? 'Done': 'Sort')
+  - path = send("admin_#{top_level_controller}_pages_path", status: params[:status], sorting: params[:sorting].nil? || nil)
+  - should_be_visible = params[:status] == 'published' && @pages.count > 1
+  = link_to content, path, class: 'btn btn-primary' if should_be_visible
+
+  .btn-group
+    - %w(published drafted trashed).each do |status|
+      - if status == params[:status]
+        %button.btn.btn-default.active= status.titleize
+      - else
+        = link_to status.titleize, send("admin_#{top_level_controller}_pages_path", status: status), class: 'btn btn-default'
+
+- if @pages.any?
+  %ul.list-group.list-group-pages{ class: ('sortable' if sortable_pages?), data: { update_url: sort_admin_pages_url }}
+    = render @pages
+
+    - unless params[:sorting]
+      %p.text-muted
+        = t("views.pages.links.start_page_more", link: link_to('New Page', new_admin_group_page_path)).html_safe
+- else
+  %ul.list-group.list-group-pages
+    .list-group-item.list-group-item-page
+      - t_key_path = "views.pages.placeholders.no_#{params[:status]}_pages"
+      %h3= t("#{t_key_path}.title")
+      %p= t("#{t_key_path}.body")
+      - if [ 'published', 'drafted' ].include? params[:status]
+        = link_to t("views.pages.links.start_page_when_no_#{params[:status]}"), send("new_admin_#{top_level_controller}_page_path"), class: 'btn btn-primary'

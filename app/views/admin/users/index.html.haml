@@ -1,0 +1,11 @@
+- provide :title, pluralize(@users_count, 'User') + ' plus me'
+
+%ul.list-group.list-group-users.clearfix
+  - if current_user.super_user?
+    %h4.list-group-header= 'Registered users'
+  = render partial: 'admin/users/user', collection: @users_accepted
+
+- if current_user.super_user?
+  %ul.list-group.list-group-users.clearfix
+    %li.list-group-header= 'Invited users'
+    = render partial: 'admin/users/user', collection: @users_not_accepted

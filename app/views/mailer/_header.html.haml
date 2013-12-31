@@ -1,0 +1,22 @@
+- width, height, padding = 600, 100, 20
+- wleft, wright = 400, 200
+
+= mtable_tag id: 'theader', align: 'center', width: width do
+  %tr
+    %td
+      / Logo
+      = mtable_tag id: 'hlogo', width: wleft, align: 'left' do
+        = tspace_h padding
+        %td{ width: wleft - padding/2, height: height, valign: 'middle' }
+          = @group.display_name
+          %br
+          %small.text-muted= @group.name
+      / End of logo
+
+      = mtable_tag id: 'hlinks', width: wright, align: 'right' do
+        %tr
+          %td{ width: wright - padding/2, height: height, valign: 'middle' }
+            = link_to 'Home', root_url
+            = link_to 'About', about_url
+            = link_to 'Contact', contact_url
+          = tspace_h padding

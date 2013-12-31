@@ -1,0 +1,29 @@
+%li.list-item-project
+  - unless project.image_url.blank?
+    %span.thumbnail
+      = autosizing_image_tag project.image_url, size: 64
+
+  - unless project.start_year.blank?
+    = content_tag :div, class: 'project-timespan' do
+      - time_span = project.start_year.to_s
+      - time_span += "&mdash;#{project.end_year}" unless project.end_year.blank?
+      = time_span.html_safe
+
+  .list-item-header
+    = link_to project.title, @user.nil? ? project : project_user_path(@user, project)
+
+  .list-item-meta
+    Lead by
+    = link_to_user project.leader
+    - if project.all_collaborators.any?
+      in collaboration with
+      %ul.list-collaborators
+        - project.all_collaborators.each do |user|
+          %li= link_to_user user
+
+    %br
+    = project.source_and_id
+
+  - unless project.description.blank?
+    .project-description
+      = excerpt project.description

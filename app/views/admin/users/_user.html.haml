@@ -1,0 +1,25 @@
+%li.list-group-item.list-group-item-user.fadein.scaleInv.anim_5{ class: "#{user.role_symbol} #{'collaborator' if current_user.collaborator?(user)}" }
+  = autosizing_image_tag display_user_image_url(user), size: 28, class: 'list-group-item-user-avatar'
+
+  %h3.list-group-item-user-name{ title: user.full_name }
+    = user.display_name.middle_truncate 20
+    %small.text-primary= "@#{user.nickname}" if user.accepted?
+
+  .list-group-item-meta.list-group-item-user-meta
+    %span.text-muted= user.accepted? ? user.role_name.titleize : t('views.users.single.meta.not_accepted', distance_of_time:distance_of_time_in_words_to_now(user.invitation_sent_at))
+
+  .list-group-item-actions.list-group-item-user-actions
+    = link_to fa_icon('eye'), user_path(user), title: t('views.users.links.hints.view_user_page'), target: '_blank' if user.accepted?
+
+    = mail_to user.email, fa_icon('envelope-o'), title: t('views.users.links.hints.mailto', email: user.email)
+
+    - if !user.accepted? && current_user.super_user?
+      = link_to fa_icon('mail-forward'), resend_user_invitation_path(invitation_token: user.invitation_token), title: t('views.users.links.hints.resend')
+
+    - if !user.admin? && user.accepted? && current_user.super_user?
+      - if user.super_user?
+        = link_to fa_icon('level-down'), demote_admin_user_path(user.id), title: t('views.users.links.hints.demote'), method: :patch
+      - else
+        = link_to fa_icon('level-up'), promote_admin_user_path(user.id), title: t('views.users.links.hints.promote'), method: :patch
+
+    = link_to fa_icon('trash-o'), admin_user_path(user.id), method: :delete, data: { confirm: t('views.users.links.confirmations.destroy') } if current_user.super_user? && is_not_me?(user) && !user.admin?

@@ -1,0 +1,12 @@
+- provide :title, 'Writing'
+
+= vertical_form_for @post, url: admin_announcements_path do |f|
+  - provide :notification do
+    = f.error_notification
+
+  = f.input :title, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
+  = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
+
+  .form-group.form-actions
+    .pull-right
+      = f.button :submit, 'Send announcement', class: 'btn btn-primary', data: { disable_with: 'Sending...' }

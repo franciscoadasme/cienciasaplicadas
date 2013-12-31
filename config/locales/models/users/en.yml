@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              invalid: should contain only letters without accents (n instead of ñ)

@@ -1,0 +1,26 @@
+= simple_form_for [ :admin, @project ], html: { role: 'form' } do |f|
+  - provide :notification do
+    = f.error_notification
+
+  = f.input :title
+  = f.association :leader, collection: @users, label_method: :full_name, prompt: t('simple_form.prompts.project.leader')
+  = f.association :collaborators, collection: @users, as: :check_boxes, label_method: :full_name
+  - if @external_users.any?
+    = f.association :external_users, as: :check_boxes, label_method: :full_name
+
+  .form-group
+    = label_tag t('simple_form.labels.project.duration'), nil, class: 'control-label col-xs-3'
+    .col-xs-9.form-controls
+      - range = 2020.downto(1950)
+      = f.input :start_year, collection: range, wrapper: :inline, input_html: { class: 'numeric' }
+      &mdash;
+      = f.input :end_year, collection: range, wrapper: :inline, input_html: { class: 'numeric' }
+
+  = f.input :source
+  = f.input :identifier
+  = f.input :description, hint: markdown_hint, input_html: { rows: 10 }
+  = f.input :image_url
+
+  .form-group.form-actions
+    .col-xs-9.col-xs-offset-3
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }

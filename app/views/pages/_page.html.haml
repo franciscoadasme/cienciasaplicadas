@@ -1,0 +1,19 @@
+%h1= page.title
+- unless page.body.blank?
+  - content = markdown(page.body)
+  - content.gsub!(/(<[a-z]+>\{\{.+\}\}<\/[a-z]+>)/) { |s| strip_tags(s) } # Removed tag around template sentences
+  = parse_template(content).html_safe
+- else
+  %p.lead
+    No page content was found.
+    %br
+    %small.text-muted
+      Perhaps someone forgot to write it, or we are just starting up.
+
+- unless page.marked_as == 'publications' || !page.persisted?
+  %p.text-muted.text-right
+    %small
+      Edited by
+      = link_to page.edited_by.display_name, user_path(page.edited_by)
+      = time_tag page.updated_at, distance_of_time_in_words_to_now(page.updated_at), pubdate: true
+      ago

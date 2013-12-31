@@ -1,0 +1,9 @@
+- if collection.any?
+  %ul.list-projects
+    = render collection
+- else
+  %p.lead
+    No projects were found.
+    %br
+    %small.text-muted
+      Perhaps someone forgot to add them, or we are just starting up.

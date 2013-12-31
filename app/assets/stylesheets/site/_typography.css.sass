@@ -1,0 +1,35 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300")
+
+body
+  font-family: $base-font-family
+  font-weight: $base-font-weight
+  color: $base-color-text
+  +antialiased
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6
+  font-family: $headings-font-family
+  font-weight: $headings-font-weight
+  line-height: $headings-line-height
+  color: $headings-color
+
+  &:first-child
+    margin-top: 0
+
+.content p
+  margin-bottom: $base-font-size
+  font-family: $font-family-serif
+  font-size: $base-font-size
+  line-height: $base-line-height
+
+  &:last-child
+    margin-bottom: 0
+
+  &.lead
+    font-size: $base-font-size * 1.25
+    line-height: $base-line-height * 1.25
+
+.content
+  img
+    width: 100%
+    height: auto

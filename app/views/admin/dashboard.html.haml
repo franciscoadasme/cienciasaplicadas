@@ -1,0 +1,67 @@
+- provide :title, 'Dashboard'
+
+- if @group.missing_pages.any? && current_user.super_user?
+  .alert.alert-warning
+    - tags = @group.missing_pages.map{ |name| content_tag(:strong, name.upcase) }.to_sentence
+    = "No #{tags} group page(s) are present.".html_safe
+    %br
+    Please
+    = link_to 'create', new_admin_group_page_path
+    or
+    = link_to 'mark', admin_group_pages_path
+    existing pages to the required classes.
+
+.row
+  .col-xs-6
+    - if @recent_publications.any?
+      %ul.list-group
+        %li.list-group-header= 'Recently added publications'
+        - @recent_publications.each do |pub|
+          %li.list-group-item
+            %small
+              = link_to pub.title, '#'
+              %strong.text-muted= pub.year
+              %span.text-muted= pub.short_author_list
+
+  .col-xs-6
+    - if @recent_pages.any?
+      %ul.list-group
+        %li.list-group-header= 'Updated group pages'
+        - @recent_pages.each do |page|
+          %li.list-group-item
+            %small
+              = link_to page.title, '#'
+              %span.text-primary= "@#{page.tagline}"
+              = excerpt page.body, length: 80
+              %br
+              %span.text-muted
+                = "Edited by @#{page.edited_by.nickname} #{distance_of_time_in_words_to_now page.updated_at} ago"
+
+  .col-xs-6
+    %ul.list-group
+      - if @recent_users.any?
+        %li.list-group-header
+          = "#{pluralize(@recent_users.count, 'user has', 'users have')} joined in the last 7 days"
+        - @recent_users.each do |user|
+          %li.list-group-item
+            = autosizing_image_tag display_user_image_url(user), size: 28, class: 'pull-right'
+            %small
+              = link_to user.full_name, user_path(user)
+              %span.text-primary= "@#{user.nickname}"
+              %br
+              %span.text-muted= user.email
+
+      - if current_user.super_user? && @pending_users.any?
+        %li.list-group-header
+          = "#{pluralize @pending_users.count, "invitation hasn't", "invitations haven't"} been accepted yet"
+          - @pending_users.each do |user|
+            %li.list-group-item
+              %small
+                = user.email
+                %br
+                %span.text-muted= "#{distance_of_time_in_words_to_now user.invitation_sent_at} ago"
+
+  .col-xs-6
+    %ul.list-group
+      %li.list-group-header= 'Recent posts'
+      %li.list-group-item= 'Coming soon'

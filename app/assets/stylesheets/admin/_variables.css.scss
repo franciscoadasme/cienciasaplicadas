@@ -1,0 +1,114 @@
+$base-font-family: "Open Sans", Helvetica, Arial, sans-serif;
+$base-font-size: 16px;
+$base-font-weight: 300;
+$base-line-height: 1.6;
+$base-paragraph-margin: 1.15em;
+
+$base-link-padding: 1px 3px;
+
+$font-size-small: 13px;
+$font-size-smallish: 15px;
+$font-size-icon: 14px;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+
+/*
+ * Headings
+ */
+$heading-h2-color-text: #404040;
+$heading-h2-margin: 20px;
+
+/*
+ * Alerts
+ */
+$alert-border-width: 4px;
+
+$alert-color-bg: $state-warning-bg;
+$alert-color-border: $state-warning-border;
+$alert-color-content: $state-warning-text;
+
+$alert-warning-color-bg: $state-warning-bg;
+$alert-warning-color-border: $state-warning-border;
+$alert-warning-color-content: $state-warning-text;
+$alert-warning-icon: "\f071";
+
+$alert-info-color-bg: $state-info-bg;
+$alert-info-color-border: $state-info-border;
+$alert-info-color-content: $state-info-text;
+$alert-info-icon: "\f05a";
+
+$alert-success-color-bg: $state-success-bg;
+$alert-success-color-border: $state-success-border;
+$alert-success-color-content: $state-success-text;
+$alert-success-icon: "\f00c";
+
+$alert-danger-color-bg: $state-danger-bg;
+$alert-danger-color-border: $state-danger-border;
+$alert-danger-color-content: $state-danger-text;
+$alert-danger-icon: "\f05e";
+
+/*
+ * Sidebar
+ */
+$sidebar-menu-spacing: 20px;
+$sidebar-menu-font-size: $font-size-smallish;
+
+$sidebar-menu-item-padding-vertical: 10px;
+$sidebar-menu-item-padding-horizontal: 20px;
+
+$sidebar-menu-item-color-bg: darken($body-color-content, 2.1%);
+$sidebar-menu-item-color-border: $body-color-bg;
+$sidebar-menu-item-hover-color-bg: $body-color-content;
+$sidebar-menu-item-hover-color-content: $color-primary;
+
+$sidebar-menu-item-active-color-bg: darken($color-primary, 10%);
+$sidebar-menu-item-active-color-content: $color-primary-contrast;
+$sidebar-menu-item-active-hover-color-bg: darken($color-primary, 5%);
+$sidebar-menu-item-active-hover-color-content: $color-primary-contrast;
+
+$sidebar-menu-item-newlink-font-size: $font-size-small;
+$sidebar-menu-item-newlink-color-bg: darken($body-color-content, 2.1%);
+$sidebar-menu-item-newlink-hover-color-bg: darken($body-color-content, 8%);
+$sidebar-menu-item-active-newlink-color-bg: $color-primary;
+$sidebar-menu-item-active-newlink-hover-color-bg: lighten($color-primary, 5%);
+
+$sidebar-menu-header-font-size: $font-size-small;
+
+$sidebar-menu-panel-font-size: $font-size-small;
+$sidebar-menu-panel-color-content: $color-muted;
+
+/*
+ * Navigation
+ */
+$navbar-user-avatar-size: 32px;
+$navbar-user-menu-width: 192px;
+
+/*
+ * Control colors
+ */
+$link-color-bg: darken($color-primary, 0%);
+$link-color-text: lighten($link-color-bg, 100%);
+$link-hover-color-bg: darken($link-color-bg, 10%);
+$link-hover-color-text: $link-color-text;
+
+$text-color-primary: darken($color-primary, 5%);
+
+/*
+ * List groups
+ */
+$list-group-item-user-width: 200px;
+$list-group-item-user-padding: 8px;
+$list-group-item-user-border-width: 3px;
+$list-group-item-user-border-radius: 2px;
+$list-group-item-user-img-size: 28px;
+
+$list-group-item-user-border-color: #E6E6E6;
+$list-group-item-user-border-color-admin: desaturate(lighten($color-secondary, 35%), 5%);
+$list-group-item-user-border-color-super-user: desaturate(lighten($color-primary, 20%), 10%);
+
+$list-group-item-user-actions-color-bg: lighten($color-secondary, 45%);
+$list-group-item-user-actions-color-border: lighten($color-secondary, 40%);
+$list-group-item-user-actions-color-content: white;
+$list-group-item-user-actions-color-content-hover: $color-secondary;

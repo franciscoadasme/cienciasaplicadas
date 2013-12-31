@@ -1,0 +1,36 @@
+%li.list-group-item.list-group-item-post{ class: 'fadein scaleInv anim_5' }
+  %h3
+    = link_to post.title, post
+
+  %p= excerpt post.body
+
+  .list-group-item-meta
+    = autosizing_image_tag display_user_image_url(post.author), size: 28
+    - if post.published?
+      = post.edited? ? 'Edited' : 'Posted'
+      it
+      %span.text-primary
+        = "#{time_ago_in_words post.created_at} ago"
+
+      - if post.edited? && !post.edited_by_author?
+        and edited
+        %span.text-primary
+          = time_ago_in_words post.updated_at
+          ago
+        by
+        = link_to display_user_name(post.edited_by), post.edited_by
+    - else
+      Saved
+      %span.text-primary= "#{time_ago_in_words post.created_at} ago"
+
+  .list-group-item-actions
+    - if post.published?
+      = link_to fa_icon('lock', text: 'Withhold'), withhold_admin_post_path(post.id), class: 'btn btn-default', method: :patch
+    - else
+      = link_to fa_icon('unlock-alt', text: 'Publish'), publish_admin_post_path(post.id), class: 'btn btn-primary', method: :patch
+
+    = link_to 'Edit', edit_admin_post_path(post.id), class: "btn btn-#{post.published? ? 'primary' : 'default'}"
+    = link_to (post.published? ? 'View Page' : 'Preview'), post, class: 'btn btn-default', target: '_blank'
+
+    .pull-right
+      = link_to fa_icon('trash-o', text: 'Delete'), admin_post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

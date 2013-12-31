@@ -1,0 +1,9 @@
+.autosizing {
+  @include autosizing-image();
+
+  @each $size in (16, 24, 28, 32, 48, 56, 64, 96, 128, 192) {
+    &[data-size~="#{$size}"] {
+      @include autosizing-to(#{$size}px);
+    }
+  }
+}

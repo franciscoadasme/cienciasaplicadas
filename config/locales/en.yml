@@ -1,0 +1,70 @@
+en:
+  devise:
+    failure:
+      unauthorized: 'You do not have authorization to enter that area.'
+    invitations:
+      not_accepted: "User hasn't accepted the invitation yet."
+      already_accepted: "User already accepted your invitation."
+
+  actions:
+    users:
+      messages:
+        change_user_role: "User role was changed to %{role} successfully."
+        destroy: User was deleted permanently.
+      failure:
+        cannot_delete_admin: "Caught you!... You don't have the power to delete me. Better be careful for I can destroy you!"
+        cannot_delete_self: "That's weird, why are you trying to remove yourself?, Are you a suicide or what?"
+
+  views:
+    account:
+      edit:
+        sections:
+          personal: 'Personal Information'
+          social: 'Social Information'
+
+    users:
+      single:
+        meta:
+          not_accepted: "Invited %{distance_of_time} ago"
+      links:
+        confirmations:
+          destroy: Are you sure you want to delete this user?
+        hints:
+          mailto: 'Send email to %{email}'
+          promote: Promote user to Super User
+          demote: Demote user to Basic User
+          resend: Resend user invitation
+          view_user_page: View User's Page
+
+    pages:
+      links:
+        start_page: 'Start a page'
+        start_page_when_no_drafted: 'Start a page'
+        start_page_when_no_published: 'Start writing your first page'
+        start_page_more: 'You have no more pages with this status, why not create a %{link}!'
+
+      placeholders:
+        no_published_pages:
+          title: 'Now, about that first page...'
+          body: |
+            No pages means people don't get to know you and neither your colleagues. If you're not sure how to get started, why not introduce your research group's projects as the first page, for example, huh?
+        no_drafted_pages:
+          title: 'Draft pages are your unpublished information.'
+          body: |
+            Any page that you start writing will be shown here. That means you don't have to publish any of your pages until you feel ready.
+        no_trashed_pages:
+          title: 'The last chance for recovery.'
+          body: |
+            Any pages you have trashed will appear here until they are deleted permanently, or are restored.
+
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        roles:
+          admin: Admin
+          super_user: Super User
+          user: Basic User
+        status:
+          not_accepted: Pending

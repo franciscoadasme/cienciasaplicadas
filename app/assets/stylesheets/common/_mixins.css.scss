@@ -1,0 +1,46 @@
+@mixin autosizing-image($size: false, $sizing: cover, $position: center) {
+  @if $size {
+    @include autosizing-to($size);
+  }
+
+  background-position: $position;
+  background-size: $sizing;
+  background-repeat: no-repeat;
+}
+
+@mixin autosizing-to($size) {
+  width: $size;
+  padding-bottom: $size;
+  height: 0;
+}
+
+@mixin inline-list {
+  list-style-type: none;
+  &, & li {
+    margin: 0px;
+    padding: 0px;
+    display: inline; } }
+
+@mixin delimited-list($separator: ", ") {
+  @include inline-list;
+  li {
+    &:after {
+      content: $separator; }
+    &:last-child {
+      &:after {
+        content: ""; } }
+    &.last {
+      &:after {
+        content: ""; } } } }
+
+@mixin fa-icon() {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin antialiased() {
+  -webkit-font-smoothing: antialiased
+}

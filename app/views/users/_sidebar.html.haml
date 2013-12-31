@@ -1,0 +1,27 @@
+%aside.sidebar-fixed.sidebar-user
+  .sidebar-header
+    = link_to @group.abbr, root_url, class: 'sidebar-brand'
+
+  .sidebar-widget.sidebar-user-info
+    = autosizing_image_tag display_user_image_url(@user), size: 48, class: 'sidebar-user-portrait'
+
+    .sidebar-widget-header
+      %h3= @user.display_name
+      %h4= @user.headline || "@#{@user.nickname}"
+
+    %ul.sidebar-user-info-stats
+      - %w(projects publications colleagues).each do |name|
+        %li
+          %span.stat-count= @user.send(name).count.zero? ? 'No' : @user.send(name).count
+          %span.stat-label= name.titleize
+
+  %ul.nav.sidebar-nav
+    %li.sidebar-nav-header= fa_icon 'bookmark-o', text: 'Pins'
+    - %w(about publications projects).each do |name|
+      = sidebar_user_page_item @user, name
+    %li= mail_to @user.email, 'Write to me' if @user.settings.show_contact_page
+
+    - if @user_pages.any?
+      %li.sidebar-nav-header= fa_icon 'folder-open-o', text: 'Pages'
+      - @user_pages.each do |page|
+        = sidebar_user_page_item @user, page

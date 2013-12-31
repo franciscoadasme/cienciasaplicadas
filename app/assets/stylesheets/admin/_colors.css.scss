@@ -1,0 +1,27 @@
+$body-color-bg: #F1F1F1;
+$body-color-content: #FFFFFF;
+
+$color-muted: #999999;
+
+$color-primary: #54ADBD;
+$color-primary-contrast: #FFFFFF;
+$color-primary-contrast-low: darken($color-primary, 10%);
+$color-primary-contrast-high: #FFFFFF;
+
+$color-secondary: #323543;
+$color-secondary-contrast: #9999A0;
+$color-secondary-contrast-high: #FFFFFF;
+$color-secondary-highlight: #55ACBB;
+$color-secondary-complementary: #1E202B;
+$color-secondary-complementary-contrast: #FFFFFF;
+
+$color-tertiary: #A58BCF;
+$color-tertiary-contrast: #FFFFFF;
+
+$color-quaternary: #E8545F;
+$color-quaternary-contrast-high: #FFFFFF;
+$color-quaternary-lighten: lighten(desaturate($color-quaternary, 10%), 34%);
+$color-quaternary-lighten-contrast: darken(desaturate($color-quaternary, 10%), 10%);
+
+$color-facebook: #3b5998;
+$color-google: #dd4b39;

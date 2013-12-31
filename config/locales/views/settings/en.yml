@@ -1,0 +1,26 @@
+en:
+  settings:
+    defaults:
+      last_provider: 'Last signed in with %{provider}'
+      no_provider: 'No social provider available'
+
+    edit:
+      title: Settings
+      labels:
+        social_integration: 'Social Integration'
+        customization: Customize
+        notifications: Notifications
+
+  views:
+    settings:
+      edit:
+        labels:
+          publications: Publications
+        help:
+          aliases: Used aliases
+
+  simple_form:
+    hints:
+      settings:
+        update_nickname_by_provider: "Remember that any change to your nickname will affect your public profile's page url address, so be careful."
+        display_author_name: 'Show "Doe, J." instead of John or John Doe.'

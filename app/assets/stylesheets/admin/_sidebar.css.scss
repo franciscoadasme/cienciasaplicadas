@@ -1,0 +1,120 @@
+.sidebar-menu {
+  margin: 0 0 $sidebar-menu-spacing;
+  padding: 0;
+  list-style: none;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sidebar-menu-item,
+.sidebar-menu-header,
+.sidebar-menu-panel {
+  position: relative;
+  background-color: $sidebar-menu-item-color-bg;
+  border-bottom: 1px solid $sidebar-menu-item-color-border;
+  font-size: $sidebar-menu-font-size;
+}
+
+.sidebar-menu-item {
+  &.active {
+    a {
+      background-color: $sidebar-menu-item-active-color-bg;
+      color: $sidebar-menu-item-active-color-content;
+
+      &:first-child {
+        font-weight: bolder;
+      }
+
+      &:hover {
+        background-color: $sidebar-menu-item-active-hover-color-bg;
+        color: $sidebar-menu-item-active-hover-color-content;
+      }
+    }
+
+    .newlink {
+      background-color: $sidebar-menu-item-active-newlink-color-bg;
+      border-left-color: transparent;
+
+      &:hover {
+        background-color: $sidebar-menu-item-active-newlink-hover-color-bg;
+      }
+    }
+
+    .badge {
+      background-color: rgba(black, .15);
+    }
+  }
+
+  a {
+    display: block;
+    padding: ($sidebar-menu-item-padding-vertical + 1)
+      $sidebar-menu-item-padding-horizontal
+      $sidebar-menu-item-padding-vertical;
+
+    &:hover {
+      color: $sidebar-menu-item-hover-color-content;
+      background-color: $sidebar-menu-item-hover-color-bg;
+      text-decoration: none;
+    }
+  }
+
+  .newlink {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $sidebar-menu-item-newlink-color-bg;
+    border-left: 1px solid $sidebar-menu-item-color-border;
+    font-size: $sidebar-menu-item-newlink-font-size;
+    text-transform: uppercase;
+    line-height: 22px;
+
+    &:hover {
+      background-color: $sidebar-menu-item-newlink-hover-color-bg;
+    }
+  }
+
+  .addon {
+    float: right;
+    margin-left: 4px;
+    font-size: $font-size-small;
+    vertical-align: bottom;
+  }
+
+  .badge {
+    background-color: lighten($sidebar-menu-item-active-color-bg, 35%);
+  }
+
+  &.sidebar-menu-item-users.collapsed a:first-child {
+    width: 215px;
+  }
+  &.sidebar-menu-item-publications.collapsed a:first-child {
+    width: 205px;
+  }
+
+  &.sidebar-menu-item-projects.collapsed a:first-child {
+    width: 151px;
+  }
+}
+
+.sidebar-menu-header {
+  padding: ($sidebar-menu-item-padding-vertical + 1)
+    $sidebar-menu-item-padding-horizontal
+    $sidebar-menu-item-padding-vertical;
+  border-bottom-width: 2px;
+  font-size: $sidebar-menu-header-font-size;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.sidebar-menu-panel {
+  padding: ($sidebar-menu-item-padding-vertical + 1)
+    $sidebar-menu-item-padding-horizontal
+    $sidebar-menu-item-padding-vertical;
+  font-size: $sidebar-menu-panel-font-size;
+  color: $sidebar-menu-panel-color-content;
+
+  *:last-child { margin-bottom: 0; }
+}

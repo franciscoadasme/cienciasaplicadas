@@ -1,0 +1,26 @@
+- provide :title, pluralize(@external_users.count, 'user')
+- provide :subtitle, 'external'
+- provide :widget do
+  = link_to 'New External User', new_admin_external_user_path, class: 'btn btn-primary'
+
+- if @external_users.any?
+  %ul.list-group
+    - @external_users.each do |eu|
+      %li.list-group-item.list-group-item-external-user
+        %h3.list-group-item-heading= link_to_user eu
+
+        .list-group-item-meta
+          %p
+            %strong= eu.institution
+            %br
+            = "#{eu.city}, #{eu.country}"
+          - if eu.projects.any?
+            Involved in
+            %ul.list-group-item-projects
+              - eu.projects.each do |project|
+                %li= link_to project.title, project, target: '_blank'
+
+        .list-group-item-actions
+          = link_to 'Edit', edit_admin_external_user_path(eu), class: 'btn btn-primary'
+          .pull-right
+            = link_to fa_icon('trash-o', text: 'Delete Permanently'), admin_external_user_path(eu), method: :delete, data: { confirm: 'Are you sure you want to delete this external user?'}, class: 'btn btn-danger'

@@ -1,0 +1,30 @@
+- displayed_page_link_count = sidebar_fixed? ? 1 : 2
+
+%header.navbar.navbar-default.gr-nav{ class: nav_class, role: 'banner' }
+  .container
+    - unless sidebar_fixed? || content_for(:no_brand)
+      .navbar-header
+        = link_to @group.abbr, root_url, class: 'navbar-brand'
+
+    .nav{ role: 'navigation' }
+      %ul.nav.navbar-nav
+        - [ :about, :people, :publications ].each do |name|
+          = navbar_item name, send("#{name}_path")
+        = navbar_item :projects, projects_path, condition: controller?(:projects)
+        = navbar_item :posts, posts_path, condition: controller?(:posts)
+
+        - @pages.limit(displayed_page_link_count).each do |page|
+          = navbar_page_item page
+
+        - if @pages.count > displayed_page_link_count
+          %li.dropdown
+            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+              More
+              %b.caret
+            %ul.dropdown-menu
+              - @pages.offset(displayed_page_link_count).each do |page|
+                = navbar_page_item page
+
+      %ul.nav.navbar-nav.navbar-right
+        = navbar_item :contact, contact_path
+        = navbar_item :admin, admin_path

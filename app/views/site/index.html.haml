@@ -1,0 +1,39 @@
+- unless @group.banner_image_url.blank?
+  - provide :css do
+    :sass
+      .gr-masthead:before
+        background-image: url(#{ @group.banner_image_url })
+
+- provide :no_nav, true
+- provide :header do
+  .gr-masthead{ class: anim_class(2) }
+    .container
+      %h1= @group.abbr
+      %p.lead
+        %span= @group.name
+      %p= @group.tagline || (excerpt(@group.bio) if @group.bio)
+
+      %p
+        = link_to 'Read about us', @group.about_page, class: 'btn btn-outline-inverse btn-lg' unless @group.about_page.nil?
+        = link_to 'View publications', @group.pubs_page, class: 'btn btn-outline-inverse btn-lg' unless @group.pubs_page.nil?
+
+    = link_to fa_icon('chevron-down'), '#content', class: 'goto'
+
+- provide :main_class, 'content-index'
+- provide :static_nav, true
+- provide :no_brand, true
+- provide :top, render('nav')
+- provide :sidebar do
+  .rg-plugin
+    %iframe{ scrolling: "no", width: "293px", height: "600px", src: "https://www.researchgate.net/plugins/department?installationId=529e8511d11b8b74268b458a&theme=light&type=department&width=293&height=600&publications=true&faces=true&stats=true", style: "border: none; overflow: hidden;" }
+
+%section#about
+  - unless @page.nil?
+    %h1= @page.title
+    = markdown @page.body
+  - else
+    %h1 No front page available yet.
+    %p.lead
+      Go to group customization section in the
+      = link_to 'admin panel', customize_admin_group_path
+      to setup it.

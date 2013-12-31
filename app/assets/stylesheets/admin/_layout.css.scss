@@ -1,0 +1,25 @@
+body {
+  padding-top: 50px + 40px;
+  padding-bottom: 40px;
+  background-color: $body-color-bg;
+
+  & > .debug_dump {
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    margin-bottom: 0;
+    max-width: 384px;
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: rgba(black, .35);
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,54 @@
+html,
+body
+  height: 100%
+
+body
+  padding-top: $navbar-height
+
+  &.wo-nav
+    padding-top: 0
+
+  &.with-sidebar-fixed
+    padding-left: $sidebar-fixed-width
+
+    .container
+      width: 970px * 8/12 !important
+
+    .navbar-fixed-top
+      left: $sidebar-fixed-width
+
+  & > .debug_dump
+    position: fixed
+    right: 5px
+    bottom: 5px
+    margin-bottom: 0
+    max-width: 384px
+
+#content
+  padding: 100px 0
+  background-color: $base-bg
+
+// Loading animation
+html
+  &:before
+    +fa-icon
+    content: "\f110"
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-top: -$font-size-icon * 2
+    margin-left: -$font-size-icon * 2
+    font-size: $font-size-icon * 4
+    transition: .2s
+    transition-delay: 0
+    visibility: hidden
+    opacity: 0
+    animation: spin 2s infinite linear
+    animation-play-state: paused
+
+  &.off:before
+    visibility: visible
+    opacity: .65
+    transition: .65s
+    transition-delay: .5s
+    animation-play-state: running

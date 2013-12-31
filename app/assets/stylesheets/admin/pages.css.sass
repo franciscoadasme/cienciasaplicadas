@@ -1,0 +1,13 @@
+.list-group-pages
+  &.sortable
+    .list-group-item-page
+      cursor: move
+
+      &:after
+        +fa-icon
+        position: absolute
+        top: 50%
+        right: 20px
+        margin-top: -8px
+        content: "\f0dc"
+        color: $text-muted

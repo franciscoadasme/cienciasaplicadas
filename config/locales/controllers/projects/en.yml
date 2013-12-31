@@ -1,0 +1,9 @@
+en:
+  controllers:
+    projects:
+      create:
+        flash:
+          success: 'Project was successfully created.'
+      update:
+        flash:
+          success: 'Project was successfully updated.'
