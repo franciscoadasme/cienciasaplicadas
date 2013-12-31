@@ -2,22 +2,22 @@
 %html
   %head
     %title= 'Admin'
-    = stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'admin', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'admin', media: 'all'
+    = javascript_include_tag 'admin'
     = csrf_meta_tags
 
-  %body.off
+  %body
     = render 'admin/navbar'
-    .container.fadein.scaleInv.anim_1
+    .container
       / Flash/notification area
-      %section.row.fadein.anim_2
+      %section.row
         .col-xs-12
           = render 'flashes'
           = content_for :notification
 
       / Title section
       - unless content_for :no_titlebar
-        %section.row.fadein.scaleInv.anim_3
+        %section.row
           .col-xs-12
             %h2
               = content_for(:title) || tv('.title', default: params[:action])
@@ -27,16 +27,15 @@
                   = content_for :widget
 
       / Main container
-      %section.row.fadein.scaleInv.anim_3
+      %section.row
         / Content
-        .content.fadein.scaleInv.anim_4{ class: "col-xs-#{content_for?(:no_sidebar) ? 12 : 8}" }
+        .content{ class: "col-xs-#{content_for?(:no_sidebar) ? 12 : 8}" }
           = yield
         / Sidebar
         - unless content_for? :no_sidebar
-          .col-xs-4.fadein.scaleInv.anim_4
+          .col-xs-4
             = render 'admin/sidebar'
 
-    = fa_icon 'refresh', class: 'loader fa-spin fa-2x hidden'
     = form_tag import_admin_publications_path, id: 'form-publication-import', style: 'display: none' do
       = hidden_field_tag :ris_content
     = debug(params) if Rails.env.development?

@@ -61,7 +61,6 @@ module HtmlHelper
       css << 'col-xs-8'
       css << 'col-xs-offset-2' unless content_for?(:sidebar)
     end
-    css << anim_class(2)
     css.compact.join(' ')
   end
 
@@ -75,8 +74,7 @@ module HtmlHelper
 
   def footer_class
     [
-      'gr-footer',
-      anim_class(2)
+      'gr-footer'
     ].compact.join(' ')
   end
 
@@ -93,11 +91,6 @@ module HtmlHelper
 
   def sidebar_fixed?
     content_for?(:sidebar_fixed)
-  end
-
-  def anim_class(i)
-    # don't forget to change it in sidebar-fixed's
-    "fadein scaleInv anim_#{i}"
   end
 
   def title(separator = '·')

@@ -16,6 +16,4 @@
 //= require underscore
 //= require gmaps/google
 //= require jquery.smooth-scroll.min
-//= require yummi-loader
 //= require_tree ./site
-//= require turbolinks

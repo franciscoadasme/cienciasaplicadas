@@ -1,9 +1,9 @@
 !!! 5
-%html.off
+%html
   %head
     %title= title
-    = stylesheet_link_tag 'site', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'site', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'site', media: 'all'
+    = javascript_include_tag 'site'
 
     = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['CBSM_GOOGLE_API_ACCESS']}&sensor=false"
     = javascript_include_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'
@@ -12,7 +12,7 @@
     = content_for :css
     = csrf_meta_tags
 
-  %body.off{ class: body_class }
+  %body{ class: body_class }
     = render 'site/nav' unless content_for?(:no_nav)
     = content_for :sidebar_fixed
 

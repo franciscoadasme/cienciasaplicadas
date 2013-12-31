@@ -19,3 +19,5 @@
 .ruby-gemset
 .ruby-version
 .sass-cache
+*.sublime-project
+*.sublime-workspace

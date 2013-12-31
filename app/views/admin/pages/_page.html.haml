@@ -1,4 +1,4 @@
-= content_tag_for :li, page, class: "list-group-item list-group-item-page #{'fadein scaleInv anim_5' unless params[:sorting]}" do
+= content_tag_for :li, page, class: "list-group-item list-group-item-page" do
   %h3
     = link_to page.title, page.owner.nil? ? page_path(page) : page_user_path(current_user, page), target: '_blank'
     %small= page.marked_as || page.tagline

@@ -12,6 +12,5 @@
  *= require twitter/bootstrap
  *= require common/non-responsive
  *= require font-awesome
- *= require yummi-loader
  *= require admin/main
  */

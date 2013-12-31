@@ -14,6 +14,4 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.ui.sortable
-//= require yummi-loader
 //= require_tree ./admin
-//= require turbolinks

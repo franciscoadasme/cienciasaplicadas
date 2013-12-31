@@ -1,4 +1,4 @@
-%li.list-group-item.list-group-item-user.fadein.scaleInv.anim_5{ class: "#{user.role_symbol} #{'collaborator' if current_user.collaborator?(user)}" }
+%li.list-group-item.list-group-item-user{ class: "#{user.role_symbol} #{'collaborator' if current_user.collaborator?(user)}" }
   = autosizing_image_tag display_user_image_url(user), size: 28, class: 'list-group-item-user-avatar'
 
   %h3.list-group-item-user-name{ title: user.full_name }
