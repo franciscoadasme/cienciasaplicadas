@@ -10,7 +10,6 @@
       %ul.nav.navbar-nav
         - [ :about, :people, :publications ].each do |name|
           = navbar_item name, send("#{name}_path")
-        = navbar_item :projects, projects_path, condition: controller?(:projects)
         = navbar_item :posts, posts_path, condition: controller?(:posts)
 
         - @pages.limit(displayed_page_link_count).each do |page|

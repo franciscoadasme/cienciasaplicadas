@@ -21,8 +21,8 @@
 #
 
 class Group < ActiveRecord::Base
-  PAGE_TYPES = [ :about, :front, :projects, :pubs, :users ]
-  PAGE_NAMES = %w(about front projects publications people)
+  PAGE_TYPES = [ :about, :front, :pubs, :users ]
+  PAGE_NAMES = %w(about front publications people)
 
   auto_strip_attributes :name, :abbr, :tagline, :logo, :email, :banner_image_url, :address
 

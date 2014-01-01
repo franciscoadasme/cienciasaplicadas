@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231223907) do
+ActiveRecord::Schema.define(version: 20140101001002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20131231223907) do
     t.integer  "front_page_id"
     t.integer  "users_page_id"
     t.integer  "pubs_page_id"
-    t.integer  "projects_page_id"
   end
 
   add_index "groups", ["abbr"], name: "index_groups_on_abbr", unique: true, using: :btree

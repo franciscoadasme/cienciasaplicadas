@@ -84,8 +84,7 @@ CbsmWebsite::Application.routes.draw do
     end
   end
   resources :posts, only: [ :index, :show ]
-  resources :projects, only: [ :show ]
-  %w(about people projects publications contact).each do |name|
+  %w(about people publications contact).each do |name|
     get name, to: "site##{name}"
   end
   get ':page', to: 'site#show', as: :page
