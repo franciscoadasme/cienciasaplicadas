@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231222017) do
+ActiveRecord::Schema.define(version: 20131231223907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,14 +40,6 @@ ActiveRecord::Schema.define(version: 20131231222017) do
   end
 
   add_index "external_users", ["first_name", "last_name"], name: "index_external_users_on_first_name_and_last_name", unique: true, using: :btree
-
-  create_table "external_users_projects", force: true do |t|
-    t.integer "project_id"
-    t.integer "external_user_id"
-  end
-
-  add_index "external_users_projects", ["external_user_id"], name: "index_external_users_projects_on_external_user_id", using: :btree
-  add_index "external_users_projects", ["project_id"], name: "index_external_users_projects_on_project_id", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -117,7 +109,7 @@ ActiveRecord::Schema.define(version: 20131231222017) do
 
   create_table "projects", force: true do |t|
     t.string   "title"
-    t.integer  "leader_id"
+    t.integer  "user_id"
     t.integer  "start_year"
     t.integer  "end_year"
     t.string   "source"
@@ -126,18 +118,11 @@ ActiveRecord::Schema.define(version: 20131231222017) do
     t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "position"
   end
 
   add_index "projects", ["title", "identifier"], name: "index_projects_on_title_and_identifier", unique: true, using: :btree
   add_index "projects", ["title"], name: "index_projects_on_title", unique: true, using: :btree
-
-  create_table "projects_users", id: false, force: true do |t|
-    t.integer "project_id", null: false
-    t.integer "user_id",    null: false
-  end
-
-  add_index "projects_users", ["project_id", "user_id"], name: "index_projects_users_on_project_id_and_user_id", unique: true, using: :btree
-  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id", unique: true, using: :btree
 
   create_table "publications", force: true do |t|
     t.string   "doi"

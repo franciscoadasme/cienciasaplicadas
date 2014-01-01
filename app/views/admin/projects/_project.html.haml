@@ -8,17 +8,10 @@
   %h3.list-group-item-heading= project.title
 
   .list-group-item-meta
-    = markdown tv('.single.meta', user: link_to_user(project.leader), sponsor: project.source_and_id, no_action: true)
-
-    - if project.all_collaborators.any?
-      %span.text-muted= tv '.single.collaboration', no_action: true
-      %ul.list-group-item-collaborators
-        - project.all_collaborators.each do |user|
-          %li= link_to_user user
-    - else
-      %span.text-muted= tv '.single.no_collaborators', no_action: true
+    Participated as
+    %strong= project.position
 
   .list-group-item-actions
-    = link_to 'Edit', edit_admin_project_path(project), class: 'btn btn-default'
+    = edit_action_for project
     .pull-right
-      = link_to fa_icon('trash-o', text: tv('.single.actions.delete', no_action: true)), [ :admin, project ], method: :delete, data: { confirm: tv('.single.confirm.delete') }, class: 'btn btn-danger'
+      = delete_action_for project

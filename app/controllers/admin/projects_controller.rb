@@ -1,10 +1,9 @@
 class Admin::ProjectsController < AdminController
-  before_action :authorize_user!, except: [ :index ]
   before_action :set_project, only: [ :edit, :update, :destroy ]
-  before_action :set_users, only: [ :new, :create, :edit, :update ]
+  before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def new
@@ -16,6 +15,7 @@ class Admin::ProjectsController < AdminController
 
   def create
     @project = Project.new(project_params)
+    @project.user = current_user
 
     if @project.save
       redirect_to admin_projects_path, success: tf('.success')
@@ -39,30 +39,23 @@ class Admin::ProjectsController < AdminController
 
   private
     def authorize_user!
-      redirect_to admin_projects_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
+      redirect_to admin_projects_path, alert: 'You do not have authorization to edit that project.' unless @project.user_id == current_user.id
     end
 
     def set_project
       @project = Project.find params[:id]
     end
 
-    def set_users
-      @users = User.unscoped.invitation_accepted.order :first_name, :last_name
-      @external_users = ExternalUser.all
-    end
-
     def project_params
       params.require(:project).permit(
         :title,
-        :leader_id,
         :start_year,
         :end_year,
         :source,
         :identifier,
         :description,
         :image_url,
-        { collaborator_ids: [] },
-        { external_user_ids: [] }
+        :position
       )
     end
 end

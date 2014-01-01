@@ -13,13 +13,8 @@
     = link_to project.title, @user.nil? ? project : project_user_path(@user, project)
 
   .list-item-meta
-    Lead by
-    = link_to_user project.leader
-    - if project.all_collaborators.any?
-      in collaboration with
-      %ul.list-collaborators
-        - project.all_collaborators.each do |user|
-          %li= link_to_user user
+    Participated as
+    %strong= project.position
 
     %br
     = project.source_and_id

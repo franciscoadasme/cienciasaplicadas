@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_one :settings, dependent: :delete
   has_many :aliases, class_name: 'Author', dependent: :nullify
   has_many :publications, through: :aliases
+  has_many :projects
 
   default_scope { order :first_name, :last_name, role: :desc, invitation_sent_at: :desc }
   scope :default, -> { where.not(invitation_accepted_at: nil) }
@@ -154,10 +155,6 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name.split.first} #{last_name}" rescue nil
-  end
-
-  def projects
-    Project.related_to_user self
   end
 
   def promote!

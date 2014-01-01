@@ -31,6 +31,8 @@
         = sidebar_badge current_user.publications.count if current_user.publications.any?
         = autolink_to 'Import', import_admin_publications_path, class: 'btn-publication-import newlink'
 
+      = sidebar_menu_item ts('.titles.projects'), admin_projects_path
+
     - if current_user.super_user?
       %ul.sidebar-menu
         %li.sidebar-menu-header= "Group #{@group.abbr}"
@@ -39,9 +41,5 @@
 
         = sidebar_menu_item :pages, admin_group_pages_path, condition: (current_path?('group/pages', @page) || @page.try(:associated_controller) == 'group') do
           = autolink_to 'New Page', new_admin_group_page_path, class: 'newlink'
-
-        = sidebar_menu_item ts('.titles.projects'), admin_projects_path, condition: controller?(:projects) || controller?(:external_users), class: 'sidebar-menu-item-projects collapsed' do
-          = sidebar_badge Project.count if Project.any?
-          = link_to 'External Users', admin_external_users_path, class: "newlink"
 
         = sidebar_menu_item :customize, customize_admin_group_path

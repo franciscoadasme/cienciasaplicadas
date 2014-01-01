@@ -1,4 +1,4 @@
-- provide :sidebar_fixed, render('users/sidebar') unless @user.nil?
+- provide :sidebar_fixed, render('users/sidebar')
 
 %h1
   - unless @project.start_year.blank?
@@ -10,13 +10,8 @@
   = @project.title
 
 .lead.text-muted
-  Lead by
-  = link_to_user @project.leader
-  - if @project.all_collaborators.any?
-    in collaboration with
-    %ul.list-collaborators
-      - @project.all_collaborators.each do |user|
-        %li= link_to_user user
+  Participated as
+  %strong= @project.position
 
   and sponsored by
   %strong= @project.source_and_id

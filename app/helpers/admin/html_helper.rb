@@ -1,4 +1,33 @@
 module Admin::HtmlHelper
+# Item actions
+  def item_action(name, href, options = {})
+    unless options.has_key? :class
+      variant = case
+        when options.has_key?(:type) then options.delete(:type)
+        when options.delete(:primary) then 'primary'
+        else 'default'
+      end
+      options[:class] = "btn btn-#{variant}"
+    end
+
+    icon = options.delete :icon
+    content = icon.blank? ? name : fa_icon(icon, text: name)
+    link_to content, href, options
+  end
+
+  def edit_action_for(record, options = {})
+    item_action options.fetch(:name, 'Edit'), [ :edit, :admin, record ], options
+  end
+
+  def delete_action_for(record, options = {})
+    options.reverse_merge!(
+      method: :delete,
+      data: { confirm: options.fetch(:message, 'Are you sure?') },
+      type: :danger,
+      icon: 'trash-o')
+    item_action options.fetch(:name, 'Delete'), [ :admin, record ], options
+  end
+
   def markdown_hint
     text = <<EOS
 It supports markdown  markup language #{link_to fa_icon('question-circle'), 'http://daringfireball.net/markdown', title: 'What is markdown?', target: '_blank'}. Using online editors such as #{link_to 'Markable', 'http://markable.in/editor/', target: '_blank'}, #{link_to 'Dillinger', 'http://dillinger.io/', target: '_blank'} or #{link_to 'StackEdit', 'http://benweet.github.io/stackedit/', target: '_blank'} is highly recommended.
