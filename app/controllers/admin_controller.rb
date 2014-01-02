@@ -11,6 +11,5 @@ class AdminController < ApplicationController
     @recent_users = User.where('invitation_accepted_at >= ?', last_seven_days)
     @pending_users = User.invitation_not_accepted.where('invitation_sent_at >= ?', last_seven_days)
     @recent_publications = Publication.limit(5)
-    @recent_pages = @group.pages.where('updated_at >= ?', last_seven_days)
   end
 end

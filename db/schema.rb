@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101001002) do
+ActiveRecord::Schema.define(version: 20140101164407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,16 +59,11 @@ ActiveRecord::Schema.define(version: 20140101001002) do
     t.string   "abbr"
     t.string   "logo"
     t.string   "email"
-    t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "banner_image_url"
     t.string   "tagline"
     t.text     "address"
-    t.integer  "about_page_id"
-    t.integer  "front_page_id"
-    t.integer  "users_page_id"
-    t.integer  "pubs_page_id"
   end
 
   add_index "groups", ["abbr"], name: "index_groups_on_abbr", unique: true, using: :btree

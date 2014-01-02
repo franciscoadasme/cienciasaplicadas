@@ -1,0 +1,10 @@
+front:
+  body: '#{{ @group.name }}'
+
+publications:
+  body: |
+    {{ publications }}
+
+people:
+  body: |
+    {{ users }}

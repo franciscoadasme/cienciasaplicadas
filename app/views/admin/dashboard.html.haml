@@ -1,19 +1,8 @@
 - provide :title, 'Dashboard'
 
-- if @group.missing_pages.any? && current_user.super_user?
-  .alert.alert-warning
-    - tags = @group.missing_pages.map{ |name| content_tag(:strong, name.upcase) }.to_sentence
-    = "No #{tags} group page(s) are present.".html_safe
-    %br
-    Please
-    = link_to 'create', new_admin_group_page_path
-    or
-    = link_to 'mark', admin_group_pages_path
-    existing pages to the required classes.
-
 .row
-  .col-xs-6
-    - if @recent_publications.any?
+  - if @recent_publications.any?
+    .col-xs-6
       %ul.list-group
         %li.list-group-header= 'Recently added publications'
         - @recent_publications.each do |pub|
@@ -22,20 +11,6 @@
               = link_to pub.title, '#'
               %strong.text-muted= pub.year
               %span.text-muted= pub.short_author_list
-
-  .col-xs-6
-    - if @recent_pages.any?
-      %ul.list-group
-        %li.list-group-header= 'Updated group pages'
-        - @recent_pages.each do |page|
-          %li.list-group-item
-            %small
-              = link_to page.title, '#'
-              %span.text-primary= "@#{page.tagline}"
-              = excerpt page.body, length: 80
-              %br
-              %span.text-muted
-                = "Edited by @#{page.edited_by.nickname} #{distance_of_time_in_words_to_now page.updated_at} ago"
 
   .col-xs-6
     %ul.list-group

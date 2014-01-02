@@ -19,8 +19,6 @@ CbsmWebsite::Application.routes.draw do
         patch :publish
         patch :trash
         patch :restore
-        Group::PAGE_NAMES.each { |name| patch "mark_as_#{name}" }
-        patch :unmark
       end
       collection { post :sort  }
     end
@@ -83,10 +81,10 @@ CbsmWebsite::Application.routes.draw do
       root to: redirect('/users/%{id}/about')
     end
   end
+
   resources :posts, only: [ :index, :show ]
-  %w(about people publications contact).each do |name|
-    get name, to: "site##{name}"
-  end
+
+  get :contact, to: 'site#contact'
   get ':page', to: 'site#show', as: :page
 
   root to: 'site#index'

@@ -27,30 +27,17 @@
 
     .list-group-item-actions
       - if page.trashed?
-        = link_to fa_icon('trash-o', text: 'Delete Permanently'), admin_page_path(page.id), method: :delete, data: { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+        = delete_action_for admin_page_path(page.id), name: 'Delete Permanently'
         .pull-right
-          = link_to 'Restore Page', restore_admin_page_path(page.id), method: :patch, class: 'btn btn-primary'
+          = item_action 'Restore Page', restore_admin_page_path(page.id), method: :patch, primary: true
       - else
         - if page.drafted?
-          = link_to 'Publish Page', publish_admin_page_path(page.id), method: :patch, class: 'btn btn-primary'
-        = link_to 'Edit', edit_admin_page_path(page.id), class: "btn btn-#{page.published? ? 'primary' : 'default'}"
+          = item_action 'Publish Page', publish_admin_page_path(page.id), method: :patch, primary: true
+        = edit_action_for edit_admin_page_path(page.id), primary: page.published?
 
-        - if top_level_controller?(:group) && page.published?
-          .btn-group
-            = button_tag type: :button, class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown'} do
-              = page.marked_as.try(:titleize) || fa_icon('flag')
-              %span.caret
-
-            %ul.dropdown-menu{ role: 'menu' }
-              %li.dropdown-header= 'Mark as'
-              - Group::PAGE_NAMES.each do |type|
-                - unless page.marked_as.to_s == type
-                  %li= link_to type.titleize, send("mark_as_#{type}_admin_page_path", page.id), method: :patch
-
-              - if page.marked?
-                %li.divider
-                %li= link_to 'Unmark', unmark_admin_page_path(page.id), method: :patch
-
-        = link_to (page.published? ? 'View Page' : 'Preview'), page.owner.nil? ? page_path(page) : page_user_path(current_user, page), class: 'btn btn-default', target: '_blank'
+        = item_action (page.published? ? 'View Page' : 'Preview'), page.owner.nil? ? page_path(page) : page_user_path(current_user, page), blank: true
         .pull-right
-          = link_to fa_icon('trash-o', text: 'Trash'), trash_admin_page_path(page.id), method: :patch, class: 'btn btn-danger'
+          - if page.marked?
+            %span.btn.disabled= %q{Can't be trashed}
+          - else
+            = delete_action_for trash_admin_page_path(page.id), name: 'Trash', method: :patch

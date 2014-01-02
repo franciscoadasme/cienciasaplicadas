@@ -19,6 +19,7 @@
 
 class Page < ActiveRecord::Base
   include Publishable
+  include Seedable
 
   extend FriendlyId
   friendly_id :tagline, use: [ :slugged, :scoped ], scope: :owner
@@ -28,12 +29,18 @@ class Page < ActiveRecord::Base
 
   default_scope -> { order :position }
   scope :global, -> { where owner_id: nil }
+  scope :navigable, -> { global.published.where.not tagline: 'front' }
+  scope :named, -> (name) { friendly.find name.to_s }
 
   auto_strip_attributes :tagline
   validates :tagline, presence: true,
                         length: { within: 4..20 },
                     uniqueness: { case_sensitive: false,
                                            scope: :owner_id }
+
+  def self.named_pages
+    @pages ||= load_seeds
+  end
 
 # Status
   def drafted?
@@ -46,18 +53,14 @@ class Page < ActiveRecord::Base
 
   def status
     case
-    when trashed?
-      :trashed
-    when published?
-      :published
-    else
-      :drafted
+    when trashed? then :trashed
+    when published? then :published
+    else :drafted
     end
   end
 
   def trash!
     update_column :trashed, true
-    Group.first.unmark_page! self
   end
 
   def trashed?
@@ -74,10 +77,10 @@ class Page < ActiveRecord::Base
   end
 
   def marked?
-    Group.first.marked_page? self
+    Page.named_pages.keys.include? tagline
   end
 
   def marked_as
-    Group.first.page_marked_as self
+    tagline
   end
 end

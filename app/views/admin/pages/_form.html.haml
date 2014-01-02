@@ -6,15 +6,8 @@
 
   .form-inputs
     = f.input :title, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
+    = f.input :tagline, wrapper: :simple_wrapper, disabled: @page.marked?
 
-    .row
-      - at_group = (@page.associated_controller || top_level_controller) == 'group'
-      %div{ class: "col-xs-#{at_group ? 8 : 12}" }
-        = f.input :tagline, wrapper: :simple_wrapper, disabled: at_group && @page.marked?
-
-      - if at_group
-        .col-xs-4
-          = f.input :marked_as, wrapper: :simple_wrapper, collection: Group::PAGE_NAMES, label_method: -> (l) { l.titleize }, include_blank: (@page.marked? ? 'None' : 'Marked as')
     %hr
     = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
 

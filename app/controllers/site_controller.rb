@@ -3,30 +3,14 @@ class SiteController < ApplicationController
   before_action :set_lastest
 
   def index
-    @page = @group.front_page
-  end
-
-  def about
-    show_page @group.about_page
-  end
-
-  def people
-    show_page @group.users_page
-  end
-
-  def projects
-    show_page @group.projects_page
-  end
-
-  def publications
-    show_page @group.pubs_page
+    @page = Page.named :front
   end
 
   def contact
   end
 
   def show
-    show_page Page.friendly.find params[:page]
+    show_page Page.named params[:page]
   end
 
   private
@@ -36,7 +20,7 @@ class SiteController < ApplicationController
     end
 
     def set_pages
-      @pages = @group.unmarked_pages.published
+      @pages = Page.navigable
     end
 
     def show_page(page)

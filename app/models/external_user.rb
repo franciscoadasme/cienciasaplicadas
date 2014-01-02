@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: external_users
+#
+#  id          :integer          not null, primary key
+#  first_name  :string(255)      not null
+#  last_name   :string(255)      not null
+#  institution :string(255)      not null
+#  city        :string(255)      not null
+#  country     :string(255)      not null
+#  website_url :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class ExternalUser < ActiveRecord::Base
   has_and_belongs_to_many :projects
 

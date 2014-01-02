@@ -10,13 +10,16 @@ module Admin::HtmlHelper
       options[:class] = "btn btn-#{variant}"
     end
 
+    options[:target] = '_blank' if options[:blank]
+
     icon = options.delete :icon
     content = icon.blank? ? name : fa_icon(icon, text: name)
     link_to content, href, options
   end
 
   def edit_action_for(record, options = {})
-    item_action options.fetch(:name, 'Edit'), [ :edit, :admin, record ], options
+    href = record.is_a?(ActiveRecord::Base) ? [ :edit, :admin, record ] : record
+    item_action options.fetch(:name, 'Edit'), href, options
   end
 
   def delete_action_for(record, options = {})
@@ -25,7 +28,8 @@ module Admin::HtmlHelper
       data: { confirm: options.fetch(:message, 'Are you sure?') },
       type: :danger,
       icon: 'trash-o')
-    item_action options.fetch(:name, 'Delete'), [ :admin, record ], options
+    href = record.is_a?(ActiveRecord::Base) ? [ :admin, record ] : record
+    item_action options.fetch(:name, 'Delete'), href, options
   end
 
   def markdown_hint

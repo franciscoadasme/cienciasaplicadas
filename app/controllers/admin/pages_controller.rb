@@ -32,9 +32,7 @@ class Admin::PagesController < AdminController
   # POST /pages
   # POST /pages.json
   def create
-    params = page_params
-    type = params.delete :marked_as
-    @page = Page.new(params)
+    @page = Page.new(page_params)
 
     @page.owner = current_user unless top_level_controller?('group')
     @page.author = @page.edited_by = current_user
@@ -42,7 +40,6 @@ class Admin::PagesController < AdminController
 
     respond_to do |format|
       if @page.save
-        @group.mark_page_as!(@page, type) unless type.nil?
         format.html { redirect_to_index success: "Page was successfully #{@page.published? ? 'published' : 'saved as draft'}." }
         format.json { render action: 'show', status: :created, location: @page }
       else
@@ -59,12 +56,10 @@ class Admin::PagesController < AdminController
     set_published_status
 
     params = page_params
-    type = params.delete :marked_as
     params.delete(:tagline) if @page.marked?
 
     respond_to do |format|
       if @page.update(params)
-        type.present? ? @group.mark_page_as!(@page, type) : @group.unmark_page!(@page)
         format.html { redirect_to_index success: 'Page was successfully updated.' }
         format.json { head :no_content }
       else
@@ -87,7 +82,7 @@ class Admin::PagesController < AdminController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def trash
-    @page.trash!
+    @page.trash! unless @page.marked?
     respond_to do |format|
       format.html { redirect_to_index success: 'Page was moved to trash.' }
       format.json { head :no_content }
@@ -121,25 +116,9 @@ class Admin::PagesController < AdminController
     render nothing: true
   end
 
-  def mark_as_about; mark_as :about; end
-  def mark_as_front; mark_as :front; end
-  def mark_as_publications; mark_as :pubs; end
-  def mark_as_users; mark_as :users; end
-  def mark_as_projects; mark_as :projects; end
-
-  def unmark
-    @group.unmark_page! @page unless @page.owner.present?
-    redirect_to_index success: "Page was unmarked successfully"
-  end
-
   private
-    def mark_as(type)
-      @group.mark_page_as! @page, type
-      redirect_to_index success: "Page was marked as #{type.to_s.titleize} successfully"
-    end
-
     def page_params
-      params.require(:page).permit(:title, :tagline, :body, :marked_as)
+      params.require(:page).permit(:title, :tagline, :body)
     end
 
     def set_page

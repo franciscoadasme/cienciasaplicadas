@@ -15,11 +15,11 @@ module HtmlHelper
   def navbar_item(name, path, options={})
     content_tag :li, class: ('active' if (options[:condition] || current_page?(path))) do
       icon_name = case name.try(:to_sym)
-        when :publications then 'files-o'
-        when :people then 'group'
-        when :about then 'info'
+        # when :publications then 'files-o'
+        # when :people then 'group'
+        # when :about then 'info'
         when :posts then 'comments-o'
-        when :projects then 'briefcase'
+        # when :projects then 'briefcase'
         when :admin then 'lock'
         else
           nil
