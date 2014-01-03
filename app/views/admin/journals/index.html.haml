@@ -1,29 +1,36 @@
-= form_tag merge_admin_journals_path do
-  .list-group-actions
-    %span.btn.btn-default
-      = check_box_tag 'mark_all'
-    .btn-group
-      = submit_tag 'Merge', class: 'btn btn-default'
+- if @journals.any?
+  = form_tag merge_admin_journals_path do
+    .list-group-actions
+      %span.btn.btn-default
+        = check_box_tag 'mark_all'
+      .btn-group
+        = submit_tag 'Merge', class: 'btn btn-default'
 
-  %table.table.table-bordered
-    %thead
-      %tr
-        %th
-        %th.text-center= content_tag :span, '#', title: 'Nº Publications'
-        %th Name
-        %th Impact factor
-        %th.text-center Action
-
-    %tbody
-      - @journals.each do |journal|
+    %table.table.table-bordered
+      %thead
         %tr
-          %td.text-center= check_box_tag 'journal_ids[]', journal.id
-          %td= journal.publications.count
-          %td
-            = journal.name
-            - if journal.abbr.present?
-              %br
-              %span.text-muted= journal.abbr
-          %td= journal.impact_factor.try(:round, 3) || 'Missing'
-          %td.text-center
-            = edit_action_for journal, icon: 'edit', icon_only: true, primary: true
+          %th
+          %th.text-center= content_tag :span, '#', title: 'Nº Publications'
+          %th Name
+          %th Impact factor
+          %th.text-center Action
+
+      %tbody
+        - @journals.each do |journal|
+          %tr
+            %td.text-center= check_box_tag 'journal_ids[]', journal.id
+            %td= journal.publications.count
+            %td
+              = journal.name
+              - if journal.abbr.present?
+                %br
+                %span.text-muted= journal.abbr
+            %td= journal.impact_factor.try(:round, 3) || 'Missing'
+            %td.text-center
+              = edit_action_for journal, icon: 'edit', icon_only: true, primary: true
+- else
+  %p.lead.text-center
+    No journals have been created yet.
+    %br
+    %small.text-muted
+      Journals will be added when importing publications automatically.
