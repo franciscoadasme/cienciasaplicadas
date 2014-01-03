@@ -61,7 +61,9 @@ CbsmWebsite::Application.routes.draw do
         post :import
       end
     end
-    resources :journals, only: [ :index, :edit, :update ]
+    resources :journals, only: [ :index, :edit, :update ] do
+      collection { post :merge }
+    end
 
     resources :projects, except: [ :show ]
     resources :external_users, except: [ :show ]

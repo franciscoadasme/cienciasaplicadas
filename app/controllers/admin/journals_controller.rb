@@ -17,6 +17,22 @@ class Admin::JournalsController < AdminController
     end
   end
 
+  def merge
+    journal_ids = params[:journal_ids]
+    if journal_ids.present? && journal_ids.many?
+      journals = Journal.find journal_ids
+
+      leftover = journals.shift
+      journal_ids.shift
+
+      journals.each do |journal|
+        journal.publications.find_each { |pub| pub.update! journal_id: leftover.id }
+      end
+      Journal.destroy journal_ids
+    end
+    redirect_to admin_journals_path, success: 'Journals successfully merged.'
+  end
+
   private
     def authorize_user!
       redirect_to admin_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?

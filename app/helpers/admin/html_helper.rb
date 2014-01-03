@@ -13,7 +13,7 @@ module Admin::HtmlHelper
     options[:target] = '_blank' if options[:blank]
 
     icon = options.delete :icon
-    content = icon.blank? ? name : fa_icon(icon, text: name)
+    content = icon.blank? ? name : fa_icon(icon, text: options[:icon_only] ? nil : name)
     link_to content, href, options
   end
 
