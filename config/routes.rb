@@ -1,6 +1,4 @@
 CbsmWebsite::Application.routes.draw do
-  get "posts/index"
-  get "posts/show"
   devise_for :users, path: 'auth', controllers: { sessions: 'auth/sessions', omniauth_callbacks: 'auth/omniauth_callbacks', passwords: 'auth/passwords' }, skip: [ :invitation ]
   as :user do
     scope 'admin/users/invitation' do
@@ -63,6 +61,7 @@ CbsmWebsite::Application.routes.draw do
         post :import
       end
     end
+    resources :journals, only: [ :index, :edit, :update ]
 
     resources :projects, except: [ :show ]
     resources :external_users, except: [ :show ]

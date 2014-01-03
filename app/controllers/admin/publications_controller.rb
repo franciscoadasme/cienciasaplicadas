@@ -66,12 +66,14 @@ class Admin::PublicationsController < AdminController
     end
 
     def create_or_update_publication pubdata
+      journal = pubdata.delete(:journal)
       pub = Publication.where('title = ? OR (doi = ? AND doi IS NOT NULL) OR (url = ? AND url IS NOT NULL) OR identifier = ?', pubdata[:title], pubdata[:doi], pubdata[:url], pubdata[:identifier])
               .first_or_initialize pubdata.select { |k, v| Publication::ALLOWED_FIELDS.include? k }
 
       if pub.invalid?
         @result[:invalid] << pub
       elsif pub.new_record?
+        pub.journal = Journal.where.any_of(name: journal, abbr: journal).first_or_create! name: journal
         pub.authors = pubdata[:authors].map do |name|
           existing_author = Author.includes(:user).where(name: name).first
           Author.new(name: name).tap do |a|

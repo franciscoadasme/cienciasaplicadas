@@ -1,0 +1,18 @@
+%table.table.table-bordered
+  %tr
+    %th Name
+    %th Impact factor
+    %th Nº Publications
+    %th.text-center Action
+
+  - @journals.each do |journal|
+    %tr
+      %td
+        = journal.name
+        - if journal.abbr.present?
+          %br
+          %span.text-muted= journal.abbr
+      %td= journal.impact_factor.try(:round, 3) || 'Missing'
+      %td= journal.publications.count
+      %td.text-center
+        = edit_action_for journal

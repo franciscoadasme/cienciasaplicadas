@@ -15,6 +15,7 @@ class Author < ActiveRecord::Base
   belongs_to :publication
 
   default_scope -> { order :id }
+  scope :linked, -> { where.not user_id: nil }
   scope :unlinked, -> { where user_id: nil }
 
   def display_name

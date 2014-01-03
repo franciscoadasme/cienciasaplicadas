@@ -3,7 +3,7 @@
     = publication.title
 
   .list-group-item-meta
-    - meta = "#{publication.journal}, #{publication.year}"
+    - meta = "#{publication.journal.name}, #{publication.year}"
     - meta += ", #{"Volume " unless publication.pending?}#{publication.volume}" unless publication.volume.blank?
     - meta += ", Issue #{publication.issue}" unless publication.issue.blank?
     - meta += ", Pages #{publication.pages}" unless publication.start_page.blank?

@@ -17,6 +17,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  claimed    :boolean          default(FALSE)
+#  journal_id :integer
 #
 
 class Publication < ActiveRecord::Base
@@ -24,18 +25,14 @@ class Publication < ActiveRecord::Base
   DOI_URL = 'http://dx.doi.org/'
   PENDING_LABEL = 'In Press'
 
-  has_many :authors, dependent: :delete_all do
-    def linked
-      where 'user_id IS NOT NULL'
-    end
-  end
+  belongs_to :journal
+  has_many :authors, dependent: :delete_all
   has_many :users, through: :authors
 
   default_scope { order year: :desc, month: :desc, title: :asc }
   scope :default, -> { where claimed: true }
 
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
-  VALID_JOURNAL_REGEX = /[\w\. ]+/i
 
   auto_strip_attributes :doi, :url, :journal, :volume, :start_page, :title
 
@@ -44,9 +41,6 @@ class Publication < ActiveRecord::Base
              allow_blank: true
   validates :url, url: true,
           allow_blank: true
-  validates :journal, presence: true,
-                        format: { with: VALID_JOURNAL_REGEX },
-                        length: { minimum: 5 }
   validates :volume, presence: true,
                        format: { with: /\A([1-9]\d*|#{PENDING_LABEL})\Z/i,
                               message: "is neither a valid number nor says \"#{PENDING_LABEL}\"" }

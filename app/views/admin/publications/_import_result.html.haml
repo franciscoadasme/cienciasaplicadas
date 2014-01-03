@@ -5,7 +5,7 @@
       %span.text-danger= pub.errors.full_unique_messages.to_sentence.concat '.'
     - else
       %span.text-muted
-        - meta = "#{pub.journal}, #{pub.year}"
+        - meta = "#{pub.journal.name}, #{pub.year}"
         - meta += ", #{"Volume " unless pub.pending?}#{pub.volume}" unless pub.volume.blank?
         - meta += ", Issue #{pub.issue}" unless pub.issue.blank?
         - meta += ", Pages #{pub.pages}" unless pub.start_page.blank?

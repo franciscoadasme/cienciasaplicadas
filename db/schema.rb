@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101164407) do
+ActiveRecord::Schema.define(version: 20140102162114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(version: 20140101164407) do
   add_index "groups", ["abbr"], name: "index_groups_on_abbr", unique: true, using: :btree
   add_index "groups", ["email"], name: "index_groups_on_email", unique: true, using: :btree
   add_index "groups", ["name"], name: "index_groups_on_name", unique: true, using: :btree
+
+  create_table "journals", force: true do |t|
+    t.string   "name",          null: false
+    t.string   "abbr"
+    t.string   "website_url"
+    t.float    "impact_factor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "journals", ["abbr"], name: "index_journals_on_abbr", unique: true, using: :btree
+  add_index "journals", ["name"], name: "index_journals_on_name", unique: true, using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "title"
@@ -133,10 +145,12 @@ ActiveRecord::Schema.define(version: 20140101164407) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "claimed",                 default: false
+    t.integer  "journal_id"
   end
 
   add_index "publications", ["doi"], name: "index_publications_on_doi", unique: true, using: :btree
   add_index "publications", ["identifier"], name: "index_publications_on_identifier", unique: true, using: :btree
+  add_index "publications", ["journal_id"], name: "index_publications_on_journal_id", using: :btree
   add_index "publications", ["title"], name: "index_publications_on_title", unique: true, using: :btree
   add_index "publications", ["volume", "start_page"], name: "index_publications_on_volume_and_start_page", unique: true, using: :btree
 
