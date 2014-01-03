@@ -3,7 +3,7 @@
   .list-group-item-meta
     - if status == :invalid
       %span.text-danger= pub.errors.full_unique_messages.to_sentence.concat '.'
-    - else
+    - elsif status != :ignored
       %span.text-muted
         - meta = "#{pub.journal.name}, #{pub.year}"
         - meta += ", #{"Volume " unless pub.pending?}#{pub.volume}" unless pub.volume.blank?

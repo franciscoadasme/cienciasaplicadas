@@ -73,7 +73,6 @@ class Admin::PublicationsController < AdminController
       if pub.invalid?
         @result[:invalid] << pub
       elsif pub.new_record?
-        pub.journal = Journal.where.any_of(name: journal, abbr: journal).first_or_create! name: journal
         pub.authors = pubdata[:authors].map do |name|
           existing_author = Author.includes(:user).where(name: name).first
           Author.new(name: name).tap do |a|
@@ -88,6 +87,7 @@ class Admin::PublicationsController < AdminController
         end
 
         if pub.has_users?
+          pub.journal = Journal.where.any_of(name: journal, abbr: journal).first_or_create! name: journal
           pub.save!
           @result[:new_linked] << [ pub, pub.authors.linked ]
         else
