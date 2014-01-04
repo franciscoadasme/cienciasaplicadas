@@ -43,7 +43,7 @@ class Page < ActiveRecord::Base
                                            scope: :owner_id }
 
   def self.named_pages
-    @pages ||= HashWithIndifferentAccess.new Hash[load_seeds.map { |data| [ data['tagline'], data ] }]
+    @pages ||= Hash[load_seeds.map { |data| [ data['tagline'], data ] }].with_indifferent_access
   end
 
 # Status
