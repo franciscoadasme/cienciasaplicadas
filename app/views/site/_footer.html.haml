@@ -30,7 +30,7 @@
                 = link_to pub.title, pub.link, target: '_blank'
                 %span.text-muted= pub.short_author_list
 
-          = link_to 'View all our publications', @group.pubs_page, class: 'btn btn-default' unless @group.pubs_page.nil?
+          = link_to 'View all our publications', Page.named(:publications), class: 'btn btn-default'
         - else
           %span.text-muted= 'There are no publications added so far.'
 
