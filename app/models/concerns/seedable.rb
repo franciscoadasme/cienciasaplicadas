@@ -3,7 +3,13 @@ module Seedable
 
   module ClassMethods
     def load_seeds
-      HashWithIndifferentAccess.new YAML.load_file("#{Rails.root}/db/seeds/#{table_name}.yml")
+      YAML.load_file("#{Rails.root}/db/seeds/#{table_name}.yml")
+    end
+
+    def seed!(override_attributes = {})
+      load_seeds.each do |data|
+        create! data.merge(override_attributes)
+      end
     end
   end
 end

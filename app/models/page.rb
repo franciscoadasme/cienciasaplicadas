@@ -25,12 +25,16 @@ class Page < ActiveRecord::Base
   friendly_id :tagline, use: [ :slugged, :scoped ], scope: :owner
 
   belongs_to :owner, class_name: 'User'
+  belongs_to :author, class_name: 'User'
+  belongs_to :edited_by, class_name: 'User'
   acts_as_list scope: :owner
 
   default_scope -> { order :position }
   scope :global, -> { where owner_id: nil }
   scope :navigable, -> { global.published.where.not tagline: 'front' }
   scope :named, -> (name) { friendly.find name.to_s }
+
+  before_create :set_edited_by_if_needed
 
   auto_strip_attributes :tagline
   validates :tagline, presence: true,
@@ -39,7 +43,7 @@ class Page < ActiveRecord::Base
                                            scope: :owner_id }
 
   def self.named_pages
-    @pages ||= load_seeds
+    @pages ||= HashWithIndifferentAccess.new Hash[load_seeds.map { |data| [ data['tagline'], data ] }]
   end
 
 # Status
@@ -83,4 +87,9 @@ class Page < ActiveRecord::Base
   def marked_as
     tagline
   end
+
+  private
+    def set_edited_by_if_needed
+      edited_by = author unless edited_by.present?
+    end
 end

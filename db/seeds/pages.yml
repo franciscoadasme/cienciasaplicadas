@@ -1,10 +1,14 @@
-front:
+-
+  title: Front
+  tagline: front
   body: '#{{ @group.name }}'
-
-publications:
+-
+  title: Publications
+  tagline: publications
   body: |
     {{ publications }}
-
-people:
+-
+  title: People
+  tagline: people
   body: |
     {{ users }}

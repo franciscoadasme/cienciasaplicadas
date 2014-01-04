@@ -22,11 +22,4 @@ user = User.create!(
 )
 user.build_settings.save!
 
-Page.named_pages.each do |tagline, data|
-  page = Page.new data
-  page.title ||= tagline.titleize
-  page.tagline = tagline
-  page.author = page.edited_by = user
-  page.published = true
-  page.save!
-end
+Page.seed! author: user, published: true
