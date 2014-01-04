@@ -45,9 +45,6 @@ CbsmWebsite::Application.routes.draw do
       member do
         patch :promote
         patch :demote
-
-        put :add_as_collaborator
-        delete :remove_as_collaborator
       end
     end
 

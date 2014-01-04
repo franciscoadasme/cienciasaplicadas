@@ -28,25 +28,6 @@ class Admin::UsersController < AdminController
     change_user_role :promote
   end
 
-  def add_as_collaborator
-    if current_user.collaborator? @user
-      flash_type = :alert
-      message = tf '.already_added'
-    else
-      current_user.collaborators << @user
-      @user.collaborators << current_user
-      flash_type = :success
-      message = tf '.success', user: @user.display_name
-    end
-    redirect_to admin_users_path, flash_type => message
-  end
-
-  def remove_as_collaborator
-    current_user.collaborators.delete @user
-    @user.collaborators.delete current_user
-    redirect_to admin_users_path, success: tf('.success', user: @user.display_name)
-  end
-
   protected
     def authorize_user!
       redirect_to admin_users_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
