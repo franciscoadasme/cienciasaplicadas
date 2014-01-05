@@ -1,0 +1,18 @@
+- provide :widget do
+  = link_to fa_icon('plus', text: 'New position'), new_admin_position_path, class: 'btn btn-primary position', remote: true, data: { action: 'new', disable_with: 'Retrieving...' }
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Nº users
+      %th.text-center Action
+
+  %tbody
+    - @positions.each do |position|
+      = content_tag_for :tr, position do
+        %td.editable= position.name
+        %td= position.users.count
+        %td.text-center
+          = edit_action_for position, remote: true, data: { action: 'edit', disable_content: 'Editting...' }
+          = delete_action_for position, icon_only: true

@@ -32,7 +32,7 @@ class Admin::Users::InvitationsController < Devise::InvitationsController
     end
 
     def configure_permitted_parameters
-      # Only add some parameters
+      devise_parameter_sanitizer.for(:invite).concat [ :position_id ]
       devise_parameter_sanitizer.for(:accept_invitation).concat [ :first_name, :last_name, :nickname, :image_url ]
     end
 end

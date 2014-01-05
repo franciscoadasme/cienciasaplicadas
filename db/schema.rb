@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140102162114) do
+ActiveRecord::Schema.define(version: 20140104212305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(version: 20140102162114) do
 
   add_index "pages", ["owner_id", "slug"], name: "index_pages_on_owner_id_and_slug", unique: true, using: :btree
   add_index "pages", ["owner_id", "tagline"], name: "index_pages_on_owner_id_and_tagline", unique: true, using: :btree
+
+  create_table "positions", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "positions", ["name"], name: "index_positions_on_name", unique: true, using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -198,11 +206,13 @@ ActiveRecord::Schema.define(version: 20140102162114) do
     t.string   "headline"
     t.text     "signature"
     t.text     "bio"
+    t.integer  "position_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
+  add_index "users", ["position_id"], name: "index_users_on_position_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

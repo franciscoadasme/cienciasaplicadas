@@ -32,6 +32,7 @@
 #  headline               :string(255)
 #  signature              :text
 #  bio                    :text
+#  position_id            :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

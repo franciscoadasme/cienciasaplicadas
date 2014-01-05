@@ -7,6 +7,7 @@ class Admin::UsersController < AdminController
     @users_count = (current_user.super_user? ? User.count : User.invitation_accepted.count) - 1
     @users_accepted = User.invitation_accepted.where.not(id: current_user.id)
     @users_not_accepted = User.invitation_not_accepted if current_user.super_user?
+    @positions = Position.sorted
   end
 
   def destroy
@@ -26,6 +27,12 @@ class Admin::UsersController < AdminController
 
   def promote
     change_user_role :promote
+  end
+
+  def change_position
+    @user.position = Position.find params[:position_id]
+    @user.save! validate: false
+    redirect_to admin_users_path, success: "User's position updated successfully."
   end
 
   protected

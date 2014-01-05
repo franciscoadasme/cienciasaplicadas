@@ -45,8 +45,10 @@ CbsmWebsite::Application.routes.draw do
       member do
         patch :promote
         patch :demote
+        patch :change_position
       end
     end
+    resources :positions, except: [ :show ]
 
     resources :publications, only: [ :index, :edit, :update ] do
       member do

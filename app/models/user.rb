@@ -32,6 +32,7 @@
 #  headline               :string(255)
 #  signature              :text
 #  bio                    :text
+#  position_id            :integer
 #
 
 class User < ActiveRecord::Base
@@ -47,6 +48,7 @@ class User < ActiveRecord::Base
   has_many :aliases, class_name: 'Author', dependent: :nullify
   has_many :publications, through: :aliases
   has_many :projects
+  belongs_to :position
 
   default_scope { order :first_name, :last_name, role: :desc, invitation_sent_at: :desc }
   scope :default, -> { where.not(invitation_accepted_at: nil) }
@@ -97,6 +99,7 @@ class User < ActiveRecord::Base
                    allow_blank: true
   validates :bio, length: { minimum: 100 },
              allow_blank: true
+  validates :position, presence: true
 
   def self.from_omniauth(auth, signed_in_resource=nil)
     user = where("email = ? OR nickname = ? OR (provider = ? AND uid = ?)",

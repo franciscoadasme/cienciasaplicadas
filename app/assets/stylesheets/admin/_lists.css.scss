@@ -184,4 +184,11 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
 
       &:hover { color: $list-group-item-user-actions-color-content-hover; }
     }
+
+    .dropdown-menu {
+      text-align: left;
+      a {
+        width: auto;
+      }
+    }
   }

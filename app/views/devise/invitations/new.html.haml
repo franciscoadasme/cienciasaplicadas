@@ -11,6 +11,7 @@
       Please be patient, sending an invitation may take a few seconds...
 
     = f.input :email, hint: t('devise.invitations.new.hints.email')
+    = f.association :position, prompt: 'Choose one'
 
   .form-group.form-actions
     .col-xs-offset-3.col-xs-9
