@@ -90,6 +90,6 @@ class Page < ActiveRecord::Base
 
   private
     def set_edited_by_if_needed
-      edited_by = author unless edited_by.present?
+      self.edited_by ||= author
     end
 end
