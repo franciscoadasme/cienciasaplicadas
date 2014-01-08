@@ -42,6 +42,13 @@ class Admin::PositionsController < AdminController
     @position.destroy
     redirect_to admin_positions_path
   end
+  
+  def sort
+    params[:position].each_with_index do |id, index|
+      Position.update_all({ level: index+1 }, { id: id })
+    end
+    render nothing: true
+  end
 
   private
     def set_position

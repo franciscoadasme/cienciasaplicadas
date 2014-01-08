@@ -50,3 +50,15 @@ whenReady ->
            .on 'focusout', ->
              cancelEditAction button, editable_cell, input
 
+  $('.table-positions tbody').sortable
+    axis: 'y'
+    handle: '.handle'
+    helper: (e, tr) ->
+      $originals = tr.children()
+      $helper = tr.clone()
+      $helper.children().each (index) ->
+        # Set helper cell sizes to match the original sizes
+        $(@).width $originals.eq(index).outerWidth()
+      $helper
+    update: ->
+      $.post($('.table-positions').data('update-url'), $(@).sortable('serialize'))

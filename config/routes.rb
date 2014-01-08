@@ -48,7 +48,9 @@ CbsmWebsite::Application.routes.draw do
         patch :change_position
       end
     end
-    resources :positions, except: [ :show ]
+    resources :positions, except: [ :show ] do
+      collection { post :sort  }
+    end
 
     resources :publications, only: [ :index, :edit, :update ] do
       member do

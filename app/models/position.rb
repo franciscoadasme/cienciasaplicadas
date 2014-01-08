@@ -6,12 +6,14 @@
 #  name       :string(255)      not null
 #  created_at :datetime
 #  updated_at :datetime
+#  level      :integer
 #
 
 class Position < ActiveRecord::Base
   include Seedable
+  acts_as_list column: 'level'
 
-  scope :sorted, -> { order :name }
+  scope :sorted, -> { order :level }
 
   has_many :users, dependent: :nullify
 
