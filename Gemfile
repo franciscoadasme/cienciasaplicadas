@@ -42,6 +42,7 @@ gem 'premailer-rails'
 
 gem 'underscore-rails'
 gem 'gmaps4rails'
+gem 'mailgun'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -27,15 +27,15 @@ CbsmWebsite::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { host: 'http://cbsm.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'http://cienciasaplicadas.cl' }
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.webfaction.com',
+    authentication: :plain,
+    address: 'smtp.mailgun.org',
     port: 587,
-    domain: 'cbsm.herokuapp.com',
-    authentication: 'plain',
-    user_name: ENV['CBSM_MAIL_USERNAME'],
-    password: ENV['CBSM_MAIL_PASSWORD'],
-    enable_starttls_auto: true
+    domain: ENV['MAILGUN_DOMAIN'],
+    user_name: ENV['MAILGUN_USERNAME'],
+    password: ENV['MAILGUN_PASSWORD']
   }
 end
