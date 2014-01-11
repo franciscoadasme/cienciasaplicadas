@@ -1,3 +1,6 @@
-.row
-  %ul.list-users
-    = render collection
+- collection.includes(:position).group_by(&:position).each do |position, users|
+  .row
+    .col-xs-12
+      %h2= position.name
+      %ul.list-users
+        = render users
