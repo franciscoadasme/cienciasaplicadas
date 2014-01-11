@@ -28,6 +28,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'font-awesome-rails', '~>4.0'
+gem 'select2-rails'
 
 gem 'devise', '~> 3.2'
 gem 'devise-async'

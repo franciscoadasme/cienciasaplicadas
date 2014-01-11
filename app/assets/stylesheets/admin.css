@@ -12,5 +12,6 @@
  *= require twitter/bootstrap
  *= require common/non-responsive
  *= require font-awesome
+ *= require select2
  *= require admin/main
  */

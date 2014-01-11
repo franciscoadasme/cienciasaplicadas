@@ -1,3 +1,9 @@
+module Kernel
+  def is_model?
+    is_a?(ActiveRecord::Base) || self.class.included_modules.include?(ActiveModel::Model)
+  end
+end
+
 class String
   alias_method :parent_prepend, :prepend
 
@@ -19,6 +25,28 @@ class String
 
   def normalize
     ActiveSupport::Inflector.transliterate self.strip.downcase
+  end
+
+  def encrypt
+    ActiveSupport::MessageEncryptor.default_encryptor.encrypt_and_sign self
+  end
+
+  def decrypt
+    ActiveSupport::MessageEncryptor.default_encryptor.decrypt_and_verify self
+  end
+
+  def compact
+    strip.blank? ? nil : strip
+  end
+end
+
+module ActiveSupport
+  class MessageEncryptor
+    def self.default_encryptor
+      salt  = SecureRandom.random_bytes(64)
+      key   = ActiveSupport::KeyGenerator.new('Yuz1wa5b1CT6UzigdPe6').generate_key(salt)
+      @crypt ||= new(key)
+    end
   end
 end
 

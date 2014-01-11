@@ -1,0 +1,29 @@
+.panel.panel-default
+  .panel-heading
+    Mailing List Members
+    .pull-right
+      = item_action 'Add Recipients', add_member_admin_mailing_list_path(@mailing_list), class: 'btn btn-default mailing-list', data: { action: 'add_member' }, remote: true if @mailing_list.members.any?
+
+  .panel-body
+    - if @mailing_list.members.any?
+      %table.table.table-striped
+        %tbody
+          - @mailing_list.members.each do |member|
+            %tr
+              %td
+                = autosizing_image_tag display_user_image_url(member), size: 28, class: 'img-circle' unless member.user.nil?
+                - if member.user.try(:accepted?)
+                  = link_to member.user.display_name, member.user
+                - else
+                  = member.display_name
+              %td= member.email
+              %td.text-right
+                = mail_to member.address, fa_icon('pencil'), title: 'Write message', class: 'btn btn-default'
+                = delete_action_for remove_member_admin_mailing_list_path(@mailing_list, address: member.address), name: 'Remove', icon_only: true
+
+    - else
+      %p.text-center
+        No member has been added yet to this mailing list.
+        %br
+        %br
+        = item_action 'Add Recipients Now!', add_member_admin_mailing_list_path(@mailing_list), class: 'btn btn-primary mailing-list', icon: 'plus', data: { action: 'add_member' }, remote: true

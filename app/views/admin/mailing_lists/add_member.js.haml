@@ -1,0 +1,10 @@
+= form_tag add_member_admin_mailing_list_path(@mailing_list), class: 'form-inline' do
+  .form-group
+    = text_area_tag 'mailing_list_member[address]', nil, placeholder: 'Type valid email addresses', style: 'height: 150px', data: { addresses: @addresses_available }
+    %p.help-block
+      Please insert here a comma-separated list of the recipient email addresses.
+    %br
+
+  .form-actions
+    = submit_tag 'Add addresses', class: 'btn btn-primary btn-block', data: { disable_with: 'Sending... Be patient' }
+    = button_tag 'Close', type: 'button', class: 'btn btn-default btn-block mailing-list', data: { action: 'cancel' }

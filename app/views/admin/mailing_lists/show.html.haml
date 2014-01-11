@@ -1,0 +1,36 @@
+- provide :title, @mailing_list.name
+- provide :subtitle, 'Mailing list'
+
+.panel.panel-default
+  .panel-heading
+    Mailing List Information
+    .pull-right
+      = item_action 'New Message', new_message_admin_mailing_list_path, icon: 'pencil', primary: true
+      = edit_action_for @mailing_list, icon: 'edit'
+      = delete_action_for @mailing_list, icon_only: true
+
+  .panel-body
+    %dl.dl-horizontal
+      %dt Name
+      %dd= @mailing_list.name
+
+      %dt Email address
+      %dd
+        = mail_to @mailing_list.address do
+          %span>= @mailing_list.to_param
+          %span.text-muted= "@#{ENV['MAILGUN_DOMAIN']}"
+        %p.help-block
+          You can directly send a message to this address, and it will be forward to all the mailing list members.
+
+      %dt Created
+      %dd
+        = distance_of_time_in_words_to_now @mailing_list.created_at
+        ago
+
+      %dt Description
+      %dd= markdown @mailing_list.description
+
+= render 'members'
+
+%p.help-block
+  Mailing list capabilities are backed up by #{link_to 'Mailgun', 'mailgun.com'} email service.

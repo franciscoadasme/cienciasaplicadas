@@ -70,6 +70,16 @@ CbsmWebsite::Application.routes.draw do
     resources :external_users, except: [ :show ]
 
     resources :announcements, only: [ :new, :create ]
+    resources :mailing_lists do
+      member do
+        get :add_member
+        post :add_member
+        delete :remove_member
+
+        get :new_message
+        post :send_message
+      end
+    end
 
     # Development only
     get 'mailer(/:action(/:id(.:format)))', to: 'mailer#:action', as: nil

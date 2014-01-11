@@ -11,14 +11,20 @@ module Admin::HtmlHelper
     end
 
     options[:target] = '_blank' if options[:blank]
+    options[:title] = name if options[:icon_only]
 
     icon = options.delete :icon
     content = icon.blank? ? name : fa_icon(icon, text: options[:icon_only] ? nil : name)
     link_to content, href, options
   end
 
+  def show_action_for(record, options = {})
+    href = record.is_model? ? [ :admin, record ] : record
+    item_action options.fetch(:name, 'View'), href, options
+  end
+
   def edit_action_for(record, options = {})
-    href = record.is_a?(ActiveRecord::Base) ? [ :edit, :admin, record ] : record
+    href = record.is_model? ? [ :edit, :admin, record ] : record
     item_action options.fetch(:name, 'Edit'), href, options
   end
 
@@ -28,7 +34,7 @@ module Admin::HtmlHelper
       data: { confirm: options.fetch(:message, 'Are you sure?') },
       type: :danger,
       icon: 'trash-o')
-    href = record.is_a?(ActiveRecord::Base) ? [ :admin, record ] : record
+    href = record.is_model? ? [ :admin, record ] : record
     item_action options.fetch(:name, 'Delete'), href, options
   end
 

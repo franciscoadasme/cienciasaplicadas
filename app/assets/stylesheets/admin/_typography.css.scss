@@ -28,22 +28,24 @@ h2 {
   }
 }
 
-.content p {
-  margin-bottom: $base-paragraph-margin;
-  line-height: $base-line-height;
+// .content p {
+//   margin-bottom: $base-paragraph-margin;
+//   line-height: $base-line-height;
 
-  & > a {
-    padding: $base-link-padding;
-    background-color: $link-color-bg;
-    color: $link-color-text;
+//   & > a {
+//     padding: $base-link-padding;
+//     background-color: $link-color-bg;
+//     color: $link-color-text;
 
-    &:hover {
-      background-color: $link-hover-color-bg;
-      color: $link-hover-color-text;
-      text-decoration: none;
-    }
-  }
-}
+//     &:hover {
+//       background-color: $link-hover-color-bg;
+//       color: $link-hover-color-text;
+//       text-decoration: none;
+//     }
+//   }
+// }
+
+p:last-child { margin-bottom: 0; }
 
 hr {
   border-top-color: rgba(black, .1);

@@ -1,0 +1,43 @@
+- provide :subtitle, 'Mailing Lists'
+- if @mailing_lists.any?
+  - provide :widget do
+    = link_to fa_icon('plus', text: 'New Mailing List'), new_admin_mailing_list_path, class: 'btn btn-primary'
+
+%table.table.table-bordered
+  %col{ style: 'width: 30%' }
+  %col{ style: 'width: 35%' }
+  %col{ style: 'width: 35%' }
+
+  %thead
+    %tr
+      %th Name
+      %th Address name
+      %th.text-center Action
+
+  %tbody
+    - if @mailing_lists.any?
+      - @mailing_lists.each do |mailing_list|
+        %tr
+          %td
+            = mailing_list.name
+            - if mailing_list.description.present?
+              %br
+              %small.text-muted= excerpt mailing_list.description
+          %td
+            = mailing_list.to_param
+          %td.text-center
+            = item_action fa_icon('pencil'), new_message_admin_mailing_list_path(mailing_list), primary: true, title: 'New Message'
+            = show_action_for mailing_list, icon: 'eye', icon_only: true
+            = edit_action_for mailing_list, icon: 'edit', icon_only: true
+            = delete_action_for mailing_list, icon_only: true
+    - else
+      %tr
+        %td.table-cell-empty{ colspan: 3 }
+          %p You have no mailing lists yet.
+          = link_to fa_icon('plus', text: 'Create Your First Mailing List'), new_admin_mailing_list_path, class: 'btn btn-primary'
+
+- if @mailing_lists.any?
+  %p.help-block
+    All mailing list addresses are automatically scoped to
+    %span.text-primary= ENV['MAILGUN_DOMAIN']
+    domain.
