@@ -59,8 +59,4 @@ module UrlHelper
       send expression.gsub(':controller', components[:controller].singularize), id: (record.id unless record.nil?)
     end
   end
-
-  def external_user_path(user)
-    user.website_url
-  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108174708) do
+ActiveRecord::Schema.define(version: 20140112174904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,19 +27,6 @@ ActiveRecord::Schema.define(version: 20140108174708) do
   add_index "authors", ["name", "publication_id"], name: "index_authors_on_name_and_publication_id", unique: true, using: :btree
   add_index "authors", ["publication_id"], name: "index_authors_on_publication_id", using: :btree
   add_index "authors", ["user_id"], name: "index_authors_on_user_id", using: :btree
-
-  create_table "external_users", force: true do |t|
-    t.string   "first_name",  null: false
-    t.string   "last_name",   null: false
-    t.string   "institution", null: false
-    t.string   "city",        null: false
-    t.string   "country",     null: false
-    t.string   "website_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "external_users", ["first_name", "last_name"], name: "index_external_users_on_first_name_and_last_name", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false

@@ -67,7 +67,6 @@ CbsmWebsite::Application.routes.draw do
     end
 
     resources :projects, except: [ :show ]
-    resources :external_users, except: [ :show ]
 
     resources :announcements, only: [ :new, :create ]
     resources :mailing_lists do
