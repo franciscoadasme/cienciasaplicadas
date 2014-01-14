@@ -34,10 +34,6 @@ class Admin::JournalsController < AdminController
   end
 
   private
-    def authorize_user!
-      redirect_to admin_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
-    end
-
     def set_journal
       @journal = Journal.find(params[:id])
     end

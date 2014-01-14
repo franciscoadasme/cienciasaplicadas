@@ -1,4 +1,5 @@
 class Admin::PositionsController < AdminController
+  before_action :authorize_user!
   before_action :set_position, only: [:edit, :update, :destroy]
 
   def index
@@ -42,7 +43,7 @@ class Admin::PositionsController < AdminController
     @position.destroy
     redirect_to admin_positions_path
   end
-  
+
   def sort
     params[:position].each_with_index do |id, index|
       Position.update_all({ level: index+1 }, { id: id })

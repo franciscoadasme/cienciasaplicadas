@@ -12,4 +12,9 @@ class AdminController < ApplicationController
     @pending_users = User.invitation_not_accepted.where('invitation_sent_at >= ?', last_seven_days)
     @recent_publications = Publication.limit(5)
   end
+
+  private
+    def authorize_user!
+      redirect_to admin_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
+    end
 end

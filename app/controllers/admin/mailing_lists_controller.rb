@@ -1,4 +1,5 @@
 class Admin::MailingListsController < AdminController
+  before_action :authorize_user!
   before_action :set_mailing_list, only: [ :show, :edit, :update, :destroy,
     :add_member, :remove_member,
     :new_message, :send_message ]

@@ -1,4 +1,5 @@
 class Admin::ContactsController < AdminController
+  before_action :authorize_user!
   before_action :set_contact, only: [ :index, :show, :edit, :update, :destroy ]
   before_action :set_mailing_lists, only: [ :index, :show ]
 
