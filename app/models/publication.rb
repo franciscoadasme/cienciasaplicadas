@@ -16,7 +16,6 @@
 #  identifier :string(255)
 #  created_at :datetime
 #  updated_at :datetime
-#  claimed    :boolean          default(FALSE)
 #  journal_id :integer
 #
 
@@ -30,7 +29,7 @@ class Publication < ActiveRecord::Base
   has_many :users, through: :authors
 
   default_scope { order year: :desc, month: :desc, title: :asc }
-  scope :default, -> { where claimed: true }
+  scope :default, -> { all }
 
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
 
@@ -89,9 +88,5 @@ class Publication < ActiveRecord::Base
 
   def unlinked_authors
     authors.unlinked
-  end
-
-  def claimed?
-    claimed
   end
 end

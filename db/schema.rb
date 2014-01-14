@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112180637) do
+ActiveRecord::Schema.define(version: 20140114165916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,7 +153,6 @@ ActiveRecord::Schema.define(version: 20140112180637) do
     t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "claimed",                 default: false
     t.integer  "journal_id"
   end
 

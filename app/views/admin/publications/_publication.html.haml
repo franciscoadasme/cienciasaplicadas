@@ -36,9 +36,3 @@
               Link through
             - publication.unlinked_authors.each do |author|
               %li= link_to author.name, link_admin_publication_path(publication, author_id: author), method: :patch
-
-      - if current_user.super_user?
-        - if publication.claimed?
-          = link_to 'Unlink to group', unlink_admin_publication_path(publication), method: :delete, data: { confirm: tv('.single.confirm.unlink', no_action: true) }, class: 'btn btn-danger'
-        - else
-          = link_to 'Link to group', link_admin_publication_path(publication), method: :patch, class: 'btn btn-default'

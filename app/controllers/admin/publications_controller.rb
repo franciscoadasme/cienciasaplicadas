@@ -35,29 +35,17 @@ class Admin::PublicationsController < AdminController
   end
 
   def link
-    if params.has_key?(:author_id)
-      author = Author.find(params[:author_id])
-      author.user = current_user
-      author.save!
-      message = tf('.success', author: author.name)
-    else
-      @publication.update! claimed: true
-      message = 'Publication was linked to group successfully.'
-    end
-    redirect_to admin_publications_path, success: message
+    author = Author.find(params[:author_id])
+    author.user = current_user
+    author.save!
+    redirect_to admin_publications_path, success: tf('.success', author: author.name)
   end
 
   def unlink
-    if @publication.has_user?(current_user)
-      author = Author.where(publication: @publication, user: current_user).first
-      author.user = nil
-      author.save!
-      message = tf('.success')
-    else
-      @publication.update! claimed: false
-      message = 'Publication is no longer linked to group.'
-    end
-    redirect_to admin_publications_path, success: message
+    author = Author.where(publication: @publication, user: current_user).first
+    author.user = nil
+    author.save!
+    redirect_to admin_publications_path, success: tf('.success')
   end
 
   private
