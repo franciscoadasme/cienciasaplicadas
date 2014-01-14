@@ -64,7 +64,7 @@ class Admin::MailingListsController < AdminController
       format.html { redirect_to [ :admin, @mailing_list ], success: 'Recipients added successfully.' }
       format.js do
         @addresses_taken = @mailing_list.addresses
-        @addresses_available = User.pluck(:email).reject { |address| @addresses_taken.include? address }
+        @addresses_available = User.pluck(:email).concat(Contact.pluck(:email)).reject { |address| @addresses_taken.include? address }
       end
     end
   end

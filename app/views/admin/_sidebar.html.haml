@@ -16,6 +16,7 @@
         = autolink_to 'Invite', new_user_invitation_path, class: 'newlink' if current_user.super_user?
 
       - if current_user.super_user?
+        = sidebar_menu_item :contacts, admin_contacts_path, condition: controller?(:contacts)
         = sidebar_menu_item :mailing_lists, admin_mailing_lists_path, condition: controller?(:mailing_lists)
 
     %ul.sidebar-menu

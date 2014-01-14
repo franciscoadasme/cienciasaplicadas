@@ -79,6 +79,7 @@ CbsmWebsite::Application.routes.draw do
         post :send_message
       end
     end
+    resources :contacts
 
     # Development only
     get 'mailer(/:action(/:id(.:format)))', to: 'mailer#:action', as: nil

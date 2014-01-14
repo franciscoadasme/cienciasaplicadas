@@ -1,0 +1,54 @@
+%dl.dl-horizontal
+  %dt
+  %dd= image_tag display_user_image_url(contact), class: 'img-thumbnail', width: 64, height: 64
+
+  %dd &nbsp;
+
+  %dt Name
+  %dd= contact.display_name
+
+  %dt Institution
+  %dd= contact.institution || 'None'
+
+  %dt Email Address
+  %dd= mail_to contact.email
+
+  %dd &nbsp;
+
+  %dt Website
+  %dd= contact.website_url.present? ? link_to(contact.website_url) : content_tag(:span, 'None', class: 'text-muted')
+
+  %dd &nbsp;
+
+  %dt Mailing Lists
+  %dd
+    - if contact.mailing_lists.any?
+      %ul.list-unstyled
+        - contact.mailing_lists.each do |mailing_list|
+          %li
+            = link_to mailing_list.name, [ :admin, mailing_list ]
+            %span.text-muted= "(#{mailing_list.members.count})"
+    - else
+      %span.text-muted None
+
+.item-actions
+  - if @mailing_lists.any? || contact.mailing_lists.any?
+    .btn-group.dropup
+      = button_tag fa_icon('envelope-o'), type: 'button', class: "btn btn-default dropdown-toggle", title: "Mailing Lists", data: { toggle: 'dropdown' }
+      %ul.dropdown-menu
+        %li.dropdown-header MAILING LISTS
+        %li.divider
+
+        = content_tag :li, 'Add To', class: 'dropdown-header' if @mailing_lists.any?
+        - @mailing_lists.each do |mailing_list|
+          %li= link_to mailing_list.name, add_member_admin_mailing_list_path(mailing_list, mailing_list_member: { address: contact.email }), method: :post
+
+        - if contact.mailing_lists.any?
+          = content_tag :li, nil, class: 'divider' if @mailing_lists.any?
+          %li.dropdown-header Remove From
+
+        - contact.mailing_lists.each do |mailing_list|
+          %li= link_to mailing_list.name, remove_member_admin_mailing_list_path(mailing_list, address: contact.email), method: :delete
+  .pull-right
+    = edit_action_for contact
+    = mail_to contact.email, fa_icon('pencil'), class: 'btn btn-primary', title: 'Write message'

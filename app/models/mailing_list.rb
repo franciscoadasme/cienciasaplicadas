@@ -21,11 +21,15 @@ class MailingListMember
   end
 
   def display_name
-    user.try(:display_name) || name.compact || address
+    user.try(:display_name) || contact.try(:display_name) || name.compact || address
   end
 
   def image_url
     user.try :image_url
+  end
+
+  def contact
+    @contact ||= Contact.find_by email: email
   end
 
   def user
@@ -82,6 +86,10 @@ class MailingList
         raise RecordNotFound, "Couldn't find #{@klass.name} with address=#{id}"
       end
     end
+
+    def with_address(address)
+      all.select { |mailing_list| mailing_list.include? address }
+    end
   end
 
   def addresses
@@ -92,6 +100,9 @@ class MailingList
     Mailgun.client.list_members(self.address).add address
     Rails.cache.delete "/mailing_list/#{to_param}/members"
   end
+
+  def include?(object)
+    members.find { |member| member == object || member.address == object}
   end
 
   def destroy

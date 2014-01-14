@@ -14,6 +14,8 @@
                 = autosizing_image_tag display_user_image_url(member), size: 28, class: 'img-circle' unless member.user.nil?
                 - if member.user.try(:accepted?)
                   = link_to member.user.display_name, member.user
+                - elsif member.contact
+                  = link_to member.contact.display_name, [ :admin, member.contact ]
                 - else
                   = member.display_name
               %td= member.email

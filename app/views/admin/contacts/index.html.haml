@@ -1,0 +1,16 @@
+.frame-contact
+  %ul.list-group.list-group-contacts
+    - @contacts.each do |heading, contacts|
+      %li.list-group-heading= heading
+      - contacts.each do |contact|
+        %li
+          - css = [ 'list-group-item', 'list-group-item-contact' ]
+          - css.push 'active' if contact == @contact
+          = link_to [ :admin, contact ], class: css.join(' '), remote: true do
+            = contact.first_name
+            %strong= contact.last_name
+
+  .list-group-actions
+    = link_to fa_icon('plus', text: 'New Contact'), new_admin_contact_path, class: 'btn btn-primary btn-block'
+  .panel-contact
+    = render @contact
