@@ -66,6 +66,7 @@ class MailingList
     def create(params)
       begin
         Mailgun.client.lists.create(params[:address], params)
+        Rails.cache.delete 'all_mailing_lists'
       rescue Mailgun::Error
         raise ActiveRecord::RecordNotSaved
       end
@@ -89,11 +90,14 @@ class MailingList
 
   def add_member(address)
     Mailgun.client.list_members(self.address).add address
+    Rails.cache.delete "/mailing_list/#{to_param}/members"
+  end
   end
 
   def destroy
     begin
       Mailgun.client.lists.delete address
+      Rails.cache.delete 'all_mailing_lists'
     rescue Mailgun::Error
       raise ActiveRecord::RecordNotFound
     end
@@ -101,7 +105,9 @@ class MailingList
 
   def members
     begin
-      @members ||= MailingListMember.of_list(address).sort_by &:display_name
+      Rails.cache.fetch("/mailing_list/#{to_param}/members") do
+        MailingListMember.of_list(address).sort_by &:display_name
+      end
     rescue Mailgun::Error
       raise ActiveRecord::RecordNotFound
     end
@@ -113,6 +119,7 @@ class MailingList
 
   def remove_member(address)
     Mailgun.client.list_members(self.address).remove address
+    Rails.cache.delete "/mailing_list/#{to_param}/members"
   end
 
   def create
@@ -122,6 +129,7 @@ class MailingList
         created_at = DateTime.current
         true
       rescue ActiveRecord::RecordNotSaved, ActiveRecord::RecordInvalid
+        self.errors.add 'address', 'is invalid for some unknown reason. Maybe it went out of sync with Mailgun service.'
         false
       end
     else
@@ -147,6 +155,7 @@ class MailingList
         Rails.cache.delete 'all_mailing_lists'
         true
       rescue Mailgun::Error, ActiveRecord::RecordInvalid
+        self.errors.add 'address', 'couldn\'t save for some unknown reason. Maybe it went out of sync with Mailgun service.'
         false
       end
     else
