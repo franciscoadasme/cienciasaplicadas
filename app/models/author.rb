@@ -8,6 +8,7 @@
 #  publication_id :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  flagged        :boolean
 #
 
 class Author < ActiveRecord::Base
@@ -17,6 +18,7 @@ class Author < ActiveRecord::Base
   default_scope -> { order :id }
   scope :linked, -> { where.not user_id: nil }
   scope :unlinked, -> { where user_id: nil }
+  scope :with_user, -> user { where user: user }
 
   def display_name
     case
@@ -25,5 +27,13 @@ class Author < ActiveRecord::Base
     else
       user.display_name
     end
+  end
+
+  def flagged?
+    flagged
+  end
+
+  def toggle_flag!
+    update flagged: !flagged?
   end
 end

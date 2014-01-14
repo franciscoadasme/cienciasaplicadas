@@ -1,6 +1,6 @@
 class Admin::PublicationsController < AdminController
   before_action :authorize_user!, only: [ :edit, :update ]
-  before_action :set_publication, only: [ :edit, :update, :link, :unlink ]
+  before_action :set_publication, only: [ :edit, :update, :link, :unlink, :toggle_flag ]
 
   def index
     @publications = current_user.publications
@@ -46,6 +46,12 @@ class Admin::PublicationsController < AdminController
     author.user = nil
     author.save!
     redirect_to admin_publications_path, success: tf('.success')
+  end
+
+  def toggle_flag
+    author = Author.find_by publication: @publication, user: current_user
+    author.toggle_flag!
+    redirect_to admin_publications_path, success: "Publication #{'un' unless author.flagged?}flagged successfully."
   end
 
   private

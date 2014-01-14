@@ -56,6 +56,10 @@ class Publication < ActiveRecord::Base
   validates :identifier, presence: true,
                        uniqueness: true
 
+  def author_for_user(user)
+    authors.with_user(user).first
+  end
+
   def short_author_list
     case authors.count
     when 1 then authors.first.display_name

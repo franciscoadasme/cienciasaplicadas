@@ -24,6 +24,10 @@
     = link_to fa_icon('eye'), publication.link, class: 'btn btn-default', title: tv('.single.hints.view', no_action: true), target: '_blank' unless publication.link.nil?
 
     .pull-right
+      - author = publication.author_for_user current_user
+      - icon =  author.flagged? ? 'flag-o' : 'flag'
+      = link_to fa_icon(icon), [ :toggle_flag, :admin, publication ], method: :patch, class: 'btn btn-default'
+
       - if publication.has_user? current_user
         = link_to fa_icon('unlink'), unlink_admin_publication_path(publication), method: :delete, data: { confirm: tv('.single.confirm.unlink', no_action: true) }, class: 'btn btn-danger', title: tv('.single.hints.unlink', no_action: true)
       - elsif publication.unlinked_authors.any?
