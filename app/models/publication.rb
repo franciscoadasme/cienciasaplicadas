@@ -60,16 +60,6 @@ class Publication < ActiveRecord::Base
     authors.with_user(user).first
   end
 
-  def short_author_list
-    case authors.count
-    when 1 then authors.first.display_name
-    when 2
-      authors.limit(2).map(&:display_name).join(' & ')
-    else
-      "#{authors.first.display_name} et al"
-    end
-  end
-
   def has_user? user
     users.exists? user
   end

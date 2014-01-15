@@ -10,7 +10,7 @@
             %small
               = link_to pub.title, '#'
               %strong.text-muted= pub.year
-              %span.text-muted= pub.short_author_list
+              %span.text-muted= abbreviated_authors_for pub
 
   .col-xs-6
     %ul.list-group

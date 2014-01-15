@@ -1,52 +1,57 @@
 .list-group-item-publication
-  padding: 25px 20px
+  position: relative
+  padding-top: 15px
+  padding-right: 43px + 15px*2
+  padding-bottom: 15px
 
-  .list-group-item-heading
-    font-size: 20px
-    font-weight: $font-weight-regular
-
-  .list-group-item-actions
-    @extend .list-group-item-actions-fancy
-    position: absolute
-    right: 0
-    bottom: 0
-    left: 0
-    width: auto
-
-    background-color: transparent
-    border-color: transparent
-    z-index: 10800
-
-    &,
-    .btn
-      transition-duration: .2s
-      transition-delay: 0
-      transition-property: opacity, transform
-      visibility: hidden
-
-    .btn
-      opacity: 0
-      transform: scale(.5,.5)
+  font-weight: $font-weight-regular
 
   &:hover
-    .list-group-item-actions
-      &,
-      .btn
-        visibility: visible
-        transition-delay: .5s
+    background-color: #FFFFF9
 
-      .btn
-        opacity: 1
-        transform: scale(1,1)
+  &,
+  .list-group-item-heading
+    font-family: 'Helvetica Neue', Arial, sans-serif
 
-.list-group-item-publication-authors
-  +delimited-list(";")
-  font-size: $font-size-smallish
+  .list-group-item-heading
+    margin: 0
+    font-size: $base-font-size
+    line-height: $base-font-size * 1.15
+    font-weight: $font-weight-bold
+    color: #064361
 
-  &.no_linked
+  .list-group-item-actions
+    position: absolute
+    top: 15px
+    right: 15px
+    bottom: 15px
+    width: 43px
+
+    .btn
+      padding: 2px 8px
+
+    .pull-right
+      position: absolute
+      bottom: 0
+      float: none
+
+  .list-group-item-action-toggle-flag
+    color: lighten($gray-light, 20%)
+
+    &:hover
+      color: $gray-light
+
+    &.active
+      color: darken(yellow, 4%)
+
+  .list-group-item-meta
+    font-size: $font-size-small
+
+    .publication-journal
+      color: green
+      font-style: italic
+
+  .publication-authors
+    +delimited-list(";")
     color: $text-muted
-    li:after
-      margin-left: 0
-
-  li:after
-    margin-left: -4px
+    font-size: $font-size-small

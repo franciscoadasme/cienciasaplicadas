@@ -2,41 +2,46 @@
   %h3.list-group-item-heading
     = publication.title
 
-  .list-group-item-meta
-    - meta = "#{publication.journal.name}, #{publication.year}"
-    - meta += ", #{"Volume " unless publication.pending?}#{publication.volume}" unless publication.volume.blank?
-    - meta += ", Issue #{publication.issue}" unless publication.issue.blank?
-    - meta += ", Pages #{publication.pages}" unless publication.start_page.blank?
-    / - meta += ", DOI: #{publication.doi}" unless publication.doi.blank?
-    = meta
+    - if publication.has_user?(current_user)
+      - css = [ 'list-group-item-action-toggle-flag' ]
+      - flagged = publication.author_for_user(current_user).flagged?
+      - css << 'active' if flagged
+      = link_to fa_icon('flag'), [ :toggle_flag, :admin, publication ], method: :patch, class: css.join(' ')
 
-  %ul.list-group-item-publication-authors
-    - publication.authors.each do |author|
+  %ul.publication-authors
+    - publication.authors.limit(2).each do |author|
+      - if author.user.present?
+        %li= link_to author.name, author.user
+      - else
+        %li= author.name
+    - if publication.authors.count > 2
       %li
-        - if author.user
-          = link_to author.display_name, user_path(author.user), title: tv('.single.hints.go_to_profile', user: author.user.display_name, no_action: true)
-        - else
-          = author.name
+        and
+        = link_to "#{publication.authors.count - 3} more", '#', title: 'Authors', data: { toggle: 'popover', content: author_list_for(publication) }
+
+  .list-group-item-meta
+    = publication_meta_for publication
 
   .list-group-item-actions
-    - if current_user.super_user?
-      = link_to fa_icon('edit'), edit_admin_publication_path(publication), class: 'btn btn-primary', title: tv('.single.hints.edit', no_action: true)
-    = link_to fa_icon('eye'), publication.link, class: 'btn btn-default', title: tv('.single.hints.view', no_action: true), target: '_blank' unless publication.link.nil?
+    .btn-group
+      = button_tag type: 'button', class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+        = fa_icon('wrench')
+        %span.caret
+      %ul.dropdown-menu
+        %li= link_to fa_icon('external-link fw', text: 'Go to webpage'), publication.link, title: tv('.single.hints.view', no_action: true), target: '_blank' unless publication.link.nil?
+        - if current_user.super_user?
+          %li= link_to fa_icon('edit fw', text: 'Edit'), edit_admin_publication_path(publication), title: tv('.single.hints.edit', no_action: true)
+        - if publication.has_user? current_user
+          %li.divider
+          %li= link_to fa_icon('unlink fw', text: 'Unlink'), unlink_admin_publication_path(publication), method: :delete, data: { confirm: tv('.single.confirm.unlink', no_action: true) }, class: 'text-danger'
 
-    .pull-right
-      - author = publication.author_for_user current_user
-      - icon =  author.flagged? ? 'flag-o' : 'flag'
-      = link_to fa_icon(icon), [ :toggle_flag, :admin, publication ], method: :patch, class: 'btn btn-default'
-
-      - if publication.has_user? current_user
-        = link_to fa_icon('unlink'), unlink_admin_publication_path(publication), method: :delete, data: { confirm: tv('.single.confirm.unlink', no_action: true) }, class: 'btn btn-danger', title: tv('.single.hints.unlink', no_action: true)
-      - elsif publication.unlinked_authors.any?
-        .btn-group
-          %button.btn.btn-default.dropdown-toggle{ type: :button, title: tv('.single.hints.link', no_action: true), data: { toggle: 'dropdown' }}
-            = fa_icon('link')
-            %span.caret
-          %ul.dropdown-menu
-            %li.dropdown-header
-              Link through
-            - publication.unlinked_authors.each do |author|
-              %li= link_to author.name, link_admin_publication_path(publication, author_id: author), method: :patch
+    - if !publication.has_user?(current_user) && publication.unlinked_authors.any?
+      .btn-group.pull-right
+        %button.dropdown-toggle{ type: :button, class: 'btn btn-default', title: tv('.single.hints.link', no_action: true), data: { toggle: 'dropdown' }}
+          = fa_icon('link')
+          %span.caret
+        %ul.dropdown-menu
+          %li.dropdown-header
+            Link through
+          - publication.unlinked_authors.each do |author|
+            %li= link_to author.name, link_admin_publication_path(publication, author_id: author), method: :patch

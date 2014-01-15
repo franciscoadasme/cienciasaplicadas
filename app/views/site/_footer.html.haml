@@ -28,7 +28,7 @@
               %li.list-group-item
                 %strong.text-muted= pub.year
                 = link_to pub.title, pub.link, target: '_blank'
-                %span.text-muted= pub.short_author_list
+                %span.text-muted= abbreviated_authors_for pub
 
           = link_to 'View all our publications', Page.named(:publications), class: 'btn btn-default'
         - else

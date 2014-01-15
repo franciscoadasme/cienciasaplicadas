@@ -33,3 +33,8 @@ whenReady ->
       e.preventDefault()
 
       fileSelector.click()
+
+  $('.publication-authors [data-toggle="popover"]').popover
+    container: 'body'
+    trigger: 'click'
+    placement: 'bottom'
