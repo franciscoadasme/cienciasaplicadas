@@ -36,19 +36,18 @@
     .btn-group.dropup
       = button_tag fa_icon('envelope-o'), type: 'button', class: "btn btn-default dropdown-toggle", title: "Mailing Lists", data: { toggle: 'dropdown' }
       %ul.dropdown-menu
-        %li.dropdown-header MAILING LISTS
-        %li.divider
+        %li.dropdown-header Mailing Lists
 
-        = content_tag :li, 'Add To', class: 'dropdown-header' if @mailing_lists.any?
         - @mailing_lists.each do |mailing_list|
-          %li= link_to mailing_list.name, add_member_admin_mailing_list_path(mailing_list, mailing_list_member: { address: contact.email }), method: :post
+          - linked = contact.mailing_lists.include?(mailing_list)
 
-        - if contact.mailing_lists.any?
-          = content_tag :li, nil, class: 'divider' if @mailing_lists.any?
-          %li.dropdown-header Remove From
+          - action = content_tag :span, linked ? 'Remove from' : 'Add to', class: 'text-muted'
+          - title = "#{action} #{mailing_list.name}".html_safe
 
-        - contact.mailing_lists.each do |mailing_list|
-          %li= link_to mailing_list.name, remove_member_admin_mailing_list_path(mailing_list, address: contact.email), method: :delete
+          - href = linked ? remove_member_admin_mailing_list_path(mailing_list, address: contact.email) : add_member_admin_mailing_list_path(mailing_list, mailing_list_member: { address: contact.email })
+          - method = linked ? :delete : :post
+
+          %li= link_to title, href, method: method
   .pull-right
     = edit_action_for contact
     = mail_to contact.email, fa_icon('pencil'), class: 'btn btn-primary', title: 'Write message'

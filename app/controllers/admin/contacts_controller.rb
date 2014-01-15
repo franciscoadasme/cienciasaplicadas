@@ -50,7 +50,7 @@ class Admin::ContactsController < AdminController
     end
 
     def set_mailing_lists
-      @mailing_lists = MailingList.all.reject { |ml| @contact.mailing_lists.include? ml }
+      @mailing_lists = MailingList.all
     end
 
     def contact_params
