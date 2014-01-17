@@ -69,6 +69,8 @@ CbsmWebsite::Application.routes.draw do
 
     resources :projects, except: [ :show ]
 
+    resources :theses
+
     resources :announcements, only: [ :new, :create ]
     resources :mailing_lists do
       member do

@@ -42,6 +42,7 @@
         = sidebar_menu_item :pages, admin_group_pages_path, condition: (current_path?('group/pages', @page) || @page.try(:associated_controller) == 'group') do
           = autolink_to 'New Page', new_admin_group_page_path, class: 'newlink'
 
+        = sidebar_menu_item :theses, admin_theses_path, condition: controller?(:theses)
         = sidebar_menu_item :journals, admin_journals_path, condition: controller?(:journals)
         = sidebar_menu_item :positions, admin_positions_path, condition: controller?(:positions)
         = sidebar_menu_item :customize, customize_admin_group_path

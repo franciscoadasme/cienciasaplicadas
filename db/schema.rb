@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114172518) do
+ActiveRecord::Schema.define(version: 20140115224501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,25 @@ ActiveRecord::Schema.define(version: 20140114172518) do
   end
 
   add_index "settings", ["user_id"], name: "index_settings_on_user_id", unique: true, using: :btree
+
+  create_table "theses", force: true do |t|
+    t.string   "title",                 null: false
+    t.integer  "issued",                null: false
+    t.string   "institution",           null: false
+    t.text     "abstract"
+    t.text     "notes"
+    t.string   "keywords"
+    t.integer  "user_id"
+    t.string   "pdf_file_file_name"
+    t.string   "pdf_file_content_type"
+    t.integer  "pdf_file_file_size"
+    t.datetime "pdf_file_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "theses", ["title"], name: "index_theses_on_title", unique: true, using: :btree
+  add_index "theses", ["user_id"], name: "index_theses_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                            default: "", null: false

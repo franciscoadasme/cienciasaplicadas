@@ -1,0 +1,43 @@
+.panel.panel-default
+  .panel-heading
+    Thesis Information
+    .pull-right
+      = link_to fa_icon('external-link', text: 'View PDF'), @thesis.pdf_file.url, class: 'btn btn-default'
+      = edit_action_for @thesis, primary: true, icon: 'edit'
+      = delete_action_for @thesis, icon_only: true
+
+  .panel-body
+    %dl.dl-horizontal
+      %dt
+      %dd
+        = link_to @thesis.pdf_file.url, class: 'item-thesis-preview' do
+          = image_tag @thesis.pdf_file.url(:thumb)
+
+      %dt Title
+      %dd= @thesis.title
+
+      %dt Publication year
+      %dd= @thesis.issued
+
+      %dt Author
+      %dd= link_to @thesis.user.display_name, @thesis.user
+
+      %dt Institution
+      %dd= @thesis.institution
+
+      - if @thesis.keywords.present?
+        %dt Keywords
+        %dd
+          - @thesis.keyword_list.each do |keyword|
+            - alt = [ :default, :primary, :success, :info, :warning, :danger ].sample
+            %span.label{ class: "label-#{alt}" }= keyword
+
+      - if @thesis.abstract.present?
+        %dt Abstract
+        %dd= markdown @thesis.abstract
+
+      - if @thesis.notes.present?
+        %dt Notes
+        %dd= markdown @thesis.notes
+
+= link_to fa_icon('long-arrow-left', text: 'Go back to Theses'), admin_theses_path, class: 'btn btn-link'

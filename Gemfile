@@ -45,6 +45,10 @@ gem 'underscore-rails'
 gem 'gmaps4rails'
 gem 'mailgun'
 
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'cocaine'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

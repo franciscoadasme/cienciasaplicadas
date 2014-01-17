@@ -1,0 +1,16 @@
+= simple_form_for [ :admin, @thesis ] do |f|
+  = provide :notification, f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.association :user, label_method: :full_name, collection: User.default, include_blank: 'Select Author'
+    = f.input :institution
+    = f.input :issued, as: :select, collection: Date.today.year.downto(1980), prompt: 'Select Publication Year'
+    = f.input :pdf_file
+    = f.input :keywords, hint: 'Comma-separated list of keywords.', placeholder: 'e.g. Medicinal Chemistry, Quantum Chemistry, DFT'
+    = f.input :abstract
+    = f.input :notes
+
+  .form-group.form-actions
+    .col-xs-9.col-xs-offset-3
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }

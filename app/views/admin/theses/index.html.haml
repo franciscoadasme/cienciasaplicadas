@@ -1,0 +1,19 @@
+%ul.list-theses
+  %li.item-thesis
+    = link_to fa_icon('plus 2x'), new_admin_thesis_path, class: 'item-action-new'
+    %span.text-muted Add new thesis
+
+  - @theses.each do |thesis|
+    %li.item-thesis
+      .item-thesis-thumb
+        = autosizing_image_tag thesis.pdf_file.url(:thumb)
+
+        .item-actions
+          = show_action_for thesis, icon: 'eye', icon_only: true
+          = edit_action_for thesis, icon: 'edit', icon_only: true
+          = delete_action_for thesis, icon_only: true
+      %h3.item-thesis-name= thesis.title.truncate 50, separator: /\s/
+
+      %span.item-thesis-author
+        %span.text-muted by
+        = link_to thesis.user.display_name, thesis.user

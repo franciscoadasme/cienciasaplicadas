@@ -1,0 +1,96 @@
+$item-thesis-width: 200px
+$item-thesis-height: 259px
+$item-thesis-border: 3px
+
+.card
+  position: relative
+  display: inline-block
+  width: $item-thesis-width
+  min-height: $item-thesis-height
+  border: solid $item-thesis-border darken($body-color-bg, 5%)
+  border-radius: $item-thesis-border
+
+  &:hover
+    border-color: lighten($color-primary, 15%)
+    color: $color-primary
+
+.list-theses
+  margin: 0
+  padding: 0
+
+.item-thesis
+  display: inline-block
+  margin-left: -4px
+  margin-right: 8px
+  width: $item-thesis-width
+  text-align: center
+  vertical-align: top
+
+  &:first-child
+    margin-left: 0
+
+  &:nth-child(3n)
+    margin-right: 0
+
+.item-thesis-thumb
+  @extend .card
+  margin-bottom: 8px
+
+  img
+    +autosizing-image($item-thesis-width - 2*$item-thesis-border)
+    padding-bottom: $item-thesis-height
+
+  &:hover:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(darken($body-color-bg, 1%), .5)
+
+  .item-actions
+    position: absolute
+    right: 8px
+    bottom: 8px
+    width: 40px
+    opacity: 0
+    visibility: hidden
+
+    .btn
+      margin-top: 4px
+      width: 40px
+
+  &:hover .item-actions
+    opacity: 1
+    visibility: visible
+
+.item-thesis-preview
+  @extend .card
+  width: auto
+  margin-bottom: 8px
+
+.item-thesis-name
+  margin-bottom: 0
+  font-size: $base-font-size
+
+.item-thesis-author
+  font-size: $font-size-smallish
+
+.item-action-new
+  @extend .card
+  height: $item-thesis-height + 2*$item-thesis-border
+  border-style: dashed
+
+  background-color: darken($body-color-bg, 1%)
+  color: darken($body-color-bg, 15%)
+
+  .fa
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-top: -16px
+    margin-left: -16px
+    width: 32px
+    height: 32px
+    text-align: center

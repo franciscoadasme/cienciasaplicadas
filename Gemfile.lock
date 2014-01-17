@@ -39,6 +39,10 @@ GEM
       activerecord (>= 3.0)
     autoprefixer-rails (1.0.20131225)
       execjs
+    aws-sdk (1.32.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -50,6 +54,10 @@ GEM
       sass-rails (>= 3.1.0)
     builder (3.1.4)
     callsite (0.0.11)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -143,6 +151,11 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.5.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.3)
     premailer (1.7.9)
@@ -216,6 +229,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     underscore-rails (1.5.2)
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -228,9 +242,11 @@ DEPENDENCIES
   annotate
   auto_strip_attributes (~> 2.0)
   autoprefixer-rails
+  aws-sdk
   better_errors
   binding_of_caller
   bootstrap-sass-rails (~> 3.0.0.3)
+  cocaine
   coffee-rails (~> 4.0.0)
   country_select
   devise (~> 3.2)
@@ -250,6 +266,7 @@ DEPENDENCIES
   nokogiri
   omniauth-facebook
   omniauth-google-oauth2
+  paperclip
   pg
   premailer-rails
   rails (~> 4.0.0)
