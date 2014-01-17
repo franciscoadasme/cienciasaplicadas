@@ -1,6 +1,7 @@
 class Admin::UsersController < AdminController
   before_action :authorize_user!, except: [ :index ]
   before_action :set_user, except: [ :index ]
+  before_action :ensure_admin!, only: [ :promote, :demote ]
   before_action :validate_accepted_user, only: [ :promote, :demote ]
 
   def index
@@ -46,6 +47,10 @@ class Admin::UsersController < AdminController
         format.html { redirect_to admin_users_path, success: t('actions.users.messages.change_user_role', role: @user.role_name) }
         format.json { head :no_content }
       end
+    end
+
+    def ensure_admin!
+      redirect_to admin_users_path, alert: 'Only the administrator can change user permissions.' unless current_user.admin?
     end
 
     def set_user

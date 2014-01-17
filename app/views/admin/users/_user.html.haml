@@ -24,7 +24,7 @@
     - if !user.accepted? && current_user.super_user?
       = link_to fa_icon('mail-forward'), resend_user_invitation_path(invitation_token: user.invitation_token), title: t('views.users.links.hints.resend')
 
-    - if !user.admin? && user.accepted? && current_user.super_user?
+    - if !user.admin? && user.accepted? && current_user.admin?
       - if user.super_user?
         = link_to fa_icon('level-down'), demote_admin_user_path(user.id), title: t('views.users.links.hints.demote'), method: :patch
       - else
