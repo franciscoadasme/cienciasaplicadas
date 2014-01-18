@@ -3,7 +3,9 @@ module Seedable
 
   module ClassMethods
     def load_seeds
-      YAML.load_file("#{Rails.root}/db/seeds/#{table_name}.yml")
+      Rails.cache.fetch "/#{table_name}/seeds" do
+        YAML.load_file("#{Rails.root}/db/seeds/#{table_name}.yml")
+      end
     end
 
     def seed!(override_attributes = {})
