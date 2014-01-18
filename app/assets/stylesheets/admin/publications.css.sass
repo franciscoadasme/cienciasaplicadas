@@ -56,6 +56,25 @@
       font-weight: $font-weight-bold
 
   .publication-authors
-    +delimited-list(";")
-    color: $text-muted
+    list-style: none
     font-size: $font-size-small
+
+    &,
+    & > li
+      display: inline
+      margin: 0
+      padding: 0
+
+    & > li
+      color: $text-muted
+
+      &:after
+        content: ";"
+
+      &:last-child:after
+        content: ""
+
+      .popover
+        color: $text-color
+        ol
+          padding-left: 20px

@@ -22,11 +22,15 @@ class Author < ActiveRecord::Base
 
   def display_name
     case
-    when user.nil?, user.settings.display_author_name
+    when !has_user?, user.settings.display_author_name
       name
     else
       user.display_name
     end
+  end
+
+  def has_user?
+    user.present?
   end
 
   def flagged?

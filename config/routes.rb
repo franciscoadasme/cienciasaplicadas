@@ -57,6 +57,7 @@ CbsmWebsite::Application.routes.draw do
         patch :link
         delete :unlink
         patch :toggle_flag
+        get :author_list
       end
 
       collection do

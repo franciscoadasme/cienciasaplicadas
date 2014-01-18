@@ -31,10 +31,23 @@ whenReady ->
 
     import_btn.on 'click', (e) ->
       e.preventDefault()
-
       fileSelector.click()
 
-  $('.publication-authors [data-toggle="popover"]').popover
-    container: 'body'
-    trigger: 'click'
-    placement: 'bottom'
+  setupAndShowAuthorListPopover =  (target, content) ->
+    target.addClass('with-popover')
+    .popover
+      html: true
+      title: 'Authors'
+      content: content
+      width: 300
+    .popover('show')
+
+  $('.author_item_more')
+    .on 'ajax:beforeSend', (evt, data, status, xhr) ->
+      $self = $(@)
+      if $self.hasClass('with-popover')
+        $self.popover('destroy').removeClass('with-popover')
+        return false
+    .on 'ajax:complete', (evt, data, status, xhr) ->
+      $(@).removeClass('disabled')
+      setupAndShowAuthorListPopover $(@), data.responseText
