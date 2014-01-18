@@ -163,11 +163,6 @@ class User < ActiveRecord::Base
     "#{first_name.split.first} #{last_name}" rescue nil
   end
 
-  def impact_factor
-    journal_ids = publications.pluck(:journal_id).uniq
-    Journal.where(id: journal_ids).average(:impact_factor)
-  end
-
   def promote!
     update role: ROLE_SUPER_USER
   end
@@ -186,6 +181,10 @@ class User < ActiveRecord::Base
     when ROLE_SUPER_USER then :super_user
     when ROLE_USER then :user
     end
+  end
+
+  def statistics
+    @statistics ||= AuthorStatistics.new self
   end
 
   def suggested_nickname proposed=nil
