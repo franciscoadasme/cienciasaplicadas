@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115224501) do
+ActiveRecord::Schema.define(version: 20140118232314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,8 +171,8 @@ ActiveRecord::Schema.define(version: 20140115224501) do
     t.boolean "deliver_notification_by_email", default: true
     t.integer "user_id"
     t.boolean "autolink_on_import",            default: true
-    t.boolean "display_author_name",           default: false
-    t.boolean "include_lastname",              default: false
+    t.boolean "display_author_name",           default: true
+    t.boolean "include_lastname",              default: true
   end
 
   add_index "settings", ["user_id"], name: "index_settings_on_user_id", unique: true, using: :btree

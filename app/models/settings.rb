@@ -10,8 +10,8 @@
 #  deliver_notification_by_email :boolean          default(TRUE)
 #  user_id                       :integer
 #  autolink_on_import            :boolean          default(TRUE)
-#  display_author_name           :boolean          default(FALSE)
-#  include_lastname              :boolean          default(FALSE)
+#  display_author_name           :boolean          default(TRUE)
+#  include_lastname              :boolean          default(TRUE)
 #
 
 class Settings < ActiveRecord::Base
