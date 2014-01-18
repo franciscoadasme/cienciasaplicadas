@@ -19,7 +19,7 @@ module PublicationsHelper
 
   def publication_meta_for(pub)
     meta = link_to pub.journal.name, '#', class: 'publication-journal'
-    meta += ", #{pub.year}"
+    meta += ", #{content_tag :b, pub.year, class: 'publication-year'}".html_safe
     meta += ", #{"Volume " unless pub.pending?}#{pub.volume}" unless pub.volume.blank?
     meta += ", Issue #{pub.issue}" unless pub.issue.blank?
     meta += ", Pages #{pub.pages}" unless pub.start_page.blank?
