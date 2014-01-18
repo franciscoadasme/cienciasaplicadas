@@ -1,6 +1,6 @@
 module PublicationsHelper
   def author_list_for(pub)
-    pub.authors.map(&:name).join '; '
+    pub.authors.sorted.map(&:name).join '; '
   end
 
   def abbreviated_authors_for(pub, options = {})

@@ -9,7 +9,7 @@
       = link_to fa_icon('flag'), [ :toggle_flag, :admin, publication ], method: :patch, class: css.join(' ')
 
   %ul.publication-authors
-    - publication.authors.limit(2).each do |author|
+    - publication.authors.sorted.limit(2).each do |author|
       - if author.user.present?
         %li= link_to author.name, author.user
       - else

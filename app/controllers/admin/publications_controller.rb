@@ -3,7 +3,7 @@ class Admin::PublicationsController < AdminController
   before_action :set_publication, only: [ :edit, :update, :link, :unlink, :toggle_flag ]
 
   def index
-    @publications = current_user.publications
+    @publications = current_user.publications.sorted
     @publication_others = Publication.where('id NOT IN (?)', @publications.map(&:id))
   end
 

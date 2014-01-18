@@ -28,7 +28,7 @@ class Publication < ActiveRecord::Base
   has_many :authors, dependent: :delete_all
   has_many :users, through: :authors
 
-  default_scope { order year: :desc, month: :desc, title: :asc }
+  scope :sorted, -> { order year: :desc, month: :desc, title: :asc }
   scope :default, -> { all }
 
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
