@@ -22,14 +22,15 @@
             = mailing_list.name
             - if mailing_list.description.present?
               %br
-              %small.text-muted= excerpt mailing_list.description
+              %small.text-muted= excerpt mailing_list.description, length: 40
           %td
             = mailing_list.to_param
           %td.text-center
             = item_action fa_icon('pencil'), new_message_admin_mailing_list_path(mailing_list), primary: true, title: 'New Message'
             = show_action_for mailing_list, icon: 'eye', icon_only: true
-            = edit_action_for mailing_list, icon: 'edit', icon_only: true
-            = delete_action_for mailing_list, icon_only: true
+            - unless mailing_list.reserved?
+              = edit_action_for mailing_list, icon: 'edit', icon_only: true
+              = delete_action_for mailing_list, icon_only: true
     - else
       %tr
         %td.table-cell-empty{ colspan: 3 }

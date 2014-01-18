@@ -6,8 +6,9 @@
     Mailing List Information
     .pull-right
       = item_action 'New Message', new_message_admin_mailing_list_path, icon: 'pencil', primary: true
-      = edit_action_for @mailing_list, icon: 'edit'
-      = delete_action_for @mailing_list, icon_only: true
+      - unless @mailing_list.reserved?
+        = edit_action_for @mailing_list, icon: 'edit'
+        = delete_action_for @mailing_list, icon_only: true
 
   .panel-body
     %dl.dl-horizontal

@@ -3,7 +3,7 @@
 
   = f.input :name
   = f.input :address, placeholder: "@#{ENV['MAILGUN_DOMAIN']}"
-  = f.input :description
+  = f.input :description, as: :text
 
   .form-group.form-actions
     .col-xs-9.col-xs-offset-3

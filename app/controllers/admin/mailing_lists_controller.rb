@@ -3,6 +3,8 @@ class Admin::MailingListsController < AdminController
   before_action :set_mailing_list, only: [ :show, :edit, :update, :destroy,
     :add_member, :remove_member,
     :new_message, :send_message ]
+  before_action :validate_mailing_list, only: [ :edit, :update, :destroy,
+    :add_member, :remove_member ]
 
   def index
     @mailing_lists = MailingList.all
@@ -103,5 +105,9 @@ class Admin::MailingListsController < AdminController
 
     def message_params
       params.require(:message).permit(:subject, :body)
+    end
+
+    def validate_mailing_list
+      redirect_to admin_mailing_lists_url, alert: 'This mailing list cannot be modified.' if @mailing_list.reserved?
     end
 end

@@ -41,6 +41,7 @@ class MailingList
   include ActiveModel::Model
   include ActiveModel::Validations::Callbacks
   include ActiveRecord::AttributeAssignment
+  include Seedable
 
   before_validation :append_domain_if_needed
 
@@ -68,12 +69,11 @@ class MailingList
     end
 
     def create(params)
-      begin
-        Mailgun.client.lists.create(params[:address], params)
-        Rails.cache.delete 'all_mailing_lists'
-      rescue Mailgun::Error
-        raise ActiveRecord::RecordNotSaved
-      end
+      new(params).create
+    end
+
+    def create!(params)
+      new(params).create!
     end
 
     def find(id)
@@ -87,8 +87,16 @@ class MailingList
       end
     end
 
+    def global
+      find 'users'
+    end
+
     def with_address(address)
       all.select { |mailing_list| mailing_list.include? address }
+    end
+
+    def table_name
+      :mailing_lists
     end
   end
 
@@ -133,18 +141,28 @@ class MailingList
     Rails.cache.delete "/mailing_list/#{to_param}/members"
   end
 
+  def reserved?
+    to_param == MailingList.load_seeds.first['address']
+  end
+
   def create
-    if valid?
-      begin
-        MailingList.create(to_hash)
-        created_at = DateTime.current
-        true
-      rescue ActiveRecord::RecordNotSaved, ActiveRecord::RecordInvalid
-        self.errors.add 'address', 'is invalid for some unknown reason. Maybe it went out of sync with Mailgun service.'
-        false
-      end
-    else
+    begin
+      create!
+    rescue Mailgun::Error
+      self.errors.add 'address', 'is invalid for some unknown reason. Maybe it went out of sync with Mailgun service.'
       false
+    rescue ActiveSupport::RecordInvalid
+      false
+    end
+  end
+
+  def create!
+    if valid?
+      Mailgun.client.lists.create(address, to_hash)
+      Rails.cache.delete 'all_mailing_lists'
+      created_at = DateTime.current
+    else
+      raise ActiveSupport::RecordInvalid
     end
   end
 
@@ -172,6 +190,11 @@ class MailingList
     else
       false
     end
+  end
+
+  def update_member(old_address, address)
+    remove_member old_address
+    add_member address
   end
 
   private

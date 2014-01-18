@@ -1,0 +1,7 @@
+-
+  name: Users
+  address: users
+  description: |
+    This is a global mailing list that contains all active users' emails.
+    It's updated when a user is created, deleted or change its email address.
+    * Cannot be modified or removed.
