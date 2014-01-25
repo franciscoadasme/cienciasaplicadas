@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140118232314) do
+ActiveRecord::Schema.define(version: 20140122170406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,20 @@ ActiveRecord::Schema.define(version: 20140118232314) do
 
   add_index "journals", ["abbr"], name: "index_journals_on_abbr", unique: true, using: :btree
   add_index "journals", ["name"], name: "index_journals_on_name", unique: true, using: :btree
+
+  create_table "moments", force: true do |t|
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "caption"
+    t.date     "taken_on"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "moments", ["user_id"], name: "index_moments_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "title"

@@ -85,6 +85,8 @@ CbsmWebsite::Application.routes.draw do
     end
     resources :contacts
 
+    resources :moments, except: [ :show ]
+
     # Development only
     get 'mailer(/:action(/:id(.:format)))', to: 'mailer#:action', as: nil
   end

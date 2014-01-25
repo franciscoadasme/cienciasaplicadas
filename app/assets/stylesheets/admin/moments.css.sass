@@ -1,0 +1,40 @@
+.moment-item
+  padding: 15px
+  font-size: $font-size-smallish
+
+  &:hover
+    background-color: #f9f9f9
+
+  .media-heading,
+  .moment-caption
+    margin-bottom: 0
+
+  .moment-user-name
+    font-weight: $font-weight-bold
+
+  .moment-user-nickname,
+  time
+    color: $text-muted
+
+  .moment-avatar
+    border-radius: 3px
+
+  .moment-photo
+    +autosizing-image(100%)
+    margin-top: 8px
+    padding-bottom: 50%
+    border-radius: 5px
+
+  .list-group-item-actions
+    +position-at-edges($right: 2*15px, $bottom: 2*15px)
+    background-color: rgba(black, .35)
+    border: solid 3px rgba(black, .35)
+    border-radius: 6px
+
+    visibility: hidden
+    opacity: 0
+    transition: opacity .4s
+
+  &:hover .list-group-item-actions
+    visibility: visible
+    opacity: 1

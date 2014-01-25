@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: moments
+#
+#  id                 :integer          not null, primary key
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
+#  caption            :string(255)
+#  taken_on           :date
+#  user_id            :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
+class Moment < ActiveRecord::Base
+  belongs_to :user
+  has_attached_file :photo, styles: {
+    original: '640x640#',
+    thumb: '160x160#',
+    medium: '320x320#'
+  }
+
+  scope :sorted, -> { order taken_on: :desc, created_at: :desc }
+
+  auto_strip_attributes :caption
+  validates :caption, length: { within: 4..128 },
+                 allow_blank: true
+  validates :user, presence: true
+  validates_attachment :photo, presence: true,
+                           # content_type: { content_type: [ 'image/jpg', 'image/gif', 'image/png'] },
+                                   size: { in: 0..5.megabytes }
+
+  def destroy_original
+    File.unlink(self.photo.path)
+  end
+end

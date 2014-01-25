@@ -1,0 +1,19 @@
+%li.list-group-item.moment-item
+  .media
+    .pull-left
+      = autosizing_image_tag display_user_image_url(moment.user), size: 48, class: 'media-object moment-avatar'
+    .media-body
+      .media-heading
+        %span.moment-user-name= moment.user.display_name
+        %small.moment-user-nickname= "@#{moment.user.nickname}"
+        .pull-right
+          = time_tag moment.taken_on, short_time_ago_in_words(moment.taken_on), pubdate: true
+
+      = content_tag :p, moment.caption, class: 'moment-caption' if moment.caption.present?
+      = autosizing_image_tag moment.photo.url, class: 'moment-photo'
+
+      .list-group-item-actions
+        .btn-group
+          = show_action_for moment, icon: 'eye', icon_only: true, href: moment.photo.url
+          = edit_action_for moment, icon: 'edit', icon_only: true
+          = delete_action_for moment, icon_only: true

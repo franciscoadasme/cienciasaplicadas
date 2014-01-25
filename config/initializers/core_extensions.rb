@@ -4,6 +4,22 @@ module Kernel
   end
 end
 
+module ActionView
+  module Helpers
+    module DateHelper
+      def short_distance_of_time_in_words_to_now(from_time, include_seconds_or_options = {})
+        short_time_ago_in_words from_time, include_seconds_or_options
+      end
+
+      def short_time_ago_in_words(from_time, include_seconds_or_options = {})
+        result = distance_of_time_in_words_to_now from_time, include_seconds_or_options
+        result.gsub(/^[a-z ]+(?=\d)/i, '') # remove initial text
+              .gsub(/(?<=\d) [a-z]+/) { |m| m.strip.first } # 13 hours to 13h
+      end
+    end
+  end
+end
+
 class String
   alias_method :parent_prepend, :prepend
 

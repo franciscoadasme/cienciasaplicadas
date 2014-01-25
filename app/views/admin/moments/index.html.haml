@@ -1,0 +1,10 @@
+- provide :widget do
+  = link_to fa_icon('camera', text: 'Update photo'), new_admin_moment_path, class: 'btn btn-primary' if @moments.any?
+
+- if @moments.any?
+  %ul.list-group
+    = render @moments
+- else
+  .text-center
+    %p.lead No moments have been added yet.
+    = link_to fa_icon('camera', text: 'Update a photo'), new_admin_moment_path, class: 'btn btn-primary'
