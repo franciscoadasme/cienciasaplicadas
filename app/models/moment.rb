@@ -29,10 +29,6 @@ class Moment < ActiveRecord::Base
                  allow_blank: true
   validates :user, presence: true
   validates_attachment :photo, presence: true,
-                           # content_type: { content_type: [ 'image/jpg', 'image/gif', 'image/png'] },
+                           content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
                                    size: { in: 0..5.megabytes }
-
-  def destroy_original
-    File.unlink(self.photo.path)
-  end
 end
