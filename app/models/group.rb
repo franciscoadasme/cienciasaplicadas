@@ -34,6 +34,8 @@ class Group < ActiveRecord::Base
                          allow_nil: true
   validates :address, length: { within: 10..128 },
                  allow_blank: true
+  validates :overview, length: { in: 128..500 },
+                  allow_blank: true
 
   def display_name
     abbr || name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129165331) do
+ActiveRecord::Schema.define(version: 20140203213956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140129165331) do
     t.string   "banner_image_url"
     t.string   "tagline"
     t.text     "address"
+    t.text     "overview"
   end
 
   add_index "groups", ["abbr"], name: "index_groups_on_abbr", unique: true, using: :btree

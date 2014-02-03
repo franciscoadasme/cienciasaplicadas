@@ -28,7 +28,8 @@ class Admin::GroupController < AdminController
         :bio,
         :banner_image_url,
         :tagline,
-        :address
+        :address,
+        :overview
       )
     end
 end
