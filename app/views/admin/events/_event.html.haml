@@ -1,0 +1,16 @@
+%li.list-group-item.item-event
+  = time_tag event.start_date do
+    %span.event-day= event.start_date.day
+    %span.event-month= t('date.abbr_month_names')[event.start_date.month]
+  %h3
+    %small.event-type= event.event_type
+    = link_to event.name, [ :admin, event ]
+  .list-group-item-meta
+    at
+    = event.location
+
+  .list-group-item-actions
+    = show_action_for event
+    = edit_action_for event, primary: true
+    .pull-right
+      = delete_action_for event

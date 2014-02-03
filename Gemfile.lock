@@ -219,6 +219,7 @@ GEM
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
+    timeliness (0.3.7)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -230,6 +231,8 @@ GEM
       json (>= 1.8.0)
     underscore-rails (1.5.2)
     uuidtools (2.1.4)
+    validates_timeliness (3.0.14)
+      timeliness (~> 0.3.6)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -279,3 +282,4 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   underscore-rails
+  validates_timeliness (~> 3.0)

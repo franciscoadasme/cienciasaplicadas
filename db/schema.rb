@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122170406) do
+ActiveRecord::Schema.define(version: 20140129165331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,24 @@ ActiveRecord::Schema.define(version: 20140122170406) do
 
   add_index "contacts", ["email"], name: "index_contacts_on_email", unique: true, using: :btree
   add_index "contacts", ["first_name", "last_name"], name: "index_contacts_on_first_name_and_last_name", unique: true, using: :btree
+
+  create_table "events", force: true do |t|
+    t.string   "name",                 null: false
+    t.date     "start_date",           null: false
+    t.date     "end_date"
+    t.string   "location",             null: false
+    t.text     "description"
+    t.string   "event_type",           null: false
+    t.string   "promoter"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["name", "start_date"], name: "index_events_on_name_and_start_date", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
