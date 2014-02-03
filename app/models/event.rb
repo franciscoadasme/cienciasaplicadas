@@ -26,11 +26,13 @@ class Event < ActiveRecord::Base
     thumb: '320x320#'
   }
 
+  scope :sorted, -> { order start_date: :desc }
+
   auto_strip_attributes :name, :location, :description
   validates :name, presence: true,
                      length: { in: 4..128 }
   validates :start_date, presence: true,
-                       timeliness: { on_or_after: -> { Date.today }, on: :create }
+                       timeliness: true
   validates :end_date, timeliness: { on_or_after: :start_date },
                       allow_blank: true
   validates :location, presence: true
