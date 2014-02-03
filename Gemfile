@@ -16,6 +16,7 @@ gem 'auto_strip_attributes', '~> 2.0'
 gem 'friendly_id', '~> 5.0.0'
 gem 'country_select'
 gem 'activerecord_any_of'
+gem 'validates_timeliness', '~> 3.0'
 
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'

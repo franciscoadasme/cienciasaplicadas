@@ -46,6 +46,7 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :inline, class: :inline, hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+    b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :min_max

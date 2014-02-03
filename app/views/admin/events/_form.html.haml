@@ -1,0 +1,23 @@
+= simple_form_for [ :admin, @event ] do |f|
+  - provide :notification, f.error_notification
+
+  .form-inputs
+    = f.input :name
+    .form-group.event_duration
+      = label_tag :duration, 'Duration', class: 'control-label col-xs-3'
+      .form-controls.col-xs-9
+        .row
+          .col-xs-6
+            = f.input :start_date, as: :string, wrapper: :inline, input_html: { required: true }
+          .col-xs-6
+            = f.input :end_date, as: :string, wrapper: :inline
+
+    = f.input :location
+    = f.input :event_type, as: :select, collection: Event::TYPES, label_method: -> t { t.to_s.titleize }, include_blank: false
+    = f.input :promoter
+    = f.input :description
+    = f.input :picture
+
+  .form-group.form-actions
+    .col-xs-9.col-xs-offset-3
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }
