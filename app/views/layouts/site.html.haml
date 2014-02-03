@@ -4,33 +4,12 @@
     %title= title
     = stylesheet_link_tag 'site', media: 'all'
     = javascript_include_tag 'site'
-
-    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['CBSM_GOOGLE_API_ACCESS']}&sensor=false"
-    = javascript_include_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'
-
-    = content_for :javascript
-    = content_for :css
     = csrf_meta_tags
 
-  %body{ class: body_class }
-    = render 'site/nav' unless content_for?(:no_nav)
-    = content_for :sidebar_fixed
-
-    = content_for :header if content_for? :header
-
-    - unless content_for :no_content
-      %main{ id: 'content', role: 'main', class: "content #{content_for(:main_class)}" }
-        = content_for :top if content_for? :top
-
-        .container
-          .row
-            %div{ class: content_class }
-              = yield
-
-            - if content_for? :sidebar
-              .col-xs-4
-                = content_for :sidebar
-
-    = render 'site/footer'
+  %body
+    = render 'site/nav'
+    = render 'site/header'
+    = render 'site/content'
+    -# = render 'site/footer'
 
     = debug(params) if Rails.env.development?

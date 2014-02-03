@@ -1,26 +1,19 @@
-- displayed_page_link_count = sidebar_fixed? ? 1 : 2
+%section.nav{ role: 'navigation' }
+  %header.nav-brand
+    %span.top Doctorado
+    %span.middle en Ciencias Aplicadas
+    = link_to 'Universidad de Talca', 'http://www.utalca.cl', class: 'bottom'
 
-%header.navbar.navbar-default.gr-nav{ class: nav_class, role: 'banner' }
-  .container
-    - unless sidebar_fixed? || content_for(:no_brand)
-      .navbar-header
-        = link_to @group.abbr, root_url, class: 'navbar-brand'
+  %ul.nav-list
+    - items = [ :about, :prospective_students, :academics, :students, :research, :contact ]
+    - items.each do |item|
+      %li= link_to item.to_s.titleize, '#', class: 'nav-item'
 
-    .nav{ role: 'navigation' }
-      %ul.nav.navbar-nav
-        - @pages.limit(displayed_page_link_count).each do |page|
-          = navbar_page_item page
-        = navbar_item :posts, posts_path, condition: controller?(:posts)
-
-        - if @pages.count > displayed_page_link_count
-          %li.dropdown
-            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
-              More
-              %b.caret
-            %ul.dropdown-menu
-              - @pages.offset(displayed_page_link_count).each do |page|
-                = navbar_page_item page
-
-      %ul.nav.navbar-nav.navbar-right
-        = navbar_item :contact, contact_path
-        = navbar_item :admin, admin_path
+  %footer.nav-footer
+    %p
+      &copy;
+      %strong Copyrights 2014
+    %p
+      Doctorado en Ciencias Aplicadas
+      %br
+      Universidad de Talca

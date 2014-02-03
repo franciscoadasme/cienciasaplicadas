@@ -1,36 +1,66 @@
-- unless @group.banner_image_url.blank?
-  - provide :css do
-    :sass
-      .gr-masthead:before
-        background-image: url(#{ @group.banner_image_url })
-
-- provide :no_nav, true
 - provide :header do
-  .gr-masthead
-    .container
-      %h1= @group.abbr
-      %p.lead
-        %span= @group.name
-      %p= @group.tagline
+  .showcase
+    .card
+      .frame
+        %span.card-title Productivity
+        %span.card-count
+          = @publication_count
+          %span.footnote Articles
+        .card-description
+          %p During this year with an overall of 8.3 per year
+          = link_to 'Learn more', '#'
 
-      %p
-        = link_to 'View publications', Page.named(:publications), class: 'btn btn-outline-inverse btn-lg'
+    .card
+      .frame
+        %span.card-title Productivity
+        %span.card-count
+          99
+          %span.footnote Articles
+        .card-description
+          %p During this year with an overall of 8.3 per year
+          = link_to 'Learn more', '#'
 
-    = link_to fa_icon('chevron-down'), '#content', class: 'goto'
+.row
+  .col-xs-5.col-xs-offset-1
+    .widget
+      %h2.widget-title Overview
+      %p Nullam sit amet nibh arcu. Fusce interdum urna et facilisis facilisis. Nullam id fermentum est, sit amet dictum turpis. Aenean placerat nec nunc vitae porta. Aliquam auctor vehicula eros sit amet accumsan. Mauris bibendum nulla in lobortis convallis. Ut ac blandit nulla, vitae lacinia enim. Vivamus massa lorem, rhoncus ut quam non, euismod convallis mi. Praesent mauris justo, suscipit vel condimentum quis, fringilla ac magna. Pellentesque vitae sem imperdiet, tincidunt justo sed, cursus leo. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      = link_to 'Read more', posts_url, class: 'btn btn-default'
 
-- provide :main_class, 'content-index'
-- provide :static_nav, true
-- provide :no_brand, true
-- provide :top, render('nav')
+    .widget
+      %h2.widget-title
+        %string
+          %span.highlight Recently
+          graduated
+      .media
+        = link_to @graduated_user, class: 'user-portrait pull-left' do
+          = autosizing_image_tag display_user_image_url(@graduated_user), size: 64, class: 'media-object'
+        .media-object
+          %h3.media-heading= @graduated_user.display_name
+          %h4.media-subheading= @graduated_user.headline
 
-%section#about
-  - unless @page.nil?
-    - content = markdown(@page.body)
-    - content.gsub!(/(<[a-z]+>\{\{.+\}\}<\/[a-z]+>)/) { |s| strip_tags(s) } # Removed tag around template sentences
-    = parse_template(content).html_safe
-  - else
-    %h1 No front page available yet.
-    %p.lead
-      Go to group customization section in the
-      = link_to 'admin panel', customize_admin_group_path
-      to setup it.
+  .col-xs-5
+    .widget
+      %h2.widget-title
+        %span.highlight Lastest
+        News
+      %ul.media-list
+        - @posts.each do |post|
+          %li.media
+            = link_to post.author, class: 'pull-left' do
+              = autosizing_image_tag display_user_image_url(post.author), class: 'media-object', size: 48
+            .media-body
+              %h3.media-heading
+                = post.title
+                %small= link_to 'read it', post
+              %span.media-meta
+                = time_tag post.created_at, "#{distance_of_time_in_words_to_now post.created_at} ago", pubdate: true
+              = excerpt post.body
+
+      %footer.widget-footer
+        = link_to 'View all', posts_url, class: 'btn btn-default'
+
+    .widget
+      %h2.widget-title
+        %span.highlight Incoming
+        Events

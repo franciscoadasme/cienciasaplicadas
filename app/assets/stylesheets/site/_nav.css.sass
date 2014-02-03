@@ -1,16 +1,67 @@
-.navbar
-  .dropdown-menu
-    top: $navbar-height + 1px
+.nav[role="navigation"]
+  +fixed-at-edges(0, null, 0, 0)
+  width: $nav-width
+  background-color: $nav-bg
+  z-index: 999
 
-.navbar-nav
-  & > .active a
-    font-weight: $font-weight-bold
+  .nav-brand
+    padding: $nav-spacing-v $nav-spacing-h
+    font-family: $font-family-sans-serif-upcase
+    text-align: center
 
-    &:before
-      content: ''
-      position: absolute
-      top: 100%
-      left: 0
-      width: 100%
-      height: 10px
-      background-color: lighten($navbar-default-link-active-bg, 5%)
+    & > *
+      display: block
+      line-height: 1
+      font-weight: $font-weight-light
+      text-transform: uppercase
+      letter-spacing: 1px
+
+    .top
+      font-size: 40px
+      color: rgba(white, .35)
+
+    .middle
+      margin-bottom: 27px * 0.35
+      font-size: 27px
+      text-transform: none
+      letter-spacing: 0
+      color: white
+
+    .bottom
+      font-size: 21px
+      color: desaturate(lighten($nav-bg, 35%), 15%)
+
+  .nav-footer
+    +position-at-edges($bottom: $nav-spacing-h, $left: $nav-spacing-h)
+    font-size: 12px
+    color: rgba(white, .25)
+
+  .nav-list
+    list-style: none
+
+    &,
+    & > li
+      margin: 0
+      padding: 0
+
+    .nav-item
+      display: block
+      padding: $base-font-size * .85 $nav-spacing-h
+      padding-left: 4*$nav-spacing-h
+
+      font-family: $font-family-sans-serif-upcase
+      font-size: $base-font-size
+      text-transform: uppercase
+      letter-spacing: 1px
+      color: whitesmoke
+
+      &:hover
+        text-decoration: none
+
+    @for $i from 1 through 10
+      $amount: 3% - ($i - 1)*2%
+      li:nth-child(#{$i}) .nav-item
+        +adjust-bg($nav-bg, $amount)
+
+        &:hover
+          +adjust-bg($nav-bg, $amount - 5%)

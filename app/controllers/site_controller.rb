@@ -3,7 +3,9 @@ class SiteController < ApplicationController
   before_action :set_lastest
 
   def index
-    @page = Page.named :front
+    @publication_count = Publication.count
+    @posts = Post.limit(3)
+    @graduated_user = User.find_by email: 'camila.munoz20@gmail.com'
   end
 
   def contact

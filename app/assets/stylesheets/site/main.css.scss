@@ -1,6 +1,5 @@
 @import "common/mixins";
 @import "common/images";
-@import "common/variables_bootstrap";
 @import "colors";
 @import "variables";
 @import "twitter/bootstrap";
@@ -9,16 +8,17 @@
 @import "layout";
 @import "typography";
 @import "buttons";
-@import "menus";
-@import "nav";
-@import "lists";
+// @import "menus";
+// @import "lists";
 
-@import "sidebar";
+@import "nav";
+@import "header";
+// @import "sidebar";
 @import "footer";
 
-@import "index";
-@import "publications";
+// @import "index";
+// @import "publications";
 @import "users";
-@import "projects";
-@import "contact";
-@import "posts";
+// @import "projects";
+// @import "contact";
+// @import "posts";
