@@ -1,0 +1,7 @@
+.widget
+  %h2.widget-title
+    %span.highlight Información
+    general
+  = markdown @group.overview
+  %footer.widget-footer
+    = btn_to 'Leer más sobre el doctorado', posts_url, block: true

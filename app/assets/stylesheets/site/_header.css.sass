@@ -12,13 +12,13 @@ header[role="main"]
     text-transform: uppercase
 
     @for $i from 1 through 2
-      $amount: nth((-5%, 5%), $i)
+      $color: nth(($palette1-2, $palette1-3), $i)
       &:nth-child(#{$i})
-        +adjust-bg($header-card-bg, $amount)
+        background-color: $color
         .card-title
-          color: desaturate(lighten($header-card-bg, 15% - $amount), 10%)
+          color: desaturate(lighten($color, 15%), 10%)
         .card-count .footnote
-          +adjust-bg($header-card-bg, $amount)
+          background-color: $color
 
     .frame
       position: relative
@@ -54,8 +54,8 @@ header[role="main"]
       padding-top: 8px
       min-width: 65px
       background-color: $header-card-bg
-      font-size: 1.15*$base-font-size
-      line-height: 1.15*$base-font-size
+      font-size: 1.1*$base-font-size
+      line-height: 1.1*$base-font-size
       text-align: right
 
   .card-description

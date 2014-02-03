@@ -1,0 +1,20 @@
+.widget
+  %h2.widget-title
+    Últimas
+    %span.highlight Noticias
+
+  %ul.media-list
+    - @posts.each do |post|
+      %li.media
+        = link_to post.author, class: 'pull-left magnifiable' do
+          = autosizing_image_tag display_user_image_url(post.author), class: 'media-object', size: 48
+        .media-body
+          %h3.media-heading
+            = post.title
+            %small= link_to 'leer más', post
+          %span.media-meta
+            = time_tag post.created_at, time_ago_in_words(post.created_at), pubdate: true
+          = excerpt post.body
+
+  %footer.widget-footer
+    = btn_to 'Ver todas las noticias', posts_url, block: true

@@ -1,36 +1,6 @@
 .user-portrait
-  position: relative
+  @extend .magnifiable
   display: inline-block
-
-  img
-    border-radius: 3px
-
-  &:before
-    content: ''
-    +position-at-edges($top: 0, $left: 0)
-    width: 100%
-    height: 100%
-
-    border-radius: 3px
-    z-index: 1
-
-  &:hover
-    img
-      filter: saturate(50%)
-
-    &:before
-      background-color: rgba(black, .15)
-
-    &:after
-      content: "\f002"
-      +position-at-edges($top: 50%, $left: 50%)
-      margin-top: -14px
-      margin-left: -14px
-      +fa-icon
-      font-size: 28px
-      text-align: center
-      color: white
-      z-index: 2
 
 // .list-item-user
 //   text-align: center

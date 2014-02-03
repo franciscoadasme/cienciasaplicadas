@@ -1,0 +1,40 @@
+.autosizing
+  @include autosizing-image
+
+  @each $size in (16, 24, 28, 32, 48, 56, 64, 96, 128, 192)
+    &[data-size~="#{$size}"]
+      +autosizing-to(#{$size}px)
+
+.magnifiable
+  display: inline-block
+  position: relative
+
+  img
+    border-radius: 3px
+
+  &:before
+    content: ''
+    +position-at-edges($top: 0, $left: 0)
+    width: 100%
+    height: 100%
+
+    border-radius: 3px
+    z-index: 1
+
+  &:hover
+    img
+      filter: saturate(50%)
+
+    &:before
+      background-color: rgba(black, .15)
+
+    &:after
+      content: "\f002"
+      +position-at-edges($top: 50%, $left: 50%)
+      margin-top: -7px
+      margin-left: -7px
+      +fa-icon
+      font-size: 14px
+      text-align: center
+      color: white
+      z-index: 2
