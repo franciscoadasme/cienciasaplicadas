@@ -4,6 +4,7 @@
     %small= page.marked_as || page.tagline
 
   - unless sortable_pages?
+    = content_tag :p, image_tag(page.banner.url(:thumb), width: '100%', class: 'img-thumbnail') if page.banner.present?
     %p= excerpt page.body
 
     .list-group-item-meta

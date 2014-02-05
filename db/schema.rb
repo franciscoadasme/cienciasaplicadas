@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203213956) do
+ActiveRecord::Schema.define(version: 20140205164740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,12 +123,16 @@ ActiveRecord::Schema.define(version: 20140203213956) do
     t.integer  "owner_id"
     t.integer  "author_id"
     t.integer  "edited_by_id"
-    t.boolean  "published",    default: false
+    t.boolean  "published",           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "trashed",      default: false
+    t.boolean  "trashed",             default: false
     t.integer  "position"
     t.string   "slug"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
   end
 
   add_index "pages", ["owner_id", "slug"], name: "index_pages_on_owner_id_and_slug", unique: true, using: :btree

@@ -10,6 +10,7 @@
 
     %hr
     = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
+    = f.input :banner, wrapper: :simple_wrapper
 
   .form-group.form-actions
     - unless @page.persisted?

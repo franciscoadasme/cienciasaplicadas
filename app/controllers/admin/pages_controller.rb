@@ -118,7 +118,7 @@ class Admin::PagesController < AdminController
 
   private
     def page_params
-      params.require(:page).permit(:title, :tagline, :body)
+      params.require(:page).permit(:title, :tagline, :body, :banner)
     end
 
     def set_page
