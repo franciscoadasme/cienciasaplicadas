@@ -12,6 +12,7 @@
 #  banner_image_url :string(255)
 #  tagline          :string(255)
 #  address          :text
+#  overview         :text
 #
 
 class Group < ActiveRecord::Base
