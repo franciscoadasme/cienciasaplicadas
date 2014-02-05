@@ -34,6 +34,19 @@ module HtmlHelper
     link_to name, href, html_options, &block
   end
 
+  def html_headings(content)
+    content.scan(/<h\d.*>.+<\/h\d>/).map { |heading| strip_tags(heading) }
+  end
+
+  def toc_html_headings(content)
+    result = content.gsub(/<h\d.*>.+<\/h\d>/) do |heading|
+      heading.gsub! /id=".+"/, '' # remove existing id
+      id = strip_tags(heading).parameterize
+      heading.gsub /(?<=<h\d) */, " id=\"#{id}\""
+    end
+    result.html_safe
+  end
+
   private
     def extract_variant(options)
       options = options.symbolize_keys
