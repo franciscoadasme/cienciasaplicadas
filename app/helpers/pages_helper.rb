@@ -1,4 +1,4 @@
-module Admin::PagesHelper
+module PagesHelper
   def excerpt(text, length: 140, omission: nil, separator: ' ~ ')
     sanitized_text = strip_tags markdown(text)
     truncated_text = sanitized_text.truncate length, separator: /\s+/, omission: ''
@@ -18,5 +18,12 @@ module Admin::PagesHelper
 
   def sortable_pages?
     params[:status] == 'published' && params[:sorting]
+  end
+
+  def parse_page_body(content)
+    content = markdown(content)
+    # Removed tag around template sentences
+    content.gsub!(/(<[a-z]+>\{\{.+\}\}<\/[a-z]+>)/) { |s| strip_tags(s) }
+    content = parse_template(content).html_safe
   end
 end

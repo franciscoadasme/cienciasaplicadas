@@ -13,10 +13,6 @@ class SiteController < ApplicationController
   def contact
   end
 
-  def show
-    show_page Page.named params[:page]
-  end
-
   private
     def set_lastest
       @lastest_publications = Publication.unscoped.order(:created_at).limit(4)
@@ -25,10 +21,5 @@ class SiteController < ApplicationController
 
     def set_pages
       @pages = Page.navigable
-    end
-
-    def show_page(page)
-      @page = page
-      render action: :show
     end
 end
