@@ -31,7 +31,7 @@ class Page < ActiveRecord::Base
 
   default_scope -> { order :position }
   scope :global, -> { where owner_id: nil }
-  scope :navigable, -> { global.published.where.not tagline: 'front' }
+  scope :navigable, -> { global.published }
   scope :named, -> (name) { friendly.find name.to_s }
 
   before_create :set_edited_by_if_needed
