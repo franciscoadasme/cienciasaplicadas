@@ -1,0 +1,17 @@
+%aside.col-xs-4{ role: 'sidebar' }
+  .container{ data: { spy: 'affix', offset_top: 227, offset_bottom: 200 }}
+    %nav.sidebar-nav
+      %ul.nav.nav-pills.nav-stacked
+        %li.active= link_to @page.title, "##{@page.title.parameterize}"
+
+        - html_headings(content).each do |heading|
+          %li= link_to heading, "##{heading.parameterize}"
+
+    %hr.divider
+
+    %p
+      %small.text-muted
+        Última edición por
+        = link_to @page.edited_by.display_name, @page.edited_by
+        = time_tag @page.updated_at, time_ago_in_words(@page.updated_at), pubdate: true
+        atrás

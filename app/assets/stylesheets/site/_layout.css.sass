@@ -23,9 +23,11 @@ aside[role="sidebar"]
   position: relative
 
   & > .container
-    position: fixed
     padding: 0
     width: 240px !important
+
+    &.affix
+      top: 50px
 
   .divider
     border-top: solid 1px $gray-lighter
