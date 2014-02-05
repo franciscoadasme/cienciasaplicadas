@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
 
   default_scope { order :first_name, :last_name, role: :desc, invitation_sent_at: :desc }
   scope :default, -> { where.not(invitation_accepted_at: nil) }
+  scope :academics, -> { default }
+  scope :students, -> { default }
 
   devise :database_authenticatable,
          #:recoverable,
