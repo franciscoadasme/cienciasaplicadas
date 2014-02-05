@@ -5,9 +5,16 @@
     = link_to 'Universidad de Talca', 'http://www.utalca.cl', class: 'bottom'
 
   %ul.nav-list
-    - items = [ :about, :prospective_students, :academics, :students, :research, :contact ]
-    - items.each do |item|
-      %li= link_to item.to_s.titleize, '#', class: 'nav-item'
+    - Page.navigable.each do |page|
+      %li
+        - href = page_path(page)
+        - classes = [ 'nav-item' ]
+        - classes << 'active' if current_page?(href)
+        = link_to page.title, href, class: classes.join(' ')
+    %li= link_to 'Contacto', '#', class: 'nav-item'
+
+    - unless current_page?(root_url)
+      %li= link_to fa_icon('reply', text: 'Ir al inicio'), root_url, class: 'nav-item-link'
 
   %footer.nav-footer
     %p

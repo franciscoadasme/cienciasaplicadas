@@ -44,7 +44,8 @@
       margin: 0
       padding: 0
 
-    .nav-item
+    .nav-item,
+    .nav-item-link
       display: block
       padding: $base-font-size * .85 $nav-spacing-h
       padding-left: 4*$nav-spacing-h
@@ -57,6 +58,29 @@
 
       &:hover
         text-decoration: none
+
+      &.active
+        font-weight: $font-weight-bold
+        color: white
+
+        &:before
+          content: "\f0da"
+          +fa-icon
+          position: absolute
+          margin-top: 2px
+          margin-left: -20px
+
+    .nav-item-link
+      margin-top: 20px
+      background-color: none
+
+      &:hover
+        color: white
+
+      .fa
+        position: absolute
+        margin-top: 2px
+        margin-left: -25px
 
     @for $i from 1 through 10
       $amount: 3% - ($i - 1)*2%
