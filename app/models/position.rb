@@ -10,7 +10,9 @@
 #
 
 class Position < ActiveRecord::Base
+  extend FriendlyId
   include Seedable
+  friendly_id :name, use: :slugged
   acts_as_list column: 'level'
 
   scope :sorted, -> { order :level }
