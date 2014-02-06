@@ -53,34 +53,6 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 
-  def parse_template(content)
-    content.try :gsub, /\{\{.+\}\}/ do |match|
-      sentence = match.gsub(/[{}]/, '').strip
-      name, expression = sentence.strip.split '.', 2
-      begin
-        begin
-          model = name.tclassify_and_constantize
-          result = model.send (model.respond_to?(:default) ? :default : :all)
-          result = eval("result.#{expression}") rescue result.map{ |i| i.send(expression) }.join(', ') unless expression.nil?
-        rescue NameError
-          result = eval(sentence)
-        end
-
-        if result.is_a? ActiveRecord::Relation
-          begin
-            render("#{result.table.name}/collection", collection: result)
-          rescue ActionView::MissingTemplate
-            content_tag(:p, "Missing template for collection #{name}", class: 'alert alert-warning')
-          end
-        else
-          result
-        end
-      rescue NameError, SyntaxError => e
-        Rails.env.development? ? raise(e) : content_tag(:p, "Expression couldn't be parsed: #{sentence}", class: 'alert alert-warning')
-      end
-    end
-  end
-
 # Translation
   def tt(keypath, options={}, prefix=nil)
     no_action = options.delete :no_action

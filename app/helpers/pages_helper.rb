@@ -19,8 +19,4 @@ module PagesHelper
   def sortable_pages?
     params[:status] == 'published' && params[:sorting]
   end
-
-  def parse_page_body(content)
-    markdown parse_template(content)
-  end
 end
