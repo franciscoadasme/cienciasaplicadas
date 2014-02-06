@@ -59,7 +59,7 @@ module ApplicationHelper
       name, expression = sentence.strip.split '.', 2
       begin
         begin
-          model = name.classify.constantize
+          model = name.tclassify_and_constantize
           result = model.send (model.respond_to?(:default) ? :default : :all)
           result = eval("result.#{expression}") rescue result.map{ |i| i.send(expression) }.join(', ') unless expression.nil?
         rescue NameError

@@ -54,6 +54,16 @@ class String
   def compact
     strip.blank? ? nil : strip
   end
+
+  def tclassify_and_constantize
+    ActiveSupport::Inflector.tclassify_and_constantize(self)
+  end
+end
+
+class Array
+  def to_h
+    Hash[self]
+  end
 end
 
 module ActiveSupport
@@ -62,6 +72,14 @@ module ActiveSupport
       salt  = SecureRandom.random_bytes(64)
       key   = ActiveSupport::KeyGenerator.new('Yuz1wa5b1CT6UzigdPe6').generate_key(salt)
       @crypt ||= new(key)
+    end
+  end
+
+  module Inflector
+    def self.tclassify_and_constantize(name)
+      tmodels = I18n.t('activerecord.models').map{ |k,v| [ k, v.underscore.pluralize(I18n.locale) ] }.to_h
+      model = tmodels.has_value?(name) ? tmodels.key(name) : name
+      model.to_s.classify.constantize
     end
   end
 end
