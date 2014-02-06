@@ -66,6 +66,12 @@ class Array
   end
 end
 
+class Hash
+  def map_values
+    update(self) { |k,v| yield v }
+  end
+end
+
 module ActiveSupport
   class MessageEncryptor
     def self.default_encryptor
@@ -76,10 +82,13 @@ module ActiveSupport
   end
 
   module Inflector
-    def self.tclassify_and_constantize(name)
-      tmodels = I18n.t('activerecord.models').map{ |k,v| [ k, v.underscore.pluralize(I18n.locale) ] }.to_h
-      model = tmodels.has_value?(name) ? tmodels.key(name) : name
-      model.to_s.classify.constantize
+    def self.tclassify_and_constantize(table_name)
+      model_names = I18n.t('activerecord.models').map_values &:underscore
+      model = model_names.keys.detect do |name|
+        tname = model_names[name]
+        [ tname, tname.pluralize(I18n.locale) ].include? table_name
+      end
+      (model || table_name).to_s.classify.constantize
     end
   end
 end
