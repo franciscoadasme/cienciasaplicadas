@@ -21,9 +21,6 @@ module PagesHelper
   end
 
   def parse_page_body(content)
-    content = markdown(content)
-    # Removed tag around template sentences
-    content.gsub!(/(<[a-z]+>\{\{.+\}\}<\/[a-z]+>)/) { |s| strip_tags(s) }
-    content = parse_template(content).html_safe
+    markdown parse_template(content)
   end
 end
