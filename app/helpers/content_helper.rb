@@ -8,42 +8,40 @@ module ContentHelper
       sentence = match.delete('{}').strip
 
       begin
-        case
-        when sentence =~ /\A\w+\./
-          name, expression = sentence.split '.', 2
-          model = name.tclassify_and_constantize
-          result = model.send (model.respond_to?(:default) ? :default : :all)
-          result = eval("result.#{expression}") unless expression.blank?
-        when sentence =~ /\A\w+[ \(].+/
-          name, condition = sentence.split /[ \(]/, 2
-          model = name.tclassify_and_constantize
-          result = model.send :named, condition.delete(':()\'\'""')
-        else
-          result = eval(sentence)
+        result = case
+          when sentence =~ /\A\w+\./ then eval_sentence_collection(sentence)
+          when sentence =~ /\A\w+[ \(].+/ then eval_sentence_single(sentence)
+          else eval(sentence)
         end
-
-        if result.is_a? ActiveRecord::Relation
-          begin
-            render "#{result.table.name}/collection", collection: result
-          rescue ActionView::MissingTemplate
-            content_tag(:p, "Missing template for collection #{name}", class: 'alert alert-warning')
-          end
-        else
-          result
-        end
+        result.present? ? render_result(result) : raise(ActiveRecord::RecordNotFound)
       rescue SyntaxError => error
-        display_error error, sentence, 'Parece que hubo un error de sintaxis en el código'
+        render_error error, 'Parece que hubo un error de sintaxis en el código', sentence
       rescue NoMethodError => error
-        display_error error, sentence, 'Al parecer escribió mal el nombre de un método'
+        render_error error, 'Al parecer escribió mal el nombre de un método', sentence
       rescue NameError => error
-        display_error error, sentence, 'Al parecer escribió mal el nombre de la entidad'
+        render_error error, 'Al parecer escribió mal el nombre de la entidad', sentence
+      rescue ActiveRecord::RecordNotFound => error
+        render_error error, 'No se encontró ningún registro en la base de datos', sentence
       end
     end
   end
 
   private
-    def display_error(error, sentence, description = nil)
-      if !Rails.env.development?
+    def eval_sentence_collection(sentence)
+      name, expression = sentence.split '.', 2
+      model = name.tclassify_and_constantize
+      result = model.send (model.respond_to?(:default) ? :default : :all)
+      result = eval("result.#{expression}") unless expression.blank?
+    end
+
+    def eval_sentence_single(sentence)
+      name, condition = sentence.split /[ \(]/, 2
+      model = name.tclassify_and_constantize
+      result = model.send :named, condition.delete(':()\'\'""')
+    end
+
+    def render_error(error, description = nil, sentence = nil)
+      if Rails.env.development?
         raise error
       else
         content_tag :div, class: 'alert alert-warning' do
@@ -51,12 +49,28 @@ module ContentHelper
           when description.present?
             message = [ content_tag(:strong, 'Oops!') ]
             message << "#{description}."
-            message << 'Favor revisar el código a continuación:'
+            message << 'Favor revisar el código a continuación:' unless sentence.blank?
             concat content_tag(:p, message.join(' ').html_safe)
-            concat content_tag(:code, sentence)
+            concat content_tag(:code, sentence) if sentence.present?
           else error.to_s
           end
         end
       end
+    end
+
+    def render_result(result)
+      model_proxy = result.is_model? ? result.class : result
+      table_name = model_proxy.table_name
+      if result.is_a? ActiveRecord::Relation
+        render "#{table_name}/collection", collection: result
+      elsif result.is_model?
+        model_name = model_proxy.model_name.singular
+        render "#{table_name}/single", model_name.to_sym => result
+      else
+        result
+      end
+    rescue ActionView::MissingTemplate => error
+      entity_name = model_proxy.model_name.human.classify
+      render_error error, "No se encontró una plantilla para la entidad #{entity_name}"
     end
 end
