@@ -2,12 +2,15 @@
 
 header[role="main"]
   .jumbotron
+    display: flex
+    align-items: center
+
     position: relative
     margin-bottom: 0
-    padding-top: 82px
-    padding-bottom: 82px
-    min-height: 227px
+    padding: 20px 0
+    height: 227px
     background-color: lighten($palette1-1, 3%)
+    border-bottom: solid 1px lighten($palette1-1, 3%)
     color: whitesmoke
 
     & > img
@@ -20,6 +23,7 @@ header[role="main"]
       filter: sepia(25%)
 
     & > .container
+      flex: none
       position: relative
       z-index: 2
 
