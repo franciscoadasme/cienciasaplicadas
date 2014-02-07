@@ -47,6 +47,12 @@ module HtmlHelper
     result.html_safe
   end
 
+  def collect_image_urls(html)
+    html = Nokogiri::HTML.fragment(html)
+    html.css('img').select{ |img| img['class'].blank? }
+                   .collect { |img| img['src'] }
+  end
+
   private
     def extract_variant(options)
       options = options.symbolize_keys

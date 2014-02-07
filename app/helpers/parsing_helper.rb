@@ -1,4 +1,8 @@
 module ParsingHelper
+  def extract_images_from_content(content)
+    collect_image_urls markdown(content)
+  end
+
   def markdown(text, options = {})
     render_options = {
       filter_html:     false,
