@@ -13,7 +13,9 @@
             = post.title
             %small= link_to 'leer más', post
           %span.media-meta
-            = time_tag post.created_at, time_ago_in_words(post.created_at), pubdate: true
+            = time_tag post.created_at, pubdate: true do
+              Hace
+              = time_ago_in_words(post.created_at)
           = excerpt post.body
 
   %footer.widget-footer
