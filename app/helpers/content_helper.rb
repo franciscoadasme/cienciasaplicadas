@@ -1,4 +1,23 @@
 module ContentHelper
+  def markdown(text, options = {})
+    render_options = {
+      filter_html:     false,
+      hard_wrap:       true,
+      link_attributes: { rel: 'nofollow' }
+    }
+    renderer = Redcarpet::Render::HTML.new(render_options.merge(options))
+
+    extensions = {
+      autolink:           true,
+      fenced_code_blocks: true,
+      lax_spacing:        true,
+      no_intra_emphasis:  true,
+      strikethrough:      true,
+      superscript:        true
+    }
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
+  end
+
   def parse_content(content)
     markdown parse_inline_code(content)
   end
