@@ -1,7 +1,10 @@
 %header{ role: 'main' }
   = content_for :header
   - if content_for? :jumbotron
-    .jumbotron{ class: params[:controller] }
-      = autosizing_image_tag content_for(:banner_url) if content_for?(:banner_url)
+    - css = [ params[:controller] ]
+    - if content_for?(:banner_url)
+      - css << 'with-banner'
+      - styling = "background-image: url(#{content_for :banner_url})"
+    .jumbotron{ class: css.join(' '), style: styling }
       .container
         = content_for :jumbotron

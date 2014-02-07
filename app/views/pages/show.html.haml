@@ -1,6 +1,6 @@
 - provide :jumbotron do
   %h1{ id: @page.title.parameterize }= @page.title
-- provide :banner_url, @page.banner.url
+- provide :banner_url, @page.banner.url if @page.banner.present?
 
 .row
   .col-xs-8.content

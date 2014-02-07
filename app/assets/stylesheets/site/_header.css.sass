@@ -9,23 +9,17 @@ header[role="main"]
     margin-bottom: 0
     padding: 20px 0
     height: 227px
-    background-color: lighten($palette1-1, 3%)
-    border-bottom: solid 1px lighten($palette1-1, 3%)
-    color: whitesmoke
+    background-color: lighten($gray-lighter, 4%)
+    border-bottom: solid 1px darken($gray-lighter, 10%)
+    color: $text-color
 
-    & > img
-      display: block
-      +position-at-edges(absolute, $top: 0, $left: 0)
-      padding-bottom: 227px
-      width: 100%
-      height: 0
-      z-index: 1
-      filter: sepia(25%)
+    &.with-banner
+      +autosizing-image
+      border-bottom: none
+      color: whitesmoke
 
     & > .container
       flex: none
-      position: relative
-      z-index: 2
 
     h1
       margin: 0
