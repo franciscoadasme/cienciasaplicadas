@@ -5,7 +5,7 @@
         %h2.post-title= post.title
       %p.post-meta
         Hace
-        = time_tag post.created_at, time_ago_in_words(post.created_at), pubdate: true, class: 'post-date'
+        = time_tag post.created_at, time_ago_in_words(post.created_at), pubdate: true, class: 'post-date', title: l(post.created_at.to_date, format: :long)
         por
         = link_to post.author.display_name, post.author, class: 'post-author'
       %hr
