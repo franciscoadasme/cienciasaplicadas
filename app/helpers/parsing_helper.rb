@@ -1,4 +1,4 @@
-module ContentHelper
+module ParsingHelper
   def markdown(text, options = {})
     render_options = {
       filter_html:     false,
