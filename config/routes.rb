@@ -101,7 +101,7 @@ CbsmWebsite::Application.routes.draw do
     end
   end
 
-  resources :posts, only: [ :index, :show ]
+  resources :noticias, controller: :posts, only: [ :index, :show ], as: :posts
 
   get :contact, to: 'site#contact'
   get ':id', to: 'pages#show', as: :page

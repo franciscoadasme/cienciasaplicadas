@@ -1,7 +1,6 @@
 class PostsController < SiteController
   def index
-    @post = Post.published.first
-    redirect_to @post rescue render(action: :show)
+    @posts = Post.published.sorted
   end
 
   def show
