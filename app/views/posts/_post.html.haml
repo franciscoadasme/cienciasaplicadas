@@ -3,11 +3,16 @@
     .post-info
       %header
         %h2.post-title= post.title
-      %p.post-meta
-        Hace
-        = time_tag post.created_at, time_ago_in_words(post.created_at), pubdate: true, class: 'post-date', title: l(post.created_at.to_date, format: :long)
-        por
-        = link_to post.author.display_name, post.author, class: 'post-author'
+
+      .media
+        = link_to post.author, class: 'pull-left magnifiable' do
+          = autosizing_image_tag display_user_image_url(post.author), class: 'media-object', size: 48
+        .media-body
+          %p.post-meta
+            Hace
+            = time_tag post.created_at, time_ago_in_words(post.created_at), pubdate: true, class: 'post-date', title: l(post.created_at.to_date, format: :long)
+            por
+            = link_to post.author.display_name, post.author, class: 'post-author'
       %hr
       %nav.post-paginate
         %ul
