@@ -20,4 +20,4 @@
       = autosizing_image_tag img_url if img_url.present?
 
       %p= excerpt post.body, length: 500
-      = link_to 'Seguir leyendo...', post, class: 'read-more'
+      = link_to 'Seguir leyendo...', post_permalink(post), class: 'read-more'

@@ -11,7 +11,7 @@
         .media-body
           %h3.media-heading
             = post.title
-            %small= link_to 'leer más', post
+            %small= link_to 'leer más', post_permalink(post)
           %span.media-meta
             = time_tag post.created_at, pubdate: true do
               Hace
