@@ -1,2 +1,7 @@
 %header{ role: 'main' }
   = content_for :header
+  - if content_for? :jumbotron
+    .jumbotron
+      = autosizing_image_tag content_for(:banner_url) if content_for?(:banner_url)
+      .container
+        = content_for :jumbotron
