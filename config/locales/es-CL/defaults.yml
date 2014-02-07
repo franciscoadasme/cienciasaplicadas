@@ -1,0 +1,5 @@
+es-CL:
+  date:
+    formats:
+      abbr: "%b '%y"
+      month: '%b'

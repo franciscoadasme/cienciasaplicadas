@@ -1,3 +1,52 @@
+/*
+ * Posts header
+ */
+header[role="main"]
+  & > .posts
+    background-color: lighten($gray-lighter, 4%)
+    border-bottom-color: darken($gray-lighter, 10%)
+    color: $text-color
+
+  .posts-nav
+    margin-top: 20px
+    font-size: 12px
+    line-height: 20px
+    font-weight: $font-weight-bold
+    text-align: center
+
+    ul
+      & > li
+        & + li
+          margin-left: 0
+
+        & > a
+          padding: 5px
+          border: solid darken($gray-lighter, 10%)
+          border-width: 1px 1px 1px 0
+          border-radius: 0
+          text-transform: uppercase
+          color: lighten($text-color, 15%)
+
+          &:hover
+            color: $link-hover-color
+
+        &.active > a
+          color: $link-color
+          background-color: white
+
+        &.disabled > a
+          color: $text-muted
+
+        &:first-child > a
+          border-left-width: 1px
+        &:first-child > a
+          border-radius: 16px 0 0 16px
+        &:last-child > a
+          border-radius: 0 16px 16px 0
+
+/*
+ * Post partial
+ */
 .post
   margin-bottom: 60px
 

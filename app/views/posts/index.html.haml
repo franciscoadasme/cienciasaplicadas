@@ -1,9 +1,14 @@
 = provide :jumbotron do
   %h1 Noticias
+  = render 'nav'
 
-- @posts.each_with_prev_and_next do |post, post_prev, post_next|
-  = render post, post_prev: post_prev, post_next: post_next
+- if @posts.any?
+  - @posts.each_with_prev_and_next do |post, post_prev, post_next|
+    = render post, post_prev: post_prev, post_next: post_next
 
-%hr
-%p.lead.text-muted.text-center
-  No hay más noticias disponibles
+  %hr
+  %p.lead.text-muted.text-center
+    No hay más noticias disponibles
+- else
+  %p.lead.text-muted.text-center
+    No se encontraron noticias escritas durante este periodo
