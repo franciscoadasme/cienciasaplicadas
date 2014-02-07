@@ -61,6 +61,12 @@ class String
 end
 
 class Array
+  def each_with_prev_and_next
+    each_with_index do |item, i|
+      yield item, fetch(i - 1, last), fetch(i + 1, first)
+    end
+  end
+
   def to_h
     Hash[self]
   end
