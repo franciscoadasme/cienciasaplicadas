@@ -4,7 +4,7 @@ class SiteController < ApplicationController
 
   def index
     @publication_count = Publication.count
-    @posts = Post.limit(3)
+    @posts = Post.published.sorted.limit(3)
     @graduated_users = User.where email: [ 'camila.munoz20@gmail.com', 'francisco.adasme@gmail.com' ]
     @upcoming_events = Event.sorted.limit(3)
     @recent_moments = Moment.sorted.limit(3)
