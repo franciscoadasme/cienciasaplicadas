@@ -52,8 +52,17 @@ class User < ActiveRecord::Base
 
   default_scope { order :first_name, :last_name, role: :desc, invitation_sent_at: :desc }
   scope :default, -> { where.not(invitation_accepted_at: nil) }
-  scope :academics, -> { default }
-  scope :students, -> { default }
+
+  class << self
+    def with_position(*args)
+      joins(:position).where positions: { slug: args }
+    end
+
+    def named(nickname)
+      find_by nickname: nickname
+    end
+  end
+  include Localizable
 
   devise :database_authenticatable,
          #:recoverable,
