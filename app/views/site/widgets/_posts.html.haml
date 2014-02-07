@@ -13,8 +13,8 @@
             = post.title
             %small= link_to 'leer más', post_permalink(post)
           %span.media-meta
-            = time_tag post.created_at, pubdate: true do
-              Hace
+            Hace
+            = time_tag post.created_at, pubdate: true, title: l(post.created_at.to_date, format: :long) do
               = time_ago_in_words(post.created_at)
           = excerpt post.body
 
