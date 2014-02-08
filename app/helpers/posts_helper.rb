@@ -11,15 +11,15 @@ module PostsHelper
   end
 
   def nav_header_data_for_post(post)
-    {
-      prev: {
-        href: post_permalink(@post.previous),
-        title: 'Ir a la noticia anterior'
-      },
-      next: {
-        href: post_permalink(@post.next),
-        title: 'Ir a la noticia siguiente'
-      }
-    }
+    data = {}
+    data[:prev] = {
+      href: post_permalink(@post.previous),
+      title: 'Ir a la noticia anterior'
+    } if @post.previous.present?
+    data[:next]= {
+      href: post_permalink(@post.next),
+      title: 'Ir a la noticia siguiente'
+    } if @post.next.present?
+    data
   end
 end
