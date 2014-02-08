@@ -6,8 +6,8 @@
 
   %ul.nav-list
     - Page.navigable.each do |page|
-      = main_nav_item page.title, page_path(page)
-    = main_nav_item 'Contacto', '#'
+      = nav_main_item page.title, page_path(page)
+    = nav_main_item 'Contacto', '#'
 
     - unless current_page?(root_url)
-      = main_nav_item fa_icon('reply', text: 'Ir al inicio'), root_url, class: 'nav-item-link'
+      = nav_main_item fa_icon('reply', text: 'Ir al inicio'), root_url, class: 'nav-item-link'

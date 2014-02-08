@@ -1,5 +1,5 @@
 module NavHelper
-  def main_nav_item(content, href, html_options = {})
+  def nav_main_item(content, href, html_options = {})
     css = [ html_options[:class].try(:split) || 'nav-item' ]
     css << 'active' if current_page?(href)
     content_tag :li do
