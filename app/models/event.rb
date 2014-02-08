@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   TYPES = [ :talk, :seminar, :course ]
 
   extend FriendlyId
-  friendly_id :title, use: [ :slugged ]
+  friendly_id :name, use: [ :slugged ]
 
   has_attached_file :picture, styles: {
     original: '640x640#',
