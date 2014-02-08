@@ -1,7 +1,7 @@
 %header{ role: 'main' }
   = content_for :header
   - if content_for? :jumbotron
-    - css = [ params[:controller] ]
+    - css = [ "#{params[:controller]}-#{params[:action]}" ]
     - if content_for?(:banner_url)
       - css << 'with-banner'
       - styling = "background-image: url(#{content_for :banner_url})"
