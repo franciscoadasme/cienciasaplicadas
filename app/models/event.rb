@@ -16,10 +16,14 @@
 #  picture_updated_at   :datetime
 #  created_at           :datetime
 #  updated_at           :datetime
+#  slug                 :string(255)
 #
 
 class Event < ActiveRecord::Base
   TYPES = [ :talk, :seminar, :course ]
+
+  extend FriendlyId
+  friendly_id :title, use: [ :slugged ]
 
   has_attached_file :picture, styles: {
     original: '640x640#',
