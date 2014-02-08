@@ -21,4 +21,12 @@ class Post < ActiveRecord::Base
 
   scope :published, -> { where published: true }
   scope :sorted, -> { order created_at: :desc }
+
+  def previous
+    Post.limit(1).order(id: :desc).find_by('id < ?', id)
+  end
+
+  def next
+    Post.limit(1).order(id: :asc).find_by('id > ?', id)
+  end
 end

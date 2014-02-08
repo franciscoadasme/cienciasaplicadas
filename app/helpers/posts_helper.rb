@@ -9,4 +9,17 @@ module PostsHelper
     today = DateTime.current
     posts_path year: today.year, month: today.month
   end
+
+  def nav_header_data_for_post(post)
+    {
+      prev: {
+        href: post_permalink(@post.previous),
+        title: 'Ir a la noticia anterior'
+      },
+      next: {
+        href: post_permalink(@post.next),
+        title: 'Ir a la noticia siguiente'
+      }
+    }
+  end
 end
