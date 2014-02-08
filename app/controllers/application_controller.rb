@@ -12,12 +12,6 @@ class ApplicationController < ActionController::Base
   before_action :set_group
   before_action :store_location
 
-  # testing
-  before_action do
-    params[:top_level_controller] = top_level_controller
-    params[:current_path] = current_path
-  end
-
   private
     def set_group
       @group = Group.first
