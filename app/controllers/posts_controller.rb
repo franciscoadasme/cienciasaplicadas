@@ -1,12 +1,9 @@
 class PostsController < SiteController
+  include Filterable
+
   def index
     @posts = Post.published.sorted
-    if params[:year]
-      date = Date.new params[:year].to_i, (params[:month] || 1).to_i
-      from_date = date.beginning_of_month
-      to_date = date.end_of_month
-      @posts = @posts.where created_at: from_date..to_date
-    end
+    @posts = scope_with_date(@posts) if params[:year]
   end
 
   def show
