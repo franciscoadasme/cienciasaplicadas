@@ -11,6 +11,7 @@ module Filterable
 
       date = case
         when date_or_params.is_a?(Hash)
+          date_or_params.symbolize_keys!
           year = date_or_params[:year].to_i
           month = (date_or_params[:month] || 1).to_i
           day = (date_or_params[:day] || 1).to_i
