@@ -3,3 +3,8 @@ es-CL:
     formats:
       abbr: "%b '%y"
       month: '%b'
+
+    units:
+      day: día
+      month: mes
+      year: año
