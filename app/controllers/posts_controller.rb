@@ -1,9 +1,6 @@
 class PostsController < SiteController
-  include Filterable
-
   def index
-    @posts = Post.published.sorted
-    @posts = scope_with_date(@posts) if params[:year]
+    @posts = Post.published.sorted.during_date params.slice(:year, :month, :day)
   end
 
   def show

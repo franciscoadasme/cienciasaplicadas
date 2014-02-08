@@ -15,6 +15,7 @@
 
 class Post < ActiveRecord::Base
   include Publishable
+  include Filterable
 
   extend FriendlyId
   friendly_id :title, use: [ :slugged ]
