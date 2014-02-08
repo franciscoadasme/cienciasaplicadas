@@ -1,5 +1,6 @@
 %header{ role: 'main' }
   = content_for :header
+
   - if content_for? :jumbotron
     - css = [ "#{params[:controller]}-#{params[:action]}" ]
     - if content_for?(:banner_url)
@@ -8,3 +9,5 @@
     .jumbotron{ class: css.join(' '), style: styling }
       .container
         = content_for :jumbotron
+
+  = content_for :nav_header
