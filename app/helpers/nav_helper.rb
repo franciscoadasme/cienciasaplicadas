@@ -7,11 +7,11 @@ module NavHelper
     end
   end
 
-  def nav_alt_item(title, icon_name, href)
+  def nav_alt_item(title, icon_name, controller)
     css = [ 'nav-item' ]
-    css << 'active' if current_page?(href)
+    css << 'active' if controller?(controller)
     content_tag :li do
-      link_to fa_icon("#{icon_name}"), href, title: title, class: css.join(' '), data: { toggle: 'tooltip' }
+      link_to fa_icon("#{icon_name}"), (send("#{controller}_path") rescue '#'), title: title, class: css.join(' '), data: { toggle: 'tooltip' }
     end
   end
 
