@@ -1,4 +1,12 @@
 module NavHelper
+  def main_nav_item(content, href, html_options = {})
+    css = [ html_options[:class].try(:split) || 'nav-item' ]
+    css = 'active' if current_page?(href)
+    content_tag :li do
+      link_to content, href, html_options.merge(class: css.compact.join(' '))
+    end
+  end
+
   def nav_date_widget(from, to, path_helper, step = 1.month, placeholder = 'Todo')
     content_tag :ul, class: 'nav nav-pills nav-justified nav-date' do
       concat nav_date_widget_item(placeholder, send(path_helper))
