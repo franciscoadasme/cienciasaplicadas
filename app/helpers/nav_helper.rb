@@ -1,0 +1,23 @@
+module NavHelper
+  def nav_date_widget(from, to, path_helper, step = 1.month, placeholder = 'Todo')
+    content_tag :ul, class: 'nav nav-pills nav-justified nav-date' do
+      concat nav_date_widget_item(placeholder, send(path_helper))
+
+      (from..to).time_step(step) do |date|
+        format = date == from || date == to ? :abbr : :month
+        content = I18n.l date, format: format
+        path_options = { year: date.year, month: date.month }
+        href = send path_helper, path_options
+
+        concat nav_date_widget_item(content, href)
+      end
+    end
+  end
+
+  private
+    def nav_date_widget_item(content, href)
+      content_tag :li, class: ('active' if current_page?(href)) do
+        link_to content, href
+      end
+    end
+end
