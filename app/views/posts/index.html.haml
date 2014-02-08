@@ -1,6 +1,6 @@
 = provide :jumbotron do
   %h1 Noticias
-  = render 'nav'
+  = render 'nav_header'
 
 - if @posts.any?
   - @posts.each_with_prev_and_next do |post, post_prev, post_next|
