@@ -22,7 +22,7 @@ module NavHelper
       (from..to).time_step(step) do |date|
         format = date == from || date == to ? :abbr : :month
         content = I18n.l date, format: format
-        path_options = { year: date.year, month: date.month }
+        path_options = params.merge year: date.year, month: date.month
         href = send path_helper, path_options
 
         concat nav_date_widget_item(content, href)
