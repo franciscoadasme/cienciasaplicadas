@@ -1,7 +1,4 @@
-window.whenReady = (callback) ->
-  $(document).ready callback
-
-whenReady ->
+$(document).ready ->
   $('a[href*=#]:not([href=#])').smoothScroll
     easing: 'swing'
     speed: 400

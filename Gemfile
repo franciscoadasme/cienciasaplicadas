@@ -42,9 +42,6 @@ gem 'gravatar_image_tag', '~> 1.2'
 
 gem 'nokogiri'
 gem 'premailer-rails'
-
-gem 'underscore-rails'
-gem 'gmaps4rails'
 gem 'mailgun'
 
 gem 'paperclip'
