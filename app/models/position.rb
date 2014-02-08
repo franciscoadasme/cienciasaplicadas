@@ -7,6 +7,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  level      :integer
+#  slug       :string(255)
 #
 
 class Position < ActiveRecord::Base
