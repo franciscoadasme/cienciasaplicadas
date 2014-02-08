@@ -1,7 +1,7 @@
 module NavHelper
   def main_nav_item(content, href, html_options = {})
     css = [ html_options[:class].try(:split) || 'nav-item' ]
-    css = 'active' if current_page?(href)
+    css << 'active' if current_page?(href)
     content_tag :li do
       link_to content, href, html_options.merge(class: css.compact.join(' '))
     end
