@@ -7,6 +7,14 @@ module NavHelper
     end
   end
 
+  def nav_alt_item(title, icon_name, href)
+    css = [ 'nav-item' ]
+    css << 'active' if current_page?(href)
+    content_tag :li do
+      link_to fa_icon("#{icon_name}"), href, title: title, class: css.join(' '), data: { toggle: 'tooltip' }
+    end
+  end
+
   def nav_date_widget(from, to, path_helper, step = 1.month, placeholder = 'Todo')
     content_tag :ul, class: 'nav nav-pills nav-justified nav-date' do
       concat nav_date_widget_item(placeholder, send(path_helper))
