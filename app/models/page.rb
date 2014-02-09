@@ -25,8 +25,8 @@ class Page < ActiveRecord::Base
   include Publishable
   include Seedable
 
-  has_attached_file :banner, styles: { original: '1600x320#',
-                                          thumb: '500x100#' },
+  has_attached_file :banner, styles: { original: '1920x1080#',
+                                          thumb: '640x360#' },
                     convert_options: { original: '-modulate 100,50,100 -blur 0x2' }
 
   extend FriendlyId
