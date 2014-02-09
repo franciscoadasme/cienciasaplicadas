@@ -101,8 +101,13 @@ CbsmWebsite::Application.routes.draw do
     end
   end
 
-  get 'noticias(/:year(/:month))', to: 'posts#index', as: :posts
-  get 'noticias/:year/:month/:day/:id', to: 'posts#show', as: :post
+  constraints(year: /\d{4}/, month: /([1-9]|1[012])/) do
+    get 'noticias(/:year(/:month))', to: 'posts#index', as: :posts
+    get 'noticias/:year/:month/:day/:id', to: 'posts#show', as: :post
+
+    get 'eventos(/:year(/:month))', to: 'events#index', as: :events
+    get 'eventos/:id', to: 'events#show', as: :event
+  end
 
   get :contact, to: 'site#contact'
   get ':id', to: 'pages#show', as: :page
