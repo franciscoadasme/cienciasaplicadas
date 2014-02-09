@@ -4,20 +4,7 @@
     %span.highlight Eventos
 
   %ul.media-list
-    - @upcoming_events.each do |event|
-      %li.media
-        .pull-left
-          .event-date.media-object
-            %span.event-day= event.start_date.day
-            %span.event-month= t('date.abbr_month_names')[event.start_date.month]
-        .media-body
-          %h3.media-heading
-            %small.text-primary= event.event_type
-            = event.name
-          %h4.media-subheading
-            = event.promoter
-
-          = excerpt event.description, length: 128, omission: link_to('seguir leyendo', '#')
+    = render @upcoming_events
 
   %footer.widget-footer
     = btn_to 'Ver todos los eventos', '#', block: true

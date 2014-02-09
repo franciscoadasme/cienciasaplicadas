@@ -1,0 +1,14 @@
+- tag = defined?(is_single) && is_single ? :div : :li
+= content_tag tag, class: 'media event' do
+  .pull-left
+    .event-date.media-object
+      %span.event-day= event.start_date.day
+      %span.event-month= l event.start_date, format: :month
+  .media-body
+    %h3.media-heading
+      %small.text-primary= event.event_type
+      = event.name
+    %h4.media-subheading
+      = event.promoter
+
+    = excerpt event.description, length: 128, omission: link_to('seguir leyendo', event), force: true

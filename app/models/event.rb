@@ -20,10 +20,13 @@
 #
 
 class Event < ActiveRecord::Base
-  TYPES = [ :talk, :seminar, :course ]
+  TYPES = [ :charla, :seminario, :curso ]
 
   extend FriendlyId
   friendly_id :name, use: [ :slugged ]
+
+  include Filterable
+  filterable_by date: :start_date
 
   has_attached_file :picture, styles: {
     original: '640x640#',
@@ -31,6 +34,7 @@ class Event < ActiveRecord::Base
   }
 
   scope :sorted, -> { order start_date: :desc }
+  scope :typed, -> type { where event_type: type }
 
   auto_strip_attributes :name, :location, :description
   validates :name, presence: true,
