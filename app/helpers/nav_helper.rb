@@ -7,12 +7,18 @@ module NavHelper
     end
   end
 
-  def nav_alt_item(title, icon_name, controller)
+  def nav_alt_item(content, icon_name, controller)
     css = [ 'nav-item' ]
     css << 'active' if controller?(controller)
-    content_tag :li do
-      link_to fa_icon("#{icon_name}"), (send("#{controller}_path") rescue '#'), title: title, class: css.join(' '), data: { toggle: 'tooltip' }
-    end
+
+    html_options = {
+      title: "Ir a #{content}",
+      class: css.join(' ')
+    }
+    content = fa_icon("#{icon_name}", text: content)
+    href = send("#{controller}_path") rescue '#'
+
+    content_tag :li, link_to(content, href, html_options)
   end
 
   def nav_date_widget(from, to, path_helper, step = 1.month, placeholder = 'Todo')
