@@ -4,7 +4,9 @@
     %nav.sidebar-nav
       %ul.nav.nav-pills.nav-stacked
         %li{ class: ('active' if params[:tipo].blank?) }
-          = link_to 'Todas', events_path(params.merge(tipo: nil))
+          = link_to events_path(params.merge(tipo: nil)) do
+            Todas
+            %span.badge.pull-right= Event.count
 
         - Event::TYPES.map(&:to_s).each do |type|
           %li{ class: ('active' if params[:tipo] == type) }
