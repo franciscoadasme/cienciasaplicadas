@@ -6,7 +6,7 @@
       %span.event-month= l event.start_date, format: :month
   .media-body
     %h3.media-heading
-      %small.text-primary= event.event_type
+      %small.text-primary= event.event_type.upcase
       = event.name
     %h4.media-subheading
       = event.promoter

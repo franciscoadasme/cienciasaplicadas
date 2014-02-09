@@ -1,0 +1,14 @@
+- provide :jumbotron do
+  %h1= @event.name
+  %p.lead
+    %small.label.label-primary= @event.event_type.upcase
+    = format_period @event.start_date, @event.end_date
+- provide :banner_url, banner_url_for_event_type(@event.event_type)
+
+.row
+  .col-xs-8
+    .event-content
+      = content_tag :p, image_tag(@event.picture) if @event.picture.present?
+      = parse_content @event.description
+
+  = render 'sidebar_show'
