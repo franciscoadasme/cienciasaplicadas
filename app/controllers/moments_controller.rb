@@ -11,4 +11,8 @@ class MomentsController < SiteController
       @end_date = DateTime.current
     end
   end
+
+  def show
+    @moment = Moment.find params[:id]
+  end
 end

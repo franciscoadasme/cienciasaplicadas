@@ -1,0 +1,12 @@
+.media.moment-meta
+  = link_to moment.user, class: 'pull-left magnifiable' do
+    = autosizing_image_tag display_user_image_url(moment.user), class: 'media-object', size: 48
+  .media-body
+    %h2.media-heading
+      %span.moment-username= moment.user.display_name
+      .pull-right
+        - use_format_short = defined?(time_format) && time_format == :short
+        = time_tag moment.taken_on, send("#{'short_' if use_format_short}time_ago_in_words", moment.taken_on), pubdate: true, title: l(moment.taken_on, format: :long)
+    = content_tag :p, moment.caption, class: 'moment-caption' if moment.caption.present?
+
+    = footer if defined? footer

@@ -1,14 +1,5 @@
 %li.moment-item
-  %article.moment{ id: moment.id }
-    = link_to moment_permalink(moment), class: 'magnifiable' do
-      = autosizing_image_tag moment.photo.url(:medium), class: 'moment-photo'
+  = link_to moment_permalink(moment), class: 'magnifiable' do
+    = autosizing_image_tag moment.photo.url(:medium), class: 'moment-photo'
 
-    .media
-      = link_to moment.user, class: 'pull-left magnifiable' do
-        = autosizing_image_tag display_user_image_url(moment.user), class: 'media-object', size: 48
-      .media-body
-        %h2.media-heading
-          %span.moment-username= moment.user.display_name
-          .pull-right
-            = time_tag moment.taken_on, short_time_ago_in_words(moment.taken_on), pubdate: true, title: l(moment.taken_on, format: :long)
-        = content_tag :p, moment.caption, class: 'moment-caption' if moment.caption.present?
+  = render 'moment_meta', moment: moment, time_format: :short

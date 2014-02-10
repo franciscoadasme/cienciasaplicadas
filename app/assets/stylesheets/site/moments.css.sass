@@ -1,3 +1,23 @@
+.moment-photo
+  border-radius: 5px
+
+.moment-meta
+  margin-top: -15px
+  padding: 30px 15px 15px
+  background-color: lighten($gray-lighter, 5%)
+  border: solid 1px darken($gray-lighter, 6.5%)
+  border-radius: 5px
+
+  .media-heading
+    font-size: $base-font-size
+    line-height: $base-font-size
+
+    .moment-username
+      font-weight: $font-weight-bold
+
+    time
+      color: $text-muted
+
 .moments
   position: relative
   margin: 0
@@ -46,8 +66,6 @@
   .moment-item
     position: relative
     margin-bottom: 40px
-    border: solid 4px $gray-lighter
-    border-radius: 7px
 
     &:before,
     &:after
@@ -70,27 +88,16 @@
       font-size: 2*$base-font-size
       background-color: white
 
-    .moment-photo,
-    .media
-      border-radius: 5px
-
     .moment-photo
       padding-bottom: 222px
       width: 100%
       height: 0
 
-    .media
-      margin-top: -15px
-      padding: 30px 15px 15px
-      background-color: lighten($gray-lighter, 5%)
-      border: solid 1px darken($gray-lighter, 6.5%)
+.moment
+  margin: 0 auto 20px
+  width: 640px + 2*4px
 
-    .media-heading
-      font-size: $base-font-size
-      line-height: $base-font-size
-
-      .moment-username
-        font-weight: $font-weight-bold
-
-      time
-        color: $text-muted
+.moment,
+.moments .moment-item
+  border: solid 4px $gray-lighter
+  border-radius: 7px
