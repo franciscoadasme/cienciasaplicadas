@@ -5,17 +5,11 @@
 
   %ul.media-list
     - @recent_moments.each do |moment|
-      %li.media.moment-item
-        = link_to moment.user, class: 'pull-left magnifiable' do
-          = autosizing_image_tag display_user_image_url(moment.user), class: 'media-object', size: 48
-        .media-body
-          %h3.media-heading
-            %span.moment-username= moment.user.display_name
-            .pull-right
-              = time_tag moment.taken_on, short_time_ago_in_words(moment.taken_on), pubdate: true, class: 'moment-date'
-          = content_tag :p, moment.caption, class: 'moment-caption' if moment.caption.present?
+      %li
+        - moment_footer = capture do
           = link_to moment_permalink(moment), class: 'magnifiable' do
             = autosizing_image_tag moment.photo.url(:medium), class: 'moment-photo'
+        = render 'moments/moment_meta', moment: moment, time_format: :short, footer: moment_footer
 
   %footer.widget-footer
     = btn_to 'Ver todos los momentos', moments_path, block: true
