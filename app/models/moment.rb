@@ -15,6 +15,11 @@
 #
 
 class Moment < ActiveRecord::Base
+  include Filterable
+  filterable_by date: :taken_on
+  include Traversable
+  traversable_by :taken_on
+
   belongs_to :user
   has_attached_file :photo, styles: {
     original: '640x640#',

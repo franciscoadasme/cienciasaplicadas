@@ -1,0 +1,96 @@
+.moments
+  position: relative
+  margin: 0
+  padding: 0
+  list-style: none
+
+  &:before
+    content: ""
+    display: block
+    +position-at-edges(absolute, 40px, null, 0, 50%)
+    margin-left: -2px
+    border: solid 2px $gray-lighter
+
+  header
+    margin-bottom: 50px
+    text-align: center
+
+    .heading
+      display: inline-block
+      padding: 5px 15px
+      background-color: darken($gray-lighter, 10%)
+      border-radius: 2px
+      color: white
+      font-weight: $font-weight-bold
+
+  & > .left-column
+    li
+      margin-right: 10px
+
+    .moment-item:before
+      right: -30px
+    .moment-item:after
+      right: -41px
+
+  & > .right-column
+    margin-top: 165px
+
+    li
+      margin-left: 10px
+
+    .moment-item:before
+      left: -30px
+    .moment-item:after
+      left: -41px
+
+  .moment-item
+    position: relative
+    margin-bottom: 40px
+    border: solid 4px $gray-lighter
+    border-radius: 7px
+
+    &:before,
+    &:after
+      +position-at-edges(absolute, $top: 0.5*222px + 3px)
+
+    &:before
+      content: ""
+      display: block
+      margin-top: 0.5*$base-font-size + 4px
+      width: 30px
+      height: 4px
+      background-color: $gray-lighter
+
+    &:after
+      +fa-icon
+      content: "\f192"
+      margin-top: -2px
+      padding: 2px 0 0
+      color: darken($gray-lighter, 10%)
+      font-size: 2*$base-font-size
+      background-color: white
+
+    .moment-photo,
+    .media
+      border-radius: 5px
+
+    .moment-photo
+      padding-bottom: 222px
+      width: 100%
+      height: 0
+
+    .media
+      margin-top: -15px
+      padding: 30px 15px 15px
+      background-color: lighten($gray-lighter, 5%)
+      border: solid 1px darken($gray-lighter, 6.5%)
+
+    .media-heading
+      font-size: $base-font-size
+      line-height: $base-font-size
+
+      .moment-username
+        font-weight: $font-weight-bold
+
+      time
+        color: $text-muted

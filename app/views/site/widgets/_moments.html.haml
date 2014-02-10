@@ -14,8 +14,8 @@
             .pull-right
               = time_tag moment.taken_on, short_time_ago_in_words(moment.taken_on), pubdate: true, class: 'moment-date'
           = content_tag :p, moment.caption, class: 'moment-caption' if moment.caption.present?
-          = link_to '#', class: 'magnifiable' do
+          = link_to moment_permalink(moment), class: 'magnifiable' do
             = autosizing_image_tag moment.photo.url(:medium), class: 'moment-photo'
 
   %footer.widget-footer
-    = btn_to 'Ver todos los momentos', '#', block: true
+    = btn_to 'Ver todos los momentos', moments_path, block: true

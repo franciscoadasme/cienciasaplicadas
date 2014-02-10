@@ -107,6 +107,9 @@ CbsmWebsite::Application.routes.draw do
 
     get 'eventos(/:year(/:month))', to: 'events#index', as: :events
     get 'eventos/:id', to: 'events#show', as: :event
+
+    get 'momentos(/:year(/:month))', to: 'moments#index', as: :moments
+    get 'momentos/:year/:month/:day/:id', to: 'moments#show', as: :moment
   end
 
   get :contact, to: 'site#contact'
