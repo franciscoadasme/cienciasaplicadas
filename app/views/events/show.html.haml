@@ -4,6 +4,8 @@
     %small.label.label-primary= @event.event_type.upcase
     = format_period @event.start_date, @event.end_date
 - provide :banner_url, banner_url_for_event_type(@event.event_type)
+- provide :nav_header do
+  = render 'site/nav_header', nav_data: nav_header_data_for_event(@event)
 
 .row
   .col-xs-8

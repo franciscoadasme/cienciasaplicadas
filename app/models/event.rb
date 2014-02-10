@@ -27,6 +27,8 @@ class Event < ActiveRecord::Base
 
   include Filterable
   filterable_by date: :start_date
+  include Traversable
+  traversable_by :start_date
 
   has_attached_file :picture, styles: {
     original: '640x640#',
