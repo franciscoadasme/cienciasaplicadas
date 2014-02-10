@@ -1,9 +1,30 @@
 module Traversable
+  extend ActiveSupport::Concern
+
   def previous
-    self.class.limit(1).order(id: :desc).find_by('id < ?', id)
+    field = self.class.traversable_field
+    self.class.order(field => :desc)
+              .find_by("#{field} < ?", send(field))
   end
 
   def next
-    self.class.limit(1).order(id: :asc).find_by('id > ?', id)
+    field = self.class.traversable_field
+    self.class.order(field => :asc)
+              .find_by("#{field} > ?", send(field))
+  end
+
+  module ClassMethods
+    def traversable_by(field)
+      @traversable_field = field
+    end
+
+    def traversable_field
+      @traversable_field ||= defaults
+    end
+
+    private
+      def defaults
+        :id
+      end
   end
 end
