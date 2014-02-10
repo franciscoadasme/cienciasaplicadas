@@ -10,6 +10,11 @@ es-CL:
       month: mes
       year: año
 
+    relative_day_names:
+      today: Hoy
+      yesterday: Ayer
+      tomorrow: Mañana
+
   period:
     formats:
       same_month: "%{start_day} hasta el %{end_day} de %{month}"

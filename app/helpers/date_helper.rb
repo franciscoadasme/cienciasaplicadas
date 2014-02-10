@@ -1,4 +1,19 @@
 module DateHelper
+  def format_date(date, format = :default)
+    today = DateTime.current.to_date
+    case
+    when (date - today).abs <= 1
+      tkey = case date
+        when today then :today
+        when today.yesterday then :yesterday
+        when today.tomorrow then :tomorrow
+      end
+      I18n.t('date.relative_day_names')[tkey]
+    else
+      I18n.l date, format: format
+    end
+  end
+
   def format_period(start_date, end_date)
     same_year = start_date.year == end_date.year
     same_month = same_year && start_date.month == end_date.month
