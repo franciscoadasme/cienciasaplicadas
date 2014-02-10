@@ -66,4 +66,23 @@ module UrlHelper
     # translate if necessary
     Hash[date_params.map { |k,v| [es_en_mapping_keys.fetch(k, k).to_s, v] }].with_indifferent_access
   end
+
+  def date_params_with_date(date, unit)
+    date_params = { year: date.year }
+    date_params[:month] = date.month if unit == :month || unit == :day
+    date_params[:day] = date.day if unit == :day
+    date_params
+  end
+
+  def date_params_for_today
+    date_params_with_date DateTime.current, :day
+  end
+
+  def date_params_for_this_month
+    date_params_with_date DateTime.current, :month
+  end
+
+  def date_params_for_this_year
+    date_params_with_date DateTime.current, :year
+  end
 end

@@ -6,8 +6,7 @@ module PostsHelper
   end
 
   def posts_this_month_path
-    today = DateTime.current
-    posts_path year: today.year, month: today.month
+    posts_path date_params_for_this_month
   end
 
   def nav_header_data_for_post(post)

@@ -16,7 +16,5 @@
 
     %hr.divider
 
-    - today = DateTime.current
-    - date_params = { year: today.year, month: today.month }
-    = btn_to 'Sólo mes actual', events_path(date_params), block: true
+    = btn_to 'Sólo mes actual', events_path(date_params_for_this_month), block: true
     = btn_to 'Mostrar todo', events_path, block: true
