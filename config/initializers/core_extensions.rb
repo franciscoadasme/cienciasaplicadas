@@ -15,6 +15,7 @@ module ActionView
         result = distance_of_time_in_words_to_now from_time, include_seconds_or_options
         result.gsub(/^[a-z ]+(?=\d)/i, '') # remove initial text
               .gsub(/(?<=\d) [[:alpha:]]+/) { |m| m.strip.first } # 13 hours to 13h
+              .scan(/\d+\w/).join ' ' # remove extra text such as around, less than, etc.
       end
     end
   end
