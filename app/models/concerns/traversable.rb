@@ -19,11 +19,11 @@ module Traversable
     end
 
     def traversable_field
-      @traversable_field ||= defaults
+      @traversable_field ||= traversable_defaults
     end
 
     private
-      def defaults
+      def traversable_defaults
         :id
       end
   end

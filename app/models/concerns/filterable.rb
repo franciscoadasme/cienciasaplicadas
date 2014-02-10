@@ -33,10 +33,10 @@ module Filterable
 
     private
       def filterable_config
-        @filterable_config ||= defaults
+        @filterable_config ||= filterable_defaults
       end
 
-      def defaults
+      def filterable_defaults
         { date: :created_at }
       end
   end
