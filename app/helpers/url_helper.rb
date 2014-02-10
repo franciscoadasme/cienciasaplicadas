@@ -64,6 +64,6 @@ module UrlHelper
     es_en_mapping_keys = I18n.t('date.units').invert
     date_params = params.slice(*es_en_mapping_keys.flatten)
     # translate if necessary
-    Hash[date_params.map { |k,v| [es_en_mapping_keys.fetch(k, k).to_s, v] }]
+    Hash[date_params.map { |k,v| [es_en_mapping_keys.fetch(k, k).to_s, v] }].with_indifferent_access
   end
 end
