@@ -107,8 +107,8 @@ class User < ActiveRecord::Base
                      uniqueness: true
   validates :image_url, url: true,
                 allow_blank: true
-  validates :headline, length: { in: 4..40 },
-                  allow_blank: true
+  validates :headline, presence: true,
+                         length: { in: 4..40 }
   validates :signature, length: { in: 10..256 },
                    allow_blank: true
   validates :bio, length: { minimum: 100 },
