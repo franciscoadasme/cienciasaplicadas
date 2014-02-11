@@ -35,7 +35,10 @@ module HtmlHelper
   end
 
   def html_headings(content)
-    content.scan(/<h\d.*>.+<\/h\d>/).map { |heading| strip_tags(heading) }
+    html = Nokogiri::HTML.fragment(content)
+    html.css('h1, h2, h3, h4, h5, h6')
+        .select{ |heading| heading['class'].blank? }
+        .collect { |heading| heading.content }
   end
 
   def toc_html_headings(content)
