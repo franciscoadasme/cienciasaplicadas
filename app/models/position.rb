@@ -25,4 +25,8 @@ class Position < ActiveRecord::Base
                      format: { with: VALID_NAME_REGEX },
                      length: { within: 4..64 },
                  uniqueness: true
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 end
