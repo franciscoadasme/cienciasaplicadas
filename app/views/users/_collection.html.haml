@@ -1,6 +1,6 @@
-- collection.includes(:position).group_by(&:position).each do |position, users|
-  .row
-    .col-xs-12
-      %h2= position.name
-      %ul.list-users
-        = render users
+- grouped_collection = collection.includes(:position).group_by(&:position)
+%ul.media-list.user-list
+  - grouped_collection.keys.sort_by(&:level).each_with_index do |position, i|
+    -# %h2= position.name.split.map{ |n| n.pluralize :'es-CL' }.join ' '
+    = content_tag :hr if i > 0
+    = render grouped_collection[position]
