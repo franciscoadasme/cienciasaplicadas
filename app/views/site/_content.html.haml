@@ -3,6 +3,8 @@
     - if content_for?(:sidebar)
       .row
         .col-xs-8.content= yield
-        .col-xs-4= yield :sidebar
+        %aside.col-xs-4{ role: 'sidebar' }
+          .container{ data: { spy: 'affix', offset_top: 227, offset_bottom: 200 }}
+            = yield :sidebar
     - else
       = yield
