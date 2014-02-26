@@ -6,5 +6,6 @@
         %aside.col-xs-4{ role: 'sidebar' }
           .container{ data: { spy: 'affix', offset_top: 227, offset_bottom: 200 }}
             = yield :sidebar
+            = yield :sidebar_footer
     - else
       = yield

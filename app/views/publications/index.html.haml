@@ -1,0 +1,16 @@
+- provide :jumbotron do
+  %p.lead.text-muted
+    Publicaciones de
+    = autosizing_image_tag display_user_image_url(@user), size: 28, class: 'img-circle'
+    = link_to @user do
+      = @user.display_name
+
+  %h1= pluralize @pubs.count, 'Publicación', 'Publicaciones'
+
+- provide :sidebar, render('sidebar')
+
+= render 'collection', collection: @pubs
+
+%hr
+%p.lead.text-muted.text-center
+  No hay más publicaciones disponibles
