@@ -1,0 +1,4 @@
+es-CL:
+  activerecord:
+    models:
+      page: Página
