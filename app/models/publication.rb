@@ -30,6 +30,7 @@ class Publication < ActiveRecord::Base
 
   scope :sorted, -> { order year: :desc, month: :desc, title: :asc }
   scope :default, -> { all }
+  scope :flagged, -> { joins(:authors).where(:'authors.flagged' => true).uniq }
 
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
 
@@ -82,5 +83,9 @@ class Publication < ActiveRecord::Base
 
   def unlinked_authors
     authors.unlinked
+  end
+
+  def flagged_by?(user)
+    authors.with_user(user).first.flagged?
   end
 end
