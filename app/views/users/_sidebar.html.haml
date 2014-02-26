@@ -1,27 +1,15 @@
-%aside.sidebar-fixed.sidebar-user
-  .sidebar-header
-    = link_to @group.abbr, root_url, class: 'sidebar-brand'
+%nav.sidebar-nav
+  %h2 Ir a la sección
 
-  .sidebar-widget.sidebar-user-info
-    = autosizing_image_tag display_user_image_url(@user), size: 48, class: 'sidebar-user-portrait'
+  %ul.nav.nav-pills.nav-stacked
+    %li= link_to 'Publicaciones', '#'
+    %li= link_to 'Proyectos', '#'
 
-    .sidebar-widget-header
-      %h3= @user.display_name
-      %h4= @user.headline || "@#{@user.nickname}"
+    - if @user.pages.any?
+      %hr
+      - @user.pages.each do |page|
+        %li= link_to page.title, page_user_path(@user, page)
 
-    %ul.sidebar-user-info-stats
-      - %w(projects publications colleagues).each do |name|
-        %li
-          %span.stat-count= @user.send(name).count.zero? ? 'No' : @user.send(name).count
-          %span.stat-label= name.titleize
-
-  %ul.nav.sidebar-nav
-    %li.sidebar-nav-header= fa_icon 'bookmark-o', text: 'Pins'
-    - %w(about publications projects).each do |name|
-      = sidebar_user_page_item @user, name
-    %li= mail_to @user.email, 'Write to me' if @user.settings.show_contact_page
-
-    - if @user_pages.any?
-      %li.sidebar-nav-header= fa_icon 'folder-open-o', text: 'Pages'
-      - @user_pages.each do |page|
-        = sidebar_user_page_item @user, page
+- if @user.settings.show_contact_page
+  %hr
+  = mail_to @user.email, 'Contactar', class: 'btn btn-default btn-block'

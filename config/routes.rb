@@ -93,12 +93,12 @@ CbsmWebsite::Application.routes.draw do
   end
   get 'admin', to: 'admin#dashboard'
 
-  resources :users, only: [ :index, :show ] do
-    member do
-      get 'projects/:project_id', to: 'projects#show', as: :project
-      get ':page_id', to: :show, as: :page
-      root to: redirect('/users/%{id}/about')
-    end
+  scope 'miembros/:user_id' do
+    get 'proyectos', to: 'projects#index', as: :projects_user
+    get 'proyectos/:id', to: 'projects#show', as: :project_user
+    get 'publicaciones', to: 'publications#index', as: :publications_user
+    get ':id', to: 'pages#show', as: :page_user
+    root to: 'users#show', as: :user
   end
 
   constraints(year: /\d{4}/, month: /([1-9]|1[012])/) do

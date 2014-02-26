@@ -14,4 +14,10 @@ module UserHelper
   def is_not_me? user
     !is_me?(user)
   end
+
+  def section_title_for_user_pubs(pubs)
+    pubs.first.flagged_by?(@user) ?
+      'Publicaciones destacadas' :
+      'Últimas Publicaciones'
+  end
 end

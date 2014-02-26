@@ -1,4 +1,25 @@
-- provide :sidebar_fixed do
-  = render 'sidebar'
+- provide :jumbotron do
+  %h1= @user.display_name
+  %p.lead
+    %span.label.label-primary= @user.position.name.upcase
+    %span.text-muted= @user.headline
 
-= render @page
+- provide :sidebar, render('sidebar')
+
+%section#about
+  %h2
+    Hola, Soy
+    = @user.first_name
+
+    = autosizing_image_tag display_user_image_url(@user), size: 48
+
+  - if @user.bio.present?
+    = parse_content(@user.bio)
+  - else
+    %p.lead.text-muted No hay una biografía disponible
+
+%section#publications
+  %h2= section_title_for_user_pubs @user_pubs
+  %ul.publications
+    = render @user_pubs
+  = btn_to 'Ver todas las publicaciones', '#', block: true
