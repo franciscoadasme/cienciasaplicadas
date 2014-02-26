@@ -94,10 +94,10 @@ CbsmWebsite::Application.routes.draw do
   get 'admin', to: 'admin#dashboard'
 
   scope 'miembros/:user_id' do
-    get 'proyectos', to: 'projects#index', as: :projects_user
-    get 'proyectos/:id', to: 'projects#show', as: :project_user
-    get 'publicaciones', to: 'publications#index', as: :publications_user
-    get ':id', to: 'pages#show', as: :page_user
+    get 'proyectos', to: 'projects#index', as: :user_projects
+    get 'proyectos/:id', to: 'projects#show', as: :user_project
+    get 'publicaciones', to: 'publications#index', as: :user_publications
+    get ':id', to: 'pages#show', as: :user_page
     root to: 'users#show', as: :user
   end
 

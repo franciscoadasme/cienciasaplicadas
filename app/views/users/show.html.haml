@@ -10,7 +10,6 @@
   %h2
     Hola, Soy
     = @user.first_name
-
     = autosizing_image_tag display_user_image_url(@user), size: 48
 
   - if @user.bio.present?
@@ -22,4 +21,4 @@
   %h2= section_title_for_user_pubs @user_pubs
   %ul.publications
     = render @user_pubs
-  = btn_to 'Ver todas las publicaciones', '#', block: true
+  = btn_to 'Ver todas las publicaciones', [ @user, :publications ], block: true

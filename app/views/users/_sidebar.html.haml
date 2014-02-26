@@ -2,13 +2,13 @@
   %h2 Ir a la sección
 
   %ul.nav.nav-pills.nav-stacked
-    %li= link_to 'Publicaciones', '#'
-    %li= link_to 'Proyectos', '#'
+    %li= link_to 'Publicaciones', [ @user, :publications ]
+    %li= link_to 'Proyectos', [ @user, :projects ]
 
     - if @user.pages.any?
       %hr
       - @user.pages.each do |page|
-        %li= link_to page.title, page_user_path(@user, page)
+        %li= link_to page.title, [ @user, page ]
 
 - if @user.settings.show_contact_page
   %hr
