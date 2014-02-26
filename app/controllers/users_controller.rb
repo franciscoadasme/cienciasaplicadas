@@ -3,7 +3,7 @@ class UsersController < SiteController
 
   def show
     @user_pubs = @user.publications.flagged.sorted
-    @user_pubs = @user.publications.sorted.limit(5) if @user_pubs.empty?
+    @user_pubs = @user.publications.sorted.limit(3) if @user_pubs.empty?
   end
 
   private
