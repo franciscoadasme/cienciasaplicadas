@@ -27,7 +27,9 @@ p:last-child
   margin-bottom: 0
 
 [class*="content"]
-  & > p, li
+  & > p,
+  & > section > p,
+  li
     font-family: $font-family-serif
     font-size: 1.15*$base-font-size
     line-height: 1.15*$base-line-height
