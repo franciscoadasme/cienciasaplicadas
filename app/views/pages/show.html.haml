@@ -1,5 +1,5 @@
 - provide :jumbotron do
-  = render 'users/scope' if @user
+  = render 'users/scope', label: 'Contenido de' if @user
   %h1{ id: @page.title.parameterize }= @page.title
 - provide :banner_url, @page.banner.url if @page.banner.present?
 

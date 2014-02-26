@@ -20,4 +20,8 @@ module UserHelper
       'Publicaciones destacadas' :
       'Últimas Publicaciones'
   end
+
+  def default_user_scope
+    params[:controller].classify.constantize.model_name.human.pluralize(:'es-CL').titleize + ' de'
+  end
 end
