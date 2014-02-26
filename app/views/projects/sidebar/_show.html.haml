@@ -1,0 +1,23 @@
+%h2 Información
+%dl
+  - if @project.has_timespan?
+    %dt Periodo
+    %dd= project_timespan @project
+
+  %dt Posición
+  %dd= @project.position
+
+  %dt Patrocinado por
+  %dd= @project.source
+
+  %dt Identificador
+  %dd= @project.identifier
+
+%hr
+%p.text-muted
+  Última actualización realizada hace
+  = time_tag @project.updated_at, time_ago_in_words(@project.updated_at), pubdate: true, title: l(@project.updated_at, format: :long)
+  atrás
+
+%hr
+= btn_to 'Volver a proyectos', [ @user, :projects], block: true

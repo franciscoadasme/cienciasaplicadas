@@ -1,4 +1,4 @@
-class PublicationsController < ApplicationController
+class PublicationsController < SiteController
   before_action :set_user
   def index
     @pubs = @user.publications.sorted
