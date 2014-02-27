@@ -37,6 +37,7 @@
 #  banner_content_type    :string(255)
 #  banner_file_size       :integer
 #  banner_updated_at      :datetime
+#  last_import_at         :datetime
 #
 
 class User < ActiveRecord::Base
@@ -278,6 +279,6 @@ class User < ActiveRecord::Base
     def social_links_urls_must_be_valid
       social_links.split(/\n/).each do |line|
         errors.add :social_links, 'has one or more invalid urls' unless UrlValidator.url_valid?(line.split.last)
-      end
+      end if social_links.present?
     end
 end

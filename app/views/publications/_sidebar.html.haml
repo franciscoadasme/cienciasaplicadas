@@ -11,5 +11,5 @@
   %hr
   %p.text-muted
     Última actualización realizada hace
-    = time_tag @last_update, time_ago_in_words(@last_update), title: l(@last_update, format: :long)
+    = time_tag @user.last_import_at, time_ago_in_words(@user.last_import_at), title: l(@user.last_import_at, format: :long)
     atrás
