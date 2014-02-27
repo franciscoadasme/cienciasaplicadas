@@ -4,6 +4,10 @@ class SiteController < ApplicationController
 
   def index
     @publication_count = Publication.count
+    @publication_per_year = Publication.group(:year).count.values.mean
+
+    @students_count = User.with_position('estudiante').count
+
     @posts = Post.published.sorted.limit(3)
     @graduated_users = User.where email: [ 'camila.munoz20@gmail.com', 'francisco.adasme@gmail.com' ]
     @upcoming_events = Event.sorted.limit(3)

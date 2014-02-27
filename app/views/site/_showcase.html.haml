@@ -6,15 +6,15 @@
         = @publication_count
         %span.footnote Artículos
       .card-description
-        %p Durante este año con un total de 8.3 por año
-        = link_to 'Ver más', '#'
+        %p con un factor de impacto promedio de #{@publication_per_year.round 1}
+        = link_to 'Ver más', page_path(:investigacion)
 
   .card
     .frame
-      %span.card-title Productividad
+      %span.card-title Docencia
       %span.card-count
-        = @publication_count
-        %span.footnote Artículos
+        = @students_count
+        %span.footnote Estudiantes
       .card-description
-        %p Durante este año con un total de 8.3 por año
-        = link_to 'Ver más', '#'
+        %p con un total de #{2} egresados desde el año 2006 a la fecha
+        = link_to 'Ver más', page_path(:estudiantes)
