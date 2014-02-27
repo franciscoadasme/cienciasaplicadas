@@ -32,7 +32,7 @@ module ParsingHelper
 
       begin
         result = case
-          when sentence =~ /\A\w+\./ then eval_sentence_collection(sentence)
+          when sentence =~ /\A\w+s(\.)?/ then eval_sentence_collection(sentence)
           when sentence =~ /\A\w+[ \(].+/ then eval_sentence_single(sentence)
           else eval(sentence)
         end
@@ -55,6 +55,7 @@ module ParsingHelper
       model = name.tclassify_and_constantize
       result = model.send (model.respond_to?(:default) ? :default : :all)
       result = eval("result.#{expression}") unless expression.blank?
+      result
     end
 
     def eval_sentence_single(sentence)
