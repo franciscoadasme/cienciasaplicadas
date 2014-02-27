@@ -3,9 +3,8 @@
   %h1{ id: @page.title.parameterize }= @page.title
 - provide :banner_url, @page.banner.url if @page.banner.present?
 
-.row
-  .col-xs-8.content
-    - content = parse_content @page.body
-    = toc_html_headings content
+- content = parse_content @page.body
+- provide :sidebar, render('sidebar', content: content)
+- provide :content, true
 
-  = render 'sidebar', content: content
+= toc_html_headings content
