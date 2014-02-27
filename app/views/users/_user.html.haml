@@ -12,9 +12,9 @@
     .media-meta
       - if user.publications.any?
         %p
-          = link_to pluralize(user.publications.count, 'articulo'), '#'
+          = link_to pluralize(user.publications.count, 'articulo'), [ user, :publications ]
           con un factor de impacto promedio de
-          = link_to user.statistics.avg_impact_factor || '?', '#'
+          = link_to format_impact_factor(user.statistics.avg_impact_factor) || '?', [ user, :stats ]
 
       - if user.projects.any?
         %p
