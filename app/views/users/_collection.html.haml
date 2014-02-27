@@ -1,4 +1,4 @@
-- grouped_collection = collection.includes(:position).group_by(&:position).sort_by { |position, collection| position.level }
+- grouped_collection = collection.sorted.group_by(&:position)
 
 - provide :sidebar_top do
   %ul.stats.stats-stacked

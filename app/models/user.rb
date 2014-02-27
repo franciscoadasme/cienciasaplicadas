@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   has_many :projects
   belongs_to :position
 
-  default_scope { order :first_name, :last_name, role: :desc, invitation_sent_at: :desc }
+  scope :sorted, -> { joins(:position).order 'positions.level', :last_name, :first_name }
   scope :default, -> { where.not(invitation_accepted_at: nil) }
 
   class << self
