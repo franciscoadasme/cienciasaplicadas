@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   belongs_to :position
 
   scope :sorted, -> { joins(:position).order 'positions.level', :last_name, :first_name }
-  scope :default, -> { where.not(invitation_accepted_at: nil) }
+  scope :default, -> { where.not(invitation_accepted_at: nil).sorted }
 
   class << self
     def with_position(*args)
