@@ -2,3 +2,6 @@ es-CL:
   activerecord:
     models:
       publication: Publicación
+    methods:
+      publication:
+        recent: recientes

@@ -32,6 +32,13 @@ class Publication < ActiveRecord::Base
   scope :default, -> { sorted }
   scope :flagged, -> { joins(:authors).where(:'authors.flagged' => true).uniq }
 
+  class << self
+    def recent
+      sorted.limit(5)
+    end
+  end
+  include Localizable
+
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
 
   auto_strip_attributes :doi, :url, :journal, :volume, :start_page, :title
