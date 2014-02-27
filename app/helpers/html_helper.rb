@@ -38,7 +38,7 @@ module HtmlHelper
     html = Nokogiri::HTML.fragment(content)
     html.css('h1, h2, h3, h4, h5, h6')
         .select{ |heading| heading['class'].blank? }
-        .collect { |heading| heading.content }
+        .collect { |heading| heading.xpath('text()').text }
   end
 
   def toc_html_headings(content)
