@@ -26,7 +26,7 @@
 
     %li.stat
       .shelf
-        %span.stat-number= @user.statistics.avg_impact_factor.round 2
+        %span.stat-number= format_impact_factor @user.statistics.avg_impact_factor
       %span.stat-label Factor de impacto
 
 %hr

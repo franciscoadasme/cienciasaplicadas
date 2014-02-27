@@ -4,7 +4,7 @@ class AuthorStatistics
   end
 
   def avg_impact_factor
-    Journal.where(id: journal_ids.uniq).average(:impact_factor) || 0
+    Journal.where(id: journal_ids.uniq).average(:impact_factor)
   end
 
   def journals
