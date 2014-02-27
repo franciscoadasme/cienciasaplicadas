@@ -14,7 +14,7 @@
         %p
           = link_to pluralize(user.publications.count, 'articulo'), '#'
           con un factor de impacto promedio de
-          = link_to user.statistics.impact_factor || '?', '#'
+          = link_to user.statistics.avg_impact_factor || '?', '#'
 
       - if user.projects.any?
         %p
