@@ -1,10 +1,12 @@
 %nav.sidebar-nav
-  - @positions.each do |position, count|
-    %p.stat.stat-block
-      %span.stat-number= count
-      %span.stat-label
-        como
-        %strong= position
+  %ul.stats.stats-stacked
+    - @positions.each do |position, count|
+      %li.stat
+        .shelf
+          %span.stat-number= count
+        %span.stat-label
+          como
+          %strong= position
 
   %h2 Filtrar por año
 
