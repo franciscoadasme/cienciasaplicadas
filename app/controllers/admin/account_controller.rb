@@ -25,7 +25,8 @@ class Admin::AccountController < AdminController
         :headline,
         :signature,
         :bio,
-        :image_url
+        :image_url,
+        :banner
       )
     end
 end

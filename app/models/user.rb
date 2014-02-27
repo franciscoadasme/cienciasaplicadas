@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nickname
 
+  has_attached_file :banner, styles: { original: '1920x823#' },
+                    convert_options: { original: '-modulate 100,50,100 -blur 0x2' }
+
   ROLE_ADMIN = 9
   ROLE_SUPER_USER = 1
   ROLE_USER = 0
@@ -114,6 +117,9 @@ class User < ActiveRecord::Base
   validates :bio, length: { minimum: 100 },
              allow_blank: true
   validates :position, presence: true
+  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+                                        size: { in: 0..5.megabytes },
+                                 allow_blank: true
 
   def self.from_omniauth(auth, signed_in_resource=nil)
     user = where("email = ? OR nickname = ? OR (provider = ? AND uid = ?)",
