@@ -7,9 +7,9 @@ class SiteController < ApplicationController
     @publication_per_year = Publication.group(:year).count.values.mean
 
     @students_count = User.with_position('estudiante').count
+    @graduated_users = User.with_position 'estudiante-egresado'
 
     @posts = Post.published.sorted.limit(3)
-    @graduated_users = User.where email: [ 'camila.munoz20@gmail.com', 'francisco.adasme@gmail.com' ]
     @upcoming_events = Event.sorted.limit(3)
     @recent_moments = Moment.sorted.limit(3)
   end
