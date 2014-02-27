@@ -97,6 +97,7 @@ CbsmWebsite::Application.routes.draw do
     get 'proyectos(/:year)', to: 'projects#index', as: :user_projects, constraints: { year: /\d{4}/ }
     get 'proyectos/:id', to: 'projects#show', as: :user_project
     get 'publicaciones', to: 'publications#index', as: :user_publications
+    get 'productividad', to: 'users#stats', as: :user_stats
     get ':id', to: 'pages#show', as: :user_page
     root to: 'users#show', as: :user
   end

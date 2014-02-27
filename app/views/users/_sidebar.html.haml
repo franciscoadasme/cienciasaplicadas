@@ -3,6 +3,7 @@
 
   %ul.nav.nav-pills.nav-stacked
     = content_tag :li, link_to('Publicaciones', [ @user, :publications ]) if @user.publications.any?
+    = content_tag :li, link_to('Productividad', [ @user, :stats ]) if @user.publications.any?
     = content_tag :li, link_to('Proyectos', [ @user, :projects ]) if @user.projects.any?
 
     - if @user.pages.any?

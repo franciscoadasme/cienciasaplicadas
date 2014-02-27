@@ -4,7 +4,7 @@ class AuthorStatistics
   end
 
   def impact_factor
-    Journal.where(id: journal_ids.uniq).average(:impact_factor)
+    Journal.where(id: journal_ids.uniq).average(:impact_factor) || 0
   end
 
   def journals
@@ -15,8 +15,17 @@ class AuthorStatistics
     @count ||= @user.publications.count
   end
 
+  def publication_total_this_year
+    @user.publications.where('year >= ?', DateTime.current.year).count
+  end
+
   def publication_per_year
     publication_group_by(:year).sort
+  end
+
+  def avg_publication_per_year
+    counts = publication_per_year.map(&:last)
+    counts.inject{ |sum, el| sum + el }.to_f / counts.size
   end
 
   def publication_per_journal

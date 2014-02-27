@@ -5,7 +5,7 @@
         = link_to year, "##{year}"
 
   %hr
-  = btn_to 'Ver estadísticas', '#', block: true
+  = btn_to 'Ver productividad', [ @user, :stats ], block: true
   = btn_to 'Ver proyectos', [ @user, :projects ], block: true
 
   %hr

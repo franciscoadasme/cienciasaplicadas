@@ -1,0 +1,40 @@
+- provide :jumbotron do
+  = render 'users/scope', label: 'Estadísticas de'
+  %h1 Productividad
+
+%ul.stats
+  %li.stat
+    %span.stat-number= @user.statistics.publication_total
+    %span.stat-label
+      = 'publicación'.pluralize @user.publications.count, :'es-CL'
+
+  %li.stat
+    %span.stat-number= @user.statistics.publication_total_this_year
+    %span.stat-label
+      = 'publicación'.pluralize @user.publications.count, :'es-CL'
+      este año
+
+  %li.stat
+    %span.stat-number= @user.statistics.avg_publication_per_year.round 1
+    %span.stat-label
+      = 'publicación'.pluralize @user.publications.count, :'es-CL'
+      por año
+
+  %li.stat
+    %span.stat-number= @user.statistics.impact_factor.round 2
+    %span.stat-label Factor de impacto
+
+%hr
+
+- publication_per_year = @user.statistics.publication_per_year
+- if publication_per_year.count > 3
+  %canvas#graph_publication_per_year{ width: 690, height: 300, data: { graph: publication_per_year }}
+-# - else
+  -# %p.lead.alert.alert-warning.text-center
+  -#   = @user.first_name
+  -#   sólo ha publicado por
+  -#   = publication_per_year.count
+  -#   = succeed ',' do
+  -#     = 'año'.pluralize publication_per_year, :'es-CL'
+  -#   por lo que no se puede generar un gráfico.
+

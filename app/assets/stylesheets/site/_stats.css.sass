@@ -1,5 +1,17 @@
+.stats
+  padding: 0
+  text-align: center
+
+  .stat
+    margin-right: 20px
+    list-style: none
+
+    &:last-child
+      margin-right: 0
+
 .stat
   display: inline-block
+  text-align: left
 
 .stat-block
   display: block
@@ -10,5 +22,6 @@
   line-height: 3*$base-font-size
 
 .stat-label
+  font-size: $base-font-size - 1px
   text-transform: uppercase
   color: darken($text-muted, 15%)
