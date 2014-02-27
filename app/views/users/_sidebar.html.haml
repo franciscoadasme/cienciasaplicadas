@@ -1,6 +1,8 @@
 %nav.sidebar-nav
-  %h2 Ir a la sección
+  %h2 Enlaces sociales
+  = format_social_links @user.social_links
 
+  %h2 Ir a la sección
   %ul.nav.nav-pills.nav-stacked
     = content_tag :li, link_to('Publicaciones', [ @user, :publications ]) if @user.publications.any?
     = content_tag :li, link_to('Productividad', [ @user, :stats ]) if @user.publications.any?

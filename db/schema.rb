@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227210404) do
+ActiveRecord::Schema.define(version: 20140227211412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -265,7 +265,7 @@ ActiveRecord::Schema.define(version: 20140227210404) do
     t.string   "image_url"
     t.integer  "role",                   limit: 2, default: 0
     t.string   "headline"
-    t.text     "signature"
+    t.text     "social_links"
     t.text     "bio"
     t.integer  "position_id"
     t.string   "banner_file_name"

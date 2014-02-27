@@ -30,9 +30,13 @@
 #  image_url              :string(255)
 #  role                   :integer          default(0)
 #  headline               :string(255)
-#  signature              :text
+#  social_links           :text
 #  bio                    :text
 #  position_id            :integer
+#  banner_file_name       :string(255)
+#  banner_content_type    :string(255)
+#  banner_file_size       :integer
+#  banner_updated_at      :datetime
 #
 
 class User < ActiveRecord::Base
@@ -94,7 +98,7 @@ class User < ActiveRecord::Base
     InvitationMailer.invite_message(self).deliver
   end
 
-  auto_strip_attributes :first_name, :last_name, :nickname, :headline, :image_url, :signature, :bio
+  auto_strip_attributes :first_name, :last_name, :nickname, :headline, :image_url, :social_links, :bio
 
   VALID_NAME_REGEX = /\A[[:alpha:] ,\.'-]+\Z/i
   VALID_NICKNAME_REGEX = /\A[a-z]+$\Z/
@@ -112,8 +116,10 @@ class User < ActiveRecord::Base
                 allow_blank: true
   validates :headline, presence: true,
                          length: { in: 4..40 }
-  validates :signature, length: { in: 10..256 },
-                   allow_blank: true
+  validates :social_links, format: { with: /^:[a-z-]+ .+$/,
+                                multiline: true },
+                      allow_blank: true
+  validate :social_links_urls_must_be_valid
   validates :bio, length: { minimum: 100 },
              allow_blank: true
   validates :position, presence: true
@@ -267,5 +273,11 @@ class User < ActiveRecord::Base
     def update_mailing_list_member_if_needed
       MailingList.global.update_member email_was, email if email_changed?
       true
+    end
+
+    def social_links_urls_must_be_valid
+      social_links.split(/\n/).each do |line|
+        errors.add :social_links, 'has one or more invalid urls' unless UrlValidator.url_valid?(line.split.last)
+      end
     end
 end

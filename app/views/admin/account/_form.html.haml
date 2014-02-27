@@ -11,7 +11,7 @@
   = field_set_tag t('views.account.edit.sections.social') do
     = f.input :nickname
     = f.input :headline
-    = f.input :signature, input_html: { rows: 4 }, hint: markdown_hint
+    = f.input :social_links, input_html: { rows: 4 }
     = f.input :image_url
     = f.input :banner
 

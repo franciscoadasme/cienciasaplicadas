@@ -30,9 +30,13 @@
 #  image_url              :string(255)
 #  role                   :integer          default(0)
 #  headline               :string(255)
-#  signature              :text
+#  social_links           :text
 #  bio                    :text
 #  position_id            :integer
+#  banner_file_name       :string(255)
+#  banner_content_type    :string(255)
+#  banner_file_size       :integer
+#  banner_updated_at      :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
