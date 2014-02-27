@@ -2,39 +2,71 @@
   = render 'users/scope', label: 'Estadísticas de'
   %h1 Productividad
 
-%ul.stats
-  %li.stat
-    %span.stat-number= @user.statistics.publication_total
-    %span.stat-label
-      = 'publicación'.pluralize @user.publications.count, :'es-CL'
+%section#stats
+  %ul.stats
+    %li.stat
+      .shelf
+        %span.stat-number= @user.statistics.publication_total
+      %span.stat-label
+        = 'publicación'.pluralize @user.publications.count, :'es-CL'
 
-  %li.stat
-    %span.stat-number= @user.statistics.publication_total_this_year
-    %span.stat-label
-      = 'publicación'.pluralize @user.publications.count, :'es-CL'
-      este año
+    %li.stat
+      .shelf
+        %span.stat-number= @user.statistics.publication_total_this_year
+      %span.stat-label
+        = 'publicación'.pluralize @user.publications.count, :'es-CL'
+        este año
 
-  %li.stat
-    %span.stat-number= @user.statistics.avg_publication_per_year.round 1
-    %span.stat-label
-      = 'publicación'.pluralize @user.publications.count, :'es-CL'
-      por año
+    %li.stat
+      .shelf
+        %span.stat-number= @user.statistics.avg_publication_per_year.round 1
+      %span.stat-label
+        = 'publicación'.pluralize @user.publications.count, :'es-CL'
+        por año
 
-  %li.stat
-    %span.stat-number= @user.statistics.impact_factor.round 2
-    %span.stat-label Factor de impacto
+    %li.stat
+      .shelf
+        %span.stat-number= @user.statistics.avg_impact_factor.round 2
+      %span.stat-label Factor de impacto
 
 %hr
 
 - publication_per_year = @user.statistics.publication_per_year
-- if publication_per_year.count > 3
-  %canvas#graph_publication_per_year{ width: 690, height: 300, data: { graph: publication_per_year }}
--# - else
-  -# %p.lead.alert.alert-warning.text-center
-  -#   = @user.first_name
-  -#   sólo ha publicado por
-  -#   = publication_per_year.count
-  -#   = succeed ',' do
-  -#     = 'año'.pluralize publication_per_year, :'es-CL'
-  -#   por lo que no se puede generar un gráfico.
+- if publication_per_year.count > 1
+  %section#publication-per-year
+    %h2 Publicaciones por año
 
+    - if publication_per_year.count > 3
+      %canvas#chart-publication-per-year{ width: 690, height: 300, data: { graph: publication_per_year }}
+    - else
+      %ul.stats
+        %li.stats-heading
+          %p.lead.text-muted
+            = @user.first_name
+            ha publicado
+        - publication_per_year.each do |year, count|
+          %li.stat.stat-right
+            .shelf
+              %span.stat-number= count
+              %span.stat-unit= 'artículo'.pluralize count, :'es-CL'
+            %span.stat-label
+              durante el
+              %strong= year
+
+  %hr
+
+%section#journals
+  %h2 Revistas científicas
+  %p.lead.text-muted
+    = @user.first_name
+    ha publicado en
+    = pluralize @user.statistics.journals.count, 'revista', 'revistas'
+    hasta la fecha.
+
+  #cloud-publication-per-journal{ data: { cloud: @user.statistics.publication_per_journal.to_a }}
+
+%hr
+
+%p.text-center
+  = btn_to 'Volver al perfil', @user
+  = btn_to 'Ver publicaciones', [ @user, :publications ]

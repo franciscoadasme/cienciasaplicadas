@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require jquery.smooth-scroll.min
 //= require Chart
+//= require jqcloud
 //= require_tree ./site
