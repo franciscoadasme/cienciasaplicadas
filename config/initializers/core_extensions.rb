@@ -71,6 +71,10 @@ class Array
   def to_h
     Hash[self]
   end
+
+  def mean
+    sum.to_f / count
+  end
 end
 
 class Hash

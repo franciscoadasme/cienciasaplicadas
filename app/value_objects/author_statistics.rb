@@ -28,8 +28,7 @@ class AuthorStatistics
   end
 
   def avg_publication_per_year
-    counts = publication_per_year.map(&:last)
-    counts.inject{ |sum, el| sum + el }.to_f / counts.size
+    publication_per_year.map(&:last).mean
   end
 
   private
