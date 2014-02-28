@@ -26,14 +26,17 @@ section[role="content"]
       margin-bottom: 0
 
 aside[role="sidebar"]
-  position: relative
-
   & > .container
     padding: 0
     width: 210px !important
 
     &.affix
       top: 60px
+
+    &.affix-bottom
+      position: absolute
+      top: auto !important
+      bottom: 0
 
   .divider
     border-top: solid 1px $gray-lighter

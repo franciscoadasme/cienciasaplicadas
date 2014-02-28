@@ -5,7 +5,7 @@
         .col-xs-8{ class: ('content' if content_for(:content)) }
           = yield
         %aside.col-xs-4{ role: 'sidebar' }
-          .container{ data: { spy: 'affix', offset_top: 227, offset_bottom: 100 }}
+          .container
             = yield :sidebar_top
             = yield :sidebar
             = yield :sidebar_bottom
