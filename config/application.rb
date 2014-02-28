@@ -21,5 +21,7 @@ module CbsmWebsite
     config.i18n.default_locale = 'es-CL'
 
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/value_objects)
+
+    config.action_view.field_error_proc = -> html_tag, instance {  html_tag }
   end
 end
