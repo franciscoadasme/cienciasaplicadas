@@ -1,5 +1,8 @@
 class ContactMessage
   include ActiveModel::Model
+  include ActiveModel::Validations::Callbacks
+
+  before_validation :format_as_student
 
   attr_accessor :first_name, :last_name, :email, :body, :as_student
 
@@ -24,4 +27,10 @@ class ContactMessage
   def deliver!
     DefaultMailer.send_contact_message(self).deliver
   end
+
+  private
+    def format_as_student
+      self.as_student = as_student == '1'
+      true
+    end
 end
