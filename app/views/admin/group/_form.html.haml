@@ -3,17 +3,17 @@
     = f.error_notification
 
   = field_set_tag 'Group Information' do
-    = f.input :name
-    = f.input :abbr
+    -# = f.input :name
+    -# = f.input :abbr
     = f.input :email
-    = f.input :tagline
+    -# = f.input :tagline
     / = f.input :bio, input_html: { rows: 20 }, hint: markdown_hint
-    = f.input :address, input_html: { rows: 4 }, hint: markdown_hint
+    -# = f.input :address, input_html: { rows: 4 }, hint: markdown_hint
     = f.input :overview, input_html: { rows: 10 }, hint: markdown_hint
 
-  = field_set_tag 'Design' do
-    = f.input :logo
-    = f.input :banner_image_url
+  -# = field_set_tag 'Design' do
+    -# = f.input :logo
+    -# = f.input :banner_image_url
 
   .form-group.form-actions
     .col-xs-offset-3.col-xs-9

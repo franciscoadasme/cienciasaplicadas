@@ -21,14 +21,14 @@ class Admin::GroupController < AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(
-        :name,
-        :abbr,
-        :logo,
+        # :name,
+        # :abbr,
+        # :logo,
         :email,
-        :bio,
-        :banner_image_url,
-        :tagline,
-        :address,
+        # :bio,
+        # :banner_image_url,
+        # :tagline,
+        # :address,
         :overview
       )
     end

@@ -1,4 +1,16 @@
 %h4.footer-heading Contacto
-%address= @group.address.nil? ? 'No address available.' : markdown(@group.address)
+%address
+  2 norte 685
+  %br
+  Universidad de Talca
+  %br
+  Talca, Chile
+  %br
+  %br
 
-= mail_to @group.email, fa_icon('envelope-o', text: @group.email)
+  %strong Teléfono/Fax
+  %br
+  (+56 71) 2 201 733
+
+%strong Envíenos su consulta a
+= mail_to @group.email
