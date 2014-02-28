@@ -8,9 +8,6 @@ class SiteController < ApplicationController
 
     @students_count = User.with_position('estudiante').count
     @graduated_users = User.with_position 'estudiante-egresado'
-
-    @posts = Post.published.sorted.limit(3)
-    @upcoming_events = Event.sorted.limit(3)
     @recent_moments = Moment.sorted.limit(3)
   end
 
@@ -19,8 +16,9 @@ class SiteController < ApplicationController
 
   private
     def set_lastest
-      @lastest_publications = Publication.unscoped.order(:created_at).limit(4)
-      @lastest_posts = Post.published.limit(4)
+      @lastest_publications = Publication.unscoped.order(created_at: :desc).limit(3)
+      @lastest_posts = Post.published.sorted.limit(3)
+      @upcoming_events = Event.sorted.limit(3)
     end
 
     def set_pages

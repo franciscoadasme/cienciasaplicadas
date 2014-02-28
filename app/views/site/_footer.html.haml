@@ -1,44 +1,42 @@
-%footer{ class: footer_class, role: 'contentinfo' }
+%footer{ role: 'main' }
   .container
     .row
-      - unless sidebar_fixed?
-        %div{ class: "col-xs-#{sidebar_fixed? ? 4 : 3}" }
-          %h5.gr-footer-heading= 'Lastest Posts'
-
-          - if @lastest_posts.any?
-            %ul.list-group
+      .col-xs-7.lastest-items
+        - unless current_page?(root_url)
+          - if !controller?(:posts) && @lastest_posts.any?
+            %h4.footer-heading Últimas noticias
+            %ul.media-list
               - @lastest_posts.each do |post|
-                %li.list-group-item
-                  %small
-                    %strong.text-muted
-                      = time_tag post.created_at, "#{distance_of_time_in_words_to_now(post.created_at)} ago", pubdate: true
-                  = link_to post.title, post
-                  %span.text-muted
-                    Posted by #{post.author.first_name}
-              = link_to 'Read all our posts', posts_path, class: 'btn btn-default'
-          - else
-            %span.text-muted= 'There are no posts published so far.'
+                = render 'posts/post_alt', post: post
+            = btn_to 'Ver todos las noticias', posts_path, block: true
 
-      %div{ class: "col-xs-#{sidebar_fixed? ? 8 : 5}" }
-        %h5.gr-footer-heading= 'Lastest Publications'
+          - elsif !controller?(:events) && @upcoming_events.any?
+            %h4.footer-heading Próximos eventos
+            %ul.media-list
+              = render @upcoming_events
+            = btn_to 'Ver todos los eventos', events_path, block: true
 
-        - if @lastest_publications.any?
-          %ul.list-group
-            - @lastest_publications.each do |pub|
-              %li.list-group-item
-                %strong.text-muted= pub.year
-                = link_to pub.title, pub.link, target: '_blank'
-                %span.text-muted= abbreviated_authors_for pub
+        - else @lastest_publications.any?
+          %h4.footer-heading Últimas Publicaciones
+          %ul.publications
+            = render @lastest_publications
+          = btn_to 'Ver más sobre investigación', page_path(:investigacion), block: true
 
-          = link_to 'View all our publications', Page.named(:publications), class: 'btn btn-default'
-        - else
-          %span.text-muted= 'There are no publications added so far.'
-
-      %div{ class: footer_info_class }
-        %h5.gr-footer-heading= 'About'
+      .col-xs-4.col-xs-offset-1
+        %h4.footer-heading Contacto
         %address= @group.address.nil? ? 'No address available.' : markdown(@group.address)
 
         = mail_to @group.email, fa_icon('envelope-o', text: @group.email)
 
-        %h5.gr-footer-heading= 'Admin'
-        = link_to fa_icon('lock', text: 'Enter admin area'), admin_path, class: 'btn btn-default'
+        %hr
+        = btn_to fa_icon('lock', text: 'Ir a administración'), admin_path, block: true
+
+    %hr
+
+    .contentinfo
+      .pull-left
+        © 2014 Universidad de Talca, Chile
+
+      .pull-right
+        Diseñado y desarrollado por
+        = link_to 'Francisco Adasme', user_path(:fadasme)
