@@ -1,0 +1,14 @@
+- provide :title do
+  %h1.inline
+    #{@sender} ha enviado un mensaje
+  = content_tag :div, 'Es un estudiante interesado', class: 'alert' if @as_student
+- provide :ccontent_class, 'text-left'
+
+= mtable_tag width: '100%' do
+  %tr
+    %td
+      = markdown @content
+
+      %hr
+      %p
+        Responder a la brevedad posible a la dirección de correo electrónico #{mail_to @email}.

@@ -11,10 +11,10 @@
           = render 'site/widgets/footer/publications'
 
       .col-xs-4.col-xs-offset-1
-        %h4.footer-heading Contacto
-        %address= @group.address.nil? ? 'No address available.' : markdown(@group.address)
-
-        = mail_to @group.email, fa_icon('envelope-o', text: @group.email)
+        - unless current_page?(contact_path)
+          = render 'site/widgets/footer/contactinfo'
+        - else
+          = render 'site/widgets/footer/quick_links'
 
         %hr
         = btn_to fa_icon('lock', text: 'Ir a administración'), admin_path, block: true

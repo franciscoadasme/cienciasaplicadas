@@ -113,7 +113,7 @@ CbsmWebsite::Application.routes.draw do
     get 'momentos/:year/:month/:day/:id', to: 'moments#show', as: :moment
   end
 
-  get :contact, to: 'site#contact'
+  match :contacto, to: 'site#contact', via: [ :get, :post ], as: :contact
   get ':id', to: 'pages#show', as: :page
 
   root to: 'site#index'

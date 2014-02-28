@@ -1,0 +1,4 @@
+%h4.footer-heading Contacto
+%address= @group.address.nil? ? 'No address available.' : markdown(@group.address)
+
+= mail_to @group.email, fa_icon('envelope-o', text: @group.email)
