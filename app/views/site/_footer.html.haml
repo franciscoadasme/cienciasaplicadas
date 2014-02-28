@@ -4,23 +4,11 @@
       .col-xs-7.lastest-items
         - unless current_page?(root_url)
           - if !controller?(:posts) && @lastest_posts.any?
-            %h4.footer-heading Últimas noticias
-            %ul.media-list
-              - @lastest_posts.each do |post|
-                = render 'posts/post_alt', post: post
-            = btn_to 'Ver todos las noticias', posts_path, block: true
-
+            = render 'site/widgets/footer/posts'
           - elsif !controller?(:events) && @upcoming_events.any?
-            %h4.footer-heading Próximos eventos
-            %ul.media-list
-              = render @upcoming_events
-            = btn_to 'Ver todos los eventos', events_path, block: true
-
+            = render 'site/widgets/footer/events'
         - else @lastest_publications.any?
-          %h4.footer-heading Últimas Publicaciones
-          %ul.publications
-            = render @lastest_publications
-          = btn_to 'Ver más sobre investigación', page_path(:investigacion), block: true
+          = render 'site/widgets/footer/publications'
 
       .col-xs-4.col-xs-offset-1
         %h4.footer-heading Contacto
