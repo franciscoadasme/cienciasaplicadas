@@ -4,19 +4,8 @@
     %span.highlight Noticias
 
   %ul.media-list
-    - @posts.each do |post|
-      %li.media
-        = link_to post.author, class: 'pull-left magnifiable' do
-          = autosizing_image_tag display_user_image_url(post.author), class: 'media-object', size: 48
-        .media-body
-          %h3.media-heading
-            = post.title
-            %small= link_to 'leer más', post_permalink(post)
-          %span.media-meta
-            Hace
-            = time_tag post.created_at, pubdate: true, title: l(post.created_at.to_date, format: :long) do
-              = time_ago_in_words(post.created_at)
-          = excerpt post.body
+    - @lastest_posts.each do |post|
+      = render 'posts/post_alt', post: post
 
   %footer.widget-footer
     = btn_to 'Ver todas las noticias', posts_url, block: true
