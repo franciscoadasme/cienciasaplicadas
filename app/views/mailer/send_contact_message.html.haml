@@ -1,8 +1,9 @@
 - provide :title do
-  %h1.inline
-    #{@sender} ha enviado un mensaje
-  = content_tag :div, 'Es un estudiante interesado', class: 'alert' if @as_student
-- provide :ccontent_class, 'text-left'
+  %h1 #{@sender} ha enviado un mensaje
+  - if @as_student
+    %span.label.label-warning
+      %strong Atención!
+      Estudiante interesado
 
 = mtable_tag width: '100%' do
   %tr

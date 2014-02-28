@@ -23,8 +23,7 @@
           %tr
             = tspace_h hpadding
             %td{ valign: 'top', width: 600 - hpadding * 2 }
-              = tspace_v vpadding
-
+              = tspace_v vpadding * 0.65
               = mtable_tag width: '100%' do
                 %tr
                   %td#cheader
@@ -40,6 +39,7 @@
             = tspace_h hpadding
         / End of Content
 
+        = tspace_v vpadding * 0.65
         = render 'mailer/footer'
 
         = tspace_v vpadding

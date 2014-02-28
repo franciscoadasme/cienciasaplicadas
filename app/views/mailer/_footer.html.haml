@@ -4,10 +4,15 @@
 = mtable_tag id: 'tfooter', align: 'center', width: width do
   %tr
     %td
-      = mtable_tag width: wleft, align: 'left' do
+      = mtable_tag width: width, align: 'left' do
         = tspace_h padding
         %td{ width: wleft - padding/2, height: height, valign: 'middle' }
-          Copyright © 2013-2014 #{@group.abbr}
+          © 2014 Doctorado en Ciencias Aplicadas
+        %td.text-right.text-muted{ width: wright - padding/2, height: height, valign: 'middle' }
+          2 norte 685, Universidad de Talca, Chile
+          %br
+          Teléfono/Fax (+56 71) 2 201 733
+        = tspace_h padding
 
       - if content_for? :footer_link
         = mtable_tag width: wright, align: 'right' do

@@ -2,7 +2,8 @@ class Admin::MailerController < AdminController
   layout 'default_mailer'
 
   def preview_invitation_instructions
-    @user = User.invitation_not_accepted.last
+    @user = User.new first_name: 'Sergio', last_name: 'Valenzuela', nickname: 'svalenzuela', email: 'svalenzuela@utalca.cl'
+    @user.invited_by ||= User.find_by nickname: 'fadasme'
     @group = Group.first
     @from = @user.invited_by.email
     @subject = t 'devise.mailer.invitation_instructions.subject', invited_by: @user.invited_by.full_name, group: @group.abbr
