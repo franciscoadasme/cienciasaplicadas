@@ -1,32 +1,30 @@
-%aside.col-xs-4{ role: 'sidebar' }
-  .container{ data: { spy: 'affix', offset_top: 227, offset_bottom: 200 }}
-    %h3 Información
-    %dl
-      %dt Patrocinador
-      %dd= @event.promoter
+%h3 Información
+%dl
+  %dt Patrocinador
+  %dd= @event.promoter
 
-      %dt Lugar de realización
-      %dd= @event.location
+  %dt Lugar de realización
+  %dd= @event.location
 
-      %br
+  %br
 
-      %dt Fecha de inicio
-      %dd= l @event.start_date
+  %dt Fecha de inicio
+  %dd= l @event.start_date
 
-      %dt Fecha de término
-      %dd= l @event.start_date
+  %dt Fecha de término
+  %dd= l @event.start_date
 
-    %hr
+%hr
 
-    %p.text-muted
-      %span.label.label-primary Editado
-      Última actualización realizada hace
-      = time_tag @event.updated_at, time_ago_in_words(@event.updated_at), pubdate: true, title: l(@event.updated_at, format: :long)
-      atrás
+%p.text-muted
+  %span.label.label-primary Editado
+  Última actualización realizada hace
+  = time_tag @event.updated_at, time_ago_in_words(@event.updated_at), pubdate: true, title: l(@event.updated_at, format: :long)
+  atrás
 
-    %hr.divider
+%hr.divider
 
-    - today = DateTime.current
-    - date_params = { year: today.year, month: today.month }
-    = btn_to 'Mostrar mes actual', events_path(date_params), block: true
-    = btn_to 'Volver a eventos', events_path, block: true
+- today = DateTime.current
+- date_params = { year: today.year, month: today.month }
+= btn_to 'Mostrar mes actual', events_path(date_params), block: true
+= btn_to 'Volver a eventos', events_path, block: true

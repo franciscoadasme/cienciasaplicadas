@@ -1,9 +1,7 @@
 - provide :jumbotron, content_tag(:h1, @post.title)
 - provide :nav_header do
   = render 'site/nav_header', nav_data: nav_header_data_for_post(@post)
+- provide :sidebar, render('sidebar')
+- provide :content, true
 
-.row
-  .col-xs-8.post-content
-    = markdown @post.body
-
-  = render 'sidebar'
+= markdown @post.body

@@ -6,11 +6,8 @@
 - provide :banner_url, banner_url_for_event_type(@event.event_type)
 - provide :nav_header do
   = render 'site/nav_header', nav_data: nav_header_data_for_event(@event)
+- provide :sidebar, render('sidebar_show')
+- provide :content, true
 
-.row
-  .col-xs-8
-    .event-content
-      = content_tag :p, image_tag(@event.picture) if @event.picture.present?
-      = parse_content @event.description
-
-  = render 'sidebar_show'
+= content_tag :p, image_tag(@event.picture) if @event.picture.present?
+= parse_content @event.description
