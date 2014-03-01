@@ -267,7 +267,7 @@ class User < ActiveRecord::Base
     end
 
     def remove_from_mailing_list
-      MailingList.global.remove_member email
+      MailingList.global.remove_member(email) if accepted?
       true
     end
 
