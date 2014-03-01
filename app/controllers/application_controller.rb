@@ -12,6 +12,28 @@ class ApplicationController < ActionController::Base
   before_action :set_group
   before_action :store_location
 
+  protected
+    def redirect_to(options = {}, response_status = {})
+      [ :alert, :notice, :success, :error ].each do |flash_type|
+        flash = response_status[flash_type]
+        next unless flash.present?
+
+        content = case flash
+          when String then flash
+          else
+            tkey = flash.is_a?(Symbol) ? flash : flash_type
+            keypath = "controllers.#{controller_name}.#{action_name}.#{tkey}"
+            I18n.t(keypath)
+        end
+        response_status[flash_type] = content
+      end
+      super
+    end
+
+    def redirect_to_index(response_status = {})
+      redirect_to [ controller_name ], response_status
+    end
+
   private
     def set_group
       @group = Group.first

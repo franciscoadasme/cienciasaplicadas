@@ -16,6 +16,11 @@ class AdminController < ApplicationController
     @recent_publications = Publication.limit(5)
   end
 
+  protected
+    def redirect_to_index(response_status = {})
+      redirect_to [ :admin, controller_name ], response_status
+    end
+
   private
     def authorize_user!
       redirect_to admin_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
