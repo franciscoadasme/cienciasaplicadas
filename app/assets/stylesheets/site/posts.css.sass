@@ -1,96 +1,59 @@
-.sidebar-post
-  background-color: $sidebar-post-bg
-  color: $sidebar-post-color
+/*
+ * Posts header
+ */
+header[role="main"]
+  .posts-show h1
+    font-size: 3*$base-font-size
+    line-height: 1.15*3*$base-font-size
 
-  &:before
-    content: ''
-    position: absolute
-    top: $sidebar-header-height
-    bottom: 0
-    left: $sidebar-padding-horizontal + $sidebar-post-gutter*.25
-    width: 2px
-    background-color: $sidebar-post-border
+/*
+ * Post partial
+ */
+.post
+  margin-bottom: 60px
 
-  .sidebar-header
-    background-color: $sidebar-post-brand
+  .post-info
+    header
+      margin-bottom: 10px
+      padding-top: 20px
+      border-top: solid 5px $brand-primary
 
-  .sidebar-brand
-    background-color: $sidebar-post-brand
-    color: $sidebar-post-link-color
+      h2
+        margin: 0
 
-  .sidebar-nav
-    position: fixed
-    top: $sidebar-header-height
-    bottom: 0
-    width: $sidebar-fixed-width
-    overflow: auto
+  .post-meta
+    margin-top: 5px
 
-  & li
-    & > a
-      position: relative
-      display: block
-      padding: $sidebar-padding-vertical $sidebar-padding-horizontal
-      padding-left: $sidebar-padding-horizontal + $sidebar-post-gutter
-      background-color: $sidebar-post-bg
-      color: $sidebar-post-color
+  .post-paginate
+    ul
+      margin: 0
+      padding: 0
+    li
+      display: inline-block
+      margin-right: 15px
+      font-weight: $font-weight-bold
 
+    a
+      color: $text-muted
       &:hover
-        background-color: $sidebar-post-hover-bg
-        color: $sidebar-post-hover-color
+        text-decoration: none
+        color: $link-hover-color
 
-      &.active
-        background-color: $sidebar-post-active-bg
-        color: $sidebar-post-active-color
+  .post-content
+    margin-top: -5px
 
-        .text-muted
-          color: $sidebar-post-color
+    img
+      margin-bottom: 20px
+      padding-bottom: 195px
+      height: 0
 
-        &:after
-          content: "\f017"
-          margin-top: -2px
-          margin-left: -2px
-          height: $font-size-icon
-          background-color: $sidebar-post-active-bg
-          border-radius: 0
-          +fa-icon
+    .read-more
+      display: block
+      padding: 10px 0
+      font-weight: $font-weight-bold
 
-      &:before
-        content: ''
-        position: absolute
-        top: 0
-        bottom: 0
-        left: $sidebar-padding-horizontal + $sidebar-post-gutter*.25
-        width: 2px
-        background-color: $sidebar-post-border
+.post-meta
+  color: $text-muted
 
-      &:after
-        content: ''
-        position: absolute
-        top: $sidebar-padding-vertical * 1.5
-        left: $sidebar-padding-horizontal + $sidebar-post-gutter*.25 - $sidebar-post-point-size/2 + 1px
-        width: $sidebar-post-point-size
-        height: $sidebar-post-point-size
-        border-radius: $sidebar-post-point-size/2
-        background-color: $sidebar-post-color
-
-    &:first-child > a:before
-      top: $sidebar-padding-vertical * 1.5
-
-  time
-    font-size: $font-size-smaller
-    line-height: $font-size-smaller
+  .post-author
     font-weight: $font-weight-bold
-    text-transform: uppercase
-
-  .post-title
-    font-size: $font-size-large
-    line-height: $font-size-large
-    color: $sidebar-post-title-color
-
-  .post-excerpt
-    font-family: $font-family-serif
-    font-size: $font-size-normal
-    line-height: $font-size-normal * 1.4
-
-    .text-muted
-      color: darken($sidebar-post-color, 10%)

@@ -1,24 +1,7 @@
-- provide :sidebar_fixed, render('sidebar')
+- provide :jumbotron, content_tag(:h1, @post.title)
+- provide :nav_header do
+  = render 'site/nav_header', nav_data: nav_header_data_for_post(@post)
+- provide :sidebar, render('sidebar')
+- provide :content, true
 
-- if @post.present?
-  %h1= @post.title
-  %p.lead.text-muted
-    Posted by
-    = link_to @post.author do
-      = autosizing_image_tag display_user_image_url(@post.author), size: 28, class: 'img-circle'
-      = @post.author.display_name
-    = time_tag @post.created_at, "#{distance_of_time_in_words_to_now @post.created_at} ago", pubdate: true
-  = markdown @post.body
-
-  - if @post.edited?
-    %p.text-muted.text-right
-      Last update was done
-      = time_tag @post.updated_at, "#{distance_of_time_in_words_to_now @post.updated_at}"
-      ago
-- else
-  %h1 Posts
-  %p.lead
-    No posts available yet.
-    %br
-    %small.text-muted
-      Perhaps someone forgot to write it, or we are just starting up.
+= markdown @post.body

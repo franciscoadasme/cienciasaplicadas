@@ -14,4 +14,30 @@ module UserHelper
   def is_not_me? user
     !is_me?(user)
   end
+
+  def section_title_for_user_pubs(pubs)
+    pubs.first.flagged_by?(@user) ?
+      'Publicaciones destacadas' :
+      'Últimas Publicaciones'
+  end
+
+  def default_user_scope
+    params[:controller].classify.constantize.model_name.human.pluralize(:'es-CL').titleize + ' de'
+  end
+
+  def format_social_links(content)
+    content_tag :ul, class: 'list-unstyled' do
+      content.split(/\n/).each do |line|
+        service, url = line.split
+        concat social_link_item(service.delete(':'), url)
+      end
+    end
+  end
+
+  private
+    def social_link_item(service, url)
+      content_tag :li do
+        btn_to fa_icon(service, text: service.titleize), url, block: true
+      end
+    end
 end

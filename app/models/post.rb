@@ -15,9 +15,12 @@
 
 class Post < ActiveRecord::Base
   include Publishable
+  include Filterable
+  include Traversable
 
   extend FriendlyId
   friendly_id :title, use: [ :slugged ]
 
-  default_scope -> { order created_at: :desc }
+  scope :published, -> { where published: true }
+  scope :sorted, -> { order created_at: :desc }
 end

@@ -44,6 +44,8 @@ en:
         headline: 'Should describe in a nutshell your current job/activity/profession/state-of-mind (e.g. Research Assistant, Bioinformatician, etc.).'
         nickname: A shortened representation of your name used for profile url address. A good convention is using the first letter of your first name put together with your first surname (e.g. John Doe &rarr; jdoe).
         email: Be aware that by changing this you won't be able to sign in using the previous email and social integration will be lost if social account's email address is not change accordingly.
+        social_links: |
+          List of social links of scientific interest. Each line must conform to the following format: :[social-service] [url] (e.g. :twitter https://twitter.com/...).
       publication:
         title: Be careful to change it since this is used to match existing publications during import.
         volume: If your publication has been accepted but it's yet to be published, enter "In Press" keyphrase.

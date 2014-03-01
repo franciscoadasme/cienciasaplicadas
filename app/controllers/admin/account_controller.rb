@@ -23,9 +23,10 @@ class Admin::AccountController < AdminController
         :nickname,
         :email,
         :headline,
-        :signature,
+        :social_links,
         :bio,
-        :image_url
+        :image_url,
+        :banner
       )
     end
 end

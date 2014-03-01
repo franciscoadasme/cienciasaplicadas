@@ -1,10 +1,9 @@
 @import "reset";
 @import "variables";
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
-
 #tbackground {
   background-color: $body-color-bg;
+  color: #333;
 
   td {
     font-family: $base-font-family;
@@ -26,17 +25,42 @@
 .text-right { text-align: right; }
 
 h1 {
-  margin: 0;
+  margin: 0 0 5px;
   font-size: $font-size-big;
-  font-weight: $base-font-weight;
-  line-height: $font-size-big * 1.3333333333333;
+  font-weight: lighter;
+  line-height: $font-size-big * 1.2;
   text-transform: uppercase;
-  vertical-align: top;
-
-  &.inline {
-    display: inline;
-  }
 }
+
+.alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #faebcc;
+  border-radius: 3px;
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: $base-font-size - 1px;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  text-transform: none;
+}
+
+  .label-default {
+    background-color: #999;
+  }
+
+  .label-warning {
+    background-color: #f0ad4e;
+  }
 
 p {
   margin: 0;
@@ -51,17 +75,38 @@ a {
 img {
   max-width: 100%;
   height: auto;
+
+  &.img-thumbnail {
+    padding: 3px;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+  }
 }
 
 .btn {
-  padding-top: 12px;
-  padding-right: 20px;
-  padding-bottom: 12px;
-  padding-left: 20px;
+  padding-top: 10px;
+  padding-right: 50px;
+  padding-bottom: 10px;
+  padding-left: 50px;
   background-color: $button-color-bg;
   color: $button-color-content;
   text-decoration: none;
   text-transform: uppercase;
+  border: solid 1px darken(white, 15%);
+  border-radius: 2px;
+  font-weight: bold;
+
+  &:hover {
+    border-color: darken(white, 25%);
+    background-color: darken(white, 5%);
+  }
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eeeeee;
 }
 
 #theader {
@@ -77,16 +122,11 @@ img {
       font-size: $base-font-size * 1.25;
       font-weight: 700;
       line-height: $base-font-size * 1.25;
-      letter-spacing: 1px;
 
       small {
         font-size: $font-size-smallish;
         font-weight: $base-font-weight;
         letter-spacing: 0;
-      }
-
-      .text-muted {
-        color: lighten($header-color-bg, 35%);
       }
     }
   }
@@ -108,10 +148,6 @@ img {
 
 #tcontent {
   background-color: $body-color-content;
-
-  td {
-    text-align: center;
-  }
 }
 
   #cheader {
@@ -129,12 +165,13 @@ img {
 }
 
 #tfooter {
-  background-color: darken($body-color-bg, 7%);
+  // background-color: darken($body-color-bg, 7%);
   color: darken($body-color-bg, 60%);
-  border-top: solid 1px darken($body-color-bg, 20%);
+  border-top: solid 1px darken($body-color-bg, 10%);
 
   td {
     font-size: $font-size-smallish;
+    line-height: $font-size-smallish * 1.4;
   }
 
   a {

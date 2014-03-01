@@ -1,30 +1,15 @@
-window.whenReady = (callback) ->
-  $(document).ready callback
-  $(document).on 'page:load', callback
-
-whenReady ->
+$(document).ready ->
   $('a[href*=#]:not([href=#])').smoothScroll
     easing: 'swing'
     speed: 400
 
-  sidebar = $('.sidebar-fixed')
-  if sidebar.length
-    $('a:not([href*=#])').on 'click', (e) ->
-      current = location.pathname.match(/\/(users|posts)\//i)
-      href = $(@).attr('href').match(/\/(users|posts)\//i)
-      if current && (!href || current[1] != href[1])
-        sidebar.addClass 'fadein'
-        $('.gr-nav').addClass 'fadein'
+  $('[data-toggle="tooltip"]').tooltip()
 
-# Yummi loader
-$ ->
-  $('body, html').removeClass('off').addClass('on')
-
-$(document).on 'page:before-change', ->
-  $('body, html').removeClass('on').addClass('off')
-.on 'page:fetch', ->
-  $.smoothScroll 0
-.on 'page:change', ->
-  setTimeout ->
-    $('body, html').removeClass('off').addClass('on')
-  , 50
+  sidebar = $('aside[role="sidebar"]')
+  if sidebar.length && sidebar.siblings().outerHeight() - sidebar.outerHeight() > 200
+    sidebar.height sidebar.siblings().outerHeight()
+    sidebar.find('.container').affix
+      offset:
+        top: $('header[role="main"]').outerHeight()
+        bottom: ->
+          @.bottom = $('footer[role="main"]').outerHeight(true) + parseInt($('section[role="content"]').css('padding-bottom'), 10)

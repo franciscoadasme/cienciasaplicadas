@@ -15,7 +15,12 @@ module PublicationsHelper
   def author_item_for(author)
     content_tag :li do
       content = author.display_name
-      author.has_user? ? link_to(content, author.user) : content
+      if author.has_user?
+        if author.user == @user then content_tag :em, content
+        else link_to(content, author.user)
+        end
+      else content
+      end
     end
   end
 
@@ -33,21 +38,21 @@ module PublicationsHelper
     end
   end
 
-  def publication_meta_for(pub)
-    meta = link_to pub.journal.name, '#', class: 'publication-journal'
+  def publication_meta_for(pub, use_labels: true, include_issue: true)
+    meta = link_to pub.journal.name, pub.journal.website_url, class: 'publication-journal'
     meta += ", #{content_tag :b, pub.year, class: 'publication-year'}".html_safe
-    meta += ", #{"Volume " unless pub.pending?}#{pub.volume}" unless pub.volume.blank?
-    meta += ", Issue #{pub.issue}" unless pub.issue.blank?
-    meta += ", Pages #{pub.pages}" unless pub.start_page.blank?
+    meta += ", #{'Volumen ' if use_labels && !pub.pending?}#{pub.volume}" unless pub.volume.blank?
+    meta += ", #{'Número ' if use_labels}#{pub.issue}" if include_issue && pub.issue.present? && !pub.issue.zero?
+    meta += ", #{'Páginas ' if use_labels}#{pub.pages}" unless pub.start_page.blank?
   end
 
   private
     def author_item_more(pub, author_count)
       content_tag :li, class: 'more' do
-        concat ' and '
-        concat link_to("#{author_count} more",
+        concat ' y '
+        concat link_to("#{author_count} más",
           [ :author_list, :admin, pub ],
-          title: 'View All Authors',
+          title: 'Ver todos los autores',
           class: 'author_item_more',
           remote: true)
       end

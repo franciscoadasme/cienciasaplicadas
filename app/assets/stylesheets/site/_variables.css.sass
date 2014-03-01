@@ -1,109 +1,135 @@
 /*
+ * Layour
+ */
+$container-width:                          720px
+
+/*
  * Fonts
  */
-$font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
-$font-family-serif: Georgia, "Times New Roman", Times, serif
-$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace
+$font-family-sans-serif:                   "Helvetica Neue", Helvetica, Arial, sans-serif
+$font-family-sans-serif-upcase:            "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif
+$font-family-serif:                        Cambria, Georgia, "Times New Roman", Times, serif
+$font-family-monospace:                    Menlo, Monaco, Consolas, "Courier New", monospace
 
-$font-size-smaller: 11px
-$font-size-small: 12px
-$font-size-smallish: 14px
-$font-size-icon: 14px
-$font-size-normal: 16px
-$font-size-large: 20px
+// $font-size-smaller: 11px
+// $font-size-smallish: 14px
+// $font-size-icon: 14px
+$font-size-normal:                         14px
+$font-size-small:                          .85*$font-size-normal
+// $font-size-large: 20px
 
+$font-weight-lighter: 100
 $font-weight-light: 300
 $font-weight-regular: 400
 $font-weight-bold: 700
 
+// variant colors
+$brand-primary:                            lighten($palette1-2, 10%)
+
 /*
  * Base styling
  */
-$base-bg: white
+$body-bg:                                  white
+$text-color:                               $gray-dark
 
-$base-font-family: $font-family-sans-serif
-$base-font-size: $font-size-normal
-$base-font-weight: $font-weight-regular
-$base-line-height: $base-font-size * 1.65
-$base-color-text: $gray-dark
+$base-font-family:                         $font-family-sans-serif
+$base-font-size:                           $font-size-normal
+$base-font-weight:                         $font-weight-regular
+$base-line-height:                         $base-font-size * 1.65
 
 /*
  * Headings
  */
-$headings-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
-$headings-font-weight: $font-weight-light
-$headings-line-height: 1.25
-$headings-color: $color-primary
+$headings-font-family:                     $font-family-sans-serif-upcase
+$headings-font-weight:                     $font-weight-light
+$headings-line-height:                     1.25
+$headings-color:                           $text-color
 
 /*
  * Links
  */
-$link-color: $color-primary-dark
-$link-hover-color: darken($link-color, 5%)
+$link-color:                               lighten($palette1-2, 10%)
+$link-hover-color:                         darken($link-color, 5%)
 
 /*
- * Navbar
+ * Navigation
  */
-// Basics of a navbar
-$navbar-default-color:                 whitesmoke
-$navbar-default-bg:                    white
-$navbar-default-border:                darken($gray-lighter, 10%)
+$nav-width:                                320px
+$nav-bg:                                   $palette1-1
+$nav-spacing-h:                            20px
+$nav-spacing-v:                            65px
 
-// Navbar links
-$navbar-default-link-color:            $gray-light
-$navbar-default-link-hover-color:      white
-$navbar-default-link-hover-bg:         $color-primary
-$navbar-default-link-active-color:     white
-$navbar-default-link-active-bg:        $color-primary-dark
-$navbar-default-link-disabled-color:   lighten($navbar-default-bg, 20%)
-$navbar-default-link-disabled-bg:      transparent
+/*
+ * Header
+ */
+$header-card-bg:                           $palette1-2
+$header-card-spacing-h:                    20px
+$header-card-spacing-v:                    40px
+$header-card-count-size:                   128px
 
-// Navbar brand label
-$navbar-default-brand-color:           $navbar-default-link-color
-$navbar-default-brand-hover-color:     $navbar-default-link-color
-$navbar-default-brand-hover-bg:        transparent
+// /*
+//  * Navbar
+//  */
+// // Basics of a navbar
+// $navbar-default-color:                 whitesmoke
+// $navbar-default-bg:                    white
+// $navbar-default-border:                darken($gray-lighter, 10%)
 
-// Sidebar
-$sidebar-fixed-width:                  292px
-$sidebar-header-height:                $navbar-height
-$sidebar-padding-horizontal:           15px
-$sidebar-padding-vertical:             15px
+// // Navbar links
+// $navbar-default-link-color:            $gray-light
+// $navbar-default-link-hover-color:      white
+// $navbar-default-link-hover-bg:         $color-primary
+// $navbar-default-link-active-color:     white
+// $navbar-default-link-active-bg:        $color-primary-dark
+// $navbar-default-link-disabled-color:   lighten($navbar-default-bg, 20%)
+// $navbar-default-link-disabled-bg:      transparent
 
-// ------------------------------------
-$sidebar-user-bg:                      #2F2F2F
-$sidebar-user-border:                  darken($sidebar-user-bg, 10%)
-$sidebar-user-brand:                   $color-primary//#FE7377
-$sidebar-user-color:                   white
-$sidebar-user-link-color:              white
+// // Navbar brand label
+// $navbar-default-brand-color:           $navbar-default-link-color
+// $navbar-default-brand-hover-color:     $navbar-default-link-color
+// $navbar-default-brand-hover-bg:        transparent
 
-$sidebar-user-info-padding-vertical:   $sidebar-padding-vertical * 1.666666667
-$sidebar-user-portrait-size:           48px
-$sidebar-user-portrait-border-width:   3px
-$sidebar-user-info-stats-count:        3
+// // Sidebar
+// $sidebar-fixed-width:                  292px
+// $sidebar-header-height:                $navbar-height
+// $sidebar-padding-horizontal:           15px
+// $sidebar-padding-vertical:             15px
 
-$sidebar-user-nav-header-bg:           darken($sidebar-user-bg, 5%)
-$sidebar-user-nav-header-color:        lighten($sidebar-user-bg, 35%)
+// // ------------------------------------
+// $sidebar-user-bg:                      #2F2F2F
+// $sidebar-user-border:                  darken($sidebar-user-bg, 10%)
+// $sidebar-user-brand:                   $color-primary//#FE7377
+// $sidebar-user-color:                   white
+// $sidebar-user-link-color:              white
 
-$sidebar-user-nav-link-color:          white
-$sidebar-user-nav-link-bg:             $sidebar-user-bg
-$sidebar-user-nav-link-hover-color:    white
-$sidebar-user-nav-link-hover-bg:       lighten($sidebar-user-bg, 5%)
-$sidebar-user-nav-link-active-color:   white
-$sidebar-user-nav-link-active-bg:      darken($color-primary, 25%)
+// $sidebar-user-info-padding-vertical:   $sidebar-padding-vertical * 1.666666667
+// $sidebar-user-portrait-size:           48px
+// $sidebar-user-portrait-border-width:   3px
+// $sidebar-user-info-stats-count:        3
 
-// ------------------------------------
-$sidebar-post-gutter:                  32px
-$sidebar-post-point-size:              10px
+// $sidebar-user-nav-header-bg:           darken($sidebar-user-bg, 5%)
+// $sidebar-user-nav-header-color:        lighten($sidebar-user-bg, 35%)
 
-$sidebar-post-bg:                      $color-primary
-$sidebar-post-border:                  rgba(white, .35)
-$sidebar-post-brand:                   $color-primary-dark
-$sidebar-post-color:                   lighten($color-primary, 30%)
-$sidebar-post-link-color:              white
-$sidebar-post-title-color:             darken($sidebar-post-color, 60%)
+// $sidebar-user-nav-link-color:          white
+// $sidebar-user-nav-link-bg:             $sidebar-user-bg
+// $sidebar-user-nav-link-hover-color:    white
+// $sidebar-user-nav-link-hover-bg:       lighten($sidebar-user-bg, 5%)
+// $sidebar-user-nav-link-active-color:   white
+// $sidebar-user-nav-link-active-bg:      darken($color-primary, 25%)
 
-$sidebar-post-hover-bg:                darken($color-primary, 5%)
-$sidebar-post-hover-color:             $sidebar-post-color
+// // ------------------------------------
+// $sidebar-post-gutter:                  32px
+// $sidebar-post-point-size:              10px
 
-$sidebar-post-active-bg:               $color-primary-light
-$sidebar-post-active-color:            white
+// $sidebar-post-bg:                      $color-primary
+// $sidebar-post-border:                  rgba(white, .35)
+// $sidebar-post-brand:                   $color-primary-dark
+// $sidebar-post-color:                   lighten($color-primary, 30%)
+// $sidebar-post-link-color:              white
+// $sidebar-post-title-color:             darken($sidebar-post-color, 60%)
+
+// $sidebar-post-hover-bg:                darken($color-primary, 5%)
+// $sidebar-post-hover-color:             $sidebar-post-color
+
+// $sidebar-post-active-bg:               $color-primary-light
+// $sidebar-post-active-color:            white

@@ -1,0 +1,64 @@
+.stats
+  padding: 0
+  text-align: center
+
+  &.stats-stacked
+    .stat
+      margin-bottom: 10px
+      display: block
+
+      &:last-child
+        margin-bottom: 0
+
+  .stat,
+  .stats-heading
+    display: inline-block
+    margin-right: 20px
+    list-style: none
+
+  .stat
+    &:last-child
+      margin-right: 0
+
+  .stats-heading
+    position: relative
+    top: -15px
+
+.stat
+  display: inline-block
+  text-align: left
+
+.stat-block
+  display: block
+
+.stat-right
+  text-align: right
+
+.stat-number
+  font-size: 3*$base-font-size
+  line-height: 3*$base-font-size
+
+.stat-unit
+  text-transform: uppercase
+
+.stat-label
+  font-size: $base-font-size - 1px
+  line-height: $base-line-height
+  text-transform: uppercase
+  color: darken($text-muted, 15%)
+
+#chart-publication-per-year
+  margin-top: 40px
+
+#cloud-publication-per-journal
+  width: 100%
+  height: 345px
+  overflow: visible
+
+div.jqcloud
+  span[class^="w"]
+    cursor: default
+
+  @for $i from 1 through 10
+    span.w#{$i}
+      color: lighten($brand-primary, (10 - $i) * 4%)

@@ -1,9 +1,10 @@
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300")
+// @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300")
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:300,400")
 
 body
   font-family: $base-font-family
   font-weight: $base-font-weight
-  color: $base-color-text
+  color: $text-color
   +antialiased
 
 h1, h2, h3, h4, h5, h6,
@@ -12,24 +13,33 @@ h1, h2, h3, h4, h5, h6,
   font-weight: $headings-font-weight
   line-height: $headings-line-height
   color: $headings-color
+  text-align: left
+  hyphens: none
 
   &:first-child
     margin-top: 0
 
-.content p
-  margin-bottom: $base-font-size
-  font-family: $font-family-serif
-  font-size: $base-font-size
-  line-height: $base-line-height
+a
+  transition-property: color, background-color
+  transition-duration: .2s
 
-  &:last-child
-    margin-bottom: 0
+p:last-child
+  margin-bottom: 0
 
-  &.lead
-    font-size: $base-font-size * 1.25
-    line-height: $base-line-height * 1.25
+[class*="content"]
+  & > p,
+  & > section > p,
+  li
+    font-family: $font-family-serif
+    font-size: 1.15*$base-font-size
+    line-height: 1.15*$base-line-height
+    text-align: justify
+    hyphens: auto
 
-.content
   img
     width: 100%
-    height: auto
+    border-radius: 5px
+
+time[title]
+  cursor: help
+  border-bottom: 1px dotted $gray-light

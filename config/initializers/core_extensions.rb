@@ -14,7 +14,8 @@ module ActionView
       def short_time_ago_in_words(from_time, include_seconds_or_options = {})
         result = distance_of_time_in_words_to_now from_time, include_seconds_or_options
         result.gsub(/^[a-z ]+(?=\d)/i, '') # remove initial text
-              .gsub(/(?<=\d) [a-z]+/) { |m| m.strip.first } # 13 hours to 13h
+              .gsub(/(?<=\d) [[:alpha:]]+/) { |m| m.strip.first } # 13 hours to 13h
+              .scan(/\d+\w/).join ' ' # remove extra text such as around, less than, etc.
       end
     end
   end
@@ -54,6 +55,43 @@ class String
   def compact
     strip.blank? ? nil : strip
   end
+
+  def tclassify_and_constantize
+    ActiveSupport::Inflector.tclassify_and_constantize(self)
+  end
+end
+
+class Array
+  def each_with_prev_and_next
+    each_with_index do |item, i|
+      yield item, fetch(i - 1, last), fetch(i + 1, first)
+    end
+  end
+
+  def to_h
+    Hash[self]
+  end
+
+  def mean
+    sum.to_f / count
+  end
+end
+
+class Hash
+  def map_values
+    update(self) { |k,v| yield v }
+  end
+end
+
+class Range
+  def time_step(step, &block)
+    return enum_for(:time_step, step) unless block_given?
+
+    start_time, end_time = first, last
+    begin
+      yield(start_time)
+    end while (start_time += step) <= end_time
+  end
 end
 
 module ActiveSupport
@@ -62,6 +100,17 @@ module ActiveSupport
       salt  = SecureRandom.random_bytes(64)
       key   = ActiveSupport::KeyGenerator.new('Yuz1wa5b1CT6UzigdPe6').generate_key(salt)
       @crypt ||= new(key)
+    end
+  end
+
+  module Inflector
+    def self.tclassify_and_constantize(table_name)
+      model_names = I18n.t('activerecord.models').map_values &:underscore
+      model = model_names.keys.detect do |name|
+        tname = model_names[name]
+        [ tname, tname.pluralize(I18n.locale) ].include? table_name
+      end
+      (model || table_name).to_s.classify.constantize
     end
   end
 end

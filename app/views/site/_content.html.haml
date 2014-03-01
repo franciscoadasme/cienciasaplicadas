@@ -1,0 +1,13 @@
+%section{ role: 'content' }
+  .container
+    - if content_for?(:sidebar)
+      .row
+        .col-xs-8{ class: ('content' if content_for(:content)) }
+          = yield
+        %aside.col-xs-4{ role: 'sidebar' }
+          .container
+            = yield :sidebar_top
+            = yield :sidebar
+            = yield :sidebar_bottom
+    - else
+      = yield

@@ -1,6 +1,19 @@
-- collection.includes(:position).group_by(&:position).each do |position, users|
-  .row
-    .col-xs-12
-      %h2= position.name
-      %ul.list-users
-        = render users
+- grouped_collection = collection.sorted.group_by(&:position)
+
+- provide :sidebar_top do
+  %ul.stats.stats-stacked
+    - grouped_collection.each do |position, collection|
+      - count = collection.count
+      %li.stat
+        .shelf
+          %span.stat-number= count
+        %span.stat-label
+          = position.name.split.map { |n| n.pluralize count, :'es-CL' }.join ' '
+
+  %hr
+
+%ul.media-list.user-list
+  - grouped_collection.each_with_index do |content, i|
+    -# %h2= position.name.split.map{ |n| n.pluralize :'es-CL' }.join ' '
+    = content_tag :hr if i > 0
+    = render content[1]

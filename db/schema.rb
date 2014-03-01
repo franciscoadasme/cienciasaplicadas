@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129165331) do
+ActiveRecord::Schema.define(version: 20140227221426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(version: 20140129165331) do
     t.datetime "picture_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "events", ["name", "start_date"], name: "index_events_on_name_and_start_date", unique: true, using: :btree
+  add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140129165331) do
     t.string   "banner_image_url"
     t.string   "tagline"
     t.text     "address"
+    t.text     "overview"
   end
 
   add_index "groups", ["abbr"], name: "index_groups_on_abbr", unique: true, using: :btree
@@ -122,12 +125,16 @@ ActiveRecord::Schema.define(version: 20140129165331) do
     t.integer  "owner_id"
     t.integer  "author_id"
     t.integer  "edited_by_id"
-    t.boolean  "published",    default: false
+    t.boolean  "published",           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "trashed",      default: false
+    t.boolean  "trashed",             default: false
     t.integer  "position"
     t.string   "slug"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
   end
 
   add_index "pages", ["owner_id", "slug"], name: "index_pages_on_owner_id_and_slug", unique: true, using: :btree
@@ -138,9 +145,11 @@ ActiveRecord::Schema.define(version: 20140129165331) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "level"
+    t.string   "slug"
   end
 
   add_index "positions", ["name"], name: "index_positions_on_name", unique: true, using: :btree
+  add_index "positions", ["slug"], name: "index_positions_on_slug", unique: true, using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -256,9 +265,14 @@ ActiveRecord::Schema.define(version: 20140129165331) do
     t.string   "image_url"
     t.integer  "role",                   limit: 2, default: 0
     t.string   "headline"
-    t.text     "signature"
+    t.text     "social_links"
     t.text     "bio"
     t.integer  "position_id"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.datetime "last_import_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

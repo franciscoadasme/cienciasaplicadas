@@ -1,0 +1,12 @@
+- provide :jumbotron do
+  %h1 Momentos
+  = render 'nav_header'
+
+%article.moment
+  = image_tag @moment.photo, class: 'moment-photo'
+  = render 'moment_meta', moment: @moment
+
+%hr
+.text-center
+  = btn_to 'Mostrar solo mes actual', moments_path(date_params_for_this_month)
+  = btn_to 'Volver a Momentos', moments_path

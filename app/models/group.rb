@@ -12,6 +12,7 @@
 #  banner_image_url :string(255)
 #  tagline          :string(255)
 #  address          :text
+#  overview         :text
 #
 
 class Group < ActiveRecord::Base
@@ -34,6 +35,8 @@ class Group < ActiveRecord::Base
                          allow_nil: true
   validates :address, length: { within: 10..128 },
                  allow_blank: true
+  validates :overview, length: { in: 128..500 },
+                  allow_blank: true
 
   def display_name
     abbr || name

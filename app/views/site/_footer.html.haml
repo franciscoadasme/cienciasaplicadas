@@ -1,44 +1,30 @@
-%footer{ class: footer_class, role: 'contentinfo' }
+%footer{ role: 'main' }
   .container
     .row
-      - unless sidebar_fixed?
-        %div{ class: "col-xs-#{sidebar_fixed? ? 4 : 3}" }
-          %h5.gr-footer-heading= 'Lastest Posts'
+      .col-xs-7.lastest-items
+        - unless current_page?(root_url)
+          - if !controller?(:posts) && @lastest_posts.any?
+            = render 'site/widgets/footer/posts'
+          - elsif !controller?(:events) && @upcoming_events.any?
+            = render 'site/widgets/footer/events'
+        - else @lastest_publications.any?
+          = render 'site/widgets/footer/publications'
 
-          - if @lastest_posts.any?
-            %ul.list-group
-              - @lastest_posts.each do |post|
-                %li.list-group-item
-                  %small
-                    %strong.text-muted
-                      = time_tag post.created_at, "#{distance_of_time_in_words_to_now(post.created_at)} ago", pubdate: true
-                  = link_to post.title, post
-                  %span.text-muted
-                    Posted by #{post.author.first_name}
-              = link_to 'Read all our posts', posts_path, class: 'btn btn-default'
-          - else
-            %span.text-muted= 'There are no posts published so far.'
-
-      %div{ class: "col-xs-#{sidebar_fixed? ? 8 : 5}" }
-        %h5.gr-footer-heading= 'Lastest Publications'
-
-        - if @lastest_publications.any?
-          %ul.list-group
-            - @lastest_publications.each do |pub|
-              %li.list-group-item
-                %strong.text-muted= pub.year
-                = link_to pub.title, pub.link, target: '_blank'
-                %span.text-muted= abbreviated_authors_for pub
-
-          = link_to 'View all our publications', Page.named(:publications), class: 'btn btn-default'
+      .col-xs-4.col-xs-offset-1
+        - unless current_page?(contact_path)
+          = render 'site/widgets/footer/contactinfo'
         - else
-          %span.text-muted= 'There are no publications added so far.'
+          = render 'site/widgets/footer/quick_links'
 
-      %div{ class: footer_info_class }
-        %h5.gr-footer-heading= 'About'
-        %address= @group.address.nil? ? 'No address available.' : markdown(@group.address)
+        %hr
+        = btn_to fa_icon('lock', text: 'Ir a administración'), admin_path, block: true
 
-        = mail_to @group.email, fa_icon('envelope-o', text: @group.email)
+    %hr
 
-        %h5.gr-footer-heading= 'Admin'
-        = link_to fa_icon('lock', text: 'Enter admin area'), admin_path, class: 'btn btn-default'
+    .contentinfo
+      .pull-left
+        © 2014 Universidad de Talca, Chile
+
+      .pull-right
+        Diseñado y desarrollado por
+        = link_to 'Francisco Adasme', user_path(:fadasme)

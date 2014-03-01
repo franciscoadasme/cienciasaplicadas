@@ -1,13 +1,26 @@
-%li.list-item-user.col-xs-4
-  = link_to user, class: 'user-portrait' do
-    = autosizing_image_tag display_user_image_url(user), size: 128
-    .list-item-actions.toggleable
-      = fa_icon 'search 2x'
-    - if user.publications.any?
-      %span.user-publication-count.toggleable
-        = fa_icon 'files-o', text: user.publications.count, title: 'Number of publications'
+%li.media.user-item
+  = link_to user, class: 'pull-left magnifiable' do
+    = autosizing_image_tag display_user_image_url(user), size: 64, class: 'media-object'
 
-  .list-item-header= user.full_name
-  .list-item-meta
-    %span.user-headline
-      = user.headline || "@#{user.nickname}"
+  .media-body
+    %h3.media-heading
+      = user.full_name
+      %small.text-primary= user.position.name
+    %h4.media-subheading= user.headline
+    = mail_to user.email if user.settings.show_contact_page
+
+    .media-meta
+      - if user.publications.any?
+        %p
+          = link_to pluralize(user.publications.count, 'articulo'), [ user, :publications ]
+          con un factor de impacto promedio de
+          = link_to format_impact_factor(user.statistics.avg_impact_factor) || '?', [ user, :stats ]
+
+      - if user.projects.any?
+        %p
+          Ha participado en
+          = link_to pluralize(user.projects.count, 'proyecto'), '#'
+          = 'científico'.pluralize user.projects.count, :'es-CL'
+
+      -# - if user.publications.empty? && user.projects.empty?
+      -#   %p No hay registros de investigación.

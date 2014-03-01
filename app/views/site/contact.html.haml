@@ -1,14 +1,23 @@
 - provide :header do
-  .map-canvas
-    #map.map
-    .widget
-      %h1
-        Get
-        %strong in touch
-        %br
-        %small Write or call to us
-      %address
-        = markdown @group.address || 'No address available'
-      = mail_to @group.email, 'Send a message', class: 'btn btn-primary btn-lg mailto'
+  .jumbotron.contact-header
+    .container
+      %p.lead Haciendo ciencia desde
+      %h1 Talca, Chile
 
-- provide :no_content, true
+- provide :sidebar do
+  %h2 Contáctanos en
+  = mail_to @group.email, fa_icon('envelope-o', text: 'Escríbenos'), class: 'btn btn-default btn-block'
+  %hr
+  = content_tag :address, markdown(@group.address) unless @group.address.blank?
+  %hr
+  = btn_to fa_icon('twitter', text: 'Twitter'), '#', block: true
+  = btn_to fa_icon('facebook', text: 'Facebook'), '#', block: true
+  = btn_to fa_icon('linkedin', text: 'LinkedIn'), '#', block: true
+  = btn_to fa_icon('google-plus', text: 'Google Plus'), '#', block: true
+
+
+%h2 Envíanos tus consultas
+%p.lead.text-muted
+  Rellena este formulario o encuéntranos en los servicios sociales
+
+  = render 'contact_form'

@@ -19,7 +19,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
 
-  default_scope { order start_year: :desc, title: :asc }
+  scope :sorted, -> { order start_year: :desc, title: :asc }
 
   auto_strip_attributes :title, :position, :source, :identifier, :image_url
   VALID_TITLE_REGEX = /\A[[:alpha:] ,\.'-:]+\Z/i
@@ -42,5 +42,9 @@ class Project < ActiveRecord::Base
 
   def source_and_id
     "#{source} No. #{identifier}"
+  end
+
+  def has_timespan?
+    start_year.present?
   end
 end

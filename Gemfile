@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 gem 'rails', '~>4.0.0'
+gem 'rails-i18n', '~> 4.0.0'
 gem 'pg'
 
 gem 'haml-rails'
@@ -22,7 +23,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'sass-rails', '~> 4.0.0'
-gem 'bootstrap-sass-rails', '~> 3.0.0.3'
+gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -30,6 +31,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'font-awesome-rails', '~>4.0'
 gem 'select2-rails'
+gem 'chart-js-rails'
+gem 'jqcloud-rails'
 
 gem 'devise', '~> 3.2'
 gem 'devise-async'
@@ -41,9 +44,6 @@ gem 'gravatar_image_tag', '~> 1.2'
 
 gem 'nokogiri'
 gem 'premailer-rails'
-
-gem 'underscore-rails'
-gem 'gmaps4rails'
 gem 'mailgun'
 
 gem 'paperclip'

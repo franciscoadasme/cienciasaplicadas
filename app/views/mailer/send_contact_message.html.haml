@@ -1,0 +1,15 @@
+- provide :title do
+  %h1 #{@sender} ha enviado un mensaje
+  - if @as_student
+    %span.label.label-warning
+      %strong Atención!
+      Estudiante interesado
+
+= mtable_tag width: '100%' do
+  %tr
+    %td
+      = markdown @content
+
+      %hr
+      %p
+        Responder a la brevedad posible a la dirección de correo electrónico #{mail_to @email}.

@@ -1,31 +1,49 @@
-.list-publications
-  position: relative
+.publications
+  margin-bottom: 20px
+  padding: 0
 
-  .list-heading
-    position: absolute
-    right: 100%
-    margin-right: 16px
+.publication-group
+  list-style-type: none
 
-    h2
-      color: $text-muted
-      line-height: 1
+.publication
+  margin-bottom: 10px
+  list-style-type: none
 
-  .list-item-meta
-    display: inline
-    margin-left: 4px
+  &:last-child
+    margin-bottom: 0
 
-  .list-footer
-    margin-bottom: 16px
-    text-align: right
+.publication-title,
+.publication-authors,
+.publication-authors > li,
+.publication-meta
+  font-family: $font-family-sans-serif
+  line-height: 1.35
 
-.list-authors
+.publication-authors,
+.publication-authors > li,
+.publication-meta
+  font-size: $base-font-size - 1px
+
+.publication-title
+  margin: 0
+  font-size: $base-font-size
+  font-weight: $font-weight-bold
+
+.publication-authors
   +delimited-list(";")
   display: block !important
+  text-align: left
 
-  li:after
-    margin-left: -4px
+  em
+    font-weight: bold
+    font-style: normal
 
-  &:before
-    content: "\f0da"
-    +fa-icon
-    color: $text-muted
+.publication-meta
+  color: darken($text-muted, 10%)
+
+.publication-journal
+  font-style: italic
+
+.publication-year
+  font-weight: $font-weight-bold
+  color: $gray-dark

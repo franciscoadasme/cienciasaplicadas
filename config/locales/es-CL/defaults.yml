@@ -1,0 +1,32 @@
+es-CL:
+  date:
+    formats:
+      abbr: "%b '%y"
+      abbr_with_day: "%d de %b '%y"
+      month: '%b'
+
+    units:
+      day: día
+      month: mes
+      year: año
+
+    relative_day_names:
+      today: Hoy
+      yesterday: Ayer
+      tomorrow: Mañana
+
+  time:
+    formats:
+      abbr: "%b '%y"
+      abbr_with_day: "%d de %b '%y"
+      month: '%b'
+
+  period:
+    formats:
+      same_month: "%{start_day} hasta el %{end_day} de %{month}"
+      same_month_with_year: "%{start_day} hasta el %{end_day} de %{month} %{year}"
+      same_year: "%{start_date} hasta el %{end_date}"
+      same_year_with_year: "%{start_date} hasta el %{end_date} %{year}"
+      long: "%{start_date} hasta el %{end_date}"
+      connectors:
+        - hasta el

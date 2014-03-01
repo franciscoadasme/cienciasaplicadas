@@ -1,0 +1,18 @@
+%h3 Categorías
+%nav.sidebar-nav
+  %ul.nav.nav-pills.nav-stacked
+    %li{ class: ('active' if params[:tipo].blank?) }
+      = link_to events_path(params.merge(tipo: nil)) do
+        Todas
+        %span.badge.pull-right= Event.count
+
+    - Event::TYPES.map(&:to_s).each do |type|
+      %li{ class: ('active' if params[:tipo] == type) }
+        = link_to events_path(params.merge(tipo: type)) do
+          = type.titleize
+          %span.badge.pull-right= Event.typed(type).count
+
+%hr.divider
+
+= btn_to 'Sólo mes actual', events_path(date_params_for_this_month), block: true
+= btn_to 'Mostrar todo', events_path, block: true

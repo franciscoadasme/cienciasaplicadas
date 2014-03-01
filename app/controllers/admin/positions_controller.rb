@@ -53,7 +53,7 @@ class Admin::PositionsController < AdminController
 
   private
     def set_position
-      @position = Position.find params[:id]
+      @position = Position.friendly.find params[:id]
     end
 
     def position_params

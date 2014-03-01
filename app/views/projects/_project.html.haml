@@ -1,24 +1,12 @@
-%li.list-item-project
-  - unless project.image_url.blank?
-    %span.thumbnail
-      = autosizing_image_tag project.image_url, size: 64
+%li.project
+  = content_tag :p, project_timespan(project), class: 'lead project-timespan' if project.has_timespan?
 
-  - unless project.start_year.blank?
-    = content_tag :div, class: 'project-timespan' do
-      - time_span = project.start_year.to_s
-      - time_span += "&mdash;#{project.end_year}" unless project.end_year.blank?
-      = time_span.html_safe
+  %h3.project-title= link_to project.title, [ @user, project ]
 
-  .list-item-header
-    = link_to project.title, @user.nil? ? project : project_user_path(@user, project)
-
-  .list-item-meta
-    Participated as
+  .project-meta
+    Participa como
     %strong= project.position
+    en
+    %em= project.source_and_id
 
-    %br
-    = project.source_and_id
-
-  - unless project.description.blank?
-    .project-description
-      = excerpt project.description
+  = content_tag :p, excerpt(project.description), class: 'project-description' unless project.description.blank?

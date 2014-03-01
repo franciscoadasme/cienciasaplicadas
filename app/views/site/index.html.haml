@@ -1,36 +1,12 @@
-- unless @group.banner_image_url.blank?
-  - provide :css do
-    :sass
-      .gr-masthead:before
-        background-image: url(#{ @group.banner_image_url })
-
-- provide :no_nav, true
 - provide :header do
-  .gr-masthead
-    .container
-      %h1= @group.abbr
-      %p.lead
-        %span= @group.name
-      %p= @group.tagline
+  = render 'showcase'
 
-      %p
-        = link_to 'View publications', Page.named(:publications), class: 'btn btn-outline-inverse btn-lg'
+.row
+  .col-xs-6
+    = render 'site/widgets/overview' if @group.overview.present?
+    = render 'site/widgets/posts' if @lastest_posts.any?
+    = render 'site/widgets/graduated' if @graduated_users.any?
 
-    = link_to fa_icon('chevron-down'), '#content', class: 'goto'
-
-- provide :main_class, 'content-index'
-- provide :static_nav, true
-- provide :no_brand, true
-- provide :top, render('nav')
-
-%section#about
-  - unless @page.nil?
-    - content = markdown(@page.body)
-    - content.gsub!(/(<[a-z]+>\{\{.+\}\}<\/[a-z]+>)/) { |s| strip_tags(s) } # Removed tag around template sentences
-    = parse_template(content).html_safe
-  - else
-    %h1 No front page available yet.
-    %p.lead
-      Go to group customization section in the
-      = link_to 'admin panel', customize_admin_group_path
-      to setup it.
+  .col-xs-6
+    = render 'site/widgets/events' if @upcoming_events.any?
+    = render 'site/widgets/moments' if @recent_moments.any?

@@ -1,0 +1,7 @@
+es-CL:
+  activerecord:
+    models:
+      user: Usuario
+    methods:
+      user:
+        with_position: 'con_posicion'

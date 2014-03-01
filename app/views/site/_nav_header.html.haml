@@ -1,0 +1,6 @@
+%nav.nav-header
+  %ul
+    - nav_data.each do |direction, data|
+      %li
+        - icon_name = "angle-#{direction == :prev ? :left : :right }"
+        = link_to fa_icon(icon_name), data[:href], class: "nav-item-#{direction}", title: data[:title]

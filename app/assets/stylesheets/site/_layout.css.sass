@@ -3,19 +3,7 @@ body
   height: 100%
 
 body
-  padding-top: $navbar-height
-
-  &.wo-nav
-    padding-top: 0
-
-  &.with-sidebar-fixed
-    padding-left: $sidebar-fixed-width
-
-    .container
-      width: 970px * 8/12 !important
-
-    .navbar-fixed-top
-      left: $sidebar-fixed-width
+  padding-left: $nav-width
 
   & > .debug_dump
     position: fixed
@@ -23,32 +11,36 @@ body
     bottom: 5px
     margin-bottom: 0
     max-width: 384px
+    max-height: 400px
+    opacity: .25
 
-#content
-  padding: 100px 0
-  background-color: $base-bg
+    &:hover
+      opacity: 1
 
-// Loading animation
-html
-  &:before
-    +fa-icon
-    content: "\f110"
-    position: absolute
-    top: 50%
-    left: 50%
-    margin-top: -$font-size-icon * 2
-    margin-left: -$font-size-icon * 2
-    font-size: $font-size-icon * 4
-    transition: .2s
-    transition-delay: 0
-    visibility: hidden
-    opacity: 0
-    animation: spin 2s infinite linear
-    animation-play-state: paused
+.container
+  width: $container-width !important
 
-  &.off:before
-    visibility: visible
-    opacity: .65
-    transition: .65s
-    transition-delay: .5s
-    animation-play-state: running
+section[role="content"]
+  padding: 60px 0 100px
+
+  section[id]
+    margin-bottom: 40px
+
+    &:last-child
+      margin-bottom: 0
+
+aside[role="sidebar"]
+  & > .container
+    padding: 0
+    width: 210px !important
+
+    &.affix
+      top: 60px
+
+    &.affix-bottom
+      position: absolute
+      top: auto !important
+      bottom: 0
+
+  .divider
+    border-top: solid 1px $gray-lighter

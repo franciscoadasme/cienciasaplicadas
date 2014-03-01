@@ -32,6 +32,8 @@ class Admin::PublicationsController < AdminController
     @publications = parse_ris_content.map { |pubdata|create_or_update_publication pubdata }
     @import_total = @result.map { |k, v| v.count }.reduce &:+
 
+    current_user.update! last_import_at: DateTime.current
+
     flash.now[:success] = tf '.success', count: @import_total
   end
 

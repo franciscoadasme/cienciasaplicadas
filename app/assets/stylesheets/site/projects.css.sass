@@ -1,37 +1,68 @@
-.list-item-project
-  position: relative
+header[role="main"]
+  .projects-show h1
+    font-size: 2*$base-font-size
+    line-height: 1.15*2*$base-font-size
 
-  .thumbnail
-    position: absolute
-    top: 3px
-    left: -(64px + 5px*2 + 15px)
+ul.projects
+  margin: 0
+  padding: 0
 
-  .project-timespan
-    color: $text-muted
+li.project
+  margin-bottom: 20px
+  list-style-type: none
 
-  .project-description
-    margin-top: 5px
+  &:last-child
+    margin-bottom: 0
 
-    p
-      font-size: $font-size-smallish
-      line-height: $font-size-smallish * 1.5
-      color: $gray
+.project-title
+  margin: 0
 
-.project-description
-  margin-top: $base-font-size
+.project-timespan
+  margin-bottom: 0
+  color: darken($text-muted, 15%)
 
-.list-collaborators
-  +delimited-list(",")
+.project-meta
+  margin-bottom: 5px
+  color: $text-muted
 
-  li:nth-last-child(-n+2):after
-    content: " and"
+  strong, em
+    font-style: normal
+    color: $text-color
 
-  li:last-child:after
-    content: ''
+// .list-item-project
+//   position: relative
 
-  a.user-external:after
-    +fa-icon
-    content: " \f08e"
+//   .thumbnail
+//     position: absolute
+//     top: 3px
+//     left: -(64px + 5px*2 + 15px)
 
-  span.user-external
-    color: $base-color-text
+//   .project-timespan
+//     color: $text-muted
+
+//   .project-description
+//     margin-top: 5px
+
+//     p
+//       font-size: $font-size-smallish
+//       line-height: $font-size-smallish * 1.5
+//       color: $gray
+
+// .project-description
+//   margin-top: $base-font-size
+
+// .list-collaborators
+//   +delimited-list(",")
+
+//   li:nth-last-child(-n+2):after
+//     content: " and"
+
+//   li:last-child:after
+//     content: ''
+
+//   a.user-external:after
+//     +fa-icon
+//     content: " \f08e"
+
+//   span.user-external
+//     color: $base-color-text

@@ -1,144 +1,41 @@
-.list-item-user
-  text-align: center
+.user-portrait
+  @extend .magnifiable
+  display: inline-block
 
-  .user-portrait
-    position: relative
-    display: inline-block
-    margin-bottom: 4px
-    width: 128px
-    height: 128px
+.user-list
+  margin: 20px 0
 
-    &:hover
-      img
-        filter: saturate(50%)
+.user-item
+  & > *
+    font-family: $font-family-sans-serif
+    font-size: $base-font-size
+    line-height: $base-line-height
 
-      &:before
-        background-color: rgba(black, .15)
+  & > .pull-left
+    margin-right: 20px
 
-      &:before,
-      .toggleable
-        visibility: visible
-        opacity: 1
-
+  .magnifiable
+    img,
     &:before
-      content: ''
-      top: 0
-      left: 0
-      width: 100%
-      height: 100%
+      border-radius: 50%
 
-      border-radius: 8px
-      z-index: 1
+  .media-heading,
+  .media-subheading
+    line-height: 1
 
-    &:before,
-    img
-      border-radius: 8px
+  .media-heading
+    font-size: 1.5*$base-font-size
 
-    &:before,
-    .toggleable
-      position: absolute
-      transition: .2s
-      visibility: hidden
-      opacity: 0
+  .media-subheading
+    margin-bottom: 2px
+    font-size: 1.35*$base-font-size
 
-    .toggleable
-      z-index: 2
-      color: white
+  .media-meta
+    margin-top: 10px
 
-  .list-item-actions
-    top: 50%
-    margin-top: -14px
-    width: 100%
+    p
+      margin-bottom: 0
 
-  .user-publication-count
-    left: 10px
-    bottom: 6px
-    font-size: $font-size-large
-    line-height: $font-size-large
-    vertical-align: bottom
-
-    .fa
-      font-size: $font-size-icon
-      line-height: $font-size-large
-
-  .list-item-header
-    color: $color-primary
-
-.sidebar-user
-  background-color: $sidebar-user-bg
-  color: $sidebar-user-color
-
-  a
-    color: $sidebar-user-link-color
-
-  .sidebar-header
-    background-color: $sidebar-user-brand
-
-  .sidebar-widget-header
-    h3, h4
-      color: $sidebar-user-color
-
-    h4
-      font-weight: $font-weight-bold
-
-  .sidebar-nav-header
-    background-color: $sidebar-user-nav-header-bg
-    color: $sidebar-user-nav-header-color
-
-  .sidebar-nav
-    a
-      color: $sidebar-user-nav-link-color
-      background-color: $sidebar-user-nav-link-bg
-
-      &:hover
-        color: $sidebar-user-nav-link-hover-color
-        background-color: $sidebar-user-nav-link-hover-bg
-
-    .active a
-      color: $sidebar-user-nav-link-active-color
-      background-color: $sidebar-user-nav-link-active-bg
-
-
-$_user-info-padding-left: $sidebar-user-portrait-size + $sidebar-user-portrait-border-width * 2 + $sidebar-padding-horizontal * 2
-.sidebar-user-info
-  padding-top: $sidebar-user-info-padding-vertical
-  padding-bottom: $sidebar-user-info-padding-vertical
-  padding-left: $_user-info-padding-left
-  border-bottom-color: $sidebar-user-border
-
-.sidebar-user-portrait
-  position: absolute
-  left: $sidebar-padding-horizontal
-  box-sizing: content-box
-  border-radius: 50%
-  border: solid $sidebar-user-portrait-border-width lighten($sidebar-user-bg, 10%)
-
-.sidebar-user-info-stats
-  position: relative
-  bottom: -$sidebar-user-info-padding-vertical
-  left: -$_user-info-padding-left
-
-  box-sizing: content-box
-  margin: 0
-  padding: 0
-  width: $sidebar-fixed-width
-
-  border-top: solid 1px $sidebar-user-border
-
-  +clearfix
-
-  li
-    float: left
-    padding: $sidebar-user-info-padding-vertical * .25 $sidebar-padding-horizontal * 0
-    width: $sidebar-fixed-width / $sidebar-user-info-stats-count
-
-    border-right: solid 1px $sidebar-user-border
-    &:last-child
-      border-right: none
-
-    list-style-type: none
-    text-align: center
-
-  .stat-count
-    display: block
-    font-size: $base-font-size * 1.15
+    em
+      font-style: normal
+      color: darken($text-muted, 25%)

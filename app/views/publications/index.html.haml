@@ -1,0 +1,12 @@
+- provide :jumbotron do
+  = render 'users/scope'
+
+  %h1= pluralize @pubs.count, 'Publicación', 'Publicaciones'
+
+- provide :sidebar, render('sidebar')
+
+= render 'collection', collection: @pubs
+
+%hr
+%p.lead.text-muted.text-center
+  No hay más publicaciones disponibles

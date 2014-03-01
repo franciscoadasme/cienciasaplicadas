@@ -2,24 +2,32 @@
 #
 # Table name: pages
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)
-#  tagline      :string(255)
-#  body         :text
-#  owner_id     :integer
-#  author_id    :integer
-#  edited_by_id :integer
-#  published    :boolean          default(FALSE)
-#  created_at   :datetime
-#  updated_at   :datetime
-#  trashed      :boolean          default(FALSE)
-#  position     :integer
-#  slug         :string(255)
+#  id                  :integer          not null, primary key
+#  title               :string(255)
+#  tagline             :string(255)
+#  body                :text
+#  owner_id            :integer
+#  author_id           :integer
+#  edited_by_id        :integer
+#  published           :boolean          default(FALSE)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  trashed             :boolean          default(FALSE)
+#  position            :integer
+#  slug                :string(255)
+#  banner_file_name    :string(255)
+#  banner_content_type :string(255)
+#  banner_file_size    :integer
+#  banner_updated_at   :datetime
 #
 
 class Page < ActiveRecord::Base
   include Publishable
   include Seedable
+
+  has_attached_file :banner, styles: { original: '1920x1080#',
+                                          thumb: '640x360#' },
+                    convert_options: { original: '-modulate 100,50,100 -blur 0x2' }
 
   extend FriendlyId
   friendly_id :tagline, use: [ :slugged, :scoped ], scope: :owner
@@ -31,7 +39,7 @@ class Page < ActiveRecord::Base
 
   default_scope -> { order :position }
   scope :global, -> { where owner_id: nil }
-  scope :navigable, -> { global.published.where.not tagline: 'front' }
+  scope :navigable, -> { global.published }
   scope :named, -> (name) { friendly.find name.to_s }
 
   before_create :set_edited_by_if_needed
@@ -41,6 +49,11 @@ class Page < ActiveRecord::Base
                         length: { within: 4..20 },
                     uniqueness: { case_sensitive: false,
                                            scope: :owner_id }
+  validates :body, presence: true,
+                     length: { minimum: 128 }
+  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+                                        size: { in: 0..5.megabytes },
+                                 allow_blank: true
 
   def self.named_pages
     @pages ||= Hash[load_seeds.map { |data| [ data['tagline'], data ] }].with_indifferent_access

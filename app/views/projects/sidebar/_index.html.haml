@@ -1,0 +1,19 @@
+%nav.sidebar-nav
+  %ul.stats.stats-stacked
+    - @positions.each do |position, count|
+      %li.stat
+        .shelf
+          %span.stat-number= count
+        %span.stat-label
+          como
+          %strong= position
+
+  %h2 Filtrar por año
+
+  %ul.nav.nav-pills
+    %li{ class: ('active' unless params[:year]) }
+      = link_to 'Todos los años', [ @user, :projects ]
+
+    - @projects_range.each do |year|
+      %li{ class: ('active' if params[:year].to_i == year) }
+        = link_to year, user_projects_path(@user, year: year)

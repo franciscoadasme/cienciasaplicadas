@@ -1,0 +1,5 @@
+%h4.footer-heading Últimas noticias
+%ul.media-list
+  - @lastest_posts.each do |post|
+    = render 'posts/post_alt', post: post
+= btn_to 'Ver todos las noticias', posts_path, block: true

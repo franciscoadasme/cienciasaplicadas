@@ -29,7 +29,15 @@ class Publication < ActiveRecord::Base
   has_many :users, through: :authors
 
   scope :sorted, -> { order year: :desc, month: :desc, title: :asc }
-  scope :default, -> { all }
+  scope :default, -> { sorted }
+  scope :flagged, -> { joins(:authors).where(:'authors.flagged' => true).uniq }
+
+  class << self
+    def recent
+      sorted.limit(5)
+    end
+  end
+  include Localizable
 
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
 
@@ -82,5 +90,9 @@ class Publication < ActiveRecord::Base
 
   def unlinked_authors
     authors.unlinked
+  end
+
+  def flagged_by?(user)
+    authors.with_user(user).first.flagged?
   end
 end

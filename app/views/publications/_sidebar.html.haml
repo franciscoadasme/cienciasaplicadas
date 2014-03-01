@@ -1,0 +1,15 @@
+%nav.sidebar-nav
+  %ul.nav.nav-pills.nav-stacked
+    - @years.each do |year|
+      %li{ class: ('active' if year == @years.first) }
+        = link_to year, "##{year}"
+
+  %hr
+  = btn_to 'Ver productividad', [ @user, :stats ], block: true
+  = btn_to 'Ver proyectos', [ @user, :projects ], block: true
+
+  %hr
+  %p.text-muted
+    Última actualización realizada hace
+    = time_tag @user.last_import_at, time_ago_in_words(@user.last_import_at), title: l(@user.last_import_at, format: :long)
+    atrás

@@ -93,18 +93,28 @@ CbsmWebsite::Application.routes.draw do
   end
   get 'admin', to: 'admin#dashboard'
 
-  resources :users, only: [ :index, :show ] do
-    member do
-      get 'projects/:project_id', to: 'projects#show', as: :project
-      get ':page_id', to: :show, as: :page
-      root to: redirect('/users/%{id}/about')
-    end
+  scope 'miembros/:user_id' do
+    get 'proyectos(/:year)', to: 'projects#index', as: :user_projects, constraints: { year: /\d{4}/ }
+    get 'proyectos/:id', to: 'projects#show', as: :user_project
+    get 'publicaciones', to: 'publications#index', as: :user_publications
+    get 'productividad', to: 'users#stats', as: :user_stats
+    get ':id', to: 'pages#show', as: :user_page
+    root to: 'users#show', as: :user
   end
 
-  resources :posts, only: [ :index, :show ]
+  constraints(year: /\d{4}/, month: /([1-9]|1[012])/) do
+    get 'noticias(/:year(/:month))', to: 'posts#index', as: :posts
+    get 'noticias/:year/:month/:day/:id', to: 'posts#show', as: :post
 
-  get :contact, to: 'site#contact'
-  get ':page', to: 'site#show', as: :page
+    get 'eventos(/:year(/:month))', to: 'events#index', as: :events
+    get 'eventos/:id', to: 'events#show', as: :event
+
+    get 'momentos(/:year(/:month))', to: 'moments#index', as: :moments
+    get 'momentos/:year/:month/:day/:id', to: 'moments#show', as: :moment
+  end
+
+  match :contacto, to: 'site#contact', via: [ :get, :post ], as: :contact
+  get ':id', to: 'pages#show', as: :page
 
   root to: 'site#index'
 end

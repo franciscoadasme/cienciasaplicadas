@@ -1,0 +1,20 @@
+.showcase
+  .card
+    .frame
+      %span.card-title Productividad
+      %span.card-count
+        = @publication_count
+        %span.footnote Artículos
+      .card-description
+        %p con un factor de impacto promedio de #{@publication_per_year.round 1}
+        = link_to 'Ver más', page_path(:investigacion)
+
+  .card
+    .frame
+      %span.card-title Docencia
+      %span.card-count
+        = @students_count
+        %span.footnote Estudiantes
+      .card-description
+        %p con un total de #{2} egresados desde el año 2006 a la fecha
+        = link_to 'Ver más', page_path(:estudiantes)

@@ -1,0 +1,10 @@
+.widget
+  %h2.widget-title
+    Próximos
+    %span.highlight Eventos
+
+  %ul.media-list
+    = render @upcoming_events
+
+  %footer.widget-footer
+    = btn_to 'Ver todos los eventos', events_path, block: true

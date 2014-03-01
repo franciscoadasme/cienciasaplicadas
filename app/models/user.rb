@@ -30,14 +30,22 @@
 #  image_url              :string(255)
 #  role                   :integer          default(0)
 #  headline               :string(255)
-#  signature              :text
+#  social_links           :text
 #  bio                    :text
 #  position_id            :integer
+#  banner_file_name       :string(255)
+#  banner_content_type    :string(255)
+#  banner_file_size       :integer
+#  banner_updated_at      :datetime
+#  last_import_at         :datetime
 #
 
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nickname
+
+  has_attached_file :banner, styles: { original: '1920x823#' },
+                    convert_options: { original: '-modulate 100,50,100 -blur 0x2' }
 
   ROLE_ADMIN = 9
   ROLE_SUPER_USER = 1
@@ -50,8 +58,19 @@ class User < ActiveRecord::Base
   has_many :projects
   belongs_to :position
 
-  default_scope { order :first_name, :last_name, role: :desc, invitation_sent_at: :desc }
-  scope :default, -> { where.not(invitation_accepted_at: nil) }
+  scope :sorted, -> { joins(:position).order 'positions.level', :last_name, :first_name }
+  scope :default, -> { where.not(invitation_accepted_at: nil).sorted }
+
+  class << self
+    def with_position(*args)
+      joins(:position).where positions: { slug: args }
+    end
+
+    def named(nickname)
+      find_by nickname: nickname
+    end
+  end
+  include Localizable
 
   devise :database_authenticatable,
          #:recoverable,
@@ -80,7 +99,7 @@ class User < ActiveRecord::Base
     InvitationMailer.invite_message(self).deliver
   end
 
-  auto_strip_attributes :first_name, :last_name, :nickname, :headline, :image_url, :signature, :bio
+  auto_strip_attributes :first_name, :last_name, :nickname, :headline, :image_url, :social_links, :bio
 
   VALID_NAME_REGEX = /\A[[:alpha:] ,\.'-]+\Z/i
   VALID_NICKNAME_REGEX = /\A[a-z]+$\Z/
@@ -96,13 +115,18 @@ class User < ActiveRecord::Base
                      uniqueness: true
   validates :image_url, url: true,
                 allow_blank: true
-  validates :headline, length: { in: 4..40 },
-                  allow_blank: true
-  validates :signature, length: { in: 10..256 },
-                   allow_blank: true
+  validates :headline, presence: true,
+                         length: { in: 4..40 }
+  validates :social_links, format: { with: /^:[a-z-]+ .+$/,
+                                multiline: true },
+                      allow_blank: true
+  validate :social_links_urls_must_be_valid
   validates :bio, length: { minimum: 100 },
              allow_blank: true
   validates :position, presence: true
+  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+                                        size: { in: 0..5.megabytes },
+                                 allow_blank: true
 
   def self.from_omniauth(auth, signed_in_resource=nil)
     user = where("email = ? OR nickname = ? OR (provider = ? AND uid = ?)",
@@ -250,5 +274,11 @@ class User < ActiveRecord::Base
     def update_mailing_list_member_if_needed
       MailingList.global.update_member email_was, email if email_changed?
       true
+    end
+
+    def social_links_urls_must_be_valid
+      social_links.split(/\n/).each do |line|
+        errors.add :social_links, 'has one or more invalid urls' unless UrlValidator.url_valid?(line.split.last)
+      end if social_links.present?
     end
 end

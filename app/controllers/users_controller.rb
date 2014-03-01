@@ -1,22 +1,16 @@
 class UsersController < SiteController
-  before_action :set_user, only: [ :show ]
+  before_action :set_user
 
   def show
-    page_id = params[:page_id]
-    case page_id
-    when 'about', nil
-      @page = Page.new title: "Hi, I'm #{@user.first_name}", body: @user.bio
-    when 'publications', 'projects'
-      @page = Page.new title: page_id.titleize, body: "{{ @user.#{page_id} }}"
-    else
-      @page = @user.pages.friendly.find page_id
-    end
+    @user_pubs = @user.publications.flagged.sorted
+    @user_pubs = @user.publications.sorted.limit(3) if @user_pubs.empty?
+  end
 
-    @user_pages = @user.pages.published
+  def stats
   end
 
   private
     def set_user
-      @user = User.friendly.find(params[:id])
+      @user = User.friendly.find params[:user_id]
     end
 end

@@ -1,0 +1,18 @@
+- headings = html_headings(content)
+- if headings.any?
+  %nav.sidebar-nav
+    %ul.nav.nav-pills.nav-stacked
+      %li.active= link_to @page.title, "##{@page.title.parameterize}"
+
+      - headings.each do |heading|
+        %li= link_to heading, "##{heading.parameterize}"
+
+  %hr.divider
+
+%p.text-muted
+  %span.label.label-primary Editado
+  Última edición por
+  = link_to @page.edited_by.display_name, @page.edited_by
+  hace
+  = time_tag @page.updated_at, time_ago_in_words(@page.updated_at), pubdate: true
+  atrás

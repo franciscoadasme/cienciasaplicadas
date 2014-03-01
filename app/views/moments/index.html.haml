@@ -1,0 +1,23 @@
+- provide :jumbotron do
+  %h1 Momentos
+  = render 'nav_header'
+
+- if @moments.any?
+  %ul.row.moments
+    %header
+      %span.heading= format_date @end_date, :abbr_with_day
+
+    - odds, evens = @moments.partition.each_with_index{ |el, i| i.even? }
+    .col-xs-6.left-column
+      = render odds
+    .col-xs-6.right-column
+      = render evens
+
+  %p.lead.text-muted.text-center
+    No hay más momentos disponibles
+- else
+  %p.lead.text-muted.text-center
+    No se encontraron momentos durante este periodo
+  %p.text-muted.text-center
+    Seleccione otro periodo o vuelva a la
+    = link_to 'sección inicial', moments_path

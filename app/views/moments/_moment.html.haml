@@ -1,0 +1,5 @@
+%li.moment-item
+  = link_to moment_permalink(moment), class: 'magnifiable' do
+    = autosizing_image_tag moment.photo.url(:medium), class: 'moment-photo'
+
+  = render 'moment_meta', moment: moment, time_format: :short
