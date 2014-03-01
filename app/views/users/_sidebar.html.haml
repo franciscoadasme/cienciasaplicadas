@@ -1,6 +1,7 @@
 %nav.sidebar-nav
-  %h2 Enlaces sociales
-  = format_social_links @user.social_links
+  - if @user.social_links.present?
+    %h2 Enlaces sociales
+    = format_social_links @user.social_links
 
   %h2 Ir a la sección
   %ul.nav.nav-pills.nav-stacked
