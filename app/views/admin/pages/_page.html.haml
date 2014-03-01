@@ -1,6 +1,6 @@
 = content_tag_for :li, page, class: "list-group-item list-group-item-page" do
   %h3
-    = link_to page.title, page.owner.nil? ? page_path(page) : page_user_path(current_user, page), target: '_blank'
+    = link_to page.title, page.owner.nil? ? page_path(page) : user_page_path(current_user, page), target: '_blank'
     %small= page.marked_as || page.tagline
 
   - unless sortable_pages?
@@ -36,7 +36,7 @@
           = item_action 'Publish Page', publish_admin_page_path(page.id), method: :patch, primary: true
         = edit_action_for edit_admin_page_path(page.id), primary: page.published?
 
-        = item_action (page.published? ? 'View Page' : 'Preview'), page.owner.nil? ? page_path(page) : page_user_path(current_user, page), blank: true
+        = item_action (page.published? ? 'View Page' : 'Preview'), page.owner.nil? ? page_path(page) : user_page_path(current_user, page), blank: true
         .pull-right
           - if page.marked?
             %span.btn.disabled= %q{Can't be trashed}
