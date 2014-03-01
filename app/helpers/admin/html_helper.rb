@@ -48,11 +48,13 @@ EOS
   def sidebar_menu_item(title_or_controller, path_or_options=nil, options={}, &block)
     path = sidebar_menu_item_path title_or_controller, path_or_options
 
-    css = [ 'sidebar-menu-item', options.delete(:class).try(:split) ].compact
+    css = [ 'sidebar-menu-item' ]
+    css << path_or_options.delete(:class).try(:split) if path_or_options.is_a?(Hash)
+    css << options.delete(:class).try(:split)
     css << 'active' if sidebar_menu_item_active?(title_or_controller, path_or_options, options)
     html_options = path_or_options.is_a?(Hash) ? path_or_options.merge(options) : options
 
-    content_tag :li, class: css.join(' ') do
+    content_tag :li, class: css.compact.join(' ') do
       link_to(path, html_options) do
         concat sidebar_menu_item_title(title_or_controller)
         yield if block_given?
