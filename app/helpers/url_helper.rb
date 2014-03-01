@@ -87,7 +87,6 @@ module UrlHelper
   end
 
   def path_to_index(controller)
-    controller = controller.to_s.prepend! 'admin/' unless params[:controller].include?('/')
     [ :admin, controller ]
   end
 end
