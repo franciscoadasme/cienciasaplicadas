@@ -1,0 +1,4 @@
+es-CL:
+  activerecord:
+    models:
+      position: Posición

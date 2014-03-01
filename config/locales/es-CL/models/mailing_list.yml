@@ -1,0 +1,4 @@
+es-CL:
+  activerecord:
+    models:
+      mailing_list: Lista de correo

@@ -4,9 +4,6 @@ class AdminController < ApplicationController
     redirect_to admin_path, alert: t('devise.failure.unauthorized') if top_level_controller?(:group) && !current_user.super_user?
   end
 
-  before_action :set_locale
-  after_action :restore_locale
-
   layout 'admin'
 
   def dashboard
@@ -24,13 +21,5 @@ class AdminController < ApplicationController
   private
     def authorize_user!
       redirect_to admin_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
-    end
-
-    def set_locale
-      I18n.locale = :en
-    end
-
-    def restore_locale
-      I18n.locale = 'es-CL'
     end
 end

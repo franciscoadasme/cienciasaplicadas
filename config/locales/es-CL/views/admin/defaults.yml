@@ -1,0 +1,8 @@
+es-CL:
+  views:
+    admin:
+      _sidebar:
+        items:
+          dashboard: Inicio
+          profile: Perfil
+          customize: Configurar
