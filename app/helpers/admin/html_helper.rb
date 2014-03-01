@@ -135,9 +135,12 @@ EOS
       when title_or_controller.is_a?(Symbol)
         content = I18n.t title_or_controller, scope: [ :views, :admin, :_sidebar, :items ]
         if content.start_with?('translation missing')
-          content = I18n.t(title_or_controller.to_s.singularize, scope: [ :activerecord, :models ])
-          content = content.pluralize(:'es-CL').titleize unless content.start_with?('translation missing')
-          content
+          model_name = I18n.t(title_or_controller.to_s.singularize, scope: [ :activerecord, :models ])
+          if model_name.start_with?('translation missing')
+            content
+          else model_name.pluralize(:'es-CL').titleize
+          end
+        else content
         end
       else title_or_controller
       end
