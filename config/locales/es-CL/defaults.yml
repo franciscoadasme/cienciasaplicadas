@@ -15,6 +15,12 @@ es-CL:
       yesterday: Ayer
       tomorrow: Mañana
 
+  time:
+    formats:
+      abbr: "%b '%y"
+      abbr_with_day: "%d de %b '%y"
+      month: '%b'
+
   period:
     formats:
       same_month: "%{start_day} hasta el %{end_day} de %{month}"
