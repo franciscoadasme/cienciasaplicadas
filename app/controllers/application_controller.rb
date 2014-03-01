@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   layout 'site'
 
   include ApplicationHelper
+  include TranslationHelper
   include UrlHelper
   include SessionsHelper
   add_flash_types :success, :error

@@ -8,8 +8,8 @@
 
       = sidebar_menu_item :users, condition: current_path?('users'), class: "sidebar-menu-item-users #{'collapsed' if current_user.super_user? && !current_page?(new_user_invitation_path)}" do
         - inv_not_accepted_count = User.invitation_not_accepted.count
-        = sidebar_badge fa_icon('ticket', text: inv_not_accepted_count), title: tv('._sidebar.hints.has_invitations', count: inv_not_accepted_count, no_action: true) if inv_not_accepted_count > 0 && current_user.super_user?
-        = autolink_to 'Invite', new_user_invitation_path, class: 'newlink' if current_user.super_user?
+        = sidebar_badge fa_icon('ticket', text: inv_not_accepted_count), title: tsidebar_hint(:has_invitations, count: inv_not_accepted_count) if inv_not_accepted_count > 0 && current_user.super_user?
+        = autolink_to tsidebar_item(:invite), new_user_invitation_path, class: 'newlink' if current_user.super_user?
 
       - if current_user.super_user?
         = sidebar_menu_item :contacts
@@ -23,11 +23,11 @@
       = sidebar_menu_item :settings, scope: :account
 
       = sidebar_menu_item :pages, admin_account_pages_path, condition: (current_path?('account/pages', @page) || @page.try(:associated_controller) == 'account') do
-        = autolink_to 'New Page', new_admin_account_page_path, class: 'newlink'
+        = autolink_to tsidebar_item(:new_page), new_admin_account_page_path, class: 'newlink'
 
       = sidebar_menu_item :publications, class: "sidebar-menu-item-publications #{'collapsed' if !current_page?(import_admin_publications_path)}" do
         = sidebar_badge current_user.publications.count if current_user.publications.any?
-        = autolink_to 'Import', import_admin_publications_path, class: 'btn-publication-import newlink'
+        = autolink_to tsidebar_item(:import), import_admin_publications_path, class: 'btn-publication-import newlink'
 
       = sidebar_menu_item :projects
 
@@ -35,10 +35,10 @@
       %ul.sidebar-menu
         %li.sidebar-menu-header= "Group #{@group.abbr}"
         = sidebar_menu_item :posts do
-          = autolink_to 'New Post', new_admin_post_path, class: 'newlink'
+          = autolink_to tsidebar_item(:new_post), new_admin_post_path, class: 'newlink'
 
         = sidebar_menu_item :pages, admin_group_pages_path, condition: (current_path?('group/pages', @page) || @page.try(:associated_controller) == 'group') do
-          = autolink_to 'New Page', new_admin_group_page_path, class: 'newlink'
+          = autolink_to tsidebar_item(:new_page), new_admin_group_page_path, class: 'newlink'
 
         = sidebar_menu_item :theses
         = sidebar_menu_item :journals
