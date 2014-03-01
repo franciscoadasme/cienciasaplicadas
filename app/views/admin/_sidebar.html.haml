@@ -6,45 +6,41 @@
     %ul.sidebar-menu
       = sidebar_menu_item :dashboard, admin_path
 
-      = sidebar_menu_item :users, admin_users_path, condition: current_path?('users'), class: "sidebar-menu-item-users #{'collapsed' if current_user.super_user? && !current_page?(new_user_invitation_path)}" do
+      = sidebar_menu_item :users, condition: current_path?('users'), class: "sidebar-menu-item-users #{'collapsed' if current_user.super_user? && !current_page?(new_user_invitation_path)}" do
         - inv_not_accepted_count = User.invitation_not_accepted.count
         = sidebar_badge fa_icon('ticket', text: inv_not_accepted_count), title: tv('._sidebar.hints.has_invitations', count: inv_not_accepted_count, no_action: true) if inv_not_accepted_count > 0 && current_user.super_user?
-
-        - collab_count = current_user.collaborators.count
-        = sidebar_badge fa_icon('group', text: collab_count), title: tv('._sidebar.hints.has_collaborators', count: collab_count, no_action: true) if current_user.has_collaborators?
-
         = autolink_to 'Invite', new_user_invitation_path, class: 'newlink' if current_user.super_user?
 
       - if current_user.super_user?
-        = sidebar_menu_item :contacts, admin_contacts_path, condition: controller?(:contacts)
-        = sidebar_menu_item :mailing_lists, admin_mailing_lists_path, condition: controller?(:mailing_lists)
-        = sidebar_menu_item :moments, admin_moments_path, condition: controller?(:moments)
-        = sidebar_menu_item :events, admin_events_path, condition: controller?(:events)
+        = sidebar_menu_item :contacts
+        = sidebar_menu_item :mailing_lists
+        = sidebar_menu_item :moments
+        = sidebar_menu_item :events
 
     %ul.sidebar-menu
       %li.sidebar-menu-header Your account
-      = sidebar_menu_item :profile, profile_admin_account_path, condition: controller?(:account)
-      = sidebar_menu_item :settings, settings_admin_account_path
+      = sidebar_menu_item :profile, scope: :account, condition: controller?(:account)
+      = sidebar_menu_item :settings, scope: :account
 
       = sidebar_menu_item :pages, admin_account_pages_path, condition: (current_path?('account/pages', @page) || @page.try(:associated_controller) == 'account') do
         = autolink_to 'New Page', new_admin_account_page_path, class: 'newlink'
 
-      = sidebar_menu_item :publications, admin_publications_path, class: "sidebar-menu-item-publications #{'collapsed' if !current_page?(import_admin_publications_path)}", condition: controller?(:publications) do
+      = sidebar_menu_item :publications, class: "sidebar-menu-item-publications #{'collapsed' if !current_page?(import_admin_publications_path)}" do
         = sidebar_badge current_user.publications.count if current_user.publications.any?
         = autolink_to 'Import', import_admin_publications_path, class: 'btn-publication-import newlink'
 
-      = sidebar_menu_item ts('.titles.projects'), admin_projects_path
+      = sidebar_menu_item :projects
 
     - if current_user.super_user?
       %ul.sidebar-menu
         %li.sidebar-menu-header= "Group #{@group.abbr}"
-        = sidebar_menu_item :posts, admin_posts_path, condition: controller?(:posts) do
+        = sidebar_menu_item :posts do
           = autolink_to 'New Post', new_admin_post_path, class: 'newlink'
 
         = sidebar_menu_item :pages, admin_group_pages_path, condition: (current_path?('group/pages', @page) || @page.try(:associated_controller) == 'group') do
           = autolink_to 'New Page', new_admin_group_page_path, class: 'newlink'
 
-        = sidebar_menu_item :theses, admin_theses_path, condition: controller?(:theses)
-        = sidebar_menu_item :journals, admin_journals_path, condition: controller?(:journals)
-        = sidebar_menu_item :positions, admin_positions_path, condition: controller?(:positions)
-        = sidebar_menu_item :customize, customize_admin_group_path
+        = sidebar_menu_item :theses
+        = sidebar_menu_item :journals
+        = sidebar_menu_item :positions
+        = sidebar_menu_item :customize, scope: :group, condition: controller?(:group)

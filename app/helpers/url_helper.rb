@@ -85,4 +85,9 @@ module UrlHelper
   def date_params_for_this_year
     date_params_with_date DateTime.current, :year
   end
+
+  def path_to_index(controller)
+    controller = controller.to_s.prepend! 'admin/' unless params[:controller].include?('/')
+    [ :admin, controller ]
+  end
 end

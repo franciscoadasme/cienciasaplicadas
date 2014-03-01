@@ -45,12 +45,15 @@ EOS
     text.html_safe
   end
 
-  def sidebar_menu_item title, path, options={}, &block
-    is_active = options.delete(:condition) || current_path?(path) || current_page?(path)
-    addon = options.delete :addon
-    css = options.delete :class
-    content_tag :li, class: "sidebar-menu-item #{css} #{' active' if is_active}" do
-      link_to(path, options) do
+  def sidebar_menu_item(title, path_or_options=nil, options={}, &block)
+    path = sidebar_menu_item_path title, path_or_options
+
+    css = [ 'sidebar-menu-item', options.delete(:class).try(:split) ].compact
+    css << 'active' if sidebar_menu_item_active?(title, path_or_options, options)
+    html_options = path_or_options.is_a?(Hash) ? path_or_options.merge(options) : options
+
+    content_tag :li, class: css.join(' ') do
+      link_to(path, html_options) do
         concat title.to_s.titleize
         yield if block_given?
       end
@@ -93,4 +96,37 @@ EOS
       end
     end
   end
+
+  private
+    def sidebar_menu_item_active?(title_or_controller, path_or_options, options)
+      case
+      when options.has_key?(:condition)
+        options.delete(:condition)
+      when path_or_options.is_a?(String)
+        current_path?(path_or_options) || current_page?(path_or_options)
+      when path_or_options.nil? || path_or_options.is_a?(Hash)
+        case
+          when path_or_options.try(:has_key?, :condition)
+            path_or_options.delete(:condition)
+          when title_or_controller.is_a?(Symbol)
+            controller?(title_or_controller)
+        end
+      else false
+      end
+    end
+
+    def sidebar_menu_item_path(title_or_controller, path_or_options)
+      case path_or_options
+      when String then path_or_options
+      when Hash
+        path_or_options = path_or_options.extract! :scope, :controller, :action, :id
+        case
+        when path_or_options.empty? then path_to_index(title_or_controller)
+        when path_or_options.has_key?(:scope) && path_or_options.exclude?(:controller) && path_or_options.exclude?(:action)
+          [ title_or_controller, :admin, path_or_options[:scope] ]
+        else path_or_options
+        end
+      else path_to_index(title_or_controller)
+      end
+    end
 end
