@@ -2,6 +2,20 @@ es-CL:
   activerecord:
     models:
       user: Usuario
+    attributes:
+      user:
+        email: Correo electrónico
+        nickname: Nombre de usuario
+        first_name: Nombre
+        last_name: Apellido
+        image_url: Enlace del avatar
+        headline: Encabezado
+        social_links: Enlaces sociales
+        bio: Biografía
+        position: Posición
+        banner: Imagen de encabezado
+        password: Contraseña
+        password_confirmation: Confirmar contraseña
     methods:
       user:
         with_position: 'con_posicion'

@@ -1,18 +1,17 @@
 - provide :title, t('devise.invitations.new.header')
 
 = simple_form_for resource, url: invitation_path(resource_name), html: { method: :post} do |f|
-  - provide :notification do
-    = f.error_notification
+  - provide :notification, f.error_notification
 
   = field_set_tag t('devise.invitations.new.field_sets.invite') do
     %p.sectional= t('devise.invitations.new.sectionals.invite')
 
     %p.alert.alert-warning
-      Please be patient, sending an invitation may take a few seconds...
+      Favor sea paciente, enviar una invitación puede tomar algunos segundos...
 
     = f.input :email, hint: t('devise.invitations.new.hints.email')
-    = f.association :position, prompt: 'Choose one'
+    = f.association :position, prompt: 'Favor seleccione una opción'
 
   .form-group.form-actions
     .col-xs-offset-3.col-xs-9
-      = f.submit t("devise.invitations.new.submit_button"), class: 'btn btn-primary', data: { disable_with: 'Sending invitation...' }
+      = f.submit t("devise.invitations.new.submit_button"), class: 'btn btn-primary', data: { disable_with: 'Enviando invitación...' }
