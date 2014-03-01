@@ -5,7 +5,7 @@
     %span.text-muted= @user.headline
 
 - provide :sidebar, render('sidebar')
-- provide :banner_url, @user.banner
+- provide :banner_url, @user.banner if @user.banner.present?
 
 %section#about.content
   %h2
