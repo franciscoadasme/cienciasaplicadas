@@ -4,6 +4,10 @@ module Kernel
   end
 end
 
+module Boolean; end
+class TrueClass; include Boolean; end
+class FalseClass; include Boolean; end
+
 module ActionView
   module Helpers
     module DateHelper

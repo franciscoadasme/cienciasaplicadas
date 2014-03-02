@@ -15,17 +15,10 @@ class ApplicationController < ActionController::Base
 
   def redirect_to(options = {}, response_status = {})
     [ :alert, :notice, :success, :error ].each do |flash_type|
-      flash = response_status[flash_type]
-      next unless flash.present?
+      flash_options = response_status[flash_type]
+      next unless flash_options.present?
 
-      content = case flash
-        when String then flash
-        else
-          tkey = flash.is_a?(Symbol) ? flash : flash_type
-          keypath = "controllers.#{controller_name}.#{action_name}.#{tkey}"
-          I18n.t(keypath)
-      end
-      response_status[flash_type] = content
+      response_status[flash_type] = content_for_flash flash_options, flash_type
     end
     super
   end
@@ -57,5 +50,36 @@ class ApplicationController < ActionController::Base
         session[:previous_url] = request.fullpath
         logger.debug "PREVIOUS_URL: #{session[:previous_url]}"
       end
+    end
+
+    def content_for_flash(flash_options, flash_type)
+      case flash_options
+      when Symbol, Boolean, Hash
+        keypaths = case flash_options
+          when Symbol, Boolean then tkeypaths_for_flash(flash_options, flash_type)
+          when Hash
+            flash_name = flash_options.fetch :name, true
+            tkeypaths_for_flash flash_name, flash_type, flash_options
+        end
+        options = { default: keypaths.second, scope: [ :controllers, controller_name ] }
+        options.reverse_merge! flash_options if flash_options.is_a?(Hash)
+        I18n.t keypaths.first, options
+      else flash_options
+      end
+    end
+
+    def tkeypaths_for_flash(flash_name, flash_type, options = {})
+      scope = options.fetch :scope, [ options.fetch(:action, action_name), flash_type ]
+      case flash_name
+      when Boolean
+        keypath = scope.dup.push(:default)
+        keypath_alt = scope.dup
+      when Symbol
+        keypath = scope.dup.push flash_name
+        keypath_alt = [ flash_type.to_s.pluralize, flash_name ]
+      else
+        raise ArgumentError.new('flash_name is neither a boolean nor a symbol')
+      end
+      [ keypath, keypath_alt ].map { |kp| kp.join('.').to_sym }
     end
 end
