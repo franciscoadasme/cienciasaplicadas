@@ -20,22 +20,22 @@ module Admin::HtmlHelper
 
   def show_action_for(record, options = {})
     href = record.is_model? ? [ :admin, record ] : record
-    item_action options.fetch(:name, 'View'), href, options
+    item_action options.fetch(:name, 'Visualizar'), href, options
   end
 
   def edit_action_for(record, options = {})
     href = record.is_model? ? [ :edit, :admin, record ] : record
-    item_action options.fetch(:name, 'Edit'), href, options
+    item_action options.fetch(:name, 'Editar'), href, options
   end
 
   def delete_action_for(record, options = {})
     options.reverse_merge!(
       method: :delete,
-      data: { confirm: options.fetch(:message, 'Are you sure?') },
+      data: { confirm: options.fetch(:message, 'Está seguro de eliminar este registro?') },
       type: :danger,
       icon: 'trash-o')
     href = record.is_model? ? [ :admin, record ] : record
-    item_action options.fetch(:name, 'Delete'), href, options
+    item_action options.fetch(:name, 'Eliminar'), href, options
   end
 
   def markdown_hint
