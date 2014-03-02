@@ -1,0 +1,10 @@
+es-CL:
+  activerecord:
+    models:
+      message: Mensaje
+    attributes:
+      message:
+        subject: Asunto
+        body: Contenido
+        from: De
+        to: Para

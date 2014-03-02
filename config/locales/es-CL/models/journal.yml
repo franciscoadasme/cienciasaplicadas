@@ -2,3 +2,9 @@ es-CL:
   activerecord:
     models:
       journal: Revista
+    attributes:
+      journal:
+        name: Nombre
+        abbr: Abreviación
+        website_url: Página web
+        impact_factor: Factor de impacto

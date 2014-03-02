@@ -2,3 +2,12 @@ es-CL:
   activerecord:
     models:
       post: Noticia
+    attributes:
+      post:
+        title: Título
+        body: Contenido
+  simple_form:
+    placeholders:
+      post:
+        title: Título
+        body: Contenido

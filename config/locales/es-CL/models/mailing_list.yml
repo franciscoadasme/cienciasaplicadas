@@ -2,3 +2,8 @@ es-CL:
   activerecord:
     models:
       mailing_list: Lista de correo
+    attributes:
+      mailing_list:
+        name: Nombre
+        address: Correo electrónico
+        description: Descripción

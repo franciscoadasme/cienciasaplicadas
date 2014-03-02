@@ -2,3 +2,9 @@ es-CL:
   activerecord:
     models:
       moment: Momento
+    attributes:
+      moment:
+        photo: Fotografía
+        caption: Descripción
+        taken_on: Tomada el
+        user: Usuario

@@ -8,7 +8,7 @@ es-CL:
         nickname: Nombre de usuario
         first_name: Nombre
         last_name: Apellido
-        image_url: Enlace del avatar
+        image_url: Enlace de la foto de perfil
         headline: Encabezado
         social_links: Enlaces sociales
         bio: Biografía
@@ -19,3 +19,15 @@ es-CL:
     methods:
       user:
         with_position: 'con_posicion'
+
+  simple_form:
+    hints:
+      user:
+        headline: 'Debe describir en pocas palabras su trabajo/ actividad/ profesión/estado de ánimo actual (e.g. Asistente de Investigación, Bioinformático, etc.)'
+        nickname: 'Una forma abreviada de su nombre utilizado en la dirección web de su perfil. Una buena convención es utilizar la primera letra de su nombre junto a su primer apellido (por ejemplo, José Ramirez → jramirez).'
+        email: Tenga en cuenta que al cambiar esto usted no será capaz de iniciar sesión con el correo electrónico anterior y la integración social se perderá si la nueva dirección de correo no corresponde a la del servicio en cuestión.
+        social_links: 'Lista de enlaces sociales de interés científico. Cada línea debe ajustarse al siguiente formato: :[servicio-social] [dirección-web] (e.g. :twitter https://twitter.com/...).'
+    helpers:
+      submit:
+        user:
+          update: 'Actualizar mi cuenta'

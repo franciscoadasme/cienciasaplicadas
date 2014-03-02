@@ -2,3 +2,29 @@ es-CL:
   activerecord:
     models:
       page: Página
+    attributes:
+      page:
+        title: Título
+        tagline: Título abreviado
+        body: Contenido
+        banner: Imagen de encabezado
+
+  simple_form:
+    placeholders:
+      page:
+        title: Título
+        tagline: Título abreviado (eslogan)
+        body: Contenido
+    helpers:
+      submit:
+        page:
+          create: "Publicar Página"
+          update: "Guardar Cambios"
+          cancel: "Cancelar Página"
+          back: 'Volver a la lista'
+          draft: "Guardar Borrador"
+          preview: "Previsualizar"
+          publish: 'Publicar Página'
+    messages:
+      page:
+        cancel: Cualquier cambio no guardado en el borrador se perderá si cancela la edición de esta página. ¿Está seguro que desea cancelar?

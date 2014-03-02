@@ -1,0 +1,15 @@
+es-CL:
+  activerecord:
+    models:
+      group: Grupo
+    attributes:
+      group:
+        name: Nombre
+        abbr: Abreviación
+        logo: Enlace del logo
+        email: Correo electrónico de contacto
+        bio: Biografía
+        overview: Descripción general
+        banner_image_url: Imagen de encabezado
+        tagline: Eslogán
+        address: Dirección

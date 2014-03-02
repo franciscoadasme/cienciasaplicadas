@@ -1,0 +1,9 @@
+en:
+  simple_form:
+    yes: Sí
+    no: No
+    required:
+      text: 'requerido'
+      mark: '*'
+    error_notification:
+      default_message: Lo siento! pero hay uno o más errores. Cambie algunas cosas y trate de enviar de nuevo.

@@ -2,3 +2,13 @@ es-CL:
   activerecord:
     models:
       event: Evento
+    attributes:
+      event:
+        name: Nombre
+        start_date: Fecha de inicio
+        end_date: Fecha de término
+        location: Lugar de realización
+        description: Descripción
+        event_type: Tipo de evento
+        promoter: Patrocinador
+        picture: Imagen del tópico

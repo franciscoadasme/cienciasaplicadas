@@ -2,6 +2,32 @@ es-CL:
   activerecord:
     models:
       publication: Publicación
+    attributes:
+      publication:
+        doi: Doi
+        url: Página web
+        journal: Revista
+        volume: Volumen
+        issue: Número
+        start_page: Página de inicio
+        end_page: Página de término
+        month: Mes
+        year: Año
+        title: Título
+        identifier: Identificador
     methods:
       publication:
         recent: recientes
+
+  simple_form:
+    labels:
+      publication:
+        pages: Páginas
+    placeholders:
+      publication:
+        start_page: Desde
+        end_page: Hasta
+    hints:
+      publication:
+        title: Tenga cuidado al cambiar el título ya que este se utiliza para comparar con las publicaciones existentes durante la importación.
+        volume: 'Si la publicación se ha aceptado, pero aún no es publicada, introduzca la frase clave "En Prensa".'

@@ -2,3 +2,13 @@ es-CL:
   activerecord:
     models:
       thesis: Tesis
+    attributes:
+      thesis:
+        title: Título
+        issued: Año de realización
+        institution: Institución
+        abstract: Resumen
+        notes: Notas
+        keywords: Palabras claves
+        pdf_file: Archivo PDF
+        usuario: Autor
