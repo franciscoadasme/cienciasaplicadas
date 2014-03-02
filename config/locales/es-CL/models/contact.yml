@@ -4,6 +4,7 @@ es-CL:
       contact: Contacto
     attributes:
       contact:
+        name: Nombre
         first_name: Nombre
         last_name: Apellido
         institution: Institución

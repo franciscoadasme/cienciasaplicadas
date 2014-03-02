@@ -25,7 +25,7 @@ class Admin::ContactsController < AdminController
     @contact = Contact.new(contact_params)
 
     if @contact.save
-      redirect_to [ :admin, @contact ], success: 'Contact was successfully created.'
+      redirect_to [ :admin, @contact ], success: true
     else
       render action: 'new'
     end
@@ -33,7 +33,7 @@ class Admin::ContactsController < AdminController
 
   def update
     if @contact.update(contact_params)
-      redirect_to [ :admin, @contact ], success: 'Contact was successfully updated.'
+      redirect_to [ :admin, @contact ], success: true
     else
       render action: 'edit'
     end
@@ -41,7 +41,7 @@ class Admin::ContactsController < AdminController
 
   def destroy
     @contact.destroy
-    redirect_to admin_contacts_url
+    redirect_to_index success: true
   end
 
   private
