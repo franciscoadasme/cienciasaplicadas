@@ -56,7 +56,7 @@ class MailingList
                         format: { with: VALID_ADDRESS_REGEX },
                      exclusion: { within: -> ml { MailingList.all.map(&:address) },
                                  message: 'already exists',
-                                      on: :create }
+                                  unless: :persisted? }
   validates_each :address do |record, attr, value|
     record.errors.add(attr, 'has an invalid domain') unless value.strip.split('@').last == ENV['MAILGUN_DOMAIN']
   end
