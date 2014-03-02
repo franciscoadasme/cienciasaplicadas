@@ -14,6 +14,11 @@ class AdminController < ApplicationController
   end
 
   protected
+    def tkeypaths_for_flash(flash_options)
+      flash_options[:namespace] ||= :admin
+      super
+    end
+
     def redirect_to_index(response_status = {})
       redirect_to [ :admin, controller_name ], response_status
     end

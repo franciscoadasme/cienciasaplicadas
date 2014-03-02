@@ -27,6 +27,35 @@ class ApplicationController < ActionController::Base
     redirect_to [ controller_name ], response_status
   end
 
+  protected
+    def content_for_flash(flash_options, flash_type)
+      return flash_options if flash_options.is_a?(String)
+
+      flash_options = { name: flash_options } unless flash_options.is_a?(Hash)
+      flash_options[:name] ||= true
+      flash_options[:type] = flash_type
+
+      keypaths = tkeypaths_for_flash flash_options
+      options = { default: keypaths.pop, scope: [ :controllers, flash_options[:namespace], controller_name ].compact }
+      options.reverse_merge! flash_options
+      I18n.t keypaths.shift, options
+    end
+
+    def tkeypaths_for_flash(flash_options)
+      scope = flash_options.fetch :scope, [ flash_options.fetch(:action, action_name), flash_options[:type] ]
+      case flash_options[:name]
+      when Boolean
+        keypath = scope.dup.push(:default)
+        keypath_alt = scope.dup
+      when Symbol
+        keypath = scope.dup.push flash_options[:name]
+        keypath_alt = [ flash_options[:type].to_s.pluralize, flash_options[:name] ]
+      else
+        raise ArgumentError.new('flash name is neither a boolean nor a symbol')
+      end
+      [ keypath, keypath_alt ].map { |kp| kp.join('.').to_sym }
+    end
+
   private
     def set_group
       @group = Group.first
@@ -50,36 +79,5 @@ class ApplicationController < ActionController::Base
         session[:previous_url] = request.fullpath
         logger.debug "PREVIOUS_URL: #{session[:previous_url]}"
       end
-    end
-
-    def content_for_flash(flash_options, flash_type)
-      case flash_options
-      when Symbol, Boolean, Hash
-        keypaths = case flash_options
-          when Symbol, Boolean then tkeypaths_for_flash(flash_options, flash_type)
-          when Hash
-            flash_name = flash_options.fetch :name, true
-            tkeypaths_for_flash flash_name, flash_type, flash_options
-        end
-        options = { default: keypaths.second, scope: [ :controllers, controller_name ] }
-        options.reverse_merge! flash_options if flash_options.is_a?(Hash)
-        I18n.t keypaths.first, options
-      else flash_options
-      end
-    end
-
-    def tkeypaths_for_flash(flash_name, flash_type, options = {})
-      scope = options.fetch :scope, [ options.fetch(:action, action_name), flash_type ]
-      case flash_name
-      when Boolean
-        keypath = scope.dup.push(:default)
-        keypath_alt = scope.dup
-      when Symbol
-        keypath = scope.dup.push flash_name
-        keypath_alt = [ flash_type.to_s.pluralize, flash_name ]
-      else
-        raise ArgumentError.new('flash_name is neither a boolean nor a symbol')
-      end
-      [ keypath, keypath_alt ].map { |kp| kp.join('.').to_sym }
     end
 end
