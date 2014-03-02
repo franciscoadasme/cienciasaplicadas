@@ -4,7 +4,7 @@
 
   - if current_user
     %ul.sidebar-menu
-      = sidebar_menu_item :dashboard, admin_path
+      -# = sidebar_menu_item :dashboard, admin_path
 
       = sidebar_menu_item :users, condition: current_path?('users'), class: "sidebar-menu-item-users #{'collapsed' if current_user.super_user? && !current_page?(new_user_invitation_path)}" do
         - inv_not_accepted_count = User.invitation_not_accepted.count
