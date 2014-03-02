@@ -20,8 +20,19 @@ module TranslationHelper
     tt keypath, options, 'views'
   end
 
+  def tv?(keypath)
+    !tt(keypath, {}, 'views').start_with?('translation missing')
+  end
+
   def ts(keypath, options={})
     tt keypath, { no_controller: true, no_action: true }.merge(options), 'views._sidebar'
+  end
+
+  # translate action
+  def taction(keypath=nil, options={})
+    keypath = [ controller_name, (keypath || action_name) ]
+    keypath_alt = keypath[1..-1].unshift :defaults
+    I18n.t keypath.join('.'), scope: [ :actions ], default: keypath_alt.join('.').to_sym
   end
 
 # Sidebar

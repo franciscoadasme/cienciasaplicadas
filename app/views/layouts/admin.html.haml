@@ -20,8 +20,8 @@
         %section.row
           .col-xs-12
             %h2
-              = content_for(:title) || tv('.title', default: params[:action])
-              = content_for(:raw_subtitle) || content_tag(:small, content_for(:subtitle) || tv('.subtitle', default: top_level_controller || controller_name))
+              = content_for_title
+              = content_for_subtitle
               - if content_for? :widget
                 .pull-right
                   = content_for :widget

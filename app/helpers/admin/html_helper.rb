@@ -1,4 +1,29 @@
 module Admin::HtmlHelper
+# Title helpers
+  def content_for_title
+    content_for(:title) || tv('.title', default: taction)
+  end
+
+  def content_for_subtitle
+    case
+    when content_for?(:raw_subtitle) then content_for(:raw_subtitle)
+    else
+      content = case
+        when content_for?(:subtitle) then content_for(:subtitle)
+        when tv?('.subtitle') then tv('.subtitle')
+        else
+          controller_name = top_level_controller
+          case controller_name
+          when 'account' then 'Cuenta'
+          when 'group' then 'Grupo'
+          else
+            controller_name.classify.constantize.model_name.human.pluralize(:'es-CL') rescue controller_name
+          end
+      end
+      content_tag :small, content
+    end
+  end
+
 # Item actions
   def item_action(name, href, options = {})
     unless options.has_key? :class
