@@ -32,7 +32,7 @@ module TranslationHelper
   def taction(keypath=nil, options={})
     keypath = [ controller_name, (keypath || action_name) ]
     keypath_alt = keypath[1..-1].unshift :defaults
-    I18n.t keypath.join('.'), scope: [ :actions ], default: keypath_alt.join('.').to_sym
+    I18n.t keypath.join('.'), scope: [ :actions, :admin ], default: keypath_alt.join('.').to_sym
   end
 
 # Sidebar
