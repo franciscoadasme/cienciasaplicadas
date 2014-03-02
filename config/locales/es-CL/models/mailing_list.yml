@@ -1,5 +1,5 @@
 es-CL:
-  activerecord:
+  activemodel:
     models:
       mailing_list: Lista de correo
     attributes:
