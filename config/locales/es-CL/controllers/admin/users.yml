@@ -3,8 +3,9 @@ es-CL:
     users:
       destroy:
         success: Usuario fue eliminado permanentemente.
-        cannot_delete_admin: No puede eleminar a un administrador.
-        cannot_delete_self: No puede eliminarse a sí mismo.
+        error:
+          cannot_delete_admin: No puede eliminar a un administrador.
+          cannot_delete_self: No puede eliminarse a sí mismo.
       change_user_role:
         success: "Rol de usuario fue cambiado a %{role} satisfactoriamente."
       change_position:

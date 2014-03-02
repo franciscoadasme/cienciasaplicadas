@@ -43,11 +43,11 @@ class Admin::UsersController < AdminController
 
     def change_user_role action
       @user.send "#{action}!"
-      redirect_to_index success: t('controllers.users.change_user_role.success', role: @user.role_name)
+      redirect_to_index success: { action: :change_user_role, role: @user.role_name }
     end
 
     def ensure_admin!
-      redirect_to admin_users_path, alert: t('controllers.users.alerts.not_admin') unless current_user.admin?
+      redirect_to_index alert: :not_admin unless current_user.admin?
     end
 
     def set_user
@@ -55,6 +55,6 @@ class Admin::UsersController < AdminController
     end
 
     def validate_accepted_user
-      redirect_to admin_users_path, alert: t('devise.invitations.not_accepted') unless @user.accepted?
+      redirect_to_index alert: t('devise.invitations.not_accepted') unless @user.accepted?
     end
 end
