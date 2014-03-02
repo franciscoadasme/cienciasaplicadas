@@ -1,11 +1,11 @@
-- provide :title, pluralize(@users_count, 'User') + ' plus me'
+- provide :title, pluralize(@users_count, 'Usuario') + ' además de mí'
 
 %ul.list-group.list-group-users.clearfix
   - if current_user.super_user?
-    %h4.list-group-header= 'Registered users'
-  = render partial: 'admin/users/user', collection: @users_accepted
+    %h4.list-group-header= 'Usuarios registrados'
+  = render @users_accepted
 
-- if current_user.super_user?
+- if current_user.super_user? && @users_not_accepted.any?
   %ul.list-group.list-group-users.clearfix
-    %li.list-group-header= 'Invited users'
-    = render partial: 'admin/users/user', collection: @users_not_accepted
+    %li.list-group-header= 'Usuarios invitados'
+    = render @users_not_accepted

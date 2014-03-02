@@ -16,6 +16,19 @@ es-CL:
         banner: Imagen de encabezado
         password: Contraseña
         password_confirmation: Confirmar contraseña
+        roles:
+          admin: Administrador
+          super_user: Super Usuario
+          user: Usuario Básico
+        status:
+          not_accepted: Pendiente
+
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              invalid: sólo debe contener letras sin acentos (e.g. n en lugar de ñ)
     methods:
       user:
         with_position: 'con_posicion'
