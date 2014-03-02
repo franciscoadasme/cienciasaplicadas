@@ -55,10 +55,9 @@ class MailingList
   validates :address, presence: true,
                         format: { with: VALID_ADDRESS_REGEX },
                      exclusion: { within: -> ml { MailingList.all.map(&:address) },
-                                 message: 'already exists',
                                   unless: :persisted? }
   validates_each :address do |record, attr, value|
-    record.errors.add(attr, 'has an invalid domain') unless value.strip.split('@').last == ENV['MAILGUN_DOMAIN']
+    record.errors.add(attr, I18n.t('activemodel.errors.models.mailing_list.invalid_domain')) unless value.strip.split('@').last == ENV['MAILGUN_DOMAIN']
   end
 
   class << self
@@ -83,7 +82,7 @@ class MailingList
           to_record Mailgun.client.lists.find(id)
         end
       rescue Mailgun::Error
-        raise RecordNotFound, "Couldn't find #{@klass.name} with address=#{id}"
+        raise ActiveRecord::RecordNotFound.new("Couldn't find #{@klass.name} with address=#{id}")
       end
     end
 
@@ -149,9 +148,9 @@ class MailingList
     begin
       create!
     rescue Mailgun::Error
-      self.errors.add 'address', 'is invalid for some unknown reason. Maybe it went out of sync with Mailgun service.'
+      self.errors.add 'address', I18n.t('activemodel.errors.models.mailing_list.unknown')
       false
-    rescue ActiveSupport::RecordInvalid
+    rescue ActiveRecord::RecordInvalid
       false
     end
   end
@@ -162,7 +161,7 @@ class MailingList
       Rails.cache.delete 'all_mailing_lists'
       created_at = DateTime.current
     else
-      raise ActiveSupport::RecordInvalid
+      raise ActiveRecord::RecordInvalid.new(self)
     end
   end
 
@@ -184,7 +183,7 @@ class MailingList
         Rails.cache.delete 'all_mailing_lists'
         true
       rescue Mailgun::Error, ActiveRecord::RecordInvalid
-        self.errors.add 'address', 'couldn\'t save for some unknown reason. Maybe it went out of sync with Mailgun service.'
+        self.errors.add 'address', I18n.t('activemodel.errors.models.mailing_list.unknown')
         false
       end
     else

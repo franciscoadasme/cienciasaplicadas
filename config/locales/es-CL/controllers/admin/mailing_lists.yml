@@ -1,0 +1,24 @@
+es-CL:
+  controllers:
+    admin:
+      mailing_lists:
+        create:
+          success: La lista de correo fue creada satisfactoriamente.
+        update:
+          success: La lista de correo fue actualizada satisfactoriamente.
+        destroy:
+          success: La lista de correo ha sido eliminada.
+        add_member:
+          success: Los destinatarios fueron agregados satisfactoriamente.
+        remove_member:
+          notice: El destinatario fue eliminado satisfactoriamente.
+        send_message:
+          success: Mensaje ha sido enviado.
+
+        alerts:
+          reserved: Esta lista de correo no puede ser modificada.
+
+  actions:
+    admin:
+      mailing_lists:
+        new_message: Nuevo mensaje

@@ -1,9 +1,10 @@
 .panel.panel-default
   .panel-heading
-    Mailing List Members
+    Miembros de la
+    = MailingList.model_name.human.downcase
     - unless @mailing_list.reserved?
       .pull-right
-        = item_action 'Add Recipients', add_member_admin_mailing_list_path(@mailing_list), class: 'btn btn-default mailing-list', data: { action: 'add_member' }, remote: true if @mailing_list.members.any?
+        = item_action 'Añadir Destinatarios', add_member_admin_mailing_list_path(@mailing_list), class: 'btn btn-default mailing-list', data: { action: 'add_member' }, remote: true if @mailing_list.members.any?
 
   .panel-body
     - if @mailing_list.members.any?
@@ -21,13 +22,13 @@
                   = member.display_name
               %td= member.email
               %td.text-right
-                = mail_to member.address, fa_icon('pencil'), title: 'Write message', class: 'btn btn-default'
-                = delete_action_for remove_member_admin_mailing_list_path(@mailing_list, address: member.address), name: 'Remove', icon_only: true unless @mailing_list.reserved?
+                = mail_to member.address, fa_icon('pencil'), title: 'Escribir mensaje', class: 'btn btn-default'
+                = delete_action_for remove_member_admin_mailing_list_path(@mailing_list, address: member.address), icon_only: true unless @mailing_list.reserved?
 
     - else
       %p.text-center
-        No member has been added yet to this mailing list.
+        Ningún miembro ha sido añadido aún a esta lista de correos.
         - unless @mailing_list.reserved?
           %br
           %br
-          = item_action 'Add Recipients Now!', add_member_admin_mailing_list_path(@mailing_list), class: 'btn btn-primary mailing-list', icon: 'plus', data: { action: 'add_member' }, remote: true
+          = item_action 'Añada Destinatarios Ahora!', add_member_admin_mailing_list_path(@mailing_list), class: 'btn btn-primary mailing-list', icon: 'plus', data: { action: 'add_member' }, remote: true

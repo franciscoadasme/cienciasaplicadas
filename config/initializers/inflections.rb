@@ -33,5 +33,5 @@ ActiveSupport::Inflector.inflections(:'es-CL') do |inflect|
   inflect.singular(/es$/, '')
 
   inflect.irregular('el', 'los')
-  inflect.irregular('lista de correo', 'listas de correo')
+  inflect.irregular('lista de correos', 'listas de correos')
 end

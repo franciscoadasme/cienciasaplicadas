@@ -1,37 +1,39 @@
 - provide :title, @mailing_list.name
-- provide :subtitle, 'Mailing list'
 
 .panel.panel-default
   .panel-heading
-    Mailing List Information
+    Información de la
+    = MailingList.model_name.human.downcase
     .pull-right
-      = item_action 'New Message', new_message_admin_mailing_list_path, icon: 'pencil', primary: true
+      = item_action 'Nuevo Mensaje', new_message_admin_mailing_list_path, icon: 'pencil', primary: true
       - unless @mailing_list.reserved?
         = edit_action_for @mailing_list, icon: 'edit'
         = delete_action_for @mailing_list, icon_only: true
 
   .panel-body
     %dl.dl-horizontal
-      %dt Name
+      %dt= MailingList.human_attribute_name :name
       %dd= @mailing_list.name
 
-      %dt Email address
+      %dt= MailingList.human_attribute_name :address
       %dd
         = mail_to @mailing_list.address do
           %span>= @mailing_list.to_param
           %span.text-muted= "@#{ENV['MAILGUN_DOMAIN']}"
         %p.help-block
-          You can directly send a message to this address, and it will be forward to all the mailing list members.
+          Puede enviar un mensaje a esta dirección directamente, y este será reenviado a todos los miembros de esta lista de correos.
 
-      %dt Created
+      %dt= MailingList.human_attribute_name :created_at
       %dd
-        = distance_of_time_in_words_to_now @mailing_list.created_at
-        ago
+        hace
+        - date = @mailing_list.created_at.to_time
+        = time_tag date, time_ago_in_words(date), title: l(date, format: :long)
+        atrás
 
-      %dt Description
+      %dt= MailingList.human_attribute_name :description
       %dd= markdown @mailing_list.description
 
 = render 'members'
 
 %p.help-block
-  Mailing list capabilities are backed up by #{link_to 'Mailgun', 'mailgun.com'} email service.
+  El soporte de listas de correo está respaldado por el servicio de correo #{link_to 'Mailgun', 'mailgun.com'}.

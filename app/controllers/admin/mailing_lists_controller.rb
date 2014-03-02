@@ -23,35 +23,24 @@ class Admin::MailingListsController < AdminController
   def create
     @mailing_list = MailingList.new(mailing_list_params)
 
-    respond_to do |format|
-      if @mailing_list.create
-        format.html { redirect_to [ :admin, @mailing_list ], success: 'Mailing list was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @mailing_list }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @mailing_list.errors, status: :unprocessable_entity }
-      end
+    if @mailing_list.create
+      redirect_to [ :admin, @mailing_list ], success: true
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @mailing_list.update(mailing_list_params)
-        format.html { redirect_to [ :admin, @mailing_list ], success: 'Mailing list was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @mailing_list.errors, status: :unprocessable_entity }
-      end
+    if @mailing_list.update(mailing_list_params)
+      redirect_to [ :admin, @mailing_list ], success: true
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @mailing_list.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_mailing_lists_url }
-      format.json { head :no_content }
-    end
+    redirect_to_index success: true
   end
 
   def add_member
@@ -64,7 +53,7 @@ class Admin::MailingListsController < AdminController
     end
 
     respond_to do |format|
-      format.html { redirect_to [ :admin, @mailing_list ], success: 'Recipients added successfully.' }
+      format.html { redirect_to [ :admin, @mailing_list ], success: true }
       format.js do
         @addresses_taken = @mailing_list.addresses
         @addresses_available = User.pluck(:email).concat(Contact.pluck(:email)).reject { |address| @addresses_taken.include? address }
@@ -74,7 +63,7 @@ class Admin::MailingListsController < AdminController
 
   def remove_member
     @mailing_list.remove_member params[:address]
-    redirect_to [ :admin, @mailing_list ], notice: 'Recipient removed successfully.'
+    redirect_to [ :admin, @mailing_list ], notice: true
   end
 
   def new_message
@@ -88,7 +77,7 @@ class Admin::MailingListsController < AdminController
 
     if @message.valid?
       @message.deliver
-      redirect_to [ :admin, @mailing_list ], success: 'Message delivered.'
+      redirect_to [ :admin, @mailing_list ], success: true
     else
       render action: 'new_message'
     end
@@ -108,6 +97,6 @@ class Admin::MailingListsController < AdminController
     end
 
     def validate_mailing_list
-      redirect_to admin_mailing_lists_url, alert: 'This mailing list cannot be modified.' if @mailing_list.reserved?
+      redirect_to_index alert: :reserved if @mailing_list.reserved?
     end
 end
