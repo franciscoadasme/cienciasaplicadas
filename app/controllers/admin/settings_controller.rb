@@ -6,7 +6,7 @@ class Admin::SettingsController < AdminController
 
   def update
     if current_user.settings.update(settings_params)
-      redirect_to settings_admin_account_path, success: t('settings.messages.update_successful')
+      redirect_to settings_admin_account_path, success: true
     else
       render action: 'edit'
     end

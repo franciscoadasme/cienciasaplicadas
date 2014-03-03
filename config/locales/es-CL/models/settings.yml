@@ -14,3 +14,9 @@ es-CL:
 
         include_lastname: Utilizar mi nombre completo como nombre público en lugar de sólo mi primer nombre
         show_contact_page: Mostrar un enlace de contacto en mi perfil público
+
+  simple_form:
+    hints:
+      settings:
+        update_nickname_by_provider: Recuerde que cualquier cambio a su nombre de usuario afectará la dirección web de su perfil público.
+        display_author_name: 'Por lo general, esto se traduce a mostrar "Ramirez, J." en lugar de José o José Ramirez.'
