@@ -136,7 +136,7 @@ class MailingList
   end
 
   def remove_member(address)
-    Mailgun.client.list_members(self.address).remove address
+    Mailgun.client.list_members(self.address).remove(address) rescue nil
     Rails.cache.delete "/mailing_list/#{to_param}/members"
   end
 
