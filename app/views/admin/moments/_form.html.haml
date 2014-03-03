@@ -3,10 +3,10 @@
 
   .form-inputs
     = f.input :caption
-    = f.association :user, label: 'Taken by', label_method: -> u { display_user_name(u) }, include_blank: false
+    = f.association :user, label_method: -> u { display_user_name(u) }, include_blank: false
     = f.input :photo
     = f.input :taken_on, start_date: Date.new(2013), end_date: Date.today
 
   .form-group.form-actions
     .col-xs-9.col-xs-offset-3
-      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Subiendo...' }

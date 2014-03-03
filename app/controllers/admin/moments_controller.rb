@@ -21,35 +21,24 @@ class Admin::MomentsController < AdminController
   def create
     @moment = Moment.new(moment_params)
 
-    respond_to do |format|
-      if @moment.save
-        format.html { redirect_to admin_moments_path, notice: 'Moment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @moment }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @moment.errors, status: :unprocessable_entity }
-      end
+    if @moment.save
+      redirect_to_index success: true
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @moment.update(moment_params)
-        format.html { redirect_to admin_moments_path, notice: 'Moment was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @moment.errors, status: :unprocessable_entity }
-      end
+    if @moment.update(moment_params)
+      redirect_to_index success: true
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @moment.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_moments_url }
-      format.json { head :no_content }
-    end
+    redirect_to_index success: true
   end
 
   private
