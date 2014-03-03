@@ -1,36 +1,34 @@
 .panel.panel-default
   .panel-heading
-    Event Information
+    Información del
+    = Event.model_name.human
+
     .pull-right
       = edit_action_for @event
       = delete_action_for @event
 
   .panel-body
     %dl.dl-horizontal
-      %dt Name
+      %dt= Event.human_attribute_name :name
       %dd
         %strong.text-muted= @event.event_type.upcase
         = @event.name
 
-      %dt Duration
-      %dd
-        = time_tag @event.start_date, l(@event.start_date, format: :short)
-        - if @event.end_date.present?
-          %span.text-muted to
-          = l @event.end_date, format: :short
+      %dt= Event.human_attribute_name :duration
+      %dd= format_period @event.start_date, @event.end_date
 
-      %dt Location
+      %dt= Event.human_attribute_name :location
       %dd= @event.location
 
-      %dt Promoter
+      %dt= Event.human_attribute_name :promoter
       %dd= @event.promoter
 
       - if @event.picture.present?
-        %dt Picture
+        %dt= Event.human_attribute_name :picture
         %dd= image_tag @event.picture.url(:thumb), class: 'img-thumbnail'
 
-      %dt Description
+      %dt= Event.human_attribute_name :description
       %dd= markdown @event.description
 
 
-= link_to fa_icon('long-arrow-left', text: 'Go back to Events'), admin_events_path, class: 'btn btn-link'
+= link_to fa_icon('long-arrow-left', text: 'Volver a los Eventos'), admin_events_path, class: 'btn btn-link'

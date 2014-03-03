@@ -7,6 +7,7 @@ es-CL:
         name: Nombre
         start_date: Fecha de inicio
         end_date: Fecha de término
+        duration: Duración
         location: Lugar de realización
         description: Descripción
         event_type: Tipo de evento
