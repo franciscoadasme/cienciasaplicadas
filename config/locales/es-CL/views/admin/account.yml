@@ -1,0 +1,8 @@
+es-CL:
+  views:
+    admin:
+      account:
+        edit:
+          sections:
+            personal: 'Información Personal'
+            social: 'Información Social'

@@ -1,10 +1,10 @@
 module UserHelper
   def display_user_name user
-    is_me?(user) ? 'me' : user.display_name
+    is_me?(user) ? 'Mí' : user.display_name
   end
 
   def display_user_image_url user
-    (user.image_url.blank? ? nil : user.image_url) || gravatar_image_url(user.email) || 'asdasd'
+    (user.image_url.blank? ? nil : user.image_url) || gravatar_image_url(user.email)
   end
 
   def is_me? user
