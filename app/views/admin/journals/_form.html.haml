@@ -3,10 +3,10 @@
     = f.error_notification
 
   = f.input :name
-  = f.input :abbr, label: 'Abbrevitation'
+  = f.input :abbr
   = f.input :website_url
   = f.input :impact_factor
 
   .form-group.form-actions
     .col-xs-9.col-xs-offset-3
-      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Updating...' }
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Actualizando...' }

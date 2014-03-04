@@ -1,0 +1,13 @@
+es-CL:
+  controllers:
+    admin:
+      journals:
+        update:
+          success: La revista fue actualizada satisfactoriamente.
+        merge:
+          success: Las revistas fueron mezcladas satisfactoriamente.
+
+  actions:
+    admin:
+      journals:
+        merge: Mezclar

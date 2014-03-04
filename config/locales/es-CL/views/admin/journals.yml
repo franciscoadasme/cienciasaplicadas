@@ -1,0 +1,12 @@
+es-CL:
+  views:
+    admin:
+      journals:
+        placeholders:
+          missing: ausente
+          empty:
+            title: No hay revistas científicas disponibles.
+            body: |
+              Las revistas científicas serán añadidas automaticamente cuando se realice la importación de publicaciones.
+        hints:
+          pub_count: Nº de Publicaciones
