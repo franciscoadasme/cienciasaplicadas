@@ -8,7 +8,8 @@
   %h3.list-group-item-heading= project.title
 
   .list-group-item-meta
-    Participated as
+    = project.end_year < DateTime.current.year ? 'Participó' : 'Participa'
+    como
     %strong= project.position
 
   .list-group-item-actions

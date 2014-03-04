@@ -1,12 +1,11 @@
 = simple_form_for [ :admin, @project ], html: { role: 'form' } do |f|
-  - provide :notification do
-    = f.error_notification
+  - provide :notification, f.error_notification
 
   = f.input :title
   = f.input :position
 
   .form-group
-    = label_tag t('simple_form.labels.project.duration'), nil, class: 'control-label col-xs-3'
+    = label_tag t('activerecord.attributes.project.duration'), nil, class: 'control-label col-xs-3'
     .col-xs-9.form-controls
       - range = Date.today.year.downto(1980)
       = f.input :start_year, collection: range, wrapper: :inline, input_html: { class: 'numeric' }
@@ -21,4 +20,4 @@
 
   .form-group.form-actions
     .col-xs-9.col-xs-offset-3
-      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Enviando...' }

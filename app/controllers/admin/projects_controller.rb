@@ -18,7 +18,7 @@ class Admin::ProjectsController < AdminController
     @project.user = current_user
 
     if @project.save
-      redirect_to admin_projects_path, success: tf('.success')
+      redirect_to_index success: true
     else
       render action: 'new'
     end
@@ -26,7 +26,7 @@ class Admin::ProjectsController < AdminController
 
   def update
     if @project.update(project_params)
-      redirect_to admin_projects_path, success: tf('.success')
+      redirect_to_index success: true
     else
       render action: 'edit'
     end
@@ -39,7 +39,7 @@ class Admin::ProjectsController < AdminController
 
   private
     def authorize_user!
-      redirect_to admin_projects_path, alert: 'You do not have authorization to edit that project.' unless @project.user_id == current_user.id
+      redirect_to_index alert: :unauthorized unless @project.user_id == current_user.id
     end
 
     def set_project

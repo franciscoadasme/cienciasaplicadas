@@ -1,0 +1,9 @@
+es-CL:
+  views:
+    admin:
+      projects:
+        buttons:
+          new: Nuevo Proyecto
+
+        placeholders:
+          empty: No hay proyectos disponibles.
