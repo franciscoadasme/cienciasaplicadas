@@ -21,16 +21,17 @@ es-CL:
         title: Título
         tagline: Título abreviado (eslogan)
         body: Contenido
-    helpers:
-      submit:
-        page:
-          create: "Publicar Página"
-          update: "Guardar Cambios"
-          cancel: "Cancelar Página"
-          back: 'Volver a la lista'
-          draft: "Guardar Borrador"
-          preview: "Previsualizar"
-          publish: 'Publicar Página'
     confirmations:
       page:
         cancel: Cualquier cambio no guardado en el borrador se perderá si cancela la edición de esta página. ¿Está seguro que desea cancelar?
+    
+  helpers:
+    submit:
+      page:
+        create: "Publicar Página"
+        update: "Guardar Cambios"
+        cancel: "Cancelar Página"
+        back: 'Volver a la lista'
+        draft: "Guardar Borrador"
+        preview: "Previsualizar"
+        publish: 'Publicar Página'
