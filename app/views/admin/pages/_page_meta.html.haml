@@ -1,0 +1,11 @@
+.list-group-item-meta
+  = autosizing_image_tag display_user_image_url(page.author), size: 28
+  = link_to page.author.display_name, page.author
+
+  - if page.published?
+    editó esta página
+  - else
+    guardó este borrador
+
+  = time_tag page.updated_at, pubdate: page.published?, title: l(page.updated_at, format: :long), class: 'text-primary' do
+    hace #{time_ago_in_words(page.updated_at)} atrás

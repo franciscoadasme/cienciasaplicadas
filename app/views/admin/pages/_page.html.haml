@@ -3,42 +3,8 @@
     = link_to page.title, page.owner.nil? ? page_path(page) : user_page_path(current_user, page), target: '_blank'
     %small= page.marked_as || page.tagline
 
-  - unless sortable_pages?
+  - unless sorting_pages?
     = content_tag :p, image_tag(page.banner.url(:thumb), width: '100%', class: 'img-thumbnail') if page.banner.present?
     %p= excerpt page.body
-
-    .list-group-item-meta
-      = autosizing_image_tag display_user_image_url(page.author), size: 28
-      - if page.published?
-        = page.edited? ? 'Edited' : 'Posted'
-        it
-        %span.text-primary
-          = "#{time_ago_in_words page.created_at} ago"
-
-        - if page.edited? && !page.edited_by_author?
-          and edited
-          %span.text-primary
-            = time_ago_in_words page.updated_at
-            ago
-          by
-          = link_to display_user_name(page.edited_by), page.edited_by
-      - else
-        Saved
-        %span.text-primary= "#{time_ago_in_words page.created_at} ago"
-
-    .list-group-item-actions
-      - if page.trashed?
-        = delete_action_for admin_page_path(page.id), name: 'Delete Permanently'
-        .pull-right
-          = item_action 'Restore Page', restore_admin_page_path(page.id), method: :patch, primary: true
-      - else
-        - if page.drafted?
-          = item_action 'Publish Page', publish_admin_page_path(page.id), method: :patch, primary: true
-        = edit_action_for edit_admin_page_path(page.id), primary: page.published?
-
-        = item_action (page.published? ? 'View Page' : 'Preview'), page.owner.nil? ? page_path(page) : user_page_path(current_user, page), blank: true
-        .pull-right
-          - if page.marked?
-            %span.btn.disabled= %q{Can't be trashed}
-          - else
-            = delete_action_for trash_admin_page_path(page.id), name: 'Trash', method: :patch
+    = render 'page_meta', page: page
+    = render 'page_actions', page: page

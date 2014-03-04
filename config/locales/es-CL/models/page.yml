@@ -8,6 +8,12 @@ es-CL:
         tagline: Título abreviado
         body: Contenido
         banner: Imagen de encabezado
+        status: Estado
+
+        states:
+          trashed: En papelera
+          published: Publicado
+          drafted: Borrador
 
   simple_form:
     placeholders:
@@ -25,6 +31,6 @@ es-CL:
           draft: "Guardar Borrador"
           preview: "Previsualizar"
           publish: 'Publicar Página'
-    messages:
+    confirmations:
       page:
         cancel: Cualquier cambio no guardado en el borrador se perderá si cancela la edición de esta página. ¿Está seguro que desea cancelar?

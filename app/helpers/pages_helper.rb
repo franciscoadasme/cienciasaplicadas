@@ -15,8 +15,4 @@ module PagesHelper
     end
     truncated_text.html_safe
   end
-
-  def sortable_pages?
-    params[:status] == 'published' && params[:sorting]
-  end
 end
