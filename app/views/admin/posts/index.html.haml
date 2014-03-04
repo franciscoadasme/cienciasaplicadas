@@ -1,13 +1,13 @@
-- provide :title, 'Posts'
-- provide :subtitle, 'Group'
-
 - if @posts.any?
   %ul.list-group.list-group-posts
     = render @posts
 - else
-  %ul.list-group.list-group-posts
-    %li.list-group-item.list-group-item-post
-      %h3= 'No posts have been written yet'
-      %p
-        By writing a post you can make an announcement to the community perhaps highlighting an  scientific article or letting them know about interesting news.
-      = link_to 'Start your first post', new_admin_post_path, class: 'btn btn-primary'
+  .panel.panel-default
+    .panel-heading
+      - i18n_scope = 'views.admin.posts.placeholders.empty'
+      %h3.panel-title= t :title, scope: i18n_scope
+      
+    .panel-body
+      %p= t :body, scope: i18n_scope
+
+      = link_to t(:start_post, scope: 'views.admin.posts.buttons'), new_admin_post_path, class: 'btn btn-primary'
