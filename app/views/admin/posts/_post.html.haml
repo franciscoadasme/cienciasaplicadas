@@ -1,6 +1,6 @@
 %li.list-group-item.list-group-item-post
   %h3
-    = link_to post.title, post
+    = link_to post.title, post_permalink(post)
 
   %p= excerpt post.body
 
@@ -30,7 +30,7 @@
       = link_to fa_icon('unlock-alt', text: 'Publish'), publish_admin_post_path(post.id), class: 'btn btn-primary', method: :patch
 
     = link_to 'Edit', edit_admin_post_path(post.id), class: "btn btn-#{post.published? ? 'primary' : 'default'}"
-    = link_to (post.published? ? 'View Page' : 'Preview'), post, class: 'btn btn-default', target: '_blank'
+    = link_to (post.published? ? 'View Page' : 'Preview'), post_permalink(post), class: 'btn btn-default', target: '_blank'
 
     .pull-right
       = link_to fa_icon('trash-o', text: 'Delete'), admin_post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
