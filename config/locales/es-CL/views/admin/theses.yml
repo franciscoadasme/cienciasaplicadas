@@ -1,0 +1,10 @@
+es-CL:
+  views:
+    admin:
+      theses:
+        placeholders:
+          new: Suba una tesis
+
+        buttons:
+          view_pdf: Visualizar PDF
+          go_back: Volver a las Tesis

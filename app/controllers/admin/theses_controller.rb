@@ -19,7 +19,7 @@ class Admin::ThesesController < AdminController
     @thesis = Thesis.new(thesis_params)
 
     if @thesis.save
-      redirect_to [ :admin, @thesis ], notice: 'Thesis was successfully created.'
+      redirect_to [ :admin, @thesis ], success: true
     else
       render action: 'new'
     end
@@ -27,7 +27,7 @@ class Admin::ThesesController < AdminController
 
   def update
     if @thesis.update(thesis_params)
-      redirect_to [ :admin, @thesis ], notice: 'Thesis was successfully updated.'
+      redirect_to [ :admin, @thesis ], success: true
     else
       render action: 'edit'
     end
@@ -35,7 +35,7 @@ class Admin::ThesesController < AdminController
 
   def destroy
     @thesis.destroy
-    redirect_to admin_theses_url
+    redirect_to_index success: true
   end
 
   private

@@ -1,0 +1,10 @@
+es-CL:
+  controllers:
+    admin:
+      theses:
+        create:
+          success: La tesis fue subida con éxito.
+        update:
+          success: La tesis fue actualizada con éxito.
+        destroy:
+          success: La tesis fue eliminada permanentemente.

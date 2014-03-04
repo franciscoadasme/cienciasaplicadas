@@ -32,9 +32,8 @@ class Thesis < ActiveRecord::Base
   validates :institution, presence: true,
                             format: { with: VALID_NAME_REGEX }
   validates :user, presence: true
-  validates_attachment :pdf_file, presence: { message: 'No file was selected' },
-                              content_type: { content_type: 'application/pdf',
-                                                   message: 'Only PDFs are allowed' },
+  validates_attachment :pdf_file, presence: true,
+                              content_type: { content_type: 'application/pdf' },
                                       size: { in: 0..10.megabytes }
 
   def keyword_list
