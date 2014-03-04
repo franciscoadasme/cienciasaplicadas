@@ -13,7 +13,7 @@ class Admin::PublicationsController < AdminController
 
   def update
     if @publication.update(publication_params)
-      redirect_to admin_publications_path, success: tf('.success')
+      redirect_to_index success: true
     else
       render action: :edit
     end
@@ -34,40 +34,40 @@ class Admin::PublicationsController < AdminController
 
     current_user.update! last_import_at: DateTime.current
 
-    flash.now[:success] = tf '.success', count: @import_total
+    flash.now[:success] = I18n.t 'controllers.admin.publications.import.success', count: @import_total
   end
 
   def link
     author = Author.find(params[:author_id])
     author.user = current_user
     author.save!
-    redirect_to admin_publications_path, success: tf('.success', author: author.name)
+    redirect_to_index success: { author: author.name }
   end
 
   def unlink
-    author = Author.where(publication: @publication, user: current_user).first
+    author = Author.find_by publication: @publication, user: current_user
     author.user = nil
     author.save!
-    redirect_to admin_publications_path, success: tf('.success')
+    redirect_to_index success: true
   end
 
   def toggle_flag
     author = Author.find_by publication: @publication, user: current_user
     author.toggle_flag!
-    redirect_to admin_publications_path, success: "Publication #{'un' unless author.flagged?}flagged successfully."
+    redirect_to_index success: (author.flagged? ? :flagged : :unflagged)
   end
 
   def author_list
     @authors = @publication.authors.sorted
     respond_to do |format|
-      format.html { redirect_to admin_publications_path }
+      format.html { redirect_to_index }
       format.js
     end
   end
 
   private
     def authorize_user!
-      redirect_to admin_publications_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
+      redirect_to_index alert: t('devise.failure.unauthorized') unless current_user.super_user?
     end
 
     def create_or_update_publication pubdata

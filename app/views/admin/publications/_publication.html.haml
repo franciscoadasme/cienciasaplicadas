@@ -6,7 +6,8 @@
       - css = [ 'list-group-item-action-toggle-flag' ]
       - flagged = publication.author_for_user(current_user).flagged?
       - css << 'active' if flagged
-      = link_to fa_icon('flag'), [ :toggle_flag, :admin, publication ], method: :patch, class: css.join(' ')
+      - title = taction (flagged ? :unflag : :flag)
+      = link_to fa_icon('flag'), [ :toggle_flag, :admin, publication ], method: :patch, class: css.join(' '), title: title
 
   = author_list_for publication
 
@@ -19,20 +20,20 @@
         = fa_icon('wrench')
         %span.caret
       %ul.dropdown-menu
-        %li= link_to fa_icon('external-link fw', text: 'Go to webpage'), publication.link, title: tv('.single.hints.view', no_action: true), target: '_blank' unless publication.link.nil?
+        = content_tag :li, item_action(taction(:go_to_website), publication.link, icon: 'external-link fw', target: '_blank', class: nil) unless publication.link.blank?
+
         - if current_user.super_user?
-          %li= link_to fa_icon('edit fw', text: 'Edit'), edit_admin_publication_path(publication), title: tv('.single.hints.edit', no_action: true)
+          %li= edit_action_for publication, icon: 'edit fw', class: nil
         - if publication.has_user? current_user
           %li.divider
-          %li= link_to fa_icon('unlink fw', text: 'Unlink'), unlink_admin_publication_path(publication), method: :delete, data: { confirm: tv('.single.confirm.unlink', no_action: true) }, class: 'text-danger'
+          %li= item_action taction(:unlink), unlink_admin_publication_path(publication), icon: 'unlink fw', method: :delete, data: { confirm: I18n.t('views.admin.publications.confirmations.unlink') }, class: nil
 
     - if !publication.has_user?(current_user) && publication.unlinked_authors.any?
       .btn-group.pull-right
-        %button.dropdown-toggle{ type: :button, class: 'btn btn-default', title: tv('.single.hints.link', no_action: true), data: { toggle: 'dropdown' }}
+        %button.dropdown-toggle{ type: :button, class: 'btn btn-default', title: taction(:link), data: { toggle: 'dropdown' }}
           = fa_icon('link')
           %span.caret
         %ul.dropdown-menu
-          %li.dropdown-header
-            Link through
+          %li.dropdown-header= I18n.t('views.admin.publications.buttons.link_through')
           - publication.unlinked_authors.each do |author|
             %li= link_to author.name, link_admin_publication_path(publication, author_id: author), method: :patch

@@ -15,14 +15,23 @@ es-CL:
         year: Año
         title: Título
         identifier: Identificador
+
+        published_on: Publicada en
+        pages: Páginas
+    errors:
+      models:
+        publication:
+          attributes:
+            volume:
+              invalid: no es un número válido ni tampoco dice "En Prensa"
+    labels:
+      publication:
+        in_press: En Prensa
     methods:
       publication:
         recent: recientes
 
   simple_form:
-    labels:
-      publication:
-        pages: Páginas
     placeholders:
       publication:
         start_page: Desde

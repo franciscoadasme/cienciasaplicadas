@@ -1,0 +1,29 @@
+es-CL:
+  controllers:
+    admin:
+      publications:
+        update:
+          success: La publicación fue actualizada satisfactoriamente.
+        import:
+          success:
+            one: Solo una publicación fue encontrada en los archivos seleccionados. Véase más abajo para mayor información.
+            other: 'Un total de %{count} publicaciones fueron encontradas en los archivos seleccionados. Véase más abajo para mayor información.'
+        link:
+          success: 'La publicación fue vinculada a través de "%{author}" satisfactoriamente.'
+        unlink:
+          success: La publicación fue desvinculada con éxito.
+        toggle_flag:
+          success:
+            flagged: La publicación fue marcada como destacada con éxito.
+            unflagged: La publicación ya no está marcada como destacada.
+
+  actions:
+    admin:
+      publications:
+        flag: Marcar como destacada
+        unflag: Desmarcar como destacada
+        link: Vincular
+        unlink: Desvincular
+        import: Importar
+
+        go_to_website: Ir a la página web

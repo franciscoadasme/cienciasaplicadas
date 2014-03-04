@@ -2,8 +2,9 @@
   - [ :new_linked, :existing_linked, :invalid, :existing_no_linked, :ignored ].each do |status|
     - if @result[status].any?
       %ul.list-group
-        %li.list-group-header= tv ".status.#{status}", count: @result[status].count
+        %li.list-group-header
+          = I18n.t status, scope: 'views.admin.publications.import', count: @result[status].count
         - @result[status].each do |data|
           = render 'import_result', pub: (data.is_a?(Array) ? data.first : data), status: status, authors: (data.is_a?(Array) ? data.last : nil)
 
-= link_to fa_icon('long-arrow-left', text: tv('.go_back')), admin_publications_path, class: 'btn btn-default'
+= link_to fa_icon('long-arrow-left', text: I18n.t('views.admin.publications.buttons.go_back')), admin_publications_path, class: 'btn btn-link'

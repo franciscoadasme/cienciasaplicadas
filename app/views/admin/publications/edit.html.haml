@@ -1,25 +1,21 @@
-- provide :title, 'Editing'
-- provide :subtitle, 'Publications'
-
 = simple_form_for [ :admin, @publication ], html: { role: 'form' } do |f|
-  - provide :notification do
-    = f.error_notification
+  - provide :notification, f.error_notification
 
   = f.input :title
-  = f.input :journal
+  = f.association :journal, include_blank: false
 
   .form-group
-    = label_tag 'Date', nil, class: 'control-label col-xs-3'
+    = label_tag Publication.human_attribute_name(:published_on), nil, class: 'control-label col-xs-3'
     .col-xs-9.form-controls
       = f.input :year, wrapper: :inline, collection: Date.today.advance(years: 1).year.downto(1980), include_blank: false, input_html: { class: 'numeric' }
       &nbsp;
-      = f.input :month, wrapper: :inline, collection: 1..12, prompt: 'Month', label_method: -> (i) { Date::MONTHNAMES[i] }, input_html: { class: 'numeric' }
+      = f.input :month, wrapper: :inline, collection: 1..12, prompt: 'Month', label_method: -> (i) { I18n.t('date.month_names')[i].titleize }, input_html: { class: 'numeric' }
 
   = f.input :volume
   = f.input :issue
 
   .form-group{ class: ('has-error' if @publication.errors[:start_page].any? || @publication.errors[:end_page].any?) }
-    = label_tag t('simple_form.labels.publication.pages'), nil, class: 'control-label col-xs-3'
+    = label_tag Page.human_attribute_name(:pages), nil, class: 'control-label col-xs-3'
     .col-xs-9.form-controls
       = f.input :start_page, wrapper: :inline
       &mdash;
@@ -30,4 +26,4 @@
 
   .form-group.form-actions
     .col-xs-9.col-xs-offset-3
-      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Actualizando...' }

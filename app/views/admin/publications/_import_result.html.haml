@@ -1,24 +1,12 @@
-%li.list-group-item
-  = pub.title
-  .list-group-item-meta
-    - if status == :invalid
-      %span.text-danger= pub.errors.full_unique_messages.to_sentence.concat '.'
-    - elsif status != :ignored
-      %span.text-muted
-        - meta = "#{pub.journal.name}, #{pub.year}"
-        - meta += ", #{"Volume " unless pub.pending?}#{pub.volume}" unless pub.volume.blank?
-        - meta += ", Issue #{pub.issue}" unless pub.issue.blank?
-        - meta += ", Pages #{pub.pages}" unless pub.start_page.blank?
-        / - meta += ", DOI: #{pub.doi}" unless pub.doi.blank?
-        = meta
+%li.list-group-item.list-group-item-publication
+  %h3.list-group-item-heading= pub.title
 
-  - if [ :existing_no_linked, :ignored ].include?(status)
-    %ul.list-group-item-publication-authors.no_linked
-      - pub.authors.each do |author|
-        %li= author.user.nil? ? author.name : link_to(author.display_name, author.user, target: '_blank')
-
+  - if status == :existing_no_linked
+    = author_list_for pub
+  - elsif status == :ignored
+    = author_list_for pub, limit: 10
   - elsif status.to_s != 'invalid'
-    %ul.list-group-item-publication-authors
+    %ul.publication-authors
       - pub.authors.each do |author|
         %li
           - if author.user.present?
@@ -27,3 +15,10 @@
             = link_to author.display_name, author.user, target: '_blank'
           - else
             %span.text-muted= author.name
+
+  .list-group-item-meta
+    - if status == :invalid
+      = succeed '.' do
+        %span.text-danger= pub.errors.full_unique_messages.to_sentence
+    - elsif status != :ignored
+      = publication_meta_for pub
