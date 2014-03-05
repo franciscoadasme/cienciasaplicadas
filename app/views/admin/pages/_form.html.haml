@@ -12,7 +12,7 @@
     = f.input :banner, wrapper: :simple_wrapper
 
   .form-group.form-actions
-    - i18n_scope = 'simple_form.helpers.submit.page'
+    - i18n_scope = 'helpers.submit.page'
     - unless @page.persisted?
       = f.button :submit, t(:draft, scope: i18n_scope), name: 'draft', class: 'btn-default', data: { disable_with: 'Guardando borrador...' }
 
