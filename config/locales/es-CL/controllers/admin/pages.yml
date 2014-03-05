@@ -1,0 +1,34 @@
+es-CL:
+  controllers:
+    admin:
+      pages:
+        create:
+          success:
+            published: La página fue publicada satisfactoriamente.
+            drafted: La página fue guardada como borrador satisfactoriamente.
+        update:
+          success: La página fue actualizada satisfactoriamente.
+        publish:
+          success: La página fue publicada satisfactoriamente.
+        trash:
+          success: La página fue movida a la papelera satisfactoriamente.
+        restore:
+          success: 'La página fue restaurada con estado %{status}.'
+        destroy:
+          success: La página fue eliminada permanentemente.
+
+        alerts:
+          unauthorized: Usted no tiene permiso para modificar la página accesada.
+          cannot_modify_trashed: Usted no puede editar una página en la papelera.
+
+  actions:
+    admin:
+      pages:
+        sort: Ordenar
+        end_sort: Volver
+        destroy: Eliminar Permanentemente
+        restore: Restaurar Página
+        publish: Publicar Página
+        preview: Previsualizar
+        show: Visualizar Página
+        trash: Mover a la papelera

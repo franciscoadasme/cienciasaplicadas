@@ -1,7 +1,7 @@
 %ul.list-theses
   %li.item-thesis
     = link_to fa_icon('plus 2x'), new_admin_thesis_path, class: 'item-action-new'
-    %span.text-muted Add new thesis
+    %span.text-muted= t :new, scope: 'views.admin.theses.placeholders'
 
   - @theses.each do |thesis|
     %li.item-thesis
@@ -15,5 +15,5 @@
       %h3.item-thesis-name= thesis.title.truncate 50, separator: /\s/
 
       %span.item-thesis-author
-        %span.text-muted by
+        %span.text-muted por
         = link_to thesis.user.display_name, thesis.user

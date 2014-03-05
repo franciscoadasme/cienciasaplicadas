@@ -1,0 +1,6 @@
+es-CL:
+  controllers:
+    admin:
+      settings:
+        update:
+          success: Sus preferencias fueron actualizadas satisfactoriamente.

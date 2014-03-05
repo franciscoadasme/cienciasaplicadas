@@ -1,36 +1,26 @@
 class Admin::PagesController < AdminController
+  include Admin::PagesHelper
+
   before_action :set_page, except: [ :index, :new, :create, :sort ]
   before_action except: [ :index, :new, :create ] do
-    redirect_to_index alert: 'You do not have authorization to modify this page' unless current_user.super_user? || @page.owner != current_user
+    redirect_to_index alert: :unauthorized unless current_user.super_user? || @page.owner == current_user
   end
   before_action only: [ :edit, :update, :publish, :trash ] do
-    redirect_to_index alert: 'You cannot edit nor update a trashed page' if @page.trashed?
+    redirect_to_index alert: :cannot_modify_trashed if @page.trashed?
   end
 
-  # GET /pages
-  # GET /pages.json
   def index
     @pages = top_level_controller?('group') ? Page.global : current_user.pages
-
-    params[:status] ||= 'published'
-    conditions = { }
-    conditions[:published] = true if params[:status] == 'published'
-    conditions[:published] = false if params[:status] == 'drafted'
-    conditions[:trashed] = params[:status] == 'trashed'
-    @pages = @pages.where conditions
+    @pages = @pages.send(state_param)
   end
 
-  # GET /pages/new
   def new
     @page = Page.new
   end
 
-  # GET /pages/1/edit
   def edit
   end
 
-  # POST /pages
-  # POST /pages.json
   def create
     @page = Page.new(page_params)
 
@@ -38,19 +28,13 @@ class Admin::PagesController < AdminController
     @page.author = @page.edited_by = current_user
     set_published_status
 
-    respond_to do |format|
-      if @page.save
-        format.html { redirect_to_index success: "Page was successfully #{@page.published? ? 'published' : 'saved as draft'}." }
-        format.json { render action: 'show', status: :created, location: @page }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
-      end
+    if @page.save
+      redirect_to_index success: (@page.published? ? :published : :drafted)
+    else
+      render action: 'new'
     end
   end
 
-  # PATCH/PUT /pages/1
-  # PATCH/PUT /pages/1.json
   def update
     @page.edited_by = current_user
     set_published_status
@@ -58,55 +42,31 @@ class Admin::PagesController < AdminController
     params = page_params
     params.delete(:tagline) if @page.marked?
 
-    respond_to do |format|
-      if @page.update(params)
-        format.html { redirect_to_index success: 'Page was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
-      end
+    if @page.update(params)
+      redirect_to_index success: true
+    else
+      render action: 'edit'
     end
   end
 
-  # PATCH/PUT /pages/1
-  # PATCH/PUT /pages/1.json
   def publish
     @page.publish!
-    respond_to do |format|
-      format.html { redirect_to_index success: 'Page was successfully published.' }
-      format.json { head :no_content }
-    end
+    redirect_to_index success: true
   end
 
-  # PATCH/PUT /pages/1
-  # PATCH/PUT /pages/1.json
   def trash
     @page.trash! unless @page.marked?
-    respond_to do |format|
-      format.html { redirect_to_index success: 'Page was moved to trash.' }
-      format.json { head :no_content }
-    end
+    redirect_to_index success: true
   end
 
-  # PATCH/PUT /pages/1
-  # PATCH/PUT /pages/1.json
   def restore
     @page.restore!
-    respond_to do |format|
-      format.html { redirect_to_index success: "Page was successfully restored as #{@page.status}." }
-      format.json { head :no_content }
-    end
+    redirect_to_index success: { status: @page.status }
   end
 
-  # DELETE /pages/1
-  # DELETE /pages/1.json
   def destroy
     @page.destroy
-    respond_to do |format|
-      format.html { redirect_to_index success: "Page was deleted permanently." }
-      format.json { head :no_content }
-    end
+    redirect_to_index success: true
   end
 
   def sort
@@ -129,8 +89,10 @@ class Admin::PagesController < AdminController
       @page.published = params.include? :publish
     end
 
-    def redirect_to_index options = {}
-      options[:status] ||= @page.status if @page.persisted?
-      redirect_to send("admin_#{@page.associated_controller}_pages_path", status: options.delete(:status)), options
+    def redirect_to_index response_status = {}
+      path_options = response_status.extract! human_status_param_key
+      path_options[human_status_param_key] ||= parameterize_state(@page.status) if @page.persisted?
+      path_options[:scope] = @page.owner.nil? && current_user.super_user? ? :group : :account
+      redirect_to scoped_pages_path(path_options), response_status
     end
 end

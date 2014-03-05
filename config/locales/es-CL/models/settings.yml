@@ -1,0 +1,22 @@
+es-CL:
+  activerecord:
+    models:
+      settings: Preferencias
+    attributes:
+      settings:
+        update_attributes_by_provider: 'Obtener información de cuenta desde la cuenta social al iniciar sesión con esta'
+        update_nickname_by_provider: Coincidir mi nombre de usuario con el de la cuenta social
+        update_image_by_provider: Actualizar la foto de perfil automáticamente
+        deliver_notification_by_email: Enviar una notificación por correo electrónico cuando haya una alerta
+
+        autolink_on_import: Asociar automáticamente publicaciones a otros usuarios durante la importación
+        display_author_name: Mostrar mi nombre de autor usado en la publicación correspondiente en vez de mi nombre real
+
+        include_lastname: Utilizar mi nombre completo como nombre público en lugar de sólo mi primer nombre
+        show_contact_page: Mostrar un enlace de contacto en mi perfil público
+
+  simple_form:
+    hints:
+      settings:
+        update_nickname_by_provider: Recuerde que cualquier cambio a su nombre de usuario afectará la dirección web de su perfil público.
+        display_author_name: 'Por lo general, esto se traduce a mostrar "Ramirez, J." en lugar de José o José Ramirez.'

@@ -1,0 +1,15 @@
+es-CL:
+  views:
+    admin:
+      settings:
+        edit:
+          labels:
+            social_integration: Integración social
+            publications: Publicaciones
+            notifications: Notificaciones
+            customization: Personalización
+
+        labels:
+          no_provider: Ningún servicio social disponible
+          last_provider: 'Último inicio de sesión con %{provider}'
+          aliases: Alias utilizados

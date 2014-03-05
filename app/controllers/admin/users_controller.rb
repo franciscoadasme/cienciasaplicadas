@@ -13,12 +13,12 @@ class Admin::UsersController < AdminController
 
   def destroy
     if @user.admin?
-      redirect_to admin_users_path, error: t('actions.users.failure.cannot_delete_admin')
+      redirect_to_index error: :cannot_delete_admin
     elsif @user == current_user
-      redirect_to admin_users_path, alert: t('actions.users.failure.cannot_delete_self')
+      redirect_to_index error: :cannot_delete_self
     else
       @user.destroy
-      redirect_to admin_users_path, success: t('actions.users.messages.destroy')
+      redirect_to_index success: true
     end
   end
 
@@ -33,24 +33,21 @@ class Admin::UsersController < AdminController
   def change_position
     @user.position = Position.find params[:position_id]
     @user.save! validate: false
-    redirect_to admin_users_path, success: "User's position updated successfully."
+    redirect_to_index success: true
   end
 
   protected
     def authorize_user!
-      redirect_to admin_users_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
+      redirect_to_index alert: t('devise.failure.unauthorized') unless current_user.super_user?
     end
 
     def change_user_role action
       @user.send "#{action}!"
-      respond_to do |format|
-        format.html { redirect_to admin_users_path, success: t('actions.users.messages.change_user_role', role: @user.role_name) }
-        format.json { head :no_content }
-      end
+      redirect_to_index success: { action: :change_user_role, role: @user.role_name }
     end
 
     def ensure_admin!
-      redirect_to admin_users_path, alert: 'Only the administrator can change user permissions.' unless current_user.admin?
+      redirect_to_index alert: :not_admin unless current_user.admin?
     end
 
     def set_user
@@ -58,6 +55,6 @@ class Admin::UsersController < AdminController
     end
 
     def validate_accepted_user
-      redirect_to admin_users_path, alert: t('devise.invitations.not_accepted') unless @user.accepted?
+      redirect_to_index alert: t('devise.invitations.not_accepted') unless @user.accepted?
     end
 end

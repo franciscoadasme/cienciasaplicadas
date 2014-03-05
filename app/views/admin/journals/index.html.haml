@@ -1,19 +1,19 @@
 - if @journals.any?
   = form_tag merge_admin_journals_path do
     .list-group-actions
-      %span.btn.btn-default
-        = check_box_tag 'mark_all'
+      -# %span.btn.btn-default
+      -#   = check_box_tag 'mark_all'
       .btn-group
-        = submit_tag 'Merge', class: 'btn btn-default'
+        = submit_tag taction(:merge), class: 'btn btn-default'
 
     %table.table.table-bordered
       %thead
         %tr
           %th
-          %th.text-center= content_tag :span, '#', title: 'Nº Publications'
-          %th Name
-          %th Impact factor
-          %th.text-center Action
+          %th.text-center= content_tag :span, '#', title: t('views.admin.journals.hints.pub_count')
+          %th= Journal.human_attribute_name :name
+          %th= Journal.human_attribute_name :impact_factor
+          %th.text-center Acción
 
       %tbody
         - @journals.each do |journal|
@@ -25,12 +25,14 @@
               - if journal.abbr.present?
                 %br
                 %span.text-muted= journal.abbr
-            %td= journal.impact_factor.try(:round, 3) || 'Missing'
+            %td= journal.impact_factor.try(:round, 3) || content_tag(:span, t('views.admin.journals.placeholders.missing').titleize, class: 'text-muted')
             %td.text-center
               = edit_action_for journal, icon: 'edit', icon_only: true, primary: true
 - else
-  %p.lead.text-center
-    No journals have been created yet.
-    %br
-    %small.text-muted
-      Journals will be added when importing publications automatically.
+  .panel.panel-default
+    - i18n_scope = 'views.admin.journals.placeholders.empty'
+    .panel-heading
+      %h3.panel-title= t :title, scope: i18n_scope
+    .panel-body
+      %p= t :body, scope: i18n_scope
+      = link_to fa_icon('files-o', text: t('views.admin.publications.buttons.import_now')), import_admin_publications_path, class: 'btn btn-primary btn-publication-import'

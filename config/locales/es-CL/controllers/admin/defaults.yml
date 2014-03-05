@@ -1,0 +1,10 @@
+es-CL:
+  actions:
+    admin:
+      defaults:
+        index: Índice
+        show: Visualizando
+        new: Creando
+        edit: Editando
+        create: Creando
+        update: Editando

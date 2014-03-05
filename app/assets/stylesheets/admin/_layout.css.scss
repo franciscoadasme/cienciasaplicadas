@@ -9,6 +9,11 @@ body {
     bottom: 5px;
     margin-bottom: 0;
     max-width: 384px;
+    opacity: .25;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 

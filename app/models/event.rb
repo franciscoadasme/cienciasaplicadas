@@ -50,6 +50,7 @@ class Event < ActiveRecord::Base
                      allow_blank: true
   validates :event_type, presence: true,
                         inclusion: { in: TYPES.map(&:to_s) }
-  validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+  validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
+                                                      message: I18n.t('activerecord.errors.models.event.attributes.picture.spoofed_media_type') },
                                          size: { less_than: 5.megabytes }
 end

@@ -1,0 +1,20 @@
+es-CL:
+  views:
+    admin:
+      pages:
+        buttons:
+          start_page: Redactar una página
+          start_page_when_no_drafted: Redactar una página
+          start_page_when_no_published: Empieza a redactar su primera página
+
+        placeholders:
+          no_more: 'No hay más páginas disponibles con estado %{status}.'
+          no_published_pages:
+            title: 'Ahora bien, acerca de esa primera página...'
+            body: 'No tener ninguna página significa que la gente no conozca el doctorado. Si no está seguro/a de cómo empezar, ¿por qué no redacta una descripción detallada como primera página, por ejemplo?, ¿eh?.'
+          no_drafted_pages:
+            title: Los borradores son su información sin publicar!
+            body: 'Cualquier página que empiece a escribir pero no sea publicada aparecerá aquí. En otras palabras no es necesario que publique una página inmediatamente, sino puede esperar hasta que sienta que está lista.'
+          no_trashed_pages:
+            title: La última oportunidad para arrepentirse
+            body: 'Toda aquella página que usted mueva a la papelera estará disponible en esta sección hasta que la elimine permanentemente, o hasta que la restaure.'

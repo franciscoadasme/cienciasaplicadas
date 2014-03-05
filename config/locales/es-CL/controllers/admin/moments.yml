@@ -1,0 +1,10 @@
+es-CL:
+  controllers:
+    admin:
+      moments:
+        create:
+          success: El momento fue creado satisfactoriamente.
+        update:
+          success: El momento fue actualizado satisfactoriamente.
+        destroy:
+          success: El momento ha sido eliminado.

@@ -1,0 +1,9 @@
+es-CL:
+  activerecord:
+    models:
+      position: Posición
+    attributes:
+      position:
+        name: Nombre
+
+        users_count: Nº de miembros

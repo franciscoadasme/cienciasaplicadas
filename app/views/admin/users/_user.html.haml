@@ -3,7 +3,8 @@
 
   %h3.list-group-item-user-name{ title: user.full_name }
     = user.display_name.middle_truncate 20
-    %small.text-primary= "@#{user.nickname}" if user.accepted?
+    %p
+      %small.text-primary= user.position.name if user.accepted?
 
   .list-group-item-meta.list-group-item-user-meta
     %span.text-muted= user.accepted? ? user.role_name.titleize : t('views.users.single.meta.not_accepted', distance_of_time:distance_of_time_in_words_to_now(user.invitation_sent_at))
@@ -14,9 +15,9 @@
     = mail_to user.email, fa_icon('envelope-o'), title: t('views.users.links.hints.mailto', email: user.email)
 
     %span.dropdown
-      = link_to fa_icon('sitemap'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }
+      = link_to fa_icon('sitemap'), '#', class: 'dropdown-toggle', title: t('views.users.links.hints.change_position'), data: { toggle: 'dropdown' }
       %ul.dropdown-menu
-        %li.dropdown-header Change position to
+        %li.dropdown-header Cambiar posición a
         - @positions.each do |position|
           - if position != user.position
             %li= link_to position.name, change_position_admin_user_path(user.id, position_id: position.id), method: :patch
@@ -30,4 +31,4 @@
       - else
         = link_to fa_icon('level-up'), promote_admin_user_path(user.id), title: t('views.users.links.hints.promote'), method: :patch
 
-    = link_to fa_icon('trash-o'), admin_user_path(user.id), method: :delete, data: { confirm: t('views.users.links.confirmations.destroy') } if current_user.super_user? && is_not_me?(user) && !user.admin?
+    = link_to fa_icon('trash-o'), admin_user_path(user.id), method: :delete, data: { confirm: t('views.users.links.confirmations.destroy') }, title: t('views.users.links.hints.delete') if current_user.super_user? && is_not_me?(user) && !user.admin?

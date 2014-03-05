@@ -1,0 +1,16 @@
+es-CL:
+  activemodel:
+    models:
+      message: Mensaje
+    attributes:
+      message:
+        subject: Asunto
+        body: Contenido
+        from: De
+        to: Para
+
+  simple_form:
+    placeholders:
+      message:
+        subject: Asunto
+        body: Contenido

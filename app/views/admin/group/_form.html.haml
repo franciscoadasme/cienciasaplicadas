@@ -1,8 +1,7 @@
 = simple_form_for [ :admin, @group ], html: { role: 'form' } do |f|
-  - provide :notification do
-    = f.error_notification
+  - provide :notification, f.error_notification
 
-  = field_set_tag 'Group Information' do
+  = field_set_tag 'Información del Grupo' do
     -# = f.input :name
     -# = f.input :abbr
     = f.input :email
@@ -17,4 +16,4 @@
 
   .form-group.form-actions
     .col-xs-offset-3.col-xs-9
-      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Updating...' }
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Actualizando...' }

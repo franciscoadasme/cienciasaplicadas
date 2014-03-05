@@ -5,9 +5,7 @@
   %h3
     %small.event-type= event.event_type
     = link_to event.name, [ :admin, event ]
-  .list-group-item-meta
-    at
-    = event.location
+  .list-group-item-meta= event.location
 
   .list-group-item-actions
     = show_action_for event

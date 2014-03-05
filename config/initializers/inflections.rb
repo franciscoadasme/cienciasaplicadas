@@ -11,9 +11,10 @@
 # end
 
 # These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.acronym 'RESTful'
-# end
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  # inflect.acronym 'RESTful'
+  inflect.uncountable 'settings'
+end
 
 ActiveSupport::Inflector.inflections(:'es-CL') do |inflect|
   inflect.clear
@@ -32,4 +33,5 @@ ActiveSupport::Inflector.inflections(:'es-CL') do |inflect|
   inflect.singular(/es$/, '')
 
   inflect.irregular('el', 'los')
+  inflect.irregular('lista de correos', 'listas de correos')
 end

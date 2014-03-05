@@ -11,7 +11,7 @@ class Admin::JournalsController < AdminController
 
   def update
     if @journal.update(journal_params)
-      redirect_to admin_journals_path, success: 'Journal was successfully updated.'
+      redirect_to_index success: true
     else
       render action: 'edit'
     end
@@ -30,7 +30,7 @@ class Admin::JournalsController < AdminController
       end
       Journal.destroy journal_ids
     end
-    redirect_to admin_journals_path, success: 'Journals successfully merged.'
+    redirect_to_index success: true
   end
 
   private

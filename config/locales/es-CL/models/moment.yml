@@ -2,3 +2,19 @@ es-CL:
   activerecord:
     models:
       moment: Momento
+    attributes:
+      moment:
+        photo: Fotografía
+        caption: Descripción
+        taken_on: Tomada el
+        user: Tomada por
+
+    errors:
+      models:
+        moment:
+          attributes:
+            photo:
+              blank: no se seleccionó ningún archivo
+              invalid: 'solo imágenes están permitidas (jpg, gif, png)'
+              spoofed_media_type: 'solo imágenes están permitidas (jpg, gif, png)'
+              in_between: el tamaño del archivo excedió el límite

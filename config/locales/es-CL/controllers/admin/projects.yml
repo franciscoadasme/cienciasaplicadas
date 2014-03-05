@@ -1,0 +1,11 @@
+es-CL:
+  controllers:
+    admin:
+      projects:
+        create:
+          success: El proyecto fue creado con éxito.
+        update:
+          success: El proyecto fue actualizado con éxito.
+
+        alerts:
+          unauthorized: Usted no está autorizado para editar este proyecto.

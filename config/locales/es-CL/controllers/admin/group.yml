@@ -1,0 +1,12 @@
+es-CL:
+  controllers:
+    admin:
+      group:
+        update:
+          success: La información del grupo fue actualizada con éxito.
+
+  actions:
+    admin:
+      group:
+        edit: Configurando
+        update: Configurando

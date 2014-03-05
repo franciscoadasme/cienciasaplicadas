@@ -1,0 +1,38 @@
+es-CL:
+  activerecord:
+    models:
+      thesis: Tesis
+    attributes:
+      thesis:
+        title: Título
+        issued: Año de realización
+        institution: Institución
+        abstract: Resumen
+        notes: Notas
+        keywords: Palabras claves
+        pdf_file: Archivo PDF
+        user: Autor
+    errors:
+      models:
+        thesis:
+          attributes:
+            pdf_file:
+              blank: no se seleccionó ningún archivo
+              spoofed_media_type: solo archivos PDF están permitidos
+              in_between: el tamaño del archivo excedió el límite
+
+  simple_form:
+    placeholders:
+      thesis:
+        user: Seleccione autor
+        keywords: 'e.g. Química Medicinal, Química Cuántica, DFT'
+
+    hints:
+      thesis:
+        user: 'Solo se muestran usuarios cuya posición contenga la palabra clave "estudiante" (e.g. estudiante, estudiante graduado, etc.).'
+        keywords: Lista de palabras claves separadas por coma.
+
+  helpers:
+    submit:
+      thesis:
+        create: Subir Tesis

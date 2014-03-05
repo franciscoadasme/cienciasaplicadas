@@ -1,8 +1,7 @@
 - url = @page.persisted? ? admin_page_path(@page.id) : send("admin_#{top_level_controller}_pages_path")
 
 = vertical_form_for @page, url: url do |f|
-  - provide :notification do
-    = f.error_notification
+  - provide :notification, f.error_notification
 
   .form-inputs
     = f.input :title, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
@@ -13,20 +12,24 @@
     = f.input :banner, wrapper: :simple_wrapper
 
   .form-group.form-actions
+    - i18n_scope = 'helpers.submit.page'
     - unless @page.persisted?
-      = f.button :button, t('helpers.submit.page.draft'), name: 'draft', class: 'btn-default', data: { disable_with: 'Saving draft...' }
+      = f.button :submit, t(:draft, scope: i18n_scope), name: 'draft', class: 'btn-default', data: { disable_with: 'Guardando borrador...' }
 
-    - title = t "helpers.submit.page.#{@page.persisted? ? 'back' : 'cancel'}"
-    - url = send "admin_#{@page.associated_controller || top_level_controller}_pages_path", status: @page.persisted? ? @page.status : 'published'
+    - title = t (@page.persisted? ? :back : :cancel), scope: i18n_scope
+
+    - path_options = { scope: @page.associated_controller }
+    - path_options[human_status_param_key] = parameterize_state(@page.persisted? ? @page.status : :published)
+
     - html_options = { class: 'text-danger' }
-    - html_options[:confirm] = t('helpers.messages.page.cancel') unless @page.persisted?
-    = link_to title, url, html_options
+    - html_options[:confirm] = t('simple_form.confirmations.page.cancel') unless @page.persisted?
+    = link_to title, scoped_pages_path(path_options), html_options
 
     .pull-right
-      = f.button :button, t('helpers.submit.page.preview'), name: 'preview', class: 'btn-default disabled' if @page.persisted?
+      = f.button :button, t(:preview, scope: i18n_scope), name: 'preview', class: 'btn-default disabled' if @page.persisted?
 
       - title_code = case
         - when @page.drafted? then 'publish'
         - when @page.persisted? then 'update'
         - else 'create'
-      = f.button :submit, t("helpers.submit.page.#{title_code}"), name: 'publish', class: 'btn-primary', data: { disable_with: 'Submitting...' }
+      = f.button :submit, t(title_code, scope: i18n_scope), name: 'publish', class: 'btn-primary', data: { disable_with: 'Publicando...' }

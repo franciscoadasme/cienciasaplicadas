@@ -1,0 +1,24 @@
+es-CL:
+  controllers:
+    admin:
+      posts:
+        create:
+          success:
+            published: La noticia fue publicada con éxito.
+            drafted: La noticia fue guardada como borrador con éxito.
+        update:
+          success: La noticia fue actualizada con éxito.
+        destroy:
+          success: La noticia fue eliminada permanentemente.
+        publish:
+          success: La noticia fue publicada satisfactoriamente.
+        withhold:
+          success: La noticia fue retenida por lo que no será visible publicamente.
+
+  actions:
+    admin:
+      posts:
+        withhold: Retener
+        publish: Publicar
+        preview: Previsualizar
+        show: Visualizar Noticia

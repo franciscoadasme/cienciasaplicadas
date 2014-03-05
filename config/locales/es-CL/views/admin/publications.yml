@@ -1,0 +1,37 @@
+es-CL:
+  views:
+    admin:
+      publications:
+        import:
+          existing_no_linked:
+            one: La siguiente publicación no fue vinculada a ningún usuario esta vez
+            other: 'Las siguientes %{count} publicaciones no fueron vinculadas a ningún usuario esta vez'
+          existing_linked:
+            one: Una publicación existente fue vinculada a uno o más usuarios
+            other: '%{count} publicaciones existentes fueron vinculadas a uno o más usuarios'
+          ignored:
+            one: 'La siguiente publicación fue ignorada ya que no pudo ser asociada a ningún usuario. Si existe algún error, favor comunicarse con el administrador para arreglar el sistema de vinculación automática.'
+            other: 'Las siguientes %{count} publicaciones fueron ignoradas ya que no pudieron ser asociadas a ningún usuario. Si existe algún error, favor comunicarse con el administrador para arreglar el sistema de vinculación automática.'
+          new_linked:
+            one: La siguiente publicación fue creada y vinculada a uno o más usuarios.
+            other: 'Las siguientes %{count} publicaciones fueron creadas y vinculadas a uno o más usuarios'
+          invalid:
+            one: La siguiente publicación contiene uno o más campos inválidos
+            other: 'Las siguientes %{count} publicaciones contienen uno o más campos válidos'
+
+        buttons:
+          import_now: Importar publicaciones
+          link_through: Vincular a través
+          go_back: Volver a Publicaciones
+
+        confirmations:
+          unlink: ¿Está seguro que quiere desvincular esta publicación?
+
+        placeholders:
+          no_more: No hay más publicaciones disponibles.
+          empty:
+            title: No hay publicaciones disponibles
+            body: |
+              En esta sección usted podrá subir sus publicaciones científicas las que serán mostradas en su perfil público, y además serán utilizadas en la información del programda de doctorado.
+
+              Para agregar sus publicaciones solo es necesario subir un archivo `RIS`, el cual se puede obtener en la sección exportar de cualquier programa de citas científicas o en las bases de datos de revistas científicas como Scopus, Science Direct, etc.

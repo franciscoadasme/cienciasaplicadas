@@ -1,0 +1,10 @@
+es-CL:
+  controllers:
+    admin:
+      positions:
+        create:
+          success: La nueva posición fue creada con éxito.
+        update:
+          success: La posición fue actualizada con éxito.
+        destroy:
+          success: La posición fue eliminada.

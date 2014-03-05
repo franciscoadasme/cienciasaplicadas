@@ -1,0 +1,11 @@
+- i18n_scope = "views.admin.pages.placeholders.no_#{state_param}_pages"
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title= t :title, scope: i18n_scope
+  .panel-body
+    %p= t :body, scope: i18n_scope
+
+    - if [ :published, :drafted ].include? state_param
+      - i18n_scope = 'views.admin.pages.buttons'
+      = link_to t("start_page_when_no_#{state_param}", scope: i18n_scope), scoped_new_page_path, class: 'btn btn-primary'

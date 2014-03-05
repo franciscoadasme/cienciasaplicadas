@@ -1,0 +1,12 @@
+.list-group-item-meta
+  = autosizing_image_tag display_user_image_url(publishable.author), size: 28
+  = link_to publishable.author.display_name, publishable.author
+
+  - if publishable.published?
+    editó esta
+    = publishable.class.model_name.human.downcase
+  - else
+    guardó este borrador
+
+  = time_tag publishable.updated_at, pubdate: publishable.published?, title: l(publishable.updated_at, format: :long), class: 'text-primary' do
+    hace #{time_ago_in_words(publishable.updated_at)} atrás

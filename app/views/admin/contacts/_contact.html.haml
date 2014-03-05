@@ -4,23 +4,24 @@
 
   %dd &nbsp;
 
-  %dt Name
+  %dt= Contact.human_attribute_name :name
   %dd= contact.display_name
 
-  %dt Institution
-  %dd= contact.institution || 'None'
+  %dt= Contact.human_attribute_name :institution
+  %dd= contact.institution || content_tag(:span, 'Ninguna', class: 'text-muted')
 
-  %dt Email Address
+  %dt= Contact.human_attribute_name :email
   %dd= mail_to contact.email
 
   %dd &nbsp;
 
-  %dt Website
-  %dd= contact.website_url.present? ? link_to(contact.website_url) : content_tag(:span, 'None', class: 'text-muted')
+  %dt= Contact.human_attribute_name :website_url
+  %dd= contact.website_url.present? ? link_to(contact.website_url) : content_tag(:span, 'Ninguna', class: 'text-muted')
 
   %dd &nbsp;
 
-  %dt Mailing Lists
+  - mailing_lists_title = MailingList.model_name.human.pluralize :'es-CL'
+  %dt= mailing_lists_title
   %dd
     - if contact.mailing_lists.any?
       %ul.list-unstyled
@@ -29,19 +30,19 @@
             = link_to mailing_list.name, [ :admin, mailing_list ]
             %span.text-muted= "(#{mailing_list.members.count})"
     - else
-      %span.text-muted None
+      %span.text-muted Ninguna
 
 .item-actions
   - if @mailing_lists.any? || contact.mailing_lists.any?
     .btn-group.dropup
-      = button_tag fa_icon('envelope-o'), type: 'button', class: "btn btn-default dropdown-toggle", title: "Mailing Lists", data: { toggle: 'dropdown' }
+      = button_tag fa_icon('envelope-o'), type: 'button', class: "btn btn-default dropdown-toggle", title: mailing_lists_title, data: { toggle: 'dropdown' }
       %ul.dropdown-menu
-        %li.dropdown-header Mailing Lists
+        %li.dropdown-header= mailing_lists_title
 
         - @mailing_lists.each do |mailing_list|
           - linked = contact.mailing_lists.include?(mailing_list)
 
-          - action = content_tag :span, linked ? 'Remove from' : 'Add to', class: 'text-muted'
+          - action = content_tag :span, linked ? 'Remover de' : 'Añadir a', class: 'text-muted'
           - title = "#{action} #{mailing_list.name}".html_safe
 
           - href = linked ? remove_member_admin_mailing_list_path(mailing_list, address: contact.email) : add_member_admin_mailing_list_path(mailing_list, mailing_list_member: { address: contact.email })
@@ -49,5 +50,6 @@
 
           %li= link_to title, href, method: method
   .pull-right
+    = delete_action_for contact, icon_only: true
     = edit_action_for contact
-    = mail_to contact.email, fa_icon('pencil'), class: 'btn btn-primary', title: 'Write message'
+    = mail_to contact.email, fa_icon('pencil'), class: 'btn btn-primary', title: 'Enviar mensaje'

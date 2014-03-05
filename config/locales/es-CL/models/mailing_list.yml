@@ -1,0 +1,19 @@
+es-CL:
+  activemodel:
+    models:
+      mailing_list: Lista de correos
+    attributes:
+      mailing_list:
+        name: Nombre
+        address: Correo electrónico
+        description: Descripción
+        created_at: Creada
+    errors:
+      models:
+        mailing_list:
+          invalid_domain: tiene un dominio inválido
+          unknown: es inválida por alguna razón desconocida. Tal vez se perdió la conexión/sincronización con el servicio Mailgun.
+          cannot_save: no se pudo guardar por alguna razón. Tal vez se perdió la conexión/sincronización con el servicio Mailgun.
+          attributes:
+            address:
+              exclusion: ya existe

@@ -1,0 +1,10 @@
+es-CL:
+  controllers:
+    admin:
+      events:
+        create:
+          success: El evento fue creado satisfactoriamente.
+        update:
+          success: El evento fue actualizado satisfactoriamente.
+        destroy:
+          success: El evento ha sido eliminado.

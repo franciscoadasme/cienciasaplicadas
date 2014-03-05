@@ -16,7 +16,7 @@ whenReady ->
 
   setupAndShowRecipientPopover = (target, content) ->
     target.popover
-      title: 'Add Recipients'
+      title: 'Añadir Destinatarios'
       content: content
       html: true
       container: 'body'

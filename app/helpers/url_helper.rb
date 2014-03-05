@@ -85,4 +85,8 @@ module UrlHelper
   def date_params_for_this_year
     date_params_with_date DateTime.current, :year
   end
+
+  def path_to_index(controller)
+    [ :admin, controller ]
+  end
 end

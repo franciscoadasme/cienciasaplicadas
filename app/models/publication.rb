@@ -22,7 +22,7 @@
 class Publication < ActiveRecord::Base
   ALLOWED_FIELDS = [ :identifier, :title, :year, :month, :journal, :volume, :issue, :start_page, :end_page, :url, :doi ]
   DOI_URL = 'http://dx.doi.org/'
-  PENDING_LABEL = 'In Press'
+  PENDING_LABEL = I18n.t(:in_press, scope: 'activerecord.labels.publication').titleize
 
   belongs_to :journal
   has_many :authors, dependent: :delete_all
@@ -41,7 +41,7 @@ class Publication < ActiveRecord::Base
 
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
 
-  auto_strip_attributes :doi, :url, :journal, :volume, :start_page, :title
+  auto_strip_attributes :doi, :url, :journal, :volume, :start_page, :title, :issue
 
   validates :doi, format: { with: VALID_DOI_REGEX },
               uniqueness: true,
@@ -49,8 +49,9 @@ class Publication < ActiveRecord::Base
   validates :url, url: true,
           allow_blank: true
   validates :volume, presence: true,
-                       format: { with: /\A([1-9]\d*|#{PENDING_LABEL})\Z/i,
-                              message: "is neither a valid number nor says \"#{PENDING_LABEL}\"" }
+                       format: { with: /\A([1-9]\d*|#{PENDING_LABEL})\Z/i }
+  validates :issue, numericality: { greater_than: 0 },
+                     allow_blank: true
   validates :start_page, numericality: { integer: true,
                                     greater_than: 0 },
                           allow_blank: true

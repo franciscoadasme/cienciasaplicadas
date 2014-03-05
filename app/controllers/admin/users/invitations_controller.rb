@@ -3,6 +3,15 @@ class Admin::Users::InvitationsController < Devise::InvitationsController
   before_action :authorize_user!, except: [ :edit, :update ]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def create
+    self.resource = resource_class.new invite_params
+    if resource.valid_attributes?(:email, :position)
+      super
+    else
+      render action: :new
+    end
+  end
+
   def edit
     resource.nickname = resource.suggested_nickname
     super

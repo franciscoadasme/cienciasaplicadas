@@ -1,20 +1,18 @@
-- provide :title, 'New message'
-- provide :subtitle, 'Mailing List'
-
 = vertical_form_for @message, url: send_message_admin_mailing_list_path(@mailing_list), html: { role: 'form' } do |f|
   - provide :notification, f.error_notification
 
   .form-inputs
     .form-group
       %p
-        Message will be sent to
-        = link_to @mailing_list.address, [ :admin, @mailing_list ]
-        mailing list, which will be forwarded to
-        = @mailing_list.members.count
-        addresses.
-    = f.input :subject, wrapper: :simple_wrapper, placeholder: 'Subject', input_html: { class: 'input-lg' }
-    = f.input :body, as: :text, wrapper: :simple_wrapper, placeholder: 'Message content', hint: markdown_hint, input_html: { rows: 15 }
+        El mensaje será enviado a la lista de correos
+        = succeed ',' do
+          = link_to @mailing_list.address, [ :admin, @mailing_list ]
+        el cual será reenviado a
+        = pluralize @mailing_list.members.count, 'dirección', 'direcciones'
+        de correo electrónico.
+    = f.input :subject, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
+    = f.input :body, as: :text, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
 
   .form-group.form-actions
     .pull-right
-      = f.button :submit, 'Send message', class: 'btn btn-primary', data: { disable_with: 'Sending...' }
+      = f.button :submit, 'Enviar Mensaje', class: 'btn btn-primary', data: { disable_with: 'Enviando...' }

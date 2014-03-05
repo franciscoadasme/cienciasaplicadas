@@ -15,6 +15,8 @@ module DateHelper
   end
 
   def format_period(start_date, end_date)
+    return I18n.l(start_date, format: :short) if end_date.nil?
+
     same_year = start_date.year == end_date.year
     same_month = same_year && start_date.month == end_date.month
     same_day = same_month && start_date.day == end_date.day

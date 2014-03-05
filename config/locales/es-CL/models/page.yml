@@ -2,3 +2,44 @@ es-CL:
   activerecord:
     models:
       page: Página
+    attributes:
+      page:
+        title: Título
+        tagline: Título abreviado
+        body: Contenido
+        banner: Imagen de encabezado
+        status: Estado
+
+        states:
+          trashed: En papelera
+          published: Publicado
+          drafted: Borrador
+
+    errors:
+      models:
+        page:
+          attributes:
+            banner:
+              spoofed_media_type: 'solo imágenes están permitidas (jpg, gif, png)'
+              in_between: el tamaño del archivo excedió el límite
+
+  simple_form:
+    placeholders:
+      page:
+        title: Título
+        tagline: Título abreviado (eslogan)
+        body: Contenido
+    confirmations:
+      page:
+        cancel: Cualquier cambio no guardado en el borrador se perderá si cancela la edición de esta página. ¿Está seguro que desea cancelar?
+    
+  helpers:
+    submit:
+      page:
+        create: "Publicar Página"
+        update: "Guardar Cambios"
+        cancel: "Cancelar Página"
+        back: 'Volver a la lista'
+        draft: "Guardar Borrador"
+        preview: "Previsualizar"
+        publish: 'Publicar Página'

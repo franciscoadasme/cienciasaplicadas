@@ -4,7 +4,7 @@
   .form-inputs
     = f.input :name
     .form-group.event_duration
-      = label_tag :duration, 'Duration', class: 'control-label col-xs-3'
+      = label_tag :duration, Event.human_attribute_name(:duration), class: 'control-label col-xs-3'
       .form-controls.col-xs-9
         .row
           .col-xs-6
@@ -20,4 +20,4 @@
 
   .form-group.form-actions
     .col-xs-9.col-xs-offset-3
-      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Submitting...' }
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Enviando...' }

@@ -1,0 +1,22 @@
+es-CL:
+  activerecord:
+    models:
+      post: Noticia
+    attributes:
+      post:
+        title: Título
+        body: Contenido
+
+  simple_form:
+    placeholders:
+      post:
+        title: Título
+        body: Contenido
+
+  helpers:
+    submit:
+      post:
+        create: Publicar Noticia
+        update: Guardar Cambios
+        draft: Guardar Borrador
+        cancel: Cancelar

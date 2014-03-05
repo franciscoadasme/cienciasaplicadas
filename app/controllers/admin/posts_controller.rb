@@ -3,7 +3,7 @@ class Admin::PostsController < AdminController
   before_action :set_post, only: [ :edit, :update, :destroy, :publish, :withhold ]
 
   def index
-    @posts = Post.all
+    @posts = Post.sorted
   end
 
   def new
@@ -19,7 +19,7 @@ class Admin::PostsController < AdminController
     set_published_status
 
     if @post.save
-      redirect_to admin_posts_url, success: "Post was successfully #{@post.published? ? 'published' : 'saved as draft'}."
+      redirect_to_index success: (@post.published? ? :published : :drafted)
     else
       render action: 'new'
     end
@@ -30,7 +30,7 @@ class Admin::PostsController < AdminController
     set_published_status
 
     if @post.update(post_params)
-      redirect_to admin_posts_url, success: 'Post was successfully updated.'
+      redirect_to_index success: true
     else
       render action: 'edit'
     end
@@ -38,17 +38,17 @@ class Admin::PostsController < AdminController
 
   def destroy
     @post.destroy
-    redirect_to admin_posts_url, success: 'Post was deleted permanently.'
+    redirect_to_index success: true
   end
 
   def publish
     @post.publish!
-    redirect_to admin_posts_url, success: 'Post was successfully published.'
+    redirect_to_index success: true
   end
 
   def withhold
     @post.withhold!
-    redirect_to admin_posts_url, success: "Post was withhold so it won't be displayed."
+    redirect_to_index success: true
   end
 
   private
@@ -57,7 +57,7 @@ class Admin::PostsController < AdminController
     end
 
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
     end
 
     def set_published_status

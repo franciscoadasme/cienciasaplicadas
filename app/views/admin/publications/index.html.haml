@@ -1,13 +1,13 @@
-- provide :title, tv('.title')
-- provide :subtitle, tv('.subtitle')
-
 - if @publications.any?
   %ul.list-group
     = render @publications
+  %p.text-muted= t 'views.admin.publications.placeholders.no_more'
+  
 - else
-  %p.lead.text-center= tv('.empty')
-
-- if @publication_others.any?
-  %ul.list-group
-    %li.list-group-header= 'Other publications'
-    = render @publication_others
+  .panel.panel-default
+    - i18n_scope = 'views.admin.publications.placeholders.empty'
+    .panel-heading
+      %h3.panel-title= t :title, scope: i18n_scope
+    .panel-body
+      = markdown t(:body, scope: i18n_scope)
+      = link_to fa_icon('files-o', text: t('views.admin.publications.buttons.import_now')), import_admin_publications_path, class: 'btn btn-primary btn-publication-import'

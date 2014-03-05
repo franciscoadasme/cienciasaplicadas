@@ -21,7 +21,7 @@ class Admin::EventsController < AdminController
     @event = Event.new(event_params)
 
     if @event.save
-      redirect_to [ :admin, @event ], notice: 'Event was successfully created.'
+      redirect_to [ :admin, @event ], success: true
     else
       render action: 'new'
     end
@@ -29,7 +29,7 @@ class Admin::EventsController < AdminController
 
   def update
     if @event.update(event_params)
-      redirect_to [ :admin, @event ], notice: 'Event was successfully updated.'
+      redirect_to [ :admin, @event ], success: true
     else
       render action: 'edit'
     end
@@ -37,7 +37,7 @@ class Admin::EventsController < AdminController
 
   def destroy
     @event.destroy
-    redirect_to admin_events_url
+    redirect_to_index success: true
   end
 
   private

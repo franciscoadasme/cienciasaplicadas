@@ -25,7 +25,7 @@ class Admin::PositionsController < AdminController
     @position = Position.new(position_params)
 
     if @position.save
-      redirect_to admin_positions_path, success: 'Position was successfully created.'
+      redirect_to_index success: true
     else
       render action: 'new'
     end
@@ -33,7 +33,7 @@ class Admin::PositionsController < AdminController
 
   def update
     if @position.update(position_params)
-      redirect_to admin_positions_path, success: 'Position was successfully updated.'
+      redirect_to_index success: true
     else
       render action: 'edit'
     end
@@ -41,7 +41,7 @@ class Admin::PositionsController < AdminController
 
   def destroy
     @position.destroy
-    redirect_to admin_positions_path
+    redirect_to_index success: true
   end
 
   def sort

@@ -1,0 +1,13 @@
+es-CL:
+  controllers:
+    admin:
+      account:
+        update:
+          success: Su perfil fue actualizado satisfactoriamente.
+          notice: Tenga en cuenta que debe usar su nueva dirección de correo para iniciar sesión la próxima vez.
+
+  actions:
+    admin:
+      account:
+        edit: Perfil
+        update: Perfil

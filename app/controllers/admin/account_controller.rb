@@ -6,9 +6,9 @@ class Admin::AccountController < AdminController
   # PATCH/PUT /profile
   # PATCH/PUT /profile.json
   def update
+    email_changed = current_user.email != account_params[:email]
     if current_user.update(account_params)
-      flash[:notice] = 'Beware that you must use the new email address to sign in the next time.'
-      redirect_to profile_admin_account_path, success: 'Profile was successfully updated.'
+      redirect_to profile_admin_account_path, success: true, notice: email_changed
     else
       render action: 'edit'
     end

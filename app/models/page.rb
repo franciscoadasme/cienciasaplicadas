@@ -39,6 +39,9 @@ class Page < ActiveRecord::Base
 
   default_scope -> { order :position }
   scope :global, -> { where owner_id: nil }
+  scope :published, -> { where published: true, trashed: false }
+  scope :drafted, -> { where published: false, trashed: false }
+  scope :trashed, -> { where trashed: true }
   scope :navigable, -> { global.published }
   scope :named, -> (name) { friendly.find name.to_s }
 
@@ -51,12 +54,21 @@ class Page < ActiveRecord::Base
                                            scope: :owner_id }
   validates :body, presence: true,
                      length: { minimum: 128 }
-  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
+                                                     message: I18n.t('activerecord.errors.models.page.attributes.banner.spoofed_media_type') },
                                         size: { in: 0..5.megabytes },
                                  allow_blank: true
 
   def self.named_pages
     @pages ||= Hash[load_seeds.map { |data| [ data['tagline'], data ] }].with_indifferent_access
+  end
+
+  def self.human_state_name(state_i18n_key)
+    I18n.t state_i18n_key, scope: Page.i18n_scope_states, default: state_i18n_key
+  end
+
+  def self.state_key_for(state_name)
+    I18n.t(Page.i18n_scope_states).invert.transform_keys{ |key| key.to_s.parameterize }[state_name.to_s]
   end
 
 # Status
@@ -69,10 +81,10 @@ class Page < ActiveRecord::Base
   end
 
   def status
-    case
-    when trashed? then :trashed
-    when published? then :published
-    else :drafted
+    Page.human_state_name case
+      when trashed? then :trashed
+      when published? then :published
+      else :drafted
     end
   end
 
@@ -104,5 +116,9 @@ class Page < ActiveRecord::Base
   private
     def set_edited_by_if_needed
       self.edited_by ||= author
+    end
+
+    def self.i18n_scope_states
+      :'activerecord.attributes.page.states'
     end
 end

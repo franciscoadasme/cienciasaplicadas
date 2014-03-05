@@ -1,8 +1,10 @@
 .panel.panel-default
   .panel-heading
-    Thesis Information
+    Información de la
+    = Thesis.model_name.human
+
     .pull-right
-      = link_to fa_icon('external-link', text: 'View PDF'), @thesis.pdf_file.url, class: 'btn btn-default'
+      = item_action t('views.admin.theses.buttons.view_pdf'), @thesis.pdf_file.url, icon: 'external-link'
       = edit_action_for @thesis, primary: true, icon: 'edit'
       = delete_action_for @thesis, icon_only: true
 
@@ -13,31 +15,31 @@
         = link_to @thesis.pdf_file.url, class: 'item-thesis-preview' do
           = image_tag @thesis.pdf_file.url(:thumb)
 
-      %dt Title
+      %dt= Thesis.human_attribute_name :title
       %dd= @thesis.title
 
-      %dt Publication year
+      %dt= Thesis.human_attribute_name :issued
       %dd= @thesis.issued
 
-      %dt Author
+      %dt= Thesis.human_attribute_name :user
       %dd= link_to @thesis.user.display_name, @thesis.user
 
-      %dt Institution
+      %dt= Thesis.human_attribute_name :institution
       %dd= @thesis.institution
 
       - if @thesis.keywords.present?
-        %dt Keywords
+        %dt= Thesis.human_attribute_name :keywords
         %dd
           - @thesis.keyword_list.each do |keyword|
             - alt = [ :default, :primary, :success, :info, :warning, :danger ].sample
             %span.label{ class: "label-#{alt}" }= keyword
 
       - if @thesis.abstract.present?
-        %dt Abstract
+        %dt= Thesis.human_attribute_name :abstract
         %dd= markdown @thesis.abstract
 
       - if @thesis.notes.present?
-        %dt Notes
+        %dt= Thesis.human_attribute_name :notes
         %dd= markdown @thesis.notes
 
-= link_to fa_icon('long-arrow-left', text: 'Go back to Theses'), admin_theses_path, class: 'btn btn-link'
+= link_to fa_icon('long-arrow-left', text: t('views.admin.theses.buttons.go_back')), admin_theses_path, class: 'btn btn-link'

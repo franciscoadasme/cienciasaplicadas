@@ -1,6 +1,7 @@
 module PublicationsHelper
   def author_list_for(pub, limit: 2)
     authors_to_display = pub.authors.sorted.limit(limit)
+    authors_to_display = pub.authors.first(limit) if authors_to_display.empty?
     content_tag :ul, class: 'publication-authors' do
       authors_to_display.each do |author|
         concat author_item_for(author)

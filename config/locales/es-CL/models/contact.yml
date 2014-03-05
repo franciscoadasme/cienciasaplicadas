@@ -1,0 +1,12 @@
+es-CL:
+  activerecord:
+    models:
+      contact: Contacto
+    attributes:
+      contact:
+        name: Nombre
+        first_name: Nombre
+        last_name: Apellido
+        institution: Institución
+        email: Correo Electrónico
+        website_url: Página web

@@ -1,4 +1,5 @@
 class Admin::ThesesController < AdminController
+  before_action :authorize_user!
   before_action :set_thesis, only: [ :show, :edit, :update, :destroy ]
 
   def index
@@ -10,6 +11,7 @@ class Admin::ThesesController < AdminController
 
   def new
     @thesis = Thesis.new
+    @users = User.joins(:position).where 'positions.slug LIKE ?', '%estudiante%'
   end
 
   def edit
@@ -19,7 +21,7 @@ class Admin::ThesesController < AdminController
     @thesis = Thesis.new(thesis_params)
 
     if @thesis.save
-      redirect_to [ :admin, @thesis ], notice: 'Thesis was successfully created.'
+      redirect_to [ :admin, @thesis ], success: true
     else
       render action: 'new'
     end
@@ -27,7 +29,7 @@ class Admin::ThesesController < AdminController
 
   def update
     if @thesis.update(thesis_params)
-      redirect_to [ :admin, @thesis ], notice: 'Thesis was successfully updated.'
+      redirect_to [ :admin, @thesis ], success: true
     else
       render action: 'edit'
     end
@@ -35,7 +37,7 @@ class Admin::ThesesController < AdminController
 
   def destroy
     @thesis.destroy
-    redirect_to admin_theses_url
+    redirect_to_index success: true
   end
 
   private

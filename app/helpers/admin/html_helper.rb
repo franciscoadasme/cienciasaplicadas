@@ -1,4 +1,29 @@
 module Admin::HtmlHelper
+# Title helpers
+  def content_for_title
+    content_for(:title) || tv('.title', default: taction)
+  end
+
+  def content_for_subtitle
+    case
+    when content_for?(:raw_subtitle) then content_for(:raw_subtitle)
+    else
+      content = case
+        when content_for?(:subtitle) then content_for(:subtitle)
+        when tv?('.subtitle') then tv('.subtitle')
+        else
+          controller_name = top_level_controller
+          case controller_name
+          when 'account' then 'Cuenta'
+          when 'group' then 'Grupo'
+          else
+            controller_name.classify.constantize.model_name.human.pluralize(:'es-CL') rescue controller_name
+          end
+      end
+      content_tag :small, content
+    end
+  end
+
 # Item actions
   def item_action(name, href, options = {})
     unless options.has_key? :class
@@ -20,38 +45,55 @@ module Admin::HtmlHelper
 
   def show_action_for(record, options = {})
     href = record.is_model? ? [ :admin, record ] : record
-    item_action options.fetch(:name, 'View'), href, options
+    item_action options.fetch(:name, 'Visualizar'), href, options
   end
 
   def edit_action_for(record, options = {})
     href = record.is_model? ? [ :edit, :admin, record ] : record
-    item_action options.fetch(:name, 'Edit'), href, options
+    item_action options.fetch(:name, 'Editar'), href, options
   end
 
   def delete_action_for(record, options = {})
     options.reverse_merge!(
       method: :delete,
-      data: { confirm: options.fetch(:message, 'Are you sure?') },
+      data: { confirm: options.fetch(:message, 'Está seguro de eliminar este registro?') },
       type: :danger,
       icon: 'trash-o')
     href = record.is_model? ? [ :admin, record ] : record
-    item_action options.fetch(:name, 'Delete'), href, options
+    item_action options.fetch(:name, 'Eliminar'), href, options
   end
 
   def markdown_hint
-    text = <<EOS
-It supports markdown  markup language #{link_to fa_icon('question-circle'), 'http://daringfireball.net/markdown', title: 'What is markdown?', target: '_blank'}. Using online editors such as #{link_to 'Markable', 'http://markable.in/editor/', target: '_blank'}, #{link_to 'Dillinger', 'http://dillinger.io/', target: '_blank'} or #{link_to 'StackEdit', 'http://benweet.github.io/stackedit/', target: '_blank'} is highly recommended.
-EOS
-    text.html_safe
+#     text = <<EOS
+# It supports markdown  markup language #{link_to fa_icon('question-circle'), 'http://daringfireball.net/markdown', title: 'What is markdown?', target: '_blank'}. Using online editors such as #{link_to 'Markable', 'http://markable.in/editor/', target: '_blank'}, #{link_to 'Dillinger', 'http://dillinger.io/', target: '_blank'} or #{link_to 'StackEdit', 'http://benweet.github.io/stackedit/', target: '_blank'} is highly recommended.
+# EOS
+#     text.html_safe
+
+    msg = 'Es compatible con el lenguaje de etiquetas Markdown '
+    msg << link_to(fa_icon('question-circle'), 'http://daringfireball.net/markdown', title: '¿Qué es Markdown?', target: '_blank')
+    msg << '. '
+    msg << 'El uso de editores en linea tales como '
+    msg << link_to('Markable', 'http://markable.in/editor/', target: '_blank')
+    msg << ', '
+    msg << link_to('Dillinger', 'http://dillinger.io/', target: '_blank')
+    msg << ' ó '
+    msg << link_to('StackEdit', 'http://benweet.github.io/stackedit/', target: '_blank')
+    msg << ' es altamente recomendado.'
+    msg.html_safe
   end
 
-  def sidebar_menu_item title, path, options={}, &block
-    is_active = options.delete(:condition) || current_path?(path) || current_page?(path)
-    addon = options.delete :addon
-    css = options.delete :class
-    content_tag :li, class: "sidebar-menu-item #{css} #{' active' if is_active}" do
-      link_to(path, options) do
-        concat title.to_s.titleize
+  def sidebar_menu_item(title_or_controller, path_or_options=nil, options={}, &block)
+    path = sidebar_menu_item_path title_or_controller, path_or_options
+
+    css = [ 'sidebar-menu-item' ]
+    css << path_or_options.delete(:class).try(:split) if path_or_options.is_a?(Hash)
+    css << options.delete(:class).try(:split)
+    css << 'active' if sidebar_menu_item_active?(title_or_controller, path_or_options, options)
+    html_options = path_or_options.is_a?(Hash) ? path_or_options.merge(options) : options
+
+    content_tag :li, class: css.compact.join(' ') do
+      link_to(path, html_options) do
+        concat sidebar_menu_item_title(title_or_controller)
         yield if block_given?
       end
     end
@@ -93,4 +135,49 @@ EOS
       end
     end
   end
+
+  private
+    def sidebar_menu_item_active?(title_or_controller, path_or_options, options)
+      case
+      when options.has_key?(:condition)
+        options.delete(:condition)
+      when path_or_options.is_a?(String)
+        current_path?(path_or_options) || current_page?(path_or_options)
+      when path_or_options.nil? || path_or_options.is_a?(Hash)
+        case
+          when path_or_options.try(:has_key?, :condition)
+            path_or_options.delete(:condition)
+          when title_or_controller.is_a?(Symbol)
+            controller?(title_or_controller)
+        end
+      else false
+      end
+    end
+
+    def sidebar_menu_item_path(title_or_controller, path_or_options)
+      case path_or_options
+      when String then path_or_options
+      when Hash
+        path_or_options = path_or_options.extract! :scope, :controller, :action, :id
+        case
+        when path_or_options.empty? then path_to_index(title_or_controller)
+        when path_or_options.has_key?(:scope) && path_or_options.exclude?(:controller) && path_or_options.exclude?(:action)
+          [ title_or_controller, :admin, path_or_options[:scope] ]
+        else path_or_options
+        end
+      else path_to_index(title_or_controller)
+      end
+    end
+
+    def sidebar_menu_item_title(title_or_controller)
+      case
+      when title_or_controller.is_a?(Symbol)
+        content = I18n.t title_or_controller, scope: [ :views, :admin, :_sidebar, :items ]
+        if content.start_with?('translation missing')
+          title_or_controller.to_s.classify.constantize.model_name.human.pluralize(:'es-CL') rescue content
+        else content
+        end
+      else title_or_controller
+      end
+    end
 end

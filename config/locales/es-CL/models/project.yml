@@ -2,3 +2,14 @@ es-CL:
   activerecord:
     models:
       project: Proyecto
+    attributes:
+      project:
+        title: Título
+        start_year: Año de inicio
+        end_year: Año de término
+        source: Patrocinador
+        identifier: Identificador
+        description: Descripción
+        image_url: Enlace de imagen
+        position: Posición
+        duration: Duración

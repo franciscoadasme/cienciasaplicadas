@@ -1,0 +1,17 @@
+.list-group-item-actions
+  - if page.trashed?
+    = delete_action_for admin_page_path(page.id), name: taction(:destroy)
+    .pull-right
+      = item_action taction(:restore), restore_admin_page_path(page.id), method: :patch, primary: true
+
+  - else
+    - if page.drafted?
+      = item_action taction(:publish), publish_admin_page_path(page.id), method: :patch, primary: true
+    = edit_action_for edit_admin_page_path(page.id), primary: page.published?
+
+    = item_action taction(page.published? ? :show : :preview), page.owner.nil? ? page_path(page) : user_page_path(current_user, page), blank: true
+    .pull-right
+      - if page.marked?
+        %span.btn.disabled= %q{No se puede mover a la papelera}
+      - else
+        = delete_action_for trash_admin_page_path(page.id), name: taction(:trash), method: :patch

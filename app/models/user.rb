@@ -124,7 +124,8 @@ class User < ActiveRecord::Base
   validates :bio, length: { minimum: 100 },
              allow_blank: true
   validates :position, presence: true
-  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
+                                                     message: I18n.t('activerecord.errors.models.user.attributes.banner.spoofed_media_type') },
                                         size: { in: 0..5.megabytes },
                                  allow_blank: true
 
@@ -267,7 +268,7 @@ class User < ActiveRecord::Base
     end
 
     def remove_from_mailing_list
-      MailingList.global.remove_member email
+      MailingList.global.remove_member(email) if accepted?
       true
     end
 

@@ -1,0 +1,17 @@
+es-CL:
+  views:
+    users:
+      single:
+        meta:
+          not_accepted: "Invitado hace %{distance_of_time} atrás"
+      links:
+        confirmations:
+          destroy: ¿Está seguro que quiere eliminar este usuario?
+        hints:
+          mailto: 'Enviar un correo a %{email}'
+          promote: Promover a Super Usuario
+          demote: Bajar a Usuario Básico
+          resend: Reenviar invitación
+          view_user_page: Ver perfil público
+          delete: Eliminar usuario
+          change_position: Cambiar posición

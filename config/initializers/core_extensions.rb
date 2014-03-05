@@ -4,6 +4,10 @@ module Kernel
   end
 end
 
+module Boolean; end
+class TrueClass; include Boolean; end
+class FalseClass; include Boolean; end
+
 module ActionView
   module Helpers
     module DateHelper
@@ -123,3 +127,22 @@ module ActiveModel
     end
   end
 end
+
+module ValidateAttribute
+  def self.included(base)
+    base.send :include, InstanceMethods
+  end
+
+  module InstanceMethods
+    def valid_attribute?(attribute_name)
+      valid_attributes? attribute_name
+    end
+
+    def valid_attributes?(*attribute_names)
+      self.valid?
+      attribute_names.all? { |name| self.errors[name].blank? }
+    end
+  end
+end
+
+ActiveRecord::Base.send(:include, ValidateAttribute) if defined?(ActiveRecord::Base)

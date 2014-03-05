@@ -1,10 +1,10 @@
 = form_tag add_member_admin_mailing_list_path(@mailing_list), class: 'form-inline' do
   .form-group
-    = text_area_tag 'mailing_list_member[address]', nil, placeholder: 'Type valid email addresses', style: 'height: 150px', data: { addresses: @addresses_available }
+    = text_area_tag 'mailing_list_member[address]', nil, placeholder: 'Escriba las correos', style: 'height: 150px', data: { addresses: @addresses_available }
     %p.help-block
-      Please insert here a comma-separated list of the recipient email addresses.
+      Favor agregue una lista de direcciones de correo electrónico de los destinatarios separados por coma.
     %br
 
   .form-actions
-    = submit_tag 'Add addresses', class: 'btn btn-primary btn-block', data: { disable_with: 'Sending... Be patient' }
-    = button_tag 'Close', type: 'button', class: 'btn btn-default btn-block mailing-list', data: { action: 'cancel' }
+    = submit_tag 'Añadir destinatarios', class: 'btn btn-primary btn-block', data: { disable_with: 'Enviado... Favor sea paciente' }
+    = button_tag 'Cancelar', type: 'button', class: 'btn btn-default btn-block mailing-list', data: { action: 'cancel' }

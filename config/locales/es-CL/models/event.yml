@@ -1,0 +1,22 @@
+es-CL:
+  activerecord:
+    models:
+      event: Evento
+    attributes:
+      event:
+        name: Nombre
+        start_date: Fecha de inicio
+        end_date: Fecha de término
+        duration: Duración
+        location: Lugar de realización
+        description: Descripción
+        event_type: Tipo de evento
+        promoter: Patrocinador
+        picture: Imagen del tópico
+    errors:
+      models:
+        event:
+          attributes:
+            picture:
+              spoofed_media_type: 'solo imágenes están permitidas (jpg, gif, png)'
+              less_than: el tamaño del archivo excedió el límite
