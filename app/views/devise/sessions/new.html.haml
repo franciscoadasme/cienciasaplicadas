@@ -12,7 +12,7 @@
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
         = f.submit t('devise.sessions.buttons.submit'), class: 'btn btn-primary pull-right'
 
-    .separator= 'or sign in with'
+    .separator= t('devise.sessions.placeholders.or_social')
     = link_to fa_icon('facebook-square', text: 'Facebook'), omniauth_authorize_path(resource_name, :facebook), class: :facebook
     = link_to fa_icon('google-plus-square', text: 'Google'), omniauth_authorize_path(resource_name, :google_oauth2), class: :google
 

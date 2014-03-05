@@ -16,6 +16,8 @@ es-CL:
         banner: Imagen de encabezado
         password: Contraseña
         password_confirmation: Confirmar contraseña
+        remember_me: Recordarme
+
         roles:
           admin: Administrador
           super_user: Super Usuario
