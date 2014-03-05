@@ -2,6 +2,9 @@ es-CL:
   views:
     admin:
       _sidebar:
+        headings:
+          account: Tu cuenta
+          group: 'Grupo %{group}'
         items:
           dashboard: Inicio
           profile: Perfil

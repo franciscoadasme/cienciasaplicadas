@@ -18,7 +18,8 @@
         = sidebar_menu_item :events
 
     %ul.sidebar-menu
-      %li.sidebar-menu-header Your account
+      = content_tag :li, t('views.admin._sidebar.headings.account'), class: 'sidebar-menu-header' if current_user.super_user?
+
       = sidebar_menu_item :profile, scope: :account, condition: controller?(:account)
       = sidebar_menu_item :settings, scope: :account
 
@@ -33,7 +34,8 @@
 
     - if current_user.super_user?
       %ul.sidebar-menu
-        %li.sidebar-menu-header= "Group #{@group.abbr}"
+        = content_tag :li, t('views.admin._sidebar.headings.group', group: @group.abbr), class: 'sidebar-menu-header'
+
         = sidebar_menu_item :posts do
           = autolink_to tsidebar_item(:new_post), new_admin_post_path, class: 'newlink'
 
