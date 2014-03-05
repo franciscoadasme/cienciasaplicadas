@@ -1,0 +1,17 @@
+es-CL:
+  views:
+    admin:
+      positions:
+        buttons:
+          new: Nueva Posición
+        placeholders:
+          order: 'El orden relativo indica una jerarquía, donde una posición ubicada más arriba representa un nivel más alto. Tal orden es respetado cuando se muestran una lista de usuario en la página principal.'
+          sort_instructions: 'Para cambiar el orden de las posiciones, haga click en icono a la izquierda de cada fila y arrastrelo verticalmente hasta la ubicación deseada. El nuevo orden se guardará automaticamente.'
+
+  simple_form:
+    placeholders:
+      position:
+        name: 'Escriba y presione enter'
+    hints:
+      position:
+        name: 'Tip: Presione enter para enviar o Esc para cancelar.'

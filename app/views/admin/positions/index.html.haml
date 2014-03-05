@@ -1,18 +1,22 @@
 - provide :widget do
-  = link_to fa_icon('plus', text: 'New position'), new_admin_position_path, class: 'btn btn-primary position', remote: true, data: { action: 'new', disable_with: 'Retrieving...' }
+  = link_to fa_icon('plus', text: t(:new, scope: 'views.admin.positions.buttons')), new_admin_position_path, class: 'btn btn-primary position', remote: true, data: { action: 'new', disable_with: 'Esperando...' }
+
+.alert.alert-info.alert-dismissable
+  %button{ type: :button, class: 'close', aria_hidden: true, data: { dismiss: 'alert' }} &times;
+  %p= t :sort_instructions, scope: 'views.admin.positions.placeholders'
 
 %table.table.table-bordered.table-positions{ data: { update_url: sort_admin_positions_url }}
   %col{ style: 'width: 5%' }
-  %col{ style: 'width: 50%' }
-  %col{ style: 'width: 15%' }
+  %col{ style: 'width: 40%' }
+  %col{ style: 'width: 25%' }
   %col{ style: 'width: 30%' }
 
   %thead
     %tr
       %th
-      %th Name
-      %th Nº users
-      %th.text-center Action
+      %th= Position.human_attribute_name :name
+      %th= Position.human_attribute_name :users_count
+      %th.text-center Acción
 
   %tbody
     - @positions.each do |position|
@@ -22,9 +26,9 @@
         %td.editable= position.name
         %td= position.users.count
         %td.text-center
-          = edit_action_for position, remote: true, data: { action: 'edit', disable_content: 'Editting...' }
+          = edit_action_for position, remote: true, data: { action: 'edit', disable_content: 'Editando...' }
           = delete_action_for position, icon_only: true
 
 %p.help-block
   %sup> &dagger;
-  Relative order indicates hierarchy, so the higher the role in the table, the higher is its level. This order is respected when displaying users in People page.
+  = t :order, scope: 'views.admin.positions.placeholders'
