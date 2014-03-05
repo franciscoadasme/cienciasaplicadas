@@ -46,8 +46,8 @@ class Event < ActiveRecord::Base
   validates :end_date, timeliness: { on_or_after: :start_date },
                       allow_blank: true
   validates :location, presence: true
-  validates :description, length: { minimum: 10 },
-                     allow_blank: true
+  validates :description, presence: true,
+                            length: { minimum: 10 }
   validates :event_type, presence: true,
                         inclusion: { in: TYPES.map(&:to_s) }
   validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
