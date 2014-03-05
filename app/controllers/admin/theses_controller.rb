@@ -1,4 +1,5 @@
 class Admin::ThesesController < AdminController
+  before_action :authorize_user!
   before_action :set_thesis, only: [ :show, :edit, :update, :destroy ]
 
   def index
