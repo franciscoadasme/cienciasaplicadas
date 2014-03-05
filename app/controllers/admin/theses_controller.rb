@@ -10,6 +10,7 @@ class Admin::ThesesController < AdminController
 
   def new
     @thesis = Thesis.new
+    @users = User.joins(:position).where 'positions.slug LIKE ?', '%estudiante%'
   end
 
   def edit

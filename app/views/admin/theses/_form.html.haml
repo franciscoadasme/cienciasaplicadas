@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.association :user, label_method: :full_name, collection: User.default, prompt: true
+    = f.association :user, label_method: :full_name, collection: @users, prompt: true
     = f.input :institution
     = f.input :issued, as: :select, collection: Date.today.year.downto(1980), prompt: true
     = f.input :pdf_file

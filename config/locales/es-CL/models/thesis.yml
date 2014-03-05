@@ -29,6 +29,7 @@ es-CL:
 
     hints:
       thesis:
+        user: 'Solo se muestran usuarios cuya posición contenga la palabra clave "estudiante" (e.g. estudiante, estudiante graduado, etc.).'
         keywords: Lista de palabras claves separadas por coma.
 
   helpers:
