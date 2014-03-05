@@ -27,8 +27,9 @@
         %dt= Event.human_attribute_name :picture
         %dd= image_tag @event.picture.url(:thumb), class: 'img-thumbnail'
 
-      %dt= Event.human_attribute_name :description
-      %dd= markdown @event.description
+      - if @event.description.present?
+        %dt= Event.human_attribute_name :description
+        %dd= markdown @event.description
 
 
 = link_to fa_icon('long-arrow-left', text: 'Volver a los Eventos'), admin_events_path, class: 'btn btn-link'
