@@ -6,5 +6,5 @@
   - unless sorting_pages?
     = content_tag :p, image_tag(page.banner.url(:thumb), width: '100%', class: 'img-thumbnail') if page.banner.present?
     %p= excerpt page.body
-    = render 'admin/publishable/meta', publishable: post
+    = render 'admin/publishable/meta', publishable: page
     = render 'page_actions', page: page
