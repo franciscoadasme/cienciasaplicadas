@@ -1,10 +1,11 @@
 class Admin::ContactsController < AdminController
   before_action :authorize_user!
-  before_action :set_contact, only: [ :index, :show, :edit, :update, :destroy ]
+  before_action :set_contact, only: [ :show, :edit, :update, :destroy ]
   before_action :set_mailing_lists, only: [ :index, :show ]
 
   def index
     @contacts = Contact.sorted.group_by { |contact| contact.last_name.first }
+    @contact = Contact.sorted.first
   end
 
   def show
@@ -46,7 +47,7 @@ class Admin::ContactsController < AdminController
 
   private
     def set_contact
-      @contact = params.key?(:id) ? Contact.find(params[:id]) : Contact.sorted.first
+      @contact = Contact.find(params[:id])
     end
 
     def set_mailing_lists
