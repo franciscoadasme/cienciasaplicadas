@@ -18,7 +18,7 @@ es-CL:
           attributes:
             pdf_file:
               blank: no se seleccionó ningún archivo
-              spoofed_media_type: solo archivo PDF están permitidos
+              spoofed_media_type: solo archivos PDF están permitidos
               in_between: el tamaño del archivo excedió el límite
 
   simple_form:
