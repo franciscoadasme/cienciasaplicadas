@@ -13,3 +13,10 @@ es-CL:
         event_type: Tipo de evento
         promoter: Patrocinador
         picture: Imagen del tópico
+    errors:
+      models:
+        event:
+          attributes:
+            picture:
+              spoofed_media_type: 'solo imágenes están permitidas (jpg, gif, png)'
+              less_than: el tamaño del archivo excedió el límite

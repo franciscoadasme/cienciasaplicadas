@@ -34,6 +34,7 @@ class Moment < ActiveRecord::Base
                  allow_blank: true
   validates :user, presence: true
   validates_attachment :photo, presence: true,
-                           content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+                           content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
+                                                message: I18n.t('activerecord.errors.models.moment.attributes.photo.invalid') },
                                    size: { in: 0..5.megabytes }
 end

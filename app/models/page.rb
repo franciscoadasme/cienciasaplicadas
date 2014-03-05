@@ -54,7 +54,8 @@ class Page < ActiveRecord::Base
                                            scope: :owner_id }
   validates :body, presence: true,
                      length: { minimum: 128 }
-  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'] },
+  validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
+                                                     message: I18n.t('activerecord.errors.models.page.attributes.banner.spoofed_media_type') },
                                         size: { in: 0..5.megabytes },
                                  allow_blank: true
 

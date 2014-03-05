@@ -31,6 +31,9 @@ es-CL:
           attributes:
             nickname:
               invalid: sólo debe contener letras sin acentos (e.g. n en lugar de ñ)
+            banner:
+              spoofed_media_type: 'solo imágenes están permitidas (jpg, gif, png)'
+              in_between: el tamaño del archivo excedió el límite
     methods:
       user:
         with_position: 'con_posicion'
