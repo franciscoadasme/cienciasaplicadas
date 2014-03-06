@@ -36,7 +36,7 @@ module ParsingHelper
           when sentence =~ /\A\w+[ \(].+/ then eval_sentence_single(sentence)
           else eval(sentence)
         end
-        result.present? ? render_result(result) : raise(ActiveRecord::RecordNotFound)
+        result.nil? ? raise(ActiveRecord::RecordNotFound) : render_result(result)
       rescue SyntaxError => error
         render_error error, 'Parece que hubo un error de sintaxis en el código', sentence
       rescue NoMethodError => error
