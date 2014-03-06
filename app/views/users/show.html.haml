@@ -23,8 +23,9 @@
       = render @user.thesis
     = btn_to 'Ver todas las tesis', theses_path, block: true
 
-%section#publications
-  %h2= section_title_for_user_pubs @user_pubs
-  %ul.publications
-    = render @user_pubs
-  = btn_to 'Ver todas las publicaciones', [ @user, :publications ], block: true
+- if @user_pubs.any?
+  %section#publications
+    %h2= section_title_for_user_pubs @user_pubs
+    %ul.publications
+      = render @user_pubs
+    = btn_to 'Ver todas las publicaciones', [ @user, :publications ], block: true
