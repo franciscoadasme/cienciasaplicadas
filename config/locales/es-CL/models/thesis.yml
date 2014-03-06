@@ -20,6 +20,9 @@ es-CL:
               blank: no se seleccionó ningún archivo
               spoofed_media_type: solo archivos PDF están permitidos
               in_between: el tamaño del archivo excedió el límite
+    methods:
+      thesis:
+        recent: recientes
 
   simple_form:
     placeholders:

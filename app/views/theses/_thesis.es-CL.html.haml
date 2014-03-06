@@ -1,6 +1,6 @@
 %li.media.thesis
   = link_to [ thesis.user, thesis ], class: 'pull-left magnifiable' do
-    = autosizing_image_tag thesis.pdf_file.url(:thumb), width: 48, class: 'img-thumbnail media-object'
+    = autosizing_image_tag thesis.pdf_file.url(:thumb), class: 'img-thumbnail media-object'
   .media-body
     %h4.media-subheading
       %span.text-primary= link_to thesis.user.display_name, thesis.user

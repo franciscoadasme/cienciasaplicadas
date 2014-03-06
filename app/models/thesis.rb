@@ -30,6 +30,10 @@ class Thesis < ActiveRecord::Base
 
   scope :sorted, -> { order issued: :desc, title: :asc }
   scope :with_keywords, -> *keywords { where 'keywords_digest ILIKE ANY (array[?])', keywords.map { |kw| "%#{kw.parameterize}%" }}
+  scope :recent, -> { sorted.limit(3) }
+
+  include Localizable
+
   before_save :digest_keywords
 
   VALID_NAME_REGEX = /\A[[:alpha:] ,\.'-]+\Z/i
