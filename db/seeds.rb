@@ -25,4 +25,4 @@ user.build_settings.save!
 
 # Page.seed! author: user, published: true
 Position.seed!
-MailingList.seed!
+# MailingList.seed!
