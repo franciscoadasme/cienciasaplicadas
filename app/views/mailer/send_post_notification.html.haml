@@ -1,0 +1,24 @@
+- provide :title do
+  %h1
+    %span.text-muted Nuevo contenido!
+    = @post.title
+
+= mtable_tag width: '100%' do
+  %tr
+    %td
+      %p.text-center
+        = link_to @post.edited_by.full_name, user_url(@post.edited_by)
+        editó esta noticia recientemente, y se requiere de su atención para ser publicada. Favor dirigirse al enlace inferior para validar el contenido, y posteriormente marcarlo como publicado en el panel de administración.
+
+      %br
+
+      %p.text-center= link_to 'Revisar noticia', edit_admin_post_url(@post), class: 'btn'
+
+      %br
+
+      %p.text-center
+        La noticia se mantendrá en borrador hasta que uno de los administradores
+        = content_tag :span, class: 'text-muted' do
+          = surround '(', ')' do
+            = @admins.map(&:full_name).join(', ')
+        la marque como publicada.

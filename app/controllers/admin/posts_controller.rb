@@ -1,6 +1,7 @@
 class Admin::PostsController < AdminController
   before_action :authorize_user!
   before_action :set_post, only: [ :edit, :update, :destroy, :publish, :withhold ]
+  after_action :send_notification, only: [ :create, :update ]
 
   def index
     @posts = Post.sorted
@@ -19,7 +20,7 @@ class Admin::PostsController < AdminController
     set_published_status
 
     if @post.save
-      redirect_to_index success: (@post.published? ? :published : :drafted)
+      redirect_to_index_after_save
     else
       render action: 'new'
     end
@@ -30,7 +31,7 @@ class Admin::PostsController < AdminController
     set_published_status
 
     if @post.update(post_params)
-      redirect_to_index success: true
+      redirect_to_index_after_save
     else
       render action: 'edit'
     end
@@ -43,7 +44,7 @@ class Admin::PostsController < AdminController
 
   def publish
     @post.publish!
-    redirect_to_index success: true
+    redirect_to_index success: :published
   end
 
   def withhold
@@ -61,10 +62,24 @@ class Admin::PostsController < AdminController
     end
 
     def set_published_status
-      @post.published = params.include? :publish
+      @post.published = params.include?(:publish) && current_user.admin?
     end
 
     def post_params
       params.require(:post).permit(:title, :body)
+    end
+
+    def redirect_to_index_after_save
+      i18n_key = case
+        when current_user.admin?
+          @post.published? ? :published : :drafted
+        else
+          :drafted_with_notification
+      end
+      redirect_to_index success: i18n_key
+    end
+
+    def send_notification
+      DefaultMailer.send_post_notification(@post).deliver unless current_user.admin?
     end
 end

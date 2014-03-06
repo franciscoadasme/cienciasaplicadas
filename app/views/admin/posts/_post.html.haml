@@ -7,12 +7,15 @@
   = render 'admin/publishable/meta', publishable: post
 
   .list-group-item-actions
-    - if post.published?
-      = item_action taction(:withhold), withhold_admin_post_path(post.id), icon: :lock, method: :patch
+    - if current_user.admin?
+      - if post.published?
+        = item_action taction(:withhold), withhold_admin_post_path(post.id), icon: :lock, method: :patch
+      - else
+        = item_action taction(:publish), publish_admin_post_path(post.id), icon: 'unlock-alt', primary: true, method: :patch
     - else
-      = item_action taction(:publish), publish_admin_post_path(post.id), icon: 'unlock-alt', primary: true, method: :patch
+      %span.btn.btn-default.disabled= post.published? ? 'Publicado' : 'Retenido'
 
-    = item_action t('views.admin.posts.buttons.edit'), edit_admin_post_path(post.id), primary: post.published?
+    = item_action t('views.admin.posts.buttons.edit'), edit_admin_post_path(post.id), primary: post.published? if !post.published? || current_user.admin?
     = item_action taction(post.published? ? :show : :preview), post_permalink(post), target: '_blank'
 
     .pull-right

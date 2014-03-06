@@ -34,4 +34,13 @@ class DefaultMailer < ActionMailer::Base
 
     mail to: recipients, subject: subject, template_path: 'mailer'
   end
+
+  def send_post_notification(post)
+    @admins = User.admins
+    recipients = @admins.map{ |user| "#{user.display_name} <#{user.email}>" }
+    subject = '[CienciasAplicadas] Una noticia requiere de su aprobación'
+    @post = post
+
+    mail to: recipients, subject: subject, template_path: 'mailer'
+  end
 end

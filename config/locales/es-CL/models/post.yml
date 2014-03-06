@@ -18,5 +18,6 @@ es-CL:
       post:
         create: Publicar Noticia
         update: Guardar Cambios
+        publish: Publicar Noticia
         draft: Guardar Borrador
         cancel: Cancelar

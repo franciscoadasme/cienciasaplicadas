@@ -6,8 +6,8 @@
     = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
 
   .form-group.form-actions
-    - unless @post.persisted?
+    - if !@post.persisted? && current_user.admin?
       = f.button :button, t('helpers.submit.post.draft'), name: 'draft', class: 'btn-default', data: { disable_with: 'Guardando...' }
     = link_to t('helpers.submit.post.cancel'), admin_posts_path, class: 'text-danger'
     .pull-right
-      = f.button :submit, name: :publish, class: 'btn btn-primary', data: { disable_with: 'Publicando...' }
+      = post_submit_button f, @post

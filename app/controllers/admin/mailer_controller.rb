@@ -27,4 +27,10 @@ class Admin::MailerController < AdminController
     # @journals = Journal.limit(1)
     render 'mailer/send_journal_notification'
   end
+
+  def preview_post_notification
+    @post = Post.last
+    @admins = User.admins
+    render 'mailer/send_post_notification'
+  end
 end

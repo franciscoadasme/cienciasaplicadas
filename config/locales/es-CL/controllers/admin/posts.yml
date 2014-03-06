@@ -2,18 +2,17 @@ es-CL:
   controllers:
     admin:
       posts:
-        create:
-          success:
-            published: La noticia fue publicada con éxito.
-            drafted: La noticia fue guardada como borrador con éxito.
         update:
-          success: La noticia fue actualizada con éxito.
+          success:La noticia fue actualizada con éxito.
         destroy:
           success: La noticia fue eliminada permanentemente.
-        publish:
-          success: La noticia fue publicada satisfactoriamente.
         withhold:
           success: La noticia fue retenida por lo que no será visible publicamente.
+
+        successes:
+          published: La noticia fue publicada con éxito.
+          drafted: La noticia fue guardada como borrador con éxito.
+          drafted_with_notification: La noticia fue guardada como borrador con éxito. Una notificación ha sido enviada a los administradores para la posterior publicación del contenido.
 
   actions:
     admin:
