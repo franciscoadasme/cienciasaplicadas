@@ -22,5 +22,13 @@
           = link_to pluralize(user.projects.count, 'proyecto'), '#'
           = 'científico'.pluralize user.projects.count, :'es-CL'
 
+      - if user.thesis.present?
+        %p
+          Ha defendido su
+          = link_to 'memoria de tesis', [ user, user.thesis ]
+          el
+          = succeed '.' do
+            %strong= user.thesis.issued
+
       -# - if user.publications.empty? && user.projects.empty?
       -#   %p No hay registros de investigación.

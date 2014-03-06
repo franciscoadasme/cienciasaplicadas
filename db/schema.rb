@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227221426) do
+ActiveRecord::Schema.define(version: 20140306030415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,8 @@ ActiveRecord::Schema.define(version: 20140227221426) do
     t.datetime "pdf_file_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "keywords_digest"
+    t.string   "slug"
   end
 
   add_index "theses", ["title"], name: "index_theses_on_title", unique: true, using: :btree

@@ -6,7 +6,7 @@ $(document).ready ->
   $('[data-toggle="tooltip"]').tooltip()
 
   sidebar = $('aside[role="sidebar"]')
-  if sidebar.length && sidebar.siblings().outerHeight() - sidebar.outerHeight() > 200
+  if sidebar.length && sidebar.siblings().outerHeight() - sidebar.outerHeight() > 250
     sidebar.height sidebar.siblings().outerHeight()
     sidebar.find('.container').affix
       offset:

@@ -6,7 +6,7 @@
     = javascript_include_tag 'site'
     = csrf_meta_tags
 
-  %body{ data: { spy: 'scroll', target: '.sidebar-nav', offset: 50 }}
+  %body
     = render 'site/nav'
     = render 'site/header'
     = render 'site/content'

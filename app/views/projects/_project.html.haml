@@ -4,7 +4,8 @@
   %h3.project-title= link_to project.title, [ @user, project ]
 
   .project-meta
-    Participa como
+    = project.end_year < DateTime.current.year ? 'Participó' : 'Participa'
+    como
     %strong= project.position
     en
     %em= project.source_and_id

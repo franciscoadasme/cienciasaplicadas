@@ -57,6 +57,7 @@ class User < ActiveRecord::Base
   has_many :publications, through: :aliases
   has_many :projects
   belongs_to :position
+  has_one :thesis
 
   scope :sorted, -> { joins(:position).order 'positions.level', :last_name, :first_name }
   scope :default, -> { where.not(invitation_accepted_at: nil).sorted }

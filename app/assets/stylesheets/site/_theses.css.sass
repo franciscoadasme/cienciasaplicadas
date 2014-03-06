@@ -1,0 +1,62 @@
+header[role="main"]
+  .theses-show h1
+    font-size: 2*$base-font-size
+    line-height: 1.15*2*$base-font-size
+
+.theses
+  margin-bottom: 20px
+
+.thesis
+  .media-heading,
+  .media-subheading
+    line-height: 1
+
+  .media-heading
+    font-size: 18px
+  .media-subheading
+    font-size: 14px
+
+  .keywords
+    margin: 4px 0 0
+    padding: 0
+    list-style: none
+
+    & > li
+      display: inline-block
+      margin-bottom: 3px
+
+    &.keywords-stacked > li
+      display: block
+
+  .keyword
+    padding: .2em .6em .3em
+    background-color: $gray-lighter
+    border-radius: 2px
+    font-size: $base-font-size - 3px
+    line-height: 1
+    font-weight: $font-weight-bold
+    text-align: center
+    white-space: nowrap
+    vertical-align: baseline
+    text-decoration: none
+
+    &:hover,
+    &.active
+      background-color: $link-color
+      color: white
+
+// Sidebar
+aside[role="sidebar"]
+  .keyword-list
+    & > .keyword
+      position: relative
+      padding-left: 15px + 14px + 10px
+
+      &:before
+        content: "\f096"
+        +position-at-edges(absolute, $top: 50%, $left: 15px)
+        margin-top: -7px
+        +fa-icon
+
+      &.active:before
+        content: "\f046"

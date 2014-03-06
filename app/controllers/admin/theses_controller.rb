@@ -1,6 +1,7 @@
 class Admin::ThesesController < AdminController
   before_action :authorize_user!
   before_action :set_thesis, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_users, only: [ :new, :create, :edit, :update ]
 
   def index
     @theses = Thesis.all
@@ -11,7 +12,6 @@ class Admin::ThesesController < AdminController
 
   def new
     @thesis = Thesis.new
-    @users = User.joins(:position).where 'positions.slug LIKE ?', '%estudiante%'
   end
 
   def edit
@@ -42,7 +42,11 @@ class Admin::ThesesController < AdminController
 
   private
     def set_thesis
-      @thesis = Thesis.find params[:id]
+      @thesis = Thesis.friendly.find params[:id]
+    end
+
+    def set_users
+      @users = User.joins(:position).where 'positions.slug LIKE ?', '%estudiante%'
     end
 
     def thesis_params

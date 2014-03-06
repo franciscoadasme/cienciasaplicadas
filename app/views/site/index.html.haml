@@ -5,8 +5,9 @@
   .col-xs-6
     = render 'site/widgets/overview' if @group.overview.present?
     = render 'site/widgets/posts' if @lastest_posts.any?
-    = render 'site/widgets/graduated' if @graduated_users.any?
+    = render 'site/widgets/theses' if @graduated_users.any?
 
   .col-xs-6
     = render 'site/widgets/events' if @upcoming_events.any?
+    = render 'site/widgets/graduated' if @graduated_users.any?
     = render 'site/widgets/moments' if @recent_moments.any?
