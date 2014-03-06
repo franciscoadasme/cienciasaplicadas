@@ -4,6 +4,8 @@ module ParsingHelper
   end
 
   def markdown(text, options = {})
+    return nil if text.blank?
+    
     render_options = {
       filter_html:     false,
       hard_wrap:       true,
