@@ -1,6 +1,15 @@
 -
-  name: 'PhD Student'
+  name: Director
+  level: 1
 -
-  name: 'Associate Professor'
+  name: 'Profesor Asociado'
+  level: 2
 -
-  name: 'External Professor'
+  name: 'Profesor Externo'
+  level: 3
+-
+  name: 'Estudiante Egresado'
+  level: 4
+-
+  name: 'Estudiante'
+  level: 5
