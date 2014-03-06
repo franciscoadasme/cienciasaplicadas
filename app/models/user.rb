@@ -61,6 +61,8 @@ class User < ActiveRecord::Base
 
   scope :sorted, -> { joins(:position).order 'positions.level', :last_name, :first_name }
   scope :default, -> { where.not(invitation_accepted_at: nil).sorted }
+  scope :with_role, -> role { where role: role }
+  scope :admins, -> { with_role ROLE_ADMIN }
 
   class << self
     def with_position(*args)

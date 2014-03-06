@@ -21,4 +21,10 @@ class Admin::MailerController < AdminController
     @group = Group.first
     render 'mailer/send_contact_message'
   end
+
+  def preview_journal_notification
+    @journals = Journal.all
+    # @journals = Journal.limit(1)
+    render 'mailer/send_journal_notification'
+  end
 end

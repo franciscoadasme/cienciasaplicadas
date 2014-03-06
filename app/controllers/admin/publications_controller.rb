@@ -29,10 +29,12 @@ class Admin::PublicationsController < AdminController
       ignored: [],
       invalid: []
     }
+    @created_journals = []
     @publications = parse_ris_content.map { |pubdata|create_or_update_publication pubdata }
     @import_total = @result.map { |k, v| v.count }.reduce &:+
 
     current_user.update! last_import_at: DateTime.current
+    DefaultMailer.send_journal_notification(@created_journals).deliver
 
     flash.now[:success] = I18n.t 'controllers.admin.publications.import.success', count: @import_total
   end
@@ -92,7 +94,13 @@ class Admin::PublicationsController < AdminController
         end
 
         if pub.has_users?
-          pub.journal = Journal.where.any_of(name: journal, abbr: journal).first_or_create! name: journal
+          pub.journal = Journal.where.any_of(name: journal, abbr: journal).first
+
+          unless pub.journal.present?
+            pub.journal = Journal.create! name: journal
+            @created_journals << pub.journal
+          end
+
           pub.save!
           @result[:new_linked] << [ pub, pub.authors.linked ]
         else

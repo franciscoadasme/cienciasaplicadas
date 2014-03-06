@@ -26,4 +26,12 @@ class DefaultMailer < ActionMailer::Base
 
     mail to: @group.email, subject: subject, template_path: 'mailer'
   end
+
+  def send_journal_notification(journals)
+    recipients = User.admins.map{ |user| "#{user.display_name} <#{user.email}>" }
+    subject = '[CienciasAplicadas] Se han agregado uno o más nuevas revistas'
+    @journals = journals
+
+    mail to: recipients, subject: subject, template_path: 'mailer'
+  end
 end

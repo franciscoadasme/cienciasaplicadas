@@ -1,0 +1,33 @@
+- provide :title do
+  %h1
+    - if @journals.one?
+      La revista
+      %strong= @journals.first.name
+      ha sido agregada
+    - else
+      Se han agregado
+      = pluralize @journals.count, 'revista', 'revistas'
+    a la base de datos
+
+= mtable_tag width: '100%' do
+  %tr
+    %td
+      %p.text-center
+        Favor ir al enlace inferior para completar la información de
+        = succeed ',' do
+          = 'la revista'.split.map{ |s| s.pluralize @journals.count, :'es-CL' }.join ' '
+        incluyendo nombre abreviado y el factor de impacto, principalmente. Adicionalmente, agregar la dirección web de
+        = succeed ',' do
+          = 'la revista'.split.map{ |s| s.pluralize @journals.count, :'es-CL' }.join ' '
+        y verificar si no hay revistas duplicadas.
+
+      %br
+
+      %p.text-center
+        - content = @journals.one? ? 'Editar Revista' : 'Ir a las Revistas'
+        - path = @journals.one? ? edit_admin_journal_url(@journals.first) : admin_journals_url
+        = link_to content, path, class: 'btn'
+
+      %br
+
+      %p.text-center Se recomienda realizar dicho trámite lo antes posible, dado que las estadísticas de cada miembro y del doctorado no estarán del todo actualizadas.
