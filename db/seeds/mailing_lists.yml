@@ -1,7 +1,6 @@
 -
-  name: Users
-  address: users
+  name: Usuarios
+  address: usuarios
   description: |
-    This is a global mailing list that contains all active users' emails.
-    It's updated when a user is created, deleted or change its email address.
-    * Cannot be modified or removed.
+    Esta lista de correa global contiene todos las direcciones de correo de los usuarios activos. Se actualiza automaticamente cuando un usuario es creado, eliminado o cuando cambia su dirección de correo.
+    * No puede ser modificada o eliminada.
