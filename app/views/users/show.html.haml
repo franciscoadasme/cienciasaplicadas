@@ -1,8 +1,6 @@
 - provide :jumbotron do
   %h1= @user.display_name
-  %p.lead
-    %span.label.label-primary= @user.position.name.upcase
-    %span.text-muted= @user.headline
+  %p.lead.text-muted= @user.headline
 
 - provide :sidebar, render('sidebar')
 - provide :banner_url, @user.banner if @user.banner.present?
