@@ -11,7 +11,7 @@ Group.create!(
   abbr: 'CienciasAplicadas',
   email: 'contact@cienciasaplicadas.cl'
 )
-user = User.create!(
+user = User.new(
   first_name: 'Francisco',
   last_name: 'Adasme',
   nickname: 'fadasme',
@@ -20,8 +20,9 @@ user = User.create!(
   password: '13051988',
   invitation_accepted_at: DateTime.current
 )
+user.save!(validate: false)
 user.build_settings.save!
 
-Page.seed! author: user, published: true
+# Page.seed! author: user, published: true
 Position.seed!
 MailingList.seed!
