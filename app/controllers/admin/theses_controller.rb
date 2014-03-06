@@ -46,7 +46,7 @@ class Admin::ThesesController < AdminController
     end
 
     def set_users
-      @users = User.joins(:position).where 'positions.slug LIKE ?', '%estudiante%'
+      @users = User.default.joins(:position).where 'positions.slug LIKE ?', '%estudiante%'
     end
 
     def thesis_params
