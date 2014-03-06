@@ -9,14 +9,14 @@
           %ul.nav.navbar-nav.navbar-right
             - if current_user.super_user?
               %li{ class: ('active' if current_page?(new_admin_post_path)) }
-                = link_to fa_icon('pencil', text: 'New Post'), new_admin_post_path
+                = link_to fa_icon('pencil', text: 'Redactar Noticia'), new_admin_post_path
 
               - href = new_message_admin_mailing_list_path MailingList.global
               - unless current_page?(href)
-                %li= link_to fa_icon('bullhorn'), href, title: 'Send an announcement'
+                %li= link_to fa_icon('bullhorn'), href, title: 'Enviar un anuncio'
 
             %li{ class: ('active' if current_page?(import_admin_publications_path)) }
-              = link_to fa_icon('files-o', text: 'Import'), import_admin_publications_path, class: 'btn-publication-import', title: 'Import publications'
+              = link_to fa_icon('files-o', text: 'Importar'), import_admin_publications_path, class: 'btn-publication-import', title: 'Importar publicaciones'
 
             %li.navbar-user-menu.dropdown
               = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
@@ -31,9 +31,9 @@
                   = "via #{current_user.provider.titleize}" if current_user.provider
                 %li.divider
                 %li
-                  = link_to fa_icon('user', text: 'Profile', class: 'icon-fixed-width'), profile_admin_account_path
+                  = link_to fa_icon('user', text: 'Perfil', class: 'icon-fixed-width'), profile_admin_account_path
                 %li
-                  = link_to fa_icon('cog', text: 'Settings', class: 'icon-fixed-width'), settings_admin_account_path
+                  = link_to fa_icon('cog', text: 'Preferencias', class: 'icon-fixed-width'), settings_admin_account_path
                 %li.divider
                 %li
-                  = link_to fa_icon('power-off', text: 'Sign out', class: 'icon-fixed-width'), destroy_user_session_path, method: :delete
+                  = link_to fa_icon('power-off', text: 'Cerrar sesisón', class: 'icon-fixed-width'), destroy_user_session_path, method: :delete
