@@ -1,0 +1,14 @@
+%h2 Palabras claves
+
+%p.text-muted Seleccione una o más palabras claves para mostrar aquellas todas las tesis en dichos tópicos.
+
+- if @keywords.any?
+  .list-group.keyword-list
+    - @keywords.each do |keyword|
+      - css = [ 'list-group-item keyword' ]
+      - css << 'active' if params_has_keyword?(keyword)
+      = link_to keyword, theses_path(params_with_keyword(keyword)), class: css.join(' ')
+  
+  = btn_to 'Limpiar filtros', theses_path, block: true if params[human_keywords_param_name]
+- else
+  %p.text-muted No hay palabras claves disponibles.

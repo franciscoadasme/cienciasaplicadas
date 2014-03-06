@@ -42,7 +42,7 @@ class Admin::ThesesController < AdminController
 
   private
     def set_thesis
-      @thesis = Thesis.find params[:id]
+      @thesis = Thesis.friendly.find params[:id]
     end
 
     def set_users

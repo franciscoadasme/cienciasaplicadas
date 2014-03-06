@@ -1,0 +1,15 @@
+- provide :jumbotron do
+  = render 'users/scope'
+  %h1= @thesis.title
+
+- provide :sidebar, render('theses/sidebar/show')
+
+%h2 Resumen
+- if @thesis.abstract.present?
+  .content= markdown @thesis.abstract
+- else
+  %p.lead.text-muted No hay un resumen disponible.
+
+- if @thesis.notes.present?
+  %h2 Notas
+  .content= markdown @thesis.notes

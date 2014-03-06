@@ -18,6 +18,13 @@
   - else
     %p.lead.text-muted No hay una biografía disponible
 
+- if @user.thesis.present?
+  %section#thesis
+    %h2 Mi memoria de tesis 
+    %ul.media-list.theses
+      = render @user.thesis
+    = btn_to 'Ver todas las tesis', theses_path, block: true
+
 %section#publications
   %h2= section_title_for_user_pubs @user_pubs
   %ul.publications
