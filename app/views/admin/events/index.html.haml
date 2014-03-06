@@ -1,2 +1,5 @@
+- provide :widget do
+  = link_to fa_icon(:calendar, text: 'Programar Evento'), new_admin_event_path, class: 'btn btn-primary'
+
 %ul.list-group.list-events
   = render @events
