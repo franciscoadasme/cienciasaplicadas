@@ -1,4 +1,6 @@
 %section{ role: 'content' }
+  = content_for :content_header
+
   .container
     - if content_for?(:sidebar)
       .row
