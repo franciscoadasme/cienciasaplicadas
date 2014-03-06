@@ -10,11 +10,11 @@
       - pub.authors.each do |author|
         %li
           - if author.user.present?
-            = "\"#{author.name}\""
-            linked to
+            %strong= author.name
+            vinculado a
             = link_to author.display_name, author.user, target: '_blank'
           - else
-            %span.text-muted= author.name
+            = author.name
 
   .list-group-item-meta
     - if status == :invalid
