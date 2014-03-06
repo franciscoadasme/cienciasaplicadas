@@ -17,6 +17,7 @@ class Post < ActiveRecord::Base
   include Publishable
   include Filterable
   include Traversable
+  traversable_by :created_at, scope: -> { published }
 
   extend FriendlyId
   friendly_id :title, use: [ :slugged ]
