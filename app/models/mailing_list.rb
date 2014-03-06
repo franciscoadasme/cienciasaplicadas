@@ -87,7 +87,7 @@ class MailingList
     end
 
     def global
-      find 'users'
+      find 'usuarios'
     end
 
     def with_address(address)
