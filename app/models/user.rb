@@ -114,12 +114,12 @@ class User < ActiveRecord::Base
                           length: { in: 3..40 }
   validates :nickname, presence: true,
                          format: { with: VALID_NICKNAME_REGEX },
-                         length: { in: 3..20 },
+                         length: { in: 3..40 },
                      uniqueness: true
   validates :image_url, url: true,
                 allow_blank: true
-  validates :headline, presence: true,
-                         length: { in: 4..40 }
+  validates :headline, length: { in: 4..40 },
+                  allow_blank: true
   validates :social_links, format: { with: /^:[a-z-]+ .+$/,
                                 multiline: true },
                       allow_blank: true

@@ -7,6 +7,10 @@ module UserHelper
     (user.image_url.blank? ? nil : user.image_url) || gravatar_image_url(user.email)
   end
 
+  def display_user_headline(user)
+    user.headline || content_tag(:span, 'Titular', class: 'text-muted')
+  end
+
   def is_me? user
     current_user == user
   end

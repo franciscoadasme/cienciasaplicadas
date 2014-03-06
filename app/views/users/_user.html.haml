@@ -6,7 +6,7 @@
     %h3.media-heading
       = user.full_name
       %small.text-primary= user.position.name
-    %h4.media-subheading= user.headline
+    %h4.media-subheading= display_user_headline user
     = mail_to user.email if user.settings.show_contact_page
 
     .media-meta

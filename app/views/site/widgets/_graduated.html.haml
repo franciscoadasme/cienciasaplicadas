@@ -12,7 +12,7 @@
             = autosizing_image_tag display_user_image_url(user), size: 48, class: 'media-object'
           .media-body
             %h3.media-heading= user.display_name
-            %h4.media-subheading= user.headline
+            %h4.media-subheading= display_user_headline user
 
     %footer.widget-footer
       = btn_to 'Ver todos los estudiantes', page_path(:estudiantes), block: true
