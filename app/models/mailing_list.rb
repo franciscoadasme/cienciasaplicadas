@@ -104,7 +104,7 @@ class MailingList
   end
 
   def add_member(address)
-    Mailgun.client.list_members(self.address).add address
+    Mailgun.client.list_members(self.address).add address rescue nil
     Rails.cache.delete "/mailing_list/#{to_param}/members"
   end
 
