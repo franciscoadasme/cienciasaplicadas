@@ -4,7 +4,7 @@ module Seedable
   module ClassMethods
     def load_seeds
       Rails.cache.fetch "/#{table_name}/seeds" do
-        YAML.load_file("#{Rails.root}/db/seeds/#{table_name}.yml")
+        YAML.load_file("#{Rails.root}/db/seeds/#{table_name}.yml") || []
       end
     end
 
