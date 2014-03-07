@@ -24,8 +24,8 @@ class SiteController < ApplicationController
       end
     else
       @message = ContactMessage.new
-      @presentation_page = Page.named :presentacion
-      @future_students_page = Page.named :futurosestudiantes
+      @presentation_page = Page.named(:presentacion)
+      @future_students_page = Page.named(:futurosestudiantes)
     end
   end
 

@@ -43,7 +43,10 @@ class Page < ActiveRecord::Base
   scope :drafted, -> { where published: false, trashed: false }
   scope :trashed, -> { where trashed: true }
   scope :navigable, -> { global.published }
-  scope :named, -> (name) { friendly.find name.to_s }
+
+  def self.named(name)
+    friendly.find(name.to_s.parameterize) rescue nil
+  end
 
   before_create :set_edited_by_if_needed
 
@@ -69,6 +72,10 @@ class Page < ActiveRecord::Base
 
   def self.state_key_for(state_name)
     I18n.t(Page.i18n_scope_states).invert.transform_keys{ |key| key.to_s.parameterize }[state_name.to_s]
+  end
+
+  def self.named?(name)
+    named(name).try :present?
   end
 
 # Status

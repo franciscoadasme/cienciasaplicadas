@@ -7,7 +7,7 @@
         %span.footnote Artículos
       .card-description
         %p con un factor de impacto promedio de #{@publication_per_year.round 1}
-        = link_to 'Ver más', page_path(:investigacion)
+        = link_to 'Ver más', page_path(:investigacion) if Page.named?(:investigacion)
 
   .card
     .frame
@@ -17,4 +17,4 @@
         %span.footnote Estudiantes
       .card-description
         %p con un total de #{2} egresados desde el año 2006 a la fecha
-        = link_to 'Ver más', page_path(:estudiantes)
+        = link_to 'Ver más', page_path(:estudiantes) if Page.named?(:estudiantes)
