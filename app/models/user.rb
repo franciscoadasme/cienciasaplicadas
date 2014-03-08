@@ -180,7 +180,7 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    (accepted? && settings.include_lastname ? full_name : first_name) || nickname || email
+    (accepted? && settings.try(:include_lastname) ? full_name : first_name) || nickname || email
   end
 
   def external?
