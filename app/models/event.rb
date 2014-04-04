@@ -37,6 +37,7 @@ class Event < ActiveRecord::Base
 
   scope :sorted, -> { order start_date: :desc }
   scope :typed, -> type { where event_type: type }
+  scope :upcoming, -> { where 'start_date > ?', DateTime.current }
 
   auto_strip_attributes :name, :location, :description
   validates :name, presence: true,
