@@ -1,4 +1,9 @@
 class SiteController < ApplicationController
+  if Rails.env.production?
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+    rescue_from ActionController::RoutingError, with: :render_not_found
+  end
+
   before_action :set_pages
   before_action :set_lastest
 
@@ -47,5 +52,9 @@ class SiteController < ApplicationController
         :email,
         :body,
         :as_student)
+    end
+
+    def render_not_found
+      render 'site/errors/404', status: 404
     end
 end

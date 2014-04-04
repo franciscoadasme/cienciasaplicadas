@@ -1,0 +1,23 @@
+- provide :jumbotron do
+  %p.lead.text-muted Error 404
+  %h1 Ruta desconocida
+
+%h2 Página o registro no encontrado
+%p.lead
+  - if params[:id] || params[:user_id]
+    La entidad con el nombre clave
+    %span.text-primary= params[:id] || params[:user_id]
+  - else
+    La ruta
+    %span.text-primary= url_for(only_path: true)
+  no existe en nuestra base de datos. Favor verifique que la dirección web sea la correcta.
+
+%p
+  = btn_to fa_icon('arrow-left', text: 'Volver atrás'), :back, primary: true
+  = btn_to fa_icon('home', text: 'Ir a la página principal'), root_url
+
+%br
+
+.row
+  .col-xs-8
+    %p.text-muted Si usted fue derivado a esta página producto de seguir algún enlace, favor notificar a los administradores.
