@@ -5,6 +5,9 @@ $(document).ready ->
 
   $('[data-toggle="tooltip"]').tooltip()
 
+  $('body').scrollspy
+    target: '.sidebar-nav'
+
   sidebar = $('aside[role="sidebar"]')
   if sidebar.length && sidebar.siblings().outerHeight() - sidebar.outerHeight() > 250
     sidebar.height sidebar.siblings().outerHeight()
