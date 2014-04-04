@@ -40,8 +40,12 @@ class Admin::PositionsController < AdminController
   end
 
   def destroy
-    @position.destroy
-    redirect_to_index success: true
+    if @position.users.any?
+      redirect_to_index alert: true
+    else
+      @position.destroy
+      redirect_to_index success: true
+    end
   end
 
   def sort

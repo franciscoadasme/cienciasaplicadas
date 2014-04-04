@@ -27,7 +27,7 @@
         %td= position.users.count
         %td.text-center
           = edit_action_for position, remote: true, data: { action: 'edit', disable_content: 'Editando...' }
-          = delete_action_for position, icon_only: true
+          = delete_action_for position, icon_only: true unless position.users.any?
 
 %p.help-block
   %sup> &dagger;

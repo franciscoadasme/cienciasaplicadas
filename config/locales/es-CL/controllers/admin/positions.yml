@@ -8,3 +8,4 @@ es-CL:
           success: La posición fue actualizada con éxito.
         destroy:
           success: La posición fue eliminada.
+          alert: La posición no puede ser eliminada ya que hay usuarios asociados.
