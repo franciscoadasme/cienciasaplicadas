@@ -1,14 +1,17 @@
 module PublicationsHelper
-  def author_list_for(pub, limit: 2)
-    authors_to_display = pub.authors.sorted.limit(limit)
-    authors_to_display = pub.authors.first(limit) if authors_to_display.empty?
+  def author_list_for(pub, truncate: 60)
+    authors_to_display = pub.authors.sorted
+    nchars = ndisplayed = 0
     content_tag :ul, class: 'publication-authors' do
       authors_to_display.each do |author|
+        nchars += author.display_name.length
+        break if nchars > truncate
         concat author_item_for(author)
-        concat ' '
+        concat "\n"
+        ndisplayed += 1
       end
 
-      undisplayed_count = pub.authors.count - limit
+      undisplayed_count = pub.authors.count - ndisplayed
       concat author_item_more(pub, undisplayed_count) if undisplayed_count > 0
     end
   end

@@ -2,6 +2,6 @@
   %h4.publication-title
     = link_to publication.title, publication.link, target: '_blank'
 
-  = author_list_for publication, limit: 2
+  = author_list_for publication, truncate: 60
 
   %p.publication-meta= publication_meta_for publication, use_labels: false, include_issue: false
