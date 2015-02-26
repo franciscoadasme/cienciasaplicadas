@@ -4,6 +4,7 @@
 
 Escrito por
 = link_to @post.author.display_name, @post.author, class: 'post-author'
+hace
 = time_tag @post.created_at, time_ago_in_words(@post.created_at), title: l(@post.created_at, format: :long), pubdate: true
 atrás
 
