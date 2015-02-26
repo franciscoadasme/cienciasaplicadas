@@ -1,12 +1,14 @@
 header[role="main"]
   .showcase
-    +clearfix
-    min-width: 970px
+    display: flex
 
   .card
-    float: left
+    display: flex
+    flex: 1 0
+    flex-flow: row wrap
+    justify-content: center
+    align-items: center
     padding: $header-card-spacing-v $header-card-spacing-h
-    width: 50%
     background-color: $header-card-bg
     font-family: $font-family-sans-serif-upcase
     text-transform: uppercase
@@ -14,16 +16,17 @@ header[role="main"]
     @for $i from 1 through 2
       $color: nth(($palette1-2, $palette1-3), $i)
       &:nth-child(#{$i})
+        @if $i == 1
+          flex-basis: 460px
+        @else
+          flex-basis: 387px
         background-color: $color
         .card-title
           color: desaturate(lighten($color, 15%), 10%)
         .card-count .footnote
           background-color: $color
-
-    .frame
-      position: relative
-      margin: 0 auto
-      width: 400px
+          &:before
+            border-bottom-color: $color
 
   .card-title,
   .card-count,
@@ -39,31 +42,38 @@ header[role="main"]
     font-weight: $font-weight-bold
 
   .card-title
+    width: 100%
     color: desaturate(lighten($header-card-bg, 15%), 10%)
 
   .card-count
     position: relative
-    width: 1.125*$header-card-count-size
     font-size: $header-card-count-size
     line-height: $header-card-count-size
-    text-align: right
 
     .footnote
       position: absolute
       right: 0
       bottom: 13px
       padding-top: 8px
-      min-width: 65px
+      padding-left: 4px
       background-color: $header-card-bg
       font-size: 1.1*$base-font-size
       line-height: 1.1*$base-font-size
       text-align: right
 
+      &:before
+        content: ""
+        position: absolute
+        top: 0
+        right: 100%
+        width: 0
+        height: 0
+        border-bottom: 23px solid transparent
+        border-left: 23px solid transparent
+
   .card-description
-    position: absolute
-    top: 19px
-    left: 1.125*$header-card-count-size + $header-card-spacing-h
-    padding: 6px 0
+    margin-left: $header-card-spacing-h
+    width: 180px
     font-size: 1.5*$base-font-size
     line-height: 1.65*$base-font-size
 
