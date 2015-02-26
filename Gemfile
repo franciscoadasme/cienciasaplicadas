@@ -44,7 +44,7 @@ gem 'gravatar_image_tag', '~> 1.2'
 
 gem 'nokogiri', '~> 1.6.1'
 gem 'premailer-rails', '~> 1.7.0'
-gem 'mailgun', '~> 0.7'
+gem 'mailgun', '~> 0.8'
 
 gem 'paperclip', '~> 4.1.1'
 gem 'aws-sdk', '~> 1.35.0'
