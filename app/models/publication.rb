@@ -33,8 +33,8 @@ class Publication < ActiveRecord::Base
   scope :flagged, -> { joins(:authors).where(:'authors.flagged' => true).uniq }
 
   class << self
-    def recent
-      sorted.limit(5)
+    def recent(limit = 5)
+      sorted.limit(limit)
     end
   end
   include Localizable
