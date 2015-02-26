@@ -1,8 +1,12 @@
 %nav.sidebar-nav
+  %p
+    %strong Publicaciones por año
   %ul.nav.nav-pills.nav-stacked
-    - @years.each do |year|
-      %li{ class: ('active' if year == @years.first) }
-        = link_to year, "##{year}"
+    - @pubs_per_year.each do |year, count|
+      %li{ class: ('active' if year == @pubs_per_year.first[0]) }
+        = link_to "##{year}" do
+          = year
+          .span.badge.pull-right= count
 
   %hr
   = btn_to 'Ver productividad', [ @user, :stats ], block: true
