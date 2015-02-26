@@ -5,7 +5,7 @@ module PublicationsHelper
     content_tag :ul, class: 'publication-authors' do
       authors_to_display.each do |author|
         nchars += author.display_name.length
-        break if nchars > truncate
+        break if truncate > 0 && nchars > truncate
         concat author_item_for(author)
         concat "\n"
         ndisplayed += 1
@@ -52,13 +52,13 @@ module PublicationsHelper
 
   private
     def author_item_more(pub, author_count)
+      authors = pub.authors.sorted.to_a.from -author_count
       content_tag :li, class: 'more' do
         concat ' y '
         concat link_to("#{author_count} más",
-          [ :author_list, :admin, pub ],
-          title: 'Ver todos los autores',
-          class: 'author_item_more',
-          remote: true)
+          '#',
+          title: authors.map(&:display_name).join('; '),
+          class: 'author_item_more')
       end
     end
 end
