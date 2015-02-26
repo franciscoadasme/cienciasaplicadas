@@ -7,6 +7,8 @@
             = render 'site/widgets/footer/posts'
           - elsif !controller?(:events) && @upcoming_events.any?
             = render 'site/widgets/footer/events'
+          - else
+            = render 'site/widgets/footer/publications'
         - else @lastest_publications.any?
           = render 'site/widgets/footer/publications'
 
