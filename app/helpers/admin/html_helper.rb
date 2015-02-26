@@ -174,7 +174,8 @@ module Admin::HtmlHelper
       when title_or_controller.is_a?(Symbol)
         content = I18n.t title_or_controller, scope: [ :views, :admin, :_sidebar, :items ]
         if content.start_with?('translation missing')
-          title_or_controller.to_s.classify.constantize.model_name.human.pluralize(:'es-CL') rescue content
+          model = title_or_controller.to_s.classify.constantize
+          model.model_name.human.pluralize(:'es-CL').capitalize rescue content
         else content
         end
       else title_or_controller
