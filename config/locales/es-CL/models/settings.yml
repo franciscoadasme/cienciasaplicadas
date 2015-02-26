@@ -9,7 +9,7 @@ es-CL:
         update_image_by_provider: Actualizar la foto de perfil automáticamente
         deliver_notification_by_email: Enviar una notificación por correo electrónico cuando haya una alerta
 
-        autolink_on_import: Asociar automáticamente publicaciones a otros usuarios durante la importación
+        autolink_on_import: Asociar automáticamente publicaciones cuando otros usuarios las importan
         display_author_name: Mostrar mi nombre de autor usado en la publicación correspondiente en vez de mi nombre real
 
         include_lastname: Utilizar mi nombre completo como nombre público en lugar de sólo mi primer nombre
