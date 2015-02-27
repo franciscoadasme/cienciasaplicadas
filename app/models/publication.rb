@@ -40,6 +40,7 @@ class Publication < ActiveRecord::Base
   include Localizable
 
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
+  VALID_ISSUE_REGEX = /\A([1-9]\d*|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\Z/i
 
   auto_strip_attributes :doi, :url, :journal, :volume, :start_page, :title, :issue
 
@@ -50,8 +51,8 @@ class Publication < ActiveRecord::Base
           allow_blank: true
   validates :volume, presence: true,
                        format: { with: /\A([1-9]\d*|#{PENDING_LABEL})\Z/i }
-  validates :issue, numericality: { greater_than: 0 },
-                     allow_blank: true
+  validates :issue, format: { with: VALID_ISSUE_REGEX },
+               allow_blank: true
   validates :start_page, numericality: { integer: true,
                                     greater_than: 0 },
                           allow_blank: true

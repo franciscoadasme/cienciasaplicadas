@@ -46,7 +46,7 @@ module PublicationsHelper
     meta = link_to pub.journal.name, pub.journal.website_url, class: 'publication-journal'
     meta += ", #{content_tag :b, pub.year, class: 'publication-year'}".html_safe
     meta += ", #{'Volumen ' if use_labels && !pub.pending?}#{pub.volume}" unless pub.volume.blank?
-    meta += ", #{'Número ' if use_labels}#{pub.issue}" if include_issue && pub.issue.present? && !pub.issue.zero?
+    meta += ", #{'Número ' if use_labels}#{pub.issue}" if include_issue && pub.issue.present?
     meta += ", #{'Páginas ' if use_labels}#{pub.pages}" unless pub.start_page.blank?
   end
 
