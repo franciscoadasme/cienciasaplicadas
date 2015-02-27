@@ -12,14 +12,14 @@
     .media-meta
       - if user.publications.any?
         %p
-          = link_to pluralize(user.publications.count, 'articulo'), [ user, :publications ]
+          = link_to pluralize(user.publications.count, 'articulo'), [user, :publications]
           con un factor de impacto promedio de
-          = link_to format_impact_factor(user.statistics.avg_impact_factor) || '?', [ user, :stats ]
+          = link_to format_impact_factor(user.statistics.avg_impact_factor) || '?', [user, :stats]
 
       - if user.projects.any?
         %p
           Ha participado en
-          = link_to pluralize(user.projects.count, 'proyecto'), '#'
+          = link_to pluralize(user.projects.count, 'proyecto'), [user, :projects]
           = 'científico'.pluralize user.projects.count, :'es-CL'
 
       - if user.thesis.present?
