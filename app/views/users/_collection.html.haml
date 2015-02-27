@@ -3,6 +3,7 @@
 - provide :sidebar_top do
   %ul.stats.stats-stacked
     - grouped_collection.each do |position, collection|
+      - next if position.single?
       - count = collection.count
       %li.stat
         .shelf

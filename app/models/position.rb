@@ -8,6 +8,7 @@
 #  updated_at :datetime
 #  level      :integer
 #  slug       :string(255)
+#  single     :boolean          default(FALSE)
 #
 
 class Position < ActiveRecord::Base
