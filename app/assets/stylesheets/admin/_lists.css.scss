@@ -109,16 +109,21 @@ $list-group-item-user-width-inner: $list-group-item-user-width - 2 * $list-group
 $list-group-item-user-width-content: $list-group-item-user-width - $list-group-item-user-padding-left - $list-group-item-user-padding - $list-group-item-user-border-width * 2;
 
 .list-group-users {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
   .list-group-header {
     margin-bottom: 8px;
     border-width: 0 0 1px;
+    width: 100%;
   }
 }
 
 .list-group-item-user {
+  flex: 0 0 auto;
   position: relative;
-  float: left;
-  margin-right: $list-group-item-user-padding;
+  // margin-right: $list-group-item-user-padding;
   margin-bottom: $list-group-item-user-padding;
   padding: $list-group-item-user-padding;
   padding-left: $list-group-item-user-padding-left;
@@ -126,10 +131,14 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
   font-size: $base-font-size;
   border: $list-group-item-user-border-width solid $list-group-item-user-border-color;
   border-radius: $list-group-item-user-border-radius !important;
-  vertical-align: top;
+  // vertical-align: top;
 
-  &:nth-of-type(3n) {
-    margin-right: 0;
+  // &:nth-of-type(3n) {
+  //   margin-right: 0;
+  // }
+
+  &:last-child {
+    margin-bottom: $list-group-item-user-padding;
   }
 
   small {
@@ -166,7 +175,9 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
     margin-bottom: 0;
     width: $list-group-item-user-width-content;
     font-size: $base-font-size;
-    vertical-align: bottom;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .list-group-item-user-meta {

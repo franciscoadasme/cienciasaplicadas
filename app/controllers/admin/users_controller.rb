@@ -6,7 +6,7 @@ class Admin::UsersController < AdminController
 
   def index
     @users_count = (current_user.super_user? ? User.count : User.invitation_accepted.count) - 1
-    @users_accepted = User.invitation_accepted.where.not(id: current_user.id)
+    @users_accepted = User.invitation_accepted.where.not(id: current_user.id).sorted
     @users_not_accepted = User.invitation_not_accepted if current_user.super_user?
     @positions = Position.sorted
   end

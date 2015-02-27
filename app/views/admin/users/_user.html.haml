@@ -2,7 +2,7 @@
   = autosizing_image_tag display_user_image_url(user), size: 28, class: 'list-group-item-user-avatar'
 
   %h3.list-group-item-user-name{ title: user.full_name }
-    = user.display_name.middle_truncate 20
+    = user.display_name
     %p
       %small.text-primary= user.position.name if user.accepted?
 
