@@ -24,13 +24,13 @@ class Thesis < ActiveRecord::Base
   belongs_to :user
   has_attached_file :pdf_file, styles: { thumb: [ '200', :jpg ] },
                       convert_options: { all: '-colorspace RGB -flatten -density 300 -quality 100' }
-                      
+
   extend FriendlyId
   friendly_id :title, use: [ :slugged ]
 
   scope :sorted, -> { order issued: :desc, title: :asc }
   scope :with_keywords, -> *keywords { where 'keywords_digest ILIKE ANY (array[?])', keywords.map { |kw| "%#{kw.parameterize}%" }}
-  scope :recent, -> { sorted.limit(3) }
+  scope :recent, -> limit = 3 { sorted.limit(limit) }
 
   include Localizable
 
