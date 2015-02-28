@@ -24,7 +24,7 @@ class Publication < ActiveRecord::Base
   PENDING_LABEL = I18n.t(:in_press, scope: 'activerecord.labels.publication').titleize
 
   belongs_to :journal
-  has_many :authors, dependent: :delete_all
+  has_many :authors, dependent: :delete_all, autosave: true
   has_many :users, through: :authors
 
   scope :sorted, -> { order year: :desc, month: :desc, title: :asc }
