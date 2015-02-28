@@ -233,7 +233,7 @@ class User < ActiveRecord::Base
   end
 
   def alias?(string)
-    return true if aliases.pluck(:name).uniq.include?(string.strip)
+    return true if aliases.collect(&:name).uniq.include?(string.strip)
     lastname, firstname = string.gsub(%r{[\.-]}, ' ').split(',').map(&:normalize)
     matching_lastname?(lastname) and matching_firstname?(firstname)
   end
