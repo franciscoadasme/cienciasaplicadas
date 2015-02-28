@@ -28,6 +28,7 @@ class DefaultMailer < ActionMailer::Base
   end
 
   def send_journal_notification(journals)
+    return if journals.empty?
     recipients = User.admins.map{ |user| "#{user.display_name} <#{user.email}>" }
     subject = '[CienciasAplicadas] Se han agregado uno o más nuevas revistas'
     @journals = journals
