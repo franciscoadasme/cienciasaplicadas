@@ -30,7 +30,7 @@ class Author < ActiveRecord::Base
   end
 
   def has_user?
-    user.present?
+    user_id.present?
   end
 
   def flagged?
