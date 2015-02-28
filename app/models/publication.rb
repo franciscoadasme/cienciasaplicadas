@@ -5,7 +5,6 @@
 #  id         :integer          not null, primary key
 #  doi        :string(255)
 #  url        :string(255)
-#  journal    :string(255)
 #  volume     :string(255)
 #  issue      :integer
 #  start_page :integer
@@ -42,7 +41,7 @@ class Publication < ActiveRecord::Base
   VALID_DOI_REGEX = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
   VALID_ISSUE_REGEX = /\A([1-9]\d*|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\Z/i
 
-  auto_strip_attributes :doi, :url, :journal, :volume, :start_page, :title, :issue
+  auto_strip_attributes :doi, :url, :volume, :start_page, :title, :issue
 
   validates :doi, format: { with: VALID_DOI_REGEX },
               uniqueness: true,
