@@ -26,7 +26,7 @@ module ParsingHelper
 
   def parse_content(content)
     html = markdown(content).gsub /<p>\s*\{\{(.+)\}\}\s*<\/p>/, '{{\1}}'
-    parse_inline_code html
+    parse_inline_code(html).html_safe
   end
 
   def parse_inline_code(content)
