@@ -43,11 +43,22 @@ module PublicationsHelper
   end
 
   def publication_meta_for(pub, use_labels: true, include_issue: true)
-    meta = link_to pub.journal.name, pub.journal.website_url, class: 'publication-journal'
-    meta += ", #{content_tag :b, pub.year, class: 'publication-year'}".html_safe
-    meta += ", #{'Volumen ' if use_labels && !pub.pending?}#{pub.volume}" unless pub.volume.blank?
-    meta += ", #{'Número ' if use_labels}#{pub.issue}" if include_issue && pub.issue.present?
-    meta += ", #{'Páginas ' if use_labels}#{pub.pages}" unless pub.start_page.blank?
+    template = '%{journal}, %{year}'
+    template += use_labels && !pub.pending? ? ', Volumen %{volume}' : ', %{volume}'
+    if include_issue && pub.issue.present?
+      template += use_labels ? ', Número %{issue}' : ' (%{issue})'
+    end
+    if pub.start_page.present?
+      template += use_labels ? ', Páginas %{pages}' : ', %{pages}'
+    end
+
+    data = {
+      journal: link_to_journal(pub.journal),
+      year: content_tag(:b, pub.year, class: 'publication-year'),
+      volume: pub.volume,
+      issue: pub.issue,
+      pages: pub.pages}
+    sprintf(template, data).html_safe
   end
 
   private
@@ -60,5 +71,9 @@ module PublicationsHelper
           title: authors.map(&:display_name).join('; '),
           class: 'author_item_more')
       end
+    end
+
+    def link_to_journal(journal)
+      link_to journal.name, journal.website_url, class: 'publication-journal'
     end
 end
