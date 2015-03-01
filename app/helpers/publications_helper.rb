@@ -10,21 +10,14 @@ module PublicationsHelper
         concat "\n"
         ndisplayed += 1
       end
-
-      undisplayed_count = pub.authors.count - ndisplayed
-      concat author_item_more(pub, undisplayed_count) if undisplayed_count > 0
+      concat author_item_more(authors, ndisplayed) if ndisplayed < authors.count
     end
   end
 
   def author_item_for(author)
     content_tag :li do
       content = author.display_name
-      if author.has_user?
-        if author.user == @user then content_tag :em, content
-        else link_to(content, author.user)
-        end
-      else content
-      end
+      author.has_user? ? link_to(content, user_path(author.user_id)) : content
     end
   end
 
@@ -62,11 +55,11 @@ module PublicationsHelper
   end
 
   private
-    def author_item_more(pub, author_count)
-      authors = pub.authors.sorted.to_a.from -author_count
+    def author_item_more(authors, ndisplayed)
+      authors = authors.to_a.from ndisplayed
       content_tag :li, class: 'more' do
         concat ' y '
-        concat link_to("#{author_count} más",
+        concat link_to("#{authors.count} más",
           '#',
           title: authors.map(&:display_name).join('; '),
           class: 'author_item_more')
