@@ -9,3 +9,7 @@
 %hr
 %p.lead.text-muted.text-center
   No hay más proyectos disponibles
+
+%p.text-center
+  = btn_to 'Volver al perfil', @user
+  = btn_to 'Ver publicaciones', [ @user, :publications ]

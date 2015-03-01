@@ -17,3 +17,6 @@
     - @projects_range.each do |year|
       %li{ class: ('active' if params[:year].to_i == year) }
         = link_to year, user_projects_path(@user, year: year)
+
+  %hr
+  = btn_to 'Ver productividad', [ @user, :stats ], block: true
