@@ -6,11 +6,11 @@
 %li.list-group-item.list-group-item-publication{ class: state }
   %h3.list-group-item-heading
     = publication.title
-  = author_list_for publication, use_labels: false
+  = author_list_for publication
 
   .list-group-item-meta
     - if publication.errors.any?
       = succeed '.' do
         %span.text-danger= publication.errors.full_unique_messages.to_sentence
     - else
-      = publication_meta_for publication
+      = publication_meta_for publication, use_labels: false
