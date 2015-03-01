@@ -1,7 +1,7 @@
 class PublicationsController < SiteController
   before_action :set_user
   def index
-    @pubs = @user.publications.sorted
+    @pubs = @user.publications.includes(:authors, :journal).sorted
     @pubs_per_year = Hash[@pubs.group_by(&:year).map{ |y, ps| [y, ps.count] }]
   end
 

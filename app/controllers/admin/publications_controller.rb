@@ -4,8 +4,7 @@ class Admin::PublicationsController < AdminController
     :toggle_flag, :author_list ]
 
   def index
-    @publications = current_user.publications.sorted
-    @publication_others = Publication.where('id NOT IN (?)', @publications.map(&:id))
+    @publications = current_user.publications.includes(:authors, :journal).sorted
   end
 
   def edit
