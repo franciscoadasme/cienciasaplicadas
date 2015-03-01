@@ -42,6 +42,7 @@ class Publication < ActiveRecord::Base
   VALID_ISSUE_REGEX = /\A([1-9]\d*|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\Z/i
 
   auto_strip_attributes :doi, :url, :volume, :start_page, :title, :issue
+  before_validation :nullify_issue_when_zero, on: :create
 
   validates :doi, format: { with: VALID_DOI_REGEX },
               uniqueness: true,
@@ -96,4 +97,9 @@ class Publication < ActiveRecord::Base
   def flagged_by?(user)
     authors.with_user(user).first.flagged?
   end
+
+  private
+    def nullify_issue_when_zero
+      self.issue = nil if issue == '0' || issue == 0
+    end
 end
