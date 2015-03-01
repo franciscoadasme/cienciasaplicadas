@@ -33,21 +33,7 @@ whenReady ->
       e.preventDefault()
       fileSelector.click()
 
-  setupAndShowAuthorListPopover =  (target, content) ->
-    target.addClass('with-popover')
-    .popover
-      html: true
-      title: 'Authors'
-      content: content
-      width: 300
-    .popover('show')
-
-  $('.author_item_more')
-    .on 'ajax:beforeSend', (evt, data, status, xhr) ->
-      $self = $(@)
-      if $self.hasClass('with-popover')
-        $self.popover('destroy').removeClass('with-popover')
-        return false
-    .on 'ajax:complete', (evt, data, status, xhr) ->
-      $(@).removeClass('disabled')
-      setupAndShowAuthorListPopover $(@), data.responseText
+  $('.author_item_more').tooltip
+    delay: 200
+  .click (e) ->
+    e.preventDefault()

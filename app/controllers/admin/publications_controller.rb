@@ -20,7 +20,6 @@ class Admin::PublicationsController < AdminController
   end
 
   def import
-    # needed to auto-matching existing users to new authors
     users = User.invitation_accepted.includes(:aliases)
                 .joins(:settings)
                 .where('users.id = ? or settings.autolink_on_import = ?',
@@ -53,14 +52,6 @@ class Admin::PublicationsController < AdminController
     author = Author.find_by publication: @publication, user: current_user
     author.toggle_flag!
     redirect_to_index success: (author.flagged? ? :flagged : :unflagged)
-  end
-
-  def author_list
-    @authors = @publication.authors.sorted
-    respond_to do |format|
-      format.html { redirect_to_index }
-      format.js
-    end
   end
 
   private
