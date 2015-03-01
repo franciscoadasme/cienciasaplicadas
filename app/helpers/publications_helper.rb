@@ -1,9 +1,9 @@
 module PublicationsHelper
   def author_list_for(pub, truncate: false)
-    authors_to_display = pub.authors.sorted
+    authors = pub.persisted? ? pub.authors.sorted : pub.authors
     nchars = ndisplayed = 0
     content_tag :ul, class: 'publication-authors' do
-      authors_to_display.each do |author|
+      authors.each do |author|
         nchars += author.display_name.length
         break if truncate.kind_of?(Numeric) && truncate > 0 && nchars > truncate
         concat author_item_for(author)
