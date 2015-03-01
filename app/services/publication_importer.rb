@@ -1,22 +1,14 @@
 class PublicationImporter
-  attr_reader :new_journals, :total_entries
+  attr_reader :new_journals, :entries
   def initialize(users)
     @users = users.to_a
-    @result = {
-      existing_no_linked: [],
-      existing_linked: [],
-      new_linked: [],
-      ignored: [],
-      invalid: []
-    }
     @new_journals = []
   end
 
   def from_ris(content)
     parser = RisParser.new
     entries = parser.parse(content)
-    entries.each{ |data| create_or_update_publication_with data }
-    @total_entries = entries.count
+    @entries = entries.map{ |data| create_or_update_publication_with data }
   end
 
   def import(data, format: :ris)
@@ -26,18 +18,24 @@ class PublicationImporter
     end
   end
 
+  def total_entries
+    @entries.count
+  end
+
   private
     def create_or_update_publication_with(data)
       pub = fetch_or_setup_publication_with data
-      if pub.new_record? && pub.invalid?
-        @result[:invalid] << pub
-      else
+      unless pub.new_record? && pub.invalid?
         link_pub_to_existing_users pub
         if pub.has_users?  # save publication only if it is/was linked
-          pub.journal.save! validate: false if pub.journal.new_record?
+          if pub.journal.new_record?
+            pub.journal.save! validate: false
+            @new_journals << pub.journal
+          end
           pub.save! validate: false
         end
       end
+      pub
     end
 
     def fetch_or_setup_journal_with(name)
