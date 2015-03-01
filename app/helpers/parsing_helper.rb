@@ -5,7 +5,7 @@ module ParsingHelper
 
   def markdown(text, options = {})
     return nil if text.blank?
-    
+
     render_options = {
       filter_html:     false,
       hard_wrap:       true,
@@ -25,12 +25,13 @@ module ParsingHelper
   end
 
   def parse_content(content)
-    markdown parse_inline_code(content)
+    html = markdown(content).gsub /<p>\s*\{\{(.+)\}\}\s*<\/p>/, '{{\1}}'
+    parse_inline_code html
   end
 
   def parse_inline_code(content)
     content.gsub /\{\{.+\}\}/ do |match|
-      sentence = match.delete('{}').strip
+      sentence = CGI::unescape_html match.delete('{}').strip
 
       begin
         result = case
