@@ -25,14 +25,14 @@ class Admin::PublicationsController < AdminController
                 .joins(:settings)
                 .where('users.id = ? or settings.autolink_on_import = ?',
                        current_user.id, true).to_a
-    @importer = PublicationImporter.new users
-    @importer.import params.delete(:ris_content), format: :ris
+    importer = PublicationImporter.new users
+    @entries = importer.import params.delete(:ris_content), format: :ris
 
     current_user.update! last_import_at: DateTime.current
-    DefaultMailer.send_journal_notification(@importer.new_journals).deliver
+    DefaultMailer.send_journal_notification(importer.new_journals).deliver
 
     flash.now[:success] = I18n.t('controllers.admin.publications.import.success',
-                                 count: @importer.total_entries)
+                                 count: importer.total_entries)
   end
 
   def link

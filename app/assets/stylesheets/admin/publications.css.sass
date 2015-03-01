@@ -9,6 +9,9 @@
   &:hover
     background-color: #FFFFF9
 
+  &.without-actions
+    padding-right: 15px
+
   &,
   .list-group-item-heading
     font-family: 'Helvetica Neue', Arial, sans-serif
@@ -79,3 +82,40 @@
         color: $text-color
         ol
           padding-left: 20px
+
+// Importation states
+.list-group-item-publication
+  &.linked,
+  &.ignored,
+  &.invalid
+    padding-right: 2*15px + $font-size-icon
+    &:after
+      display: block
+      position: absolute
+      top: 50%
+      right: 15px
+      margin-top: -$font-size-icon / 2
+      width: $font-size-icon
+      font-family: FontAwesome
+      font-size: $font-size-icon
+      font-style: normal
+      font-weight: normal
+      line-height: $font-size-icon
+
+  &.linked
+    border-color: $alert-success-text
+    &:after
+      content: "\f00c"
+      color: green
+
+  &.ignored
+    border-color: $text-muted
+    &:after
+      content: "\f070"
+      color: $text-muted
+
+  &.invalid
+    border-color: $alert-danger-text
+    &:after
+      content: "\f06a"
+      color: $alert-danger-text

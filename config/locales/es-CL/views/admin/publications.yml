@@ -3,21 +3,17 @@ es-CL:
     admin:
       publications:
         import:
-          existing_no_linked:
-            one: La siguiente publicación no fue vinculada a ningún usuario esta vez
-            other: 'Las siguientes %{count} publicaciones no fueron vinculadas a ningún usuario esta vez'
-          existing_linked:
-            one: Una publicación existente fue vinculada a uno o más usuarios
-            other: '%{count} publicaciones existentes fueron vinculadas a uno o más usuarios'
-          ignored:
-            one: 'La siguiente publicación fue ignorada ya que no pudo ser asociada a ningún usuario. Si existe algún error, favor comunicarse con el administrador para arreglar el sistema de vinculación automática.'
-            other: 'Las siguientes %{count} publicaciones fueron ignoradas ya que no pudieron ser asociadas a ningún usuario. Si existe algún error, favor comunicarse con el administrador para arreglar el sistema de vinculación automática.'
-          new_linked:
-            one: La siguiente publicación fue creada y vinculada a uno o más usuarios.
-            other: 'Las siguientes %{count} publicaciones fueron creadas y vinculadas a uno o más usuarios'
-          invalid:
-            one: La siguiente publicación contiene uno o más campos inválidos
-            other: 'Las siguientes %{count} publicaciones contienen uno o más campos válidos'
+          ignored: >
+            La publicación fue ignorada ya que no pudo ser asociada a ningún
+            usuario existente.
+          linked: La publicación fue vinculada a uno o más usuarios.
+          invalid: La publicación contiene uno o más campos inválidos.
+          empty:
+            title: No se encontraron entradas en el archivo importado.
+            body: Favor verifique el contenido o intente subir otro archivo.
+          warning: >
+            Si existe algún error, favor comunicarse con el administrador para
+            arreglar el sistema de vinculación automática.
 
         buttons:
           import_now: Importar publicaciones

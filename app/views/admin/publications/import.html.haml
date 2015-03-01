@@ -1,10 +1,24 @@
-%ul.list-unstyled
-  - [ :new_linked, :existing_linked, :invalid, :existing_no_linked, :ignored ].each do |status|
-    - if @result[status].any?
-      %ul.list-group
-        %li.list-group-header
-          = I18n.t status, scope: 'views.admin.publications.import', count: @result[status].count
-        - @result[status].each do |data|
-          = render 'import_result', pub: (data.is_a?(Array) ? data.first : data), status: status, authors: (data.is_a?(Array) ? data.last : nil)
+- i18n_scope = 'views.admin.publications.import'
 
-= link_to fa_icon('long-arrow-left', text: I18n.t('views.admin.publications.buttons.go_back')), admin_publications_path, class: 'btn btn-link'
+- if @entries.any?
+  .well.well-sm.small
+    %p= fa_icon 'check', text: I18n.t(:linked, scope: i18n_scope), class: 'text-success'
+    %p= fa_icon 'eye-slash', text: I18n.t(:ignored, scope: i18n_scope), class: 'text-muted'
+    %p= fa_icon 'exclamation-circle', text: I18n.t(:invalid, scope: i18n_scope), class: 'text-danger'
+  %ul.list-group
+    = render partial: 'import_result', collection: @entries, as: :publication
+- else
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title= t 'empty.title', scope: i18n_scope
+    .panel-body
+      %p= t('empty.body', scope: i18n_scope)
+
+      - label = t('views.admin.publications.buttons.import_now')
+      - content = fa_icon('files-o', text: label)
+      - cls = 'btn btn-primary btn-publication-import'
+      = link_to content, import_admin_publications_path, class: cls
+
+- label = I18n.t('views.admin.publications.buttons.go_back')
+- content = fa_icon('long-arrow-left', text: label)
+= link_to content, admin_publications_path, class: 'btn btn-link'
