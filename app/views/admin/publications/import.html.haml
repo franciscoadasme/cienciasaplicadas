@@ -2,9 +2,13 @@
 
 - if @entries.any?
   .well.well-sm.small
-    %p= fa_icon 'check', text: I18n.t(:linked, scope: i18n_scope), class: 'text-success'
-    %p= fa_icon 'eye-slash', text: I18n.t(:ignored, scope: i18n_scope), class: 'text-muted'
-    %p= fa_icon 'exclamation-circle', text: I18n.t(:invalid, scope: i18n_scope), class: 'text-danger'
+    - states = [[:linked, 'check', 'success'],
+                [:ignored, 'eye-slash', 'muted'],
+                [:invalid, 'exclamation-circle', 'danger']]
+    - states.each do |name, icon, variant|
+      - content = I18n.t(name, scope: i18n_scope)
+      %p= fa_icon icon, text: content, class: "text-#{variant} fa-fw"
+
   %ul.list-group
     = render partial: 'import_result', collection: @entries, as: :publication
 - else
