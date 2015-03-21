@@ -11,3 +11,7 @@
 
 = added_info_for @page
 = edited_info_for @page if @page.edited?
+
+- if current_user.try :super_user?
+  %hr.divider
+  = btn_to 'Editar', edit_admin_page_path(@page.id), block: true

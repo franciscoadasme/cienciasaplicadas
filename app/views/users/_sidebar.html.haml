@@ -17,3 +17,6 @@
 - if @user.settings.show_contact_page
   %hr
   = mail_to @user.email, 'Contactar', class: 'btn btn-default btn-block'
+- if current_user == @user
+  %hr.divider
+  = btn_to 'Editar', [:profile, :admin, :account], block: true

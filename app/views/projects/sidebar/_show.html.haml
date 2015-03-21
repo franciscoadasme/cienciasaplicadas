@@ -17,6 +17,10 @@
 = added_info_for @project
 = edited_info_for @project if @project.edited?
 
-%hr
-= btn_to 'Volver a proyectos', [ @user, :projects], block: true
+%hr.divider
+= btn_to 'Volver a proyectos', [@user, :projects], block: true
 = btn_to 'Volver al perfil', @user, block: true
+
+- if current_user == @project.user
+  %hr.divider
+  = btn_to 'Editar', [:edit, :admin, @project], block: true

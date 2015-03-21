@@ -15,6 +15,10 @@
   %hr.divider
   = edited_info_for @post
 
-%hr
+%hr.divider
 = btn_to 'Ver todas las noticias', posts_path, block: true
 = btn_to 'Ver sólo mes actual', posts_this_month_path, block: true
+
+- if current_user.try :super_user?
+  %hr.divider
+  = btn_to 'Editar', [:edit, :admin, @post], block: true
