@@ -4,7 +4,8 @@
     = Event.model_name.human
 
     .pull-right
-      = edit_action_for @event
+      = show_action_for @event, scoped: false, target: :blank
+      = edit_action_for @event, primary: true
       = delete_action_for @event
 
   .panel-body
