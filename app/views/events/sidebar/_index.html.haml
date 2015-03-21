@@ -4,13 +4,13 @@
     %li{ class: ('active' if params[:tipo].blank?) }
       = link_to events_path(params.merge(tipo: nil)) do
         Todas
-        %span.badge.pull-right= Event.count
+        %span.badge.pull-right= @events.count
 
-    - Event::TYPES.map(&:to_s).each do |type|
+    - @event_type_count.each do |type, count|
       %li{ class: ('active' if params[:tipo] == type) }
         = link_to events_path(params.merge(tipo: type)) do
           = type.titleize
-          %span.badge.pull-right= Event.typed(type).count
+          %span.badge.pull-right= count
 
 %hr.divider
 
