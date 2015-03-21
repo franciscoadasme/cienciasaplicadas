@@ -5,7 +5,7 @@
 - provide :sidebar, render('sidebar')
 - provide :banner_url, @user.banner if @user.banner.present?
 
-%section#about.content
+%section.content#about
   %h2
     Hola, Soy
     = @user.first_name
@@ -18,7 +18,7 @@
 
 - if @user.thesis.present?
   %section#thesis
-    %h2 Mi memoria de tesis 
+    %h2 Mi memoria de tesis
     %ul.media-list.theses
       = render @user.thesis
     = btn_to 'Ver todas las tesis', theses_path, block: true
@@ -28,4 +28,4 @@
     %h2= section_title_for_user_pubs @user_pubs
     %ul.publications
       = render @user_pubs
-    = btn_to 'Ver todas las publicaciones', [ @user, :publications ], block: true
+    = btn_to 'Ver todas las publicaciones', [@user, :publications], block: true
