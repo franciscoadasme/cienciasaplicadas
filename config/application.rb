@@ -24,5 +24,6 @@ module CbsmWebsite
 
     config.action_view.field_error_proc = -> html_tag, instance {  html_tag }
     config.active_record.disable_implicit_join_references = true
+    I18n.enforce_available_locales = false
   end
 end
