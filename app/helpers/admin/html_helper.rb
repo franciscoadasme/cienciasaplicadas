@@ -44,7 +44,8 @@ module Admin::HtmlHelper
   end
 
   def show_action_for(record, options = {})
-    href = record.is_model? ? [ :admin, record ] : record
+    scoped = options.fetch(:scoped, true)
+    href = record.is_model? && scoped ? [ :admin, record ] : record
     item_action options.fetch(:name, 'Visualizar'), href, options
   end
 
