@@ -11,6 +11,7 @@
 
 = added_info_for @page
 = edited_info_for @page if @page.edited?
+= dynamic_content_alert if dynamic_content?(@page.body)
 
 - if current_user.try :super_user?
   %hr.divider

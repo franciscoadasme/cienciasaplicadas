@@ -85,6 +85,15 @@ module HtmlHelper
     end
   end
 
+  def dynamic_content_alert
+    content_tag :p, class: 'text-muted' do
+      concat content_tag(:span, 'Dinámica', class: 'label label-primary')
+      concat ' Esta página contiene secciones dinámicas cuyo contenido es'
+      concat ' obtenido desde la base de datos, y por tanto, su información'
+      concat ' siempre está actualizada'
+    end
+  end
+
   private
     def extract_variant(options)
       options = options.symbolize_keys

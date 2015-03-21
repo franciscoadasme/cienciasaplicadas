@@ -3,6 +3,10 @@ module ParsingHelper
     collect_image_urls markdown(content)
   end
 
+  def dynamic_content?(text)
+    text =~ /\{\{(.+)\}\}/
+  end
+
   def markdown(text, options = {})
     return nil if text.blank?
 
