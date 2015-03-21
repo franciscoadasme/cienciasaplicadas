@@ -12,14 +12,16 @@
   %dd= l @event.start_date
 
   %dt Fecha de término
-  %dd= l @event.start_date
+  %dd= l @event.end_date
 
 %hr
 
+- content = time_ago_in_words(@event.updated_at)
+- long_date = l(@event.updated_at, format: :long)
 %p.text-muted
   %span.label.label-primary Editado
   Última actualización realizada hace
-  = time_tag @event.updated_at, time_ago_in_words(@event.updated_at), pubdate: true, title: l(@event.updated_at, format: :long)
+  = time_tag @event.updated_at, content, pubdate: true, title: long_date
   atrás
 
 %hr.divider
@@ -28,3 +30,7 @@
 - date_params = { year: today.year, month: today.month }
 = btn_to 'Mostrar mes actual', events_path(date_params), block: true
 = btn_to 'Volver a eventos', events_path, block: true
+
+- if current_user.try :super_user?
+  %hr.divider
+  = btn_to 'Editar', [:edit, :admin, @event], block: true
