@@ -144,6 +144,10 @@
       &:hover
         color: $link-hover-color
 
+    &.current > a
+      color: $text-color
+      background-color: darken($gray-lighter, 5%) !important
+
     &.active > a
       color: $link-color
       background-color: white
