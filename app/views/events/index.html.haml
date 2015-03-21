@@ -2,7 +2,7 @@
   %h1 Eventos
   = render 'nav_header'
 
-- provide :sidebar, render('sidebar')
+- provide :sidebar, render('events/sidebar/index')
 
 - if @events.any?
   %ul.media-list

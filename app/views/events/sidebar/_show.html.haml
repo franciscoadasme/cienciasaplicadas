@@ -16,13 +16,8 @@
 
 %hr
 
-- content = time_ago_in_words(@event.updated_at)
-- long_date = l(@event.updated_at, format: :long)
-%p.text-muted
-  %span.label.label-primary Editado
-  Última actualización realizada hace
-  = time_tag @event.updated_at, content, pubdate: true, title: long_date
-  atrás
+= added_info_for @event
+= edited_info_for @event
 
 %hr.divider
 
