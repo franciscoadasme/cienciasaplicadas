@@ -17,6 +17,8 @@
 #
 
 class Project < ActiveRecord::Base
+  include Editable
+  
   belongs_to :user
 
   scope :sorted, -> { order start_year: :desc, title: :asc }
