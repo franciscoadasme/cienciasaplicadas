@@ -245,3 +245,8 @@ input[type="checkbox"].form-control {
     color: $text-muted;
   }
 }
+
+textarea.monospaced {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 13px;
+}
