@@ -98,6 +98,13 @@ class Range
   end
 end
 
+class Date
+  def current_month?
+    today = self.class.today
+    year == today.year && month == today.month
+  end
+end
+
 module ActiveSupport
   class MessageEncryptor
     def self.default_encryptor
