@@ -13,11 +13,9 @@
   %dt Identificador
   %dd= @project.identifier
 
-%hr
-%p.text-muted
-  Última actualización realizada hace
-  = time_tag @project.updated_at, time_ago_in_words(@project.updated_at), pubdate: true, title: l(@project.updated_at, format: :long)
-  atrás
+%hr.divider
+= added_info_for @project
+= edited_info_for @project if @project.edited?
 
 %hr
 = btn_to 'Volver a proyectos', [ @user, :projects], block: true

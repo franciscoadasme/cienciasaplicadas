@@ -56,6 +56,35 @@ module HtmlHelper
                    .collect { |img| img['src'] }
   end
 
+  def relative_time_tag(date, options = {})
+    content = time_ago_in_words(date)
+    options[:title] ||= I18n.l(date, format: options.delete(:format) || :long)
+    time_tag date, content, options
+  end
+
+  def edited_info_for(record, user = nil)
+    content_tag :p, class: 'text-muted' do
+      concat content_tag(:span, 'Editado', class: 'label label-primary')
+      concat ' Última actualización fue realizada'
+      if user.present?
+        concat ' por '
+        concat link_to(user.display_name, user)
+      end
+      concat ' hace '
+      concat relative_time_tag(record.updated_at, pubdate: true)
+      concat ' atrás'
+    end
+  end
+
+  def added_info_for(record)
+    state = record.kind_of?(Publishable) ? 'Escrito' : 'Añadido'
+    content_tag :p, class: 'text-muted' do
+      concat "#{state} hace "
+      concat relative_time_tag(record.created_at, pubdate: true)
+      concat ' atrás'
+    end
+  end
+
   private
     def extract_variant(options)
       options = options.symbolize_keys

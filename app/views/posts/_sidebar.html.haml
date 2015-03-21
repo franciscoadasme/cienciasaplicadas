@@ -1,19 +1,19 @@
-%p
-  = link_to @post.author, class: 'magnifiable' do
-    = autosizing_image_tag display_user_image_url(@post.author), size: 48
+.media
+  .pull-left
+    = link_to @post.author, class: 'magnifiable' do
+      = autosizing_image_tag display_user_image_url(@post.author),
+                             size: 48, class: 'media-object'
+  .media-body
+    = link_to @post.author.display_name, @post.author, class: 'post-author'
+    %br
+    %strong= @post.author.position.name
 
-Escrito por
-= link_to @post.author.display_name, @post.author, class: 'post-author'
-hace
-= time_tag @post.created_at, time_ago_in_words(@post.created_at), title: l(@post.created_at, format: :long), pubdate: true
-atrás
+= added_info_for @post
+= edited_info_for @post if @post.edited?
 
 - if @post.edited?
-  %hr
-  %p
-    %span.label.label-primary Editado
-    La última actualización fue hecha hace
-    = time_tag @post.updated_at, time_ago_in_words(@post.updated_at), title: l(@post.updated_at, format: :long)
+  %hr.divider
+  = edited_info_for @post
 
 %hr
 = btn_to 'Ver todas las noticias', posts_path, block: true

@@ -9,10 +9,5 @@
 
   %hr.divider
 
-%p.text-muted
-  %span.label.label-primary Editado
-  Última edición por
-  = link_to @page.edited_by.display_name, @page.edited_by
-  hace
-  = time_tag @page.updated_at, time_ago_in_words(@page.updated_at), pubdate: true
-  atrás
+= added_info_for @page
+= edited_info_for @page if @page.edited?
