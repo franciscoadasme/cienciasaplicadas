@@ -6,10 +6,13 @@
   z-index: 999
   overflow-y: auto
 
-  .nav-brand
-    padding: $nav-spacing-v $nav-spacing-h
+  .nav-brand,
+  .user-info
     font-family: $font-family-sans-serif-upcase
     text-align: center
+
+  .nav-brand
+    padding: $nav-spacing-v $nav-spacing-h
 
     & > *
       display: block
@@ -32,6 +35,29 @@
     .bottom
       font-size: 21px
       color: desaturate(lighten($nav-bg, 35%), 15%)
+
+  .user-info
+    padding: $nav-spacing-v/3 $nav-spacing-h
+    color: white
+
+    .user-avatar
+      border: 5px solid lighten($nav-bg, 4%)
+      &,
+      & > img,
+      &::before
+        border-radius: 50%
+
+    .user-name
+      display: block
+      padding: 10px 0 12px
+      font-size: $font-size-large
+      font-weight: bold
+
+    .user-actions
+      @extend .list-inline
+
+      a:hover
+        color: white
 
   .nav-footer
     +position-at-edges($bottom: $nav-spacing-h, $left: $nav-spacing-h)
