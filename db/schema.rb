@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 20150322030317) do
     t.boolean  "published",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "view_count"
+    t.integer  "view_count",   default: 0,     null: false
   end
 
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
@@ -276,7 +276,7 @@ ActiveRecord::Schema.define(version: 20150322030317) do
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
     t.datetime "last_import_at"
-    t.integer  "view_count"
+    t.integer  "view_count",                       default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
