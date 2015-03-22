@@ -6,7 +6,7 @@
 #  doi        :string(255)
 #  url        :string(255)
 #  volume     :string(255)
-#  issue      :integer
+#  issue      :string(10)
 #  start_page :integer
 #  end_page   :integer
 #  month      :integer
