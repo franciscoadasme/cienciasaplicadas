@@ -6,18 +6,23 @@
 
       .media
         = link_to post.author, class: 'pull-left magnifiable' do
-          = autosizing_image_tag display_user_image_url(post.author), class: 'media-object', size: 48
+          = autosizing_image_tag display_user_image_url(post.author),
+            class: 'media-object', size: 48
         .media-body
           %p.post-meta
             Hace
-            = time_tag post.created_at, time_ago_in_words(post.created_at), pubdate: true, class: 'post-date', title: l(post.created_at.to_date, format: :long)
-            por
-            = link_to post.author.display_name, post.author, class: 'post-author'
+            = relative_time_tag post.created_at, class: 'post-date'
+            atrás por
+            %strong= link_to post.author.display_name, post.author
       %hr
       %nav.post-paginate
         %ul
           %li= link_to fa_icon('chevron-up', text: 'Anterior'), "##{post_prev.slug}"
           %li= link_to fa_icon('chevron-down', text: 'Siguiente'), "##{post_next.slug}"
+          %li
+            - content = pluralize post.view_count, 'visita', 'visitas'
+            %span.text-muted{ title: content }
+              = fa_icon :eye, text: post.view_count
 
   .col-xs-7
     .post-content
