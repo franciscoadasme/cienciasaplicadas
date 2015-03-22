@@ -16,6 +16,7 @@
 
 class Post < ActiveRecord::Base
   include Publishable
+  include Viewable
   include Filterable
   include Traversable
   traversable_by :created_at, scope: -> { published }

@@ -17,6 +17,9 @@
       - @user.pages.each do |page|
         %li= link_to page.title, [@user, page]
 
+%hr.divider
+= view_info_for @user
+
 - if @user.settings.show_contact_page
   %hr
   = mail_to @user.email, 'Contactar', class: 'btn btn-default btn-block'

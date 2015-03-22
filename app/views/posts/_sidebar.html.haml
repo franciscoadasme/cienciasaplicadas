@@ -11,6 +11,9 @@
 = added_info_for @post
 = edited_info_for @post if @post.edited?
 
+%hr.divider
+= view_info_for @post
+
 - if @post.edited?
   %hr.divider
   = edited_info_for @post

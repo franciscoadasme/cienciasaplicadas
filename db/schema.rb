@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228191513) do
+ActiveRecord::Schema.define(version: 20150322030317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20150228191513) do
     t.boolean  "published",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "view_count"
   end
 
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
@@ -275,6 +276,7 @@ ActiveRecord::Schema.define(version: 20150228191513) do
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
     t.datetime "last_import_at"
+    t.integer  "view_count"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

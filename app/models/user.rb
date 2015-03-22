@@ -74,6 +74,7 @@ class User < ActiveRecord::Base
     end
   end
   include Localizable
+  include Viewable
 
   devise :database_authenticatable,
          #:recoverable,
