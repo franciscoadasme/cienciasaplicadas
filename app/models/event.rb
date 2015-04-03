@@ -20,6 +20,8 @@
 #
 
 class Event < ActiveRecord::Base
+  include Editable
+
   TYPES = [ :charla, :seminario, :curso ]
 
   extend FriendlyId
