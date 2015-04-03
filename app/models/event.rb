@@ -54,4 +54,8 @@ class Event < ActiveRecord::Base
   validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
                                                       message: I18n.t('activerecord.errors.models.event.attributes.picture.spoofed_media_type') },
                                          size: { less_than: 5.megabytes }
+
+  def one_day?
+    end_date.blank? || start_date == end_date
+  end
 end

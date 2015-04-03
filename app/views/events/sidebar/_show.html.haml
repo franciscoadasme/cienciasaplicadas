@@ -8,11 +8,11 @@
 
   %br
 
-  %dt Fecha de inicio
+  %dt= @event.one_day? ? 'Día de realización' : 'Fecha de inicio'
   %dd= l @event.start_date
-
-  %dt Fecha de término
-  %dd= l @event.end_date
+  - unless @event.one_day?
+    %dt Fecha de término
+    %dd= l @event.end_date
 
 %hr
 
