@@ -39,6 +39,8 @@ GEM
       activerecord (>= 3.0)
     autoprefixer-rails (1.1.20140226)
       execjs
+    autosize-rails (1.18.17)
+      rails (>= 3.1)
     aws-sdk (1.35.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -160,6 +162,8 @@ GEM
       oauth2 (~> 0.9.3)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    pagedown-bootstrap-rails (2.1.2)
+      railties (> 3.1)
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -257,6 +261,7 @@ DEPENDENCIES
   annotate
   auto_strip_attributes (~> 2.0)
   autoprefixer-rails (~> 1.1)
+  autosize-rails (~> 1.18.17)
   aws-sdk (~> 1.35.0)
   better_errors
   binding_of_caller
@@ -282,6 +287,7 @@ DEPENDENCIES
   nokogiri (~> 1.6.1)
   omniauth-facebook (~> 1.6.0)
   omniauth-google-oauth2 (~> 0.2.2)
+  pagedown-bootstrap-rails (~> 2.1.2)
   paperclip (~> 4.1.1)
   pg (~> 0.17.1)
   premailer-rails (~> 1.7.0)

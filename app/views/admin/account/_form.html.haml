@@ -7,11 +7,12 @@
     = f.input :last_name
     = f.input :email, wrapper: :bootstrap_has_warning
     = f.input :headline
-    = f.input :bio, input_html: { rows: 10 }, hint: markdown_hint
+    = f.input :bio, as: :pagedown, hint: markdown_hint,
+              input_html: { rows: 10, preview: true }
 
   = field_set_tag t('views.admin.account.edit.sections.social') do
     = f.input :nickname
-    = f.input :social_links, input_html: { rows: 4 }
+    = f.input :social_links, input_html: { class: 'monospaced', rows: 4 }
     = f.input :image_url
     = f.input :banner
 

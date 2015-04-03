@@ -3,7 +3,9 @@
 
   .form-inputs
     = f.input :title, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
-    = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
+    = f.input :body, as: :pagedown, wrapper: :simple_wrapper,
+              hint: markdown_hint,
+              input_html: { rows: 10, preview: true }
 
   .form-group.form-actions
     - if !@post.persisted? && current_user.admin?

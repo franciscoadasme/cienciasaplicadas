@@ -15,7 +15,9 @@
 
   = f.input :source
   = f.input :identifier
-  = f.input :description, hint: markdown_hint, input_html: { rows: 10 }
+  = f.input :description, as: :pagedown, hint: markdown_hint,
+            input_html: { rows: 10, preview: true }
+
   = f.input :image_url
 
   .form-group.form-actions

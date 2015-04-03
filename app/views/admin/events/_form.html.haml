@@ -18,8 +18,8 @@
     = f.input :event_type, as: :select, collection: Event::TYPES,
               label_method: -> t { t.to_s.titleize }, include_blank: false
     = f.input :promoter
-    = f.input :description, as: :text,
-              input_html: { class: 'monospaced', rows: 20 }
+    = f.input :description, as: :pagedown, hint: markdown_hint,
+              input_html: { rows: 20, preview: true }
     = f.input :picture
 
   .form-group.form-actions

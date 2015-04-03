@@ -8,7 +8,9 @@
     = f.input :tagline, wrapper: :simple_wrapper, disabled: @page.marked?
 
     %hr
-    = f.input :body, wrapper: :simple_wrapper, hint: markdown_hint, input_html: { rows: 15 }
+    = f.input :body, as: :pagedown, wrapper: :simple_wrapper,
+              hint: markdown_hint,
+              input_html: { rows: 15, preview: true }
     = f.input :banner, wrapper: :simple_wrapper
 
   .form-group.form-actions
