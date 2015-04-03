@@ -14,10 +14,6 @@
 %hr.divider
 = view_info_for @post
 
-- if @post.edited?
-  %hr.divider
-  = edited_info_for @post
-
 %hr.divider
 = btn_to 'Ver todas las noticias', posts_path, block: true
 = btn_to 'Ver sólo mes actual', posts_this_month_path, block: true
