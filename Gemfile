@@ -32,7 +32,6 @@ gem 'jquery-ui-rails', '~> 4.2.0'
 gem 'font-awesome-rails', '~>4.0'
 gem 'select2-rails', '~> 3.5.4'
 gem 'chart-js-rails', '~> 0.0.6'
-gem 'jqcloud-rails', '~> 1.0.0'
 gem 'pagedown-bootstrap-rails', '~> 2.1.2'
 gem 'autosize-rails', '~> 1.18.17'
 

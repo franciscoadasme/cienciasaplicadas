@@ -20,9 +20,10 @@ class AuthorStatistics
   end
 
   def publication_per_journal
-    Journal.joins(:publications)
-      .where('publications.id' => publication_ids)
-      .group(:name).count
+    @pubs_per_journal ||= Journal.joins(:publications)
+                          .where('publications.id' => publication_ids)
+                          .group(:name).count.to_a
+                          .sort { |a, b| b[1] <=> a[1] }
   end
 
   def publication_per_year(include_empty_years: false)

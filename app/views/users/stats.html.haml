@@ -53,8 +53,17 @@
     = pluralize @user.statistics.journals.count, 'revista', 'revistas'
     hasta la fecha.
 
-  - stats = @user.statistics.publication_per_journal.to_a
-  #cloud-publication-per-journal{ data: { cloud: stats } }
+  %ul.list-group
+    - stats.publication_per_journal.each do |journal, count|
+      - relative_count = count.to_f / stats.publication_total * 100
+      %li.list-group-item.progressable
+        .progressable-bar{ style: "width: #{relative_count.round}%;" }
+        .list-group-item-body
+          %strong= journal
+          .pull-right
+            %strong.text-primary= count
+            %span.text-muted
+              (#{number_to_percentage relative_count, precision: 0})
 
 %hr
 
