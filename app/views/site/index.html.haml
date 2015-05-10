@@ -5,8 +5,8 @@
 .row
   .col-xs-6
     = render 'site/widgets/posts' if @lastest_posts.any?
-    = render 'site/widgets/theses' if @graduated_users.any?
-    = render 'site/widgets/graduated' if @graduated_users.any?
+    = render 'site/widgets/theses' if @graduate_users.any?
+    = render 'site/widgets/graduate' if @graduate_users.any?
 
   .col-xs-6
     = render 'site/widgets/events' if @upcoming_events.any?

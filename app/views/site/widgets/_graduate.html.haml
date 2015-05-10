@@ -1,4 +1,4 @@
-- if @graduated_users.any?
+- if @graduate_users.any?
   .widget
     %h2.widget-title
       %string
@@ -6,7 +6,7 @@
         %span.highlight egresados
 
     %ul.media-list
-      - @graduated_users.each do |user|
+      - @graduate_users.each do |user|
         %li.media
           = link_to user, class: 'pull-left magnifiable' do
             = autosizing_image_tag display_user_image_url(user), size: 48, class: 'media-object'
