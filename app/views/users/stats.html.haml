@@ -15,7 +15,7 @@
 
 %hr
 
-- pubs_per_year = stats.publication_per_year[0..-2]
+- pubs_per_year = stats.publication_per_year(include_empty_years: true)[0..-2]
 - if pubs_per_year.count >= 2
   %section#publication-per-year
     %h2
