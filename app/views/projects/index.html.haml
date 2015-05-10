@@ -12,4 +12,5 @@
 
 %p.text-center
   = btn_to 'Volver al perfil', @user
-  = btn_to 'Ver publicaciones', [ @user, :publications ]
+  - if @user.publications.any?
+    = btn_to 'Ver publicaciones', [ @user, :publications ]

@@ -10,7 +10,8 @@
 
   %hr
   = btn_to 'Ver productividad', [ @user, :stats ], block: true
-  = btn_to 'Ver proyectos', [ @user, :projects ], block: true
+  - if @user.projects.any?
+    = btn_to 'Ver proyectos', [ @user, :projects ], block: true
 
   - if @user.last_import_at.present?
     %hr
