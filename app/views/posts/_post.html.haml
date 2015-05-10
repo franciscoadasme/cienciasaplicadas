@@ -10,9 +10,10 @@
             class: 'media-object', size: 48
         .media-body
           %p.post-meta
-            Hace
-            = relative_time_tag post.created_at, class: 'post-date'
-            atrás por
+            Publicado el
+            - localized_date = I18n.l(post.created_at, format: :abbr_with_day)
+            = time_tag post.created_at, localized_date, class: 'post-date'
+            por
             %strong= link_to post.author.display_name, post.author
       %hr
       %nav.post-paginate
@@ -29,5 +30,5 @@
       - img_url = extract_images_from_content(post.body).first
       = autosizing_image_tag img_url if img_url.present?
 
-      %p= excerpt post.body, length: 500
+      %p= excerpt post.body, length: 750
       = link_to 'Seguir leyendo...', post_permalink(post), class: 'read-more'
