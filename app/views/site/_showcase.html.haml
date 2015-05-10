@@ -14,5 +14,5 @@
       = @students_count
       %span.footnote Estudiantes
     .card-description
-      %p con un total de #{2} egresados desde el 2006
+      %p con un total de #{@graduate_count} egresados desde el 2006
       = link_to 'Ver más', page_path(:estudiantes) if Page.named?(:estudiantes)

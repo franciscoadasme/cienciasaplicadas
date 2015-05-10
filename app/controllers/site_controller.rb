@@ -13,6 +13,7 @@ class SiteController < ApplicationController
 
     @students_count = User.with_position('estudiante').count
     @graduated_users = User.with_position 'estudiante-egresado'
+    @graduate_count = User.with_position('egresado').count
     @recent_moments = Moment.sorted.limit(3)
     @lastest_theses = Thesis.sorted.limit(3)
   end
