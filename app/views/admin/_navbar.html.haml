@@ -11,9 +11,9 @@
               %li{ class: ('active' if current_page?(new_admin_post_path)) }
                 = link_to fa_icon('pencil', text: 'Redactar Noticia'), new_admin_post_path
 
-              - href = new_message_admin_mailing_list_path MailingList.global
-              - unless current_page?(href)
-                %li= link_to fa_icon('bullhorn'), href, title: 'Enviar un anuncio'
+              -# - href = new_message_admin_mailing_list_path MailingList.global
+              -# - unless current_page?(href)
+              -#   %li= link_to fa_icon('bullhorn'), href, title: 'Enviar un anuncio'
 
             %li{ class: ('active' if current_page?(import_admin_publications_path)) }
               = link_to fa_icon('files-o', text: 'Importar'), import_admin_publications_path, class: 'btn-publication-import', title: 'Importar publicaciones'
