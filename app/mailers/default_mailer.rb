@@ -1,5 +1,5 @@
 class DefaultMailer < ActionMailer::Base
-  default from: "#{Group.first.abbr} <noreply@#{ENV['MAILGUN_DOMAIN']}>"
+  default from: "#{Group.first.abbr} <contact@#{ENV['CIENCIASAPLICADAS_DOMAIN']}>"
 
   helper Admin::HtmlHelper
   helper UserHelper
@@ -43,5 +43,15 @@ class DefaultMailer < ActionMailer::Base
     @post = post
 
     mail to: recipients, subject: subject, template_path: 'mailer'
+  end
+
+  private
+
+  def full_subject(subject)
+    '[CienciasAplicadas] ' + subject
+  end
+
+  def recipients(users)
+    users.map { |user| "#{user.display_name} <#{user.email}>" }
   end
 end

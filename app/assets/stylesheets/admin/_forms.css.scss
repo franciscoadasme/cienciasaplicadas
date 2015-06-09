@@ -304,3 +304,11 @@ textarea.monospaced {
     width: 456px + 18px + 4px;
   }
 }
+
+.form-controls > .checkbox:first-child {
+  margin-top: 0;
+}
+
+.form-controls > .checkbox:last-child {
+  margin-bottom: 0;
+}

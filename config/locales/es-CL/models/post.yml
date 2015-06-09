@@ -6,6 +6,7 @@ es-CL:
       post:
         title: Título
         body: Contenido
+        notification: Notificar a
 
   simple_form:
     placeholders:

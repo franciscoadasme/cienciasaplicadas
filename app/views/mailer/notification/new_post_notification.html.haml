@@ -1,0 +1,26 @@
+- provide :title do
+  %h1= @post.title
+
+= mtable_tag width: '100%' do
+  %tr
+    %td
+      %p.text-center
+        = markdown @post.body
+
+      %br
+
+      %p.text-center
+        = link_to 'Ver en la página', post_permalink(@post, full_path: true),
+                  class: 'btn'
+
+  -# %tr
+  -#   %td
+  -#     %hr
+  -#
+  -# %tr
+  -#   %td
+  -#     %p.text-muted.text-center
+  -#       %small
+  -#         - link = link_to 'aquí', settings_admin_account_url
+  -#         Si no desea recibir más estas notificaciones, puede desactivarlas
+  -#         yendo a las preferencias de su cuenta #{link}.

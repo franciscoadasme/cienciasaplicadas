@@ -1,7 +1,7 @@
 class Admin::PostsController < AdminController
   before_action :authorize_user!
   before_action :set_post, only: [ :edit, :update, :destroy, :publish, :withhold ]
-  after_action :send_notification, only: [ :create, :update ]
+  # after_action :send_notification, only: [ :create, :update ]
 
   def index
     @posts = Post.sorted
@@ -9,6 +9,7 @@ class Admin::PostsController < AdminController
 
   def new
     @post = Post.new
+    @positions = Position.sorted
   end
 
   def edit
@@ -20,8 +21,10 @@ class Admin::PostsController < AdminController
     set_published_status
 
     if @post.save
+      send_new_post_notification_if_needed @post
       redirect_to_index_after_save
     else
+      @positions = Position.sorted
       render action: 'new'
     end
   end
@@ -69,6 +72,10 @@ class Admin::PostsController < AdminController
       params.require(:post).permit(:title, :body)
     end
 
+    def notification_params
+      params.require(:notification).permit position_ids: []
+    end
+
     def redirect_to_index_after_save
       i18n_key = case
         when current_user.admin?
@@ -79,7 +86,16 @@ class Admin::PostsController < AdminController
       redirect_to_index success: i18n_key
     end
 
-    def send_notification
-      DefaultMailer.send_post_notification(@post).deliver unless current_user.admin?
-    end
+  def send_new_post_notification_if_needed(post)
+    position_ids = notification_params.fetch(:position_ids, []).reject(&:blank?)
+    return if position_ids.empty?
+
+    users = User.default.joins(:position)
+            .where('positions.id' => position_ids)
+    NotificationMailer.send_new_post_notification(post, users).deliver
+  end
+
+    # def send_notification
+    #   DefaultMailer.send_post_notification(@post).deliver unless current_user.admin?
+    # end
 end

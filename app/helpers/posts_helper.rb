@@ -1,8 +1,10 @@
 module PostsHelper
-  def post_permalink(post)
+  def post_permalink(post, full_path: false)
     return post if post.blank?
     date = post.created_at
-    post_path id: post.slug, year: date.year, month: date.month, day: date.day
+    helper = full_path ? method(:post_url) : method(:post_path)
+    helper.call(id: post.slug, year: date.year, month: date.month,
+                day: date.day)
   end
 
   def posts_this_month_path

@@ -1,0 +1,14 @@
+- if params.key? :notification
+  - position_ids = params[:notification].fetch(:position_ids, []).map(&:to_i)
+- else
+  - position_ids = []
+
+.form-group.row
+  = f.label :notification, :position_ids
+  .form-controls.col-xs-9
+    = collection_check_boxes :notification, :position_ids,
+      @positions, :id, :name do |b|
+      .checkbox
+        = b.label do
+          = b.check_box(checked: position_ids.include?(b.value))
+          = b.text.pluralize(:'es-CL')

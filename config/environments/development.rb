@@ -27,16 +27,17 @@ CbsmWebsite::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { host: "http://#{ENV['CIENCIASAPLICADAS_DOMAIN']}" }
+  config.action_mailer.default_url_options = {
+    host: ENV['CIENCIASAPLICADAS_DOMAIN'] }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     authentication: :plain,
-    address: 'smtp.mailgun.org',
+    address: 'smtp.webfaction.com',
     port: 587,
-    domain: ENV['MAILGUN_DOMAIN'],
-    user_name: ENV['MAILGUN_USERNAME'],
-    password: ENV['MAILGUN_PASSWORD']
+    domain: ENV['CIENCIASAPLICADAS_DOMAIN'],
+    user_name: ENV['CIENCIASAPLICADAS_MAIL_USERNAME'],
+    password: ENV['CIENCIASAPLICADAS_MAIL_PASSWORD']
   }
 
   config.paperclip_defaults = {

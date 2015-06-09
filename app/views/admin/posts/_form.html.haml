@@ -1,15 +1,26 @@
-= vertical_form_for @post, url: (@post.persisted? ? admin_post_path(@post.id) : admin_posts_path) do |f|
+- url = @post.persisted? ? admin_post_path(@post.id) : admin_posts_path
+= vertical_form_for @post, url: url do |f|
   - provide :notification, f.error_notification
 
   .form-inputs
-    = f.input :title, wrapper: :simple_wrapper, input_html: { class: 'input-lg' }
+    = f.input :title, wrapper: :simple_wrapper,
+              input_html: { class: 'input-lg' }
     = f.input :body, as: :pagedown, wrapper: :simple_wrapper,
               hint: markdown_hint,
               input_html: { rows: 10, preview: true }
 
+    - unless @post.persisted?
+      %hr
+      = render partial: 'admin/notifiable/form', locals: { f: f }
+
+  %hr
+
   .form-group.form-actions
     - if !@post.persisted? && current_user.admin?
-      = f.button :button, t('helpers.submit.post.draft'), name: 'draft', class: 'btn-default', data: { disable_with: 'Guardando...' }
-    = link_to t('helpers.submit.post.cancel'), admin_posts_path, class: 'text-danger'
+      = f.button :button, t('helpers.submit.post.draft'), name: 'draft',
+                 class: 'btn-default',
+                 data: { disable_with: 'Guardando...' }
+    - content = t('helpers.submit.post.cancel')
+    = link_to content, admin_posts_path, class: 'text-danger'
     .pull-right
       = post_submit_button f, @post
