@@ -305,6 +305,10 @@ textarea.monospaced {
   }
 }
 
+.form-horizontal .form-controls > .checkbox input {
+  margin-top: 4px;
+}
+
 .form-controls > .checkbox:first-child {
   margin-top: 0;
 }
