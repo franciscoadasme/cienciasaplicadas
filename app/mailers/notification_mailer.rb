@@ -2,6 +2,14 @@ class NotificationMailer < DefaultMailer
   helper :posts
   helper :pages
 
+  def send_new_event_notification(event, users)
+    @event = event
+    send_notification(
+      event.name.truncate(120, separator: /\s/),
+      users,
+      'new_event_notification')
+  end
+
   def send_new_post_notification(post, users)
     @post = post
     send_notification(

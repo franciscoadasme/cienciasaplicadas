@@ -13,6 +13,7 @@ es-CL:
         event_type: Tipo de evento
         promoter: Patrocinador
         picture: Imagen del tópico
+        notification: Notificar a
     errors:
       models:
         event:

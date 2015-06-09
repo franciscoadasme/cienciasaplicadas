@@ -22,6 +22,9 @@
               input_html: { rows: 20, preview: true }
     = f.input :picture
 
+    - unless @event.persisted?
+      = render partial: 'admin/notifiable/form', locals: { f: f }
+
   .form-group.form-actions
     .col-xs-9.col-xs-offset-3
       = f.button :submit, class: 'btn btn-primary',

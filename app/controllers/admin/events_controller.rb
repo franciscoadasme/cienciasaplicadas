@@ -1,4 +1,6 @@
 class Admin::EventsController < AdminController
+  include NotifiableController
+
   before_action :authorize_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -12,6 +14,7 @@ class Admin::EventsController < AdminController
   def new
     @event = Event.new
     @event.start_date = Date.today
+    @positions = Position.sorted
   end
 
   def edit
@@ -21,8 +24,10 @@ class Admin::EventsController < AdminController
     @event = Event.new(event_params)
 
     if @event.save
+      send_new_notification_if_needed @event
       redirect_to [ :admin, @event ], success: true
     else
+      @positions = Position.sorted
       render action: 'new'
     end
   end
