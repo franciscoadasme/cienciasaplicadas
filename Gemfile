@@ -64,7 +64,6 @@ group :development do
 end
 
 group :production do
-  gem 'exceptiontrap'
 end
 
 # Use unicorn as the app server
@@ -74,3 +73,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor'
+gem 'rollbar', '~> 1.2.7'
