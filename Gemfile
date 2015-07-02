@@ -73,4 +73,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor'
-gem 'rollbar', '~> 1.2.7'
+gem 'rollbar', '~> 1.5.3'
