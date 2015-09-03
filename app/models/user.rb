@@ -85,9 +85,9 @@ class User < ActiveRecord::Base
   attr_reader :raw_invitation_token
 
   after_invitation_accepted :create_default_settings
-  after_invitation_accepted :add_to_mailing_list
-  before_destroy :remove_from_mailing_list
-  before_update :update_mailing_list_member_if_needed
+  # after_invitation_accepted :add_to_mailing_list
+  # before_destroy :remove_from_mailing_list
+  # before_update :update_mailing_list_member_if_needed
 
   def send_reset_password_instructions
     super if accepted?
