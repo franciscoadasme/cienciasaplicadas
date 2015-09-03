@@ -88,6 +88,7 @@ class User < ActiveRecord::Base
   # after_invitation_accepted :add_to_mailing_list
   # before_destroy :remove_from_mailing_list
   # before_update :update_mailing_list_member_if_needed
+  before_update :format_names
 
   def send_reset_password_instructions
     super if accepted?
@@ -255,6 +256,12 @@ class User < ActiveRecord::Base
 
     def create_default_settings
       build_settings
+    end
+
+    def format_names
+      self.first_name = first_name.titleize
+      self.last_name = last_name.titleize
+      self.nickname = nickname.parameterize
     end
 
     def matching_lastname?(lastname)
