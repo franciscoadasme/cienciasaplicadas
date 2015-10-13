@@ -1,0 +1,5 @@
+es-CL:
+  controllers:
+    users:
+      show:
+        error: "El miembro %{user} no existe."
