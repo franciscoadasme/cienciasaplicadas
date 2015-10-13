@@ -6,7 +6,7 @@
 %p.lead
   - if params[:id] || params[:user_id]
     La entidad con el nombre clave
-    %span.text-primary= params[:id] || params[:user_id]
+    %span.text-primary= params[:id] || params[:user_id]
   - else
     La ruta
     %span.text-primary= url_for(only_path: true)
