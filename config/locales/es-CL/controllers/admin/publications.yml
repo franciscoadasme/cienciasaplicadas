@@ -8,6 +8,7 @@ es-CL:
           success:
             one: Solo una publicación fue encontrada en los archivos seleccionados. Véase más abajo para mayor información.
             other: 'Un total de %{count} publicaciones fueron encontradas en los archivos seleccionados. Véase más abajo para mayor información.'
+          error: Un error desconocido ha ocurrido al leer el archivo RIS. Favor verificar su contenido. 
         link:
           success: 'La publicación fue vinculada a través de "%{author}" satisfactoriamente.'
         unlink:

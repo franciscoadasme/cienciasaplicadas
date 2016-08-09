@@ -24,7 +24,12 @@ class Admin::PublicationsController < AdminController
                 .where('users.id = ? or settings.autolink_on_import = ?',
                        current_user.id, true).to_a
     importer = PublicationImporter.new users
-    @entries = importer.import params.delete(:ris_content), format: :ris
+    begin
+      @entries = importer.import params.delete(:ris_content), format: :ris
+    rescue
+      redirect_to_index error: I18n.t('controllers.admin.publications.import.error')
+      return
+    end
 
     current_user.update! last_import_at: DateTime.current
     DefaultMailer.send_journal_notification(importer.new_journals).deliver
