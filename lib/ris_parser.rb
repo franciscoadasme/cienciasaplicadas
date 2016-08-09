@@ -17,7 +17,9 @@ class RisParser
     'SP' => 'start_page',
     'EP' => 'end_page',
     'PY' => 'year',
+    'Y1' => 'year', # RSC style
     'AU' => 'authors[]',
+    'A1' => 'authors[]', # RSC style
     'SN' => 'isbn',
     'DO' => 'doi',
     'UR' => 'url',
