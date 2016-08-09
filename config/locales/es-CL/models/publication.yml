@@ -24,6 +24,7 @@ es-CL:
           attributes:
             volume:
               invalid: no es un número válido ni tampoco dice "En Prensa"
+              custom_presence: "está ausente en el archivo RIS (formato: VL  - XX)"
     labels:
       publication:
         in_press: En Prensa

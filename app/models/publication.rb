@@ -49,7 +49,7 @@ class Publication < ActiveRecord::Base
              allow_blank: true
   validates :url, url: true,
           allow_blank: true
-  validates :volume, presence: true,
+  validates :volume, presence: { message: :custom_presence },
                        format: { with: /\A([1-9]\d*|#{PENDING_LABEL})\Z/i }
   validates :issue, format: { with: VALID_ISSUE_REGEX },
                allow_blank: true
