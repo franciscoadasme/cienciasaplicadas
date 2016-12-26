@@ -123,9 +123,11 @@ form hr {
   label.boolean {
     display: block;
     margin-top: 10px;
+    padding-left: 20px;
 
     input[type="checkbox"] {
-      margin: 0 8px 0 0;
+      position: absolute;
+      margin: 4px 8px 0 -20px;
     }
   }
 
