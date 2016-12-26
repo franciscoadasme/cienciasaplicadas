@@ -14,7 +14,7 @@ gem 'redcarpet', '~> 3.1.1'
 
 gem 'acts_as_list', '~> 0.4.0'
 gem 'auto_strip_attributes', '~> 2.0'
-gem 'friendly_id', '~> 5.0.0'
+gem 'friendly_id', '~> 5.1.0'
 gem 'country_select', '~> 1.3.1'
 gem 'activerecord_any_of', '~> 1.2'
 gem 'validates_timeliness', '~> 3.0'
