@@ -56,6 +56,6 @@ class SiteController < ApplicationController
     end
 
     def render_not_found
-      render 'site/errors/404', status: 404
+      render 'site/not_found', status: 404, formats: :html
     end
 end
