@@ -21,3 +21,4 @@
 .sass-cache
 *.sublime-project
 *.sublime-workspace
+.env
