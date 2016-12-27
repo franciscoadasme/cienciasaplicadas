@@ -73,17 +73,6 @@ CbsmWebsite::Application.routes.draw do
     resources :theses
 
     resources :announcements, only: [ :new, :create ]
-    resources :mailing_lists do
-      member do
-        get :add_member
-        post :add_member
-        delete :remove_member
-
-        get :new_message
-        post :send_message
-      end
-    end
-    resources :contacts
 
     resources :moments, except: [ :show ]
     resources :events

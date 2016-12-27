@@ -12,8 +12,6 @@
         = autolink_to tsidebar_item(:invite), new_user_invitation_path, class: 'newlink' if current_user.super_user?
 
       - if current_user.super_user?
-        -# = sidebar_menu_item :contacts
-        -# = sidebar_menu_item :mailing_lists
         = sidebar_menu_item :moments
         = sidebar_menu_item :events
 

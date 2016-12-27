@@ -85,9 +85,6 @@ class User < ActiveRecord::Base
   attr_reader :raw_invitation_token
 
   after_invitation_accepted :create_default_settings
-  # after_invitation_accepted :add_to_mailing_list
-  # before_destroy :remove_from_mailing_list
-  # before_update :update_mailing_list_member_if_needed
   before_update :format_names
 
   def send_reset_password_instructions
@@ -249,11 +246,6 @@ class User < ActiveRecord::Base
   end
 
   private
-    def add_to_mailing_list
-      MailingList.global.add_member email
-      true
-    end
-
     def create_default_settings
       build_settings
     end
@@ -276,16 +268,6 @@ class User < ActiveRecord::Base
       # firstname.split(' ')[0] == normalized_first_name.split(' ')[0]
       #CLogger.debug "FIRST_NAME: #{normalized_first_name}, AUTHOR_FIRST_NAME: #{firstname}, SCAN: #{normalized_first_name.scan(/^#{firstname}/).any?}, #{firstname.scan(/^#{normalized_first_name}/).any?}\n"
       normalized_first_name.scan(/^#{firstname.split.first}/).any? || firstname.scan(/^#{normalized_first_name}/).any?
-    end
-
-    def remove_from_mailing_list
-      MailingList.global.remove_member(email) if accepted?
-      true
-    end
-
-    def update_mailing_list_member_if_needed
-      MailingList.global.update_member email_was, email if email_changed?
-      true
     end
 
     def social_links_urls_must_be_valid
