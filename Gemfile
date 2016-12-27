@@ -72,4 +72,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor'
-gem 'rollbar', '~> 2.4'
+gem 'rollbar', '~> 2.8.3'
