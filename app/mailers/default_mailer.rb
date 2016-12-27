@@ -22,7 +22,7 @@ class DefaultMailer < ActionMailer::Base
     @as_student = message.as_student
 
     @group = Group.first
-    subject = '[CienciasAplicadas] Una persona ha enviado un mensaje'
+    subject = 'Una persona ha enviado un mensaje'
 
     mail to: @group.email, subject: subject, template_path: 'mailer'
   end
@@ -30,7 +30,7 @@ class DefaultMailer < ActionMailer::Base
   def send_journal_notification(journals)
     return if journals.empty?
     recipients = User.admins.map{ |user| "#{user.display_name} <#{user.email}>" }
-    subject = '[CienciasAplicadas] Se han agregado uno o más nuevas revistas'
+    subject = 'Se han agregado uno o más nuevas revistas'
     @journals = journals
 
     mail to: recipients, subject: subject, template_path: 'mailer'
@@ -39,17 +39,13 @@ class DefaultMailer < ActionMailer::Base
   def send_post_notification(post)
     @admins = User.admins
     recipients = @admins.map{ |user| "#{user.display_name} <#{user.email}>" }
-    subject = '[CienciasAplicadas] Una noticia requiere de su aprobación'
+    subject = 'Una noticia requiere de su aprobación'
     @post = post
 
     mail to: recipients, subject: subject, template_path: 'mailer'
   end
 
   private
-
-  def full_subject(subject)
-    '[CienciasAplicadas] ' + subject
-  end
 
   def recipients(users)
     if Rails.env.development?
