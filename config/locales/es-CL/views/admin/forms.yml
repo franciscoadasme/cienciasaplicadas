@@ -1,0 +1,4 @@
+es-CL:
+  simple_form:
+    trix-editor: |
+      Este editor muestra el contenido en el mismo formato con el cual se despliegará en la página principal.

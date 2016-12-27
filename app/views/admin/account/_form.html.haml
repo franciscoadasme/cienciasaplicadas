@@ -7,8 +7,7 @@
     = f.input :last_name
     = f.input :email, wrapper: :bootstrap_has_warning
     = f.input :headline
-    = f.input :bio, as: :pagedown, hint: markdown_hint,
-              input_html: { rows: 10, preview: true }
+    = f.input :bio, as: :trix_editor
 
   = field_set_tag t('views.admin.account.edit.sections.social') do
     = f.input :nickname

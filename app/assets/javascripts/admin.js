@@ -15,6 +15,6 @@
 //= require bootstrap
 //= require jquery.ui.sortable
 //= require select2
-//= require pagedown_bootstrap
+//= require trix
 //= require jquery.autosize
 //= require_tree ./admin

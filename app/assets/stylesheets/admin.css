@@ -12,6 +12,6 @@
  *= require common/non-responsive
  *= require font-awesome
  *= require select2
- *= require pagedown_bootstrap
+ *= require trix
  *= require admin/main
  */

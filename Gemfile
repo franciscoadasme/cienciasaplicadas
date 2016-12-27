@@ -8,6 +8,7 @@ gem 'pg', '~> 0.17.1'
 gem 'haml-rails', '~> 0.5.3'
 gem 'simple_form', '~> 3.0.4'
 gem 'redcarpet', '~> 3.1.1'
+gem 'trix', '~> 0.9.10'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -30,7 +31,6 @@ gem 'jquery-ui-rails', '~> 4.2.0'
 gem 'font-awesome-rails', '~>4.0'
 gem 'select2-rails', '~> 3.5.4'
 gem 'chart-js-rails', '~> 0.0.6'
-gem 'pagedown-bootstrap-rails', '~> 2.1.2'
 gem 'autosize-rails', '~> 1.18.17'
 
 gem 'devise', '~> 3.4.1 '

@@ -18,8 +18,7 @@
     = f.input :event_type, as: :select, collection: Event::TYPES,
               label_method: -> t { t.to_s.titleize }, include_blank: false
     = f.input :promoter
-    = f.input :description, as: :pagedown, hint: markdown_hint,
-              input_html: { rows: 20, preview: true }
+    = f.input :description, as: :trix_editor, wrapper: :simple_wrapper
     = f.input :picture
 
     - unless @event.persisted?
