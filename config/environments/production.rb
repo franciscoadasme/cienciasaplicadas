@@ -80,15 +80,17 @@ CbsmWebsite::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { host: "http://#{ENV['CIENCIASAPLICADAS_DOMAIN']}" }
+  config.action_mailer.default_url_options = {
+    host: ENV['CIENCIASAPLICADAS_DOMAIN']
+  }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     authentication: :plain,
-    address: 'smtp.mailgun.org',
     port: 587,
-    domain: ENV['MAILGUN_DOMAIN'],
-    user_name: ENV['MAILGUN_USERNAME'],
-    password: ENV['MAILGUN_PASSWORD']
+    address: 'smtp.mailgun.org',
+    domain: ENV['CIENCIASAPLICADAS_DOMAIN'],
+    user_name: ENV['CIENCIASAPLICADAS_MAIL_USERNAME'],
+    password: ENV['CIENCIASAPLICADAS_MAIL_PASSWORD']
   }
 
   config.paperclip_defaults = {

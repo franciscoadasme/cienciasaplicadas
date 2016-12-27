@@ -28,17 +28,18 @@ CbsmWebsite::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = {
-    host: ENV['CIENCIASAPLICADAS_DOMAIN'] }
-  config.action_mailer.perform_deliveries = true
+    host: ENV['CIENCIASAPLICADAS_DOMAIN']
+  }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     authentication: :plain,
-    address: 'smtp.webfaction.com',
     port: 587,
+    address: 'smtp.mailgun.org',
     domain: ENV['CIENCIASAPLICADAS_DOMAIN'],
     user_name: ENV['CIENCIASAPLICADAS_MAIL_USERNAME'],
     password: ENV['CIENCIASAPLICADAS_MAIL_PASSWORD']
   }
+  config.action_mailer.perform_deliveries = true
 
   config.paperclip_defaults = {
     storage: :s3,
