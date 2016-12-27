@@ -81,16 +81,16 @@ CbsmWebsite::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = {
-    host: ENV['CIENCIASAPLICADAS_DOMAIN']
+    host: ENV['MAIL_DOMAIN']
   }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     authentication: :plain,
     port: 587,
     address: 'smtp.mailgun.org',
-    domain: ENV['CIENCIASAPLICADAS_DOMAIN'],
-    user_name: ENV['CIENCIASAPLICADAS_MAIL_USERNAME'],
-    password: ENV['CIENCIASAPLICADAS_MAIL_PASSWORD']
+    domain: ENV['MAIL_DOMAIN'],
+    user_name: ENV['MAIL_USERNAME'],
+    password: ENV['MAIL_PASSWORD']
   }
 
   config.paperclip_defaults = {

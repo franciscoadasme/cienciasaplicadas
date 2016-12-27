@@ -1,5 +1,5 @@
 class DefaultMailer < ActionMailer::Base
-  default from: "#{Group.first.abbr} <contact@#{ENV['CIENCIASAPLICADAS_DOMAIN']}>"
+  default from: "#{Group.first.abbr} <noreply@#{ENV['MAIL_DOMAIN']}>"
 
   helper Admin::HtmlHelper
   helper UserHelper
@@ -52,6 +52,9 @@ class DefaultMailer < ActionMailer::Base
   end
 
   def recipients(users)
+    if Rails.env.development?
+      return ['Francisco Adasme <francisco.adasme@gmail.com>']
+    end
     users.map { |user| "#{user.display_name} <#{user.email}>" }
   end
 end
