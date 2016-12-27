@@ -23,7 +23,9 @@ module CbsmWebsite
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/value_objects)
 
     config.action_view.field_error_proc = -> html_tag, instance {  html_tag }
-    config.active_record.disable_implicit_join_references = true
     I18n.enforce_available_locales = false
+
+    # Propagate errors raised within `after_rollback`/`after_commit` callbacks
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

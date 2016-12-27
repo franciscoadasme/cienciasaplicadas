@@ -42,7 +42,7 @@ gem 'omniauth-google-oauth2', '~> 0.2.2'
 gem 'gravatar_image_tag', '~> 1.2'
 
 gem 'nokogiri', '~> 1.6.1'
-gem 'premailer-rails', '~> 1.7.0'
+gem 'premailer-rails', '~> 1.9.1'
 
 gem 'paperclip', '~> 4.1.1'
 gem 'aws-sdk', '~> 1.35.0'
@@ -70,5 +70,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'rails_12factor'
+gem 'rails_12factor', '~> 0.0.3'
 gem 'rollbar', '~> 2.8.3'
+
+gem 'htmlentities', '~> 4.3.4' # Force newer gem version to avoid warning
