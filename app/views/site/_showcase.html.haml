@@ -5,7 +5,10 @@
       = @publication_count
       %span.footnote Artículos
     .card-description
-      %p con un factor de impacto medio de #{@publication_per_year.round 1}
+      %p
+        con un promedio de
+        %strong= @publication_per_year.round 0
+        publicaciones por año
       = link_to 'Ver más', page_path(:investigacion) if Page.named?(:investigacion)
 
   .card

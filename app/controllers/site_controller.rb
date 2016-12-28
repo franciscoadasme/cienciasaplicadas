@@ -8,8 +8,8 @@ class SiteController < ApplicationController
   before_action :set_lastest
 
   def index
-    @publication_count = Publication.count
-    @publication_per_year = Publication.group(:year).count.values.mean
+    @publication_count = compute_publication_count
+    @publication_per_year = compute_publication_avg_per_year
 
     @students_count = User.with_position('estudiante').count
     @graduate_users = User.default.with_position 'egresado'
@@ -58,4 +58,20 @@ class SiteController < ApplicationController
     def render_not_found
       render 'site/not_found', status: 404, formats: :html
     end
+
+  def compute_publication_count
+    countable_publications.count
+  end
+
+  def compute_publication_avg_per_year
+    countable_publications.group(:year).count.values.mean
+  end
+
+  def countable_publications
+    @publications ||= begin
+      slugs = ['director', 'profesor-claustro', 'estudiante']
+      position_ids = Position.where(slug: slugs).pluck :id
+      Publication.joins(:users).where('users.position_id' => position_ids)
+    end
+  end
 end
