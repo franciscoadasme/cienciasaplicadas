@@ -24,7 +24,7 @@
           %dd= l @event.end_date
 
       %p.text-center
-        = markdown @event.description
+        = @event.description.html_safe
 
       %br
 

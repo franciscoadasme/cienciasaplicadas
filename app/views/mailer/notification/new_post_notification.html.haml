@@ -5,7 +5,7 @@
   %tr
     %td
       %p.text-center
-        = markdown @post.body
+        = @post.body.html_safe
 
       %br
 

@@ -64,25 +64,6 @@ module Admin::HtmlHelper
     item_action options.fetch(:name, 'Eliminar'), href, options
   end
 
-  def markdown_hint
-#     text = <<EOS
-# It supports markdown  markup language #{link_to fa_icon('question-circle'), 'http://daringfireball.net/markdown', title: 'What is markdown?', target: '_blank'}. Using online editors such as #{link_to 'Markable', 'http://markable.in/editor/', target: '_blank'}, #{link_to 'Dillinger', 'http://dillinger.io/', target: '_blank'} or #{link_to 'StackEdit', 'http://benweet.github.io/stackedit/', target: '_blank'} is highly recommended.
-# EOS
-#     text.html_safe
-
-    msg = 'Es compatible con el lenguaje de etiquetas Markdown '
-    msg << link_to(fa_icon('question-circle'), 'http://daringfireball.net/markdown', title: '¿Qué es Markdown?', target: '_blank')
-    msg << '. '
-    msg << 'El uso de editores en linea tales como '
-    msg << link_to('Markable', 'http://markable.in/editor/', target: '_blank')
-    msg << ', '
-    msg << link_to('Dillinger', 'http://dillinger.io/', target: '_blank')
-    msg << ' ó '
-    msg << link_to('StackEdit', 'http://benweet.github.io/stackedit/', target: '_blank')
-    msg << ' es altamente recomendado.'
-    msg.html_safe
-  end
-
   def sidebar_menu_item(title_or_controller, path_or_options=nil, options={}, &block)
     path = sidebar_menu_item_path title_or_controller, path_or_options
 

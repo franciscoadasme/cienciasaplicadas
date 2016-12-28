@@ -1,40 +1,27 @@
 module ParsingHelper
   def extract_images_from_content(content)
-    collect_image_urls markdown(content)
+    collect_image_urls content
   end
 
   def dynamic_content?(text)
     text =~ /\{\{(.+)\}\}/
   end
 
-  def markdown(text, options = {})
-    return nil if text.blank?
-
-    render_options = {
-      filter_html:     false,
-      hard_wrap:       true,
-      link_attributes: { rel: 'nofollow' }
-    }
-    renderer = Redcarpet::Render::HTML.new(render_options.merge(options))
-
-    extensions = {
-      autolink:           true,
-      fenced_code_blocks: true,
-      lax_spacing:        true,
-      no_intra_emphasis:  true,
-      strikethrough:      true,
-      superscript:        true
-    }
-    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
-  end
-
   def parse_content(content)
-    html = markdown(content).gsub /<p>\s*\{\{(.+)\}\}\s*<\/p>/, '{{\1}}'
-    parse_inline_code(html).html_safe
+    # TODO: find an alternative to avoid these hacks
+    # fixes trix editor adding multiple linebreaks before a heading
+    content.gsub! '<br><br></div><h1>', '</div><h1>'
+    # remove <div> enclosing tag around dynamic content (delimited by {{ and }})
+    content.gsub! %r{<div>\s*\{\{([\w \.\(\),'-]+)\}\}\s*</div>}, '{{\1}}'
+    # replaces heading 1 by h2 (trix editor only supports h1 for now)
+    # (h1 is reserved for page title, so content headings start at h2)
+    content.gsub! %r{<(/?)h1>}, '<\1h2>'
+
+    parse_inline_code(content).html_safe
   end
 
   def parse_inline_code(content)
-    content.gsub /\{\{.+\}\}/ do |match|
+    content.gsub(/\{\{[\w \.\(\),'-]+\}\}/) do |match|
       sentence = CGI::unescape_html match.delete('{}').strip
 
       begin

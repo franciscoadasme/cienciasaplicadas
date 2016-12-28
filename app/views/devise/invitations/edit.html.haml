@@ -6,7 +6,7 @@
   %ul.sidebar-menu
     %li.sidebar-menu-header= t('devise.invitations.edit.social_integration.title')
     %li.sidebar-menu-panel
-      = markdown t('devise.invitations.edit.social_integration.body')
+      = t('devise.invitations.edit.social_integration.body').html_safe
     %li.sidebar-menu-item= link_to fa_icon('facebook-square', text: 'Facebook'), omniauth_authorize_path(resource_name, :facebook), class: :facebook
     %li.sidebar-menu-item= link_to fa_icon('google-plus-square', text: 'Google'), omniauth_authorize_path(resource_name, :google_oauth2), class: :google
 

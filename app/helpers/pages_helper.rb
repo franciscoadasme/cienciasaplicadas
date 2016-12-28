@@ -1,6 +1,6 @@
 module PagesHelper
   def excerpt(text, length: 140, omission: nil, separator: ' ~ ', force: false)
-    sanitized_text = strip_tags markdown(text)
+    sanitized_text = strip_tags text
     truncated_text = sanitized_text.truncate length, separator: /\s+/, omission: ''
 
     remaining_words_count = sanitized_text.gsub(truncated_text, '').scan(/[\w-]+/).size

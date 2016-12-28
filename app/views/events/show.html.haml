@@ -10,4 +10,4 @@
 - provide :content, true
 
 = content_tag :p, image_tag(@event.picture) if @event.picture.present?
-= parse_content @event.description
+= @event.description.html_safe

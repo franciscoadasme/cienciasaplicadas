@@ -6,6 +6,6 @@
 - provide :banner_url, @project.image_url
 
 - if @project.description.present?
-  %section.content= markdown(@project.description)
+  %section.content= @project.description.html_safe
 - else
   %p.lead.text-center.text-muted No hay una descripción disponible

@@ -2,12 +2,12 @@
   %ul.list-group
     = render @publications
   %p.text-muted= t 'views.admin.publications.placeholders.no_more'
-  
+
 - else
   .panel.panel-default
     - i18n_scope = 'views.admin.publications.placeholders.empty'
     .panel-heading
       %h3.panel-title= t :title, scope: i18n_scope
     .panel-body
-      = markdown t(:body, scope: i18n_scope)
+      = t(:body, scope: i18n_scope).html_safe
       = link_to fa_icon('files-o', text: t('views.admin.publications.buttons.import_now')), import_admin_publications_path, class: 'btn btn-primary btn-publication-import'

@@ -4,4 +4,4 @@
 - provide :sidebar, render('sidebar')
 - provide :content, true
 
-= markdown @post.body
+= @post.body.html_safe

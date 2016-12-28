@@ -36,10 +36,10 @@
 
       - if @thesis.abstract.present?
         %dt= Thesis.human_attribute_name :abstract
-        %dd= markdown @thesis.abstract
+        %dd= @thesis.abstract.html_safe
 
       - if @thesis.notes.present?
         %dt= Thesis.human_attribute_name :notes
-        %dd= markdown @thesis.notes
+        %dd= @thesis.notes.html_safe
 
 = link_to fa_icon('long-arrow-left', text: t('views.admin.theses.buttons.go_back')), admin_theses_path, class: 'btn btn-link'

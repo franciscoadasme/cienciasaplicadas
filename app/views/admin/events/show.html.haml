@@ -30,7 +30,7 @@
 
       - if @event.description.present?
         %dt= Event.human_attribute_name :description
-        %dd= markdown @event.description
+        %dd= @event.description.html_safe
 
 
 = link_to fa_icon('long-arrow-left', text: 'Volver a los Eventos'), admin_events_path, class: 'btn btn-link'

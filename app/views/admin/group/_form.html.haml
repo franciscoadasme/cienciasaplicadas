@@ -6,9 +6,7 @@
     -# = f.input :abbr
     = f.input :email
     -# = f.input :tagline
-    / = f.input :bio, input_html: { rows: 20 }, hint: markdown_hint
-    -# = f.input :address, input_html: { rows: 4 }, hint: markdown_hint
-    = f.input :overview, input_html: { rows: 10 }, hint: markdown_hint
+    = f.input :overview, as: :trix_editor
 
   -# = field_set_tag 'Design' do
     -# = f.input :logo

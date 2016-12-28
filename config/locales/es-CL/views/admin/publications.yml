@@ -28,6 +28,6 @@ es-CL:
           empty:
             title: No hay publicaciones disponibles
             body: |
-              En esta sección usted podrá subir sus publicaciones científicas las que serán mostradas en su perfil público, y además serán utilizadas en la información del programda de doctorado.
+              <p>En esta sección usted podrá subir sus publicaciones científicas las que serán mostradas en su perfil público, y además serán utilizadas en la información del programda de doctorado.</p>
 
-              Para agregar sus publicaciones solo es necesario subir un archivo `RIS`, el cual se puede obtener en la sección exportar de cualquier programa de citas científicas o en las bases de datos de revistas científicas como Scopus, Science Direct, etc.
+              <p>Para agregar sus publicaciones solo es necesario subir un archivo RIS, el cual se puede obtener en la sección exportar de cualquier programa de citas científicas o en las bases de datos de revistas científicas como Scopus, Science Direct, etc.</p>

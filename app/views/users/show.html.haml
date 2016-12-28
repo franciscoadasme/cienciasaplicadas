@@ -12,7 +12,7 @@
     = autosizing_image_tag display_user_image_url(@user), size: 48
 
   - if @user.bio.present?
-    = parse_content(@user.bio)
+    = @user.bio.html_safe
   - else
     %p.lead.text-muted No hay una biografía disponible
 

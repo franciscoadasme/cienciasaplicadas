@@ -77,9 +77,9 @@ es-CL:
         social_integration:
           title: Integración social
           body: |
-            Alternativamente, usted puede conceder acceso a una de sus cuentas sociales para obtener y rellenar la información de su cuenta de usuario automáticamente.
+            <p>Alternativamente, usted puede conceder acceso a una de sus cuentas sociales para obtener y rellenar la información de su cuenta de usuario automáticamente.</p>
 
-            Tenga en cuenta que la dirección de correo electrónico de su cuenta social debe corresponder a la ingresada.
+            <p>Tenga en cuenta que la dirección de correo electrónico de su cuenta social debe corresponder a la ingresada.</p>
         submit_button: "Activar cuenta de usuario"
 
       invitation_removed: 'Su invitación ha sido eliminada.'
