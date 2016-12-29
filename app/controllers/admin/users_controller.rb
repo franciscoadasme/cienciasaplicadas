@@ -1,5 +1,5 @@
 class Admin::UsersController < AdminController
-  before_action :authorize_user!, except: [ :index ]
+  before_action :authorize_user!
   before_action :set_user, except: [ :index ]
   before_action :ensure_admin!, only: [ :promote, :demote ]
   before_action :validate_accepted_user, only: [ :promote, :demote ]
