@@ -3,10 +3,8 @@
     = content_for :sidebar
 
   - if current_user
-    %ul.sidebar-menu
-      -# = sidebar_menu_item :dashboard, admin_path
-
-      - if current_user.super_user?
+    - if current_user.super_user?
+      %ul.sidebar-menu
         = sidebar_menu_item :users, condition: current_path?('users'), class: "sidebar-menu-item-users #{'collapsed' unless current_page?(new_user_invitation_path)}" do
           - inv_not_accepted_count = User.invitation_not_accepted.count
           = sidebar_badge fa_icon('ticket', text: inv_not_accepted_count), title: tsidebar_hint(:has_invitations, count: inv_not_accepted_count) if inv_not_accepted_count > 0
