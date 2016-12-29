@@ -7,10 +7,6 @@
 
         - if current_user
           %ul.nav.navbar-nav.navbar-right
-            - if current_user.super_user?
-              %li{ class: ('active' if current_page?(new_admin_post_path)) }
-                = link_to fa_icon('pencil', text: 'Redactar Noticia'), new_admin_post_path
-
             %li{ class: ('active' if current_page?(import_admin_publications_path)) }
               = link_to fa_icon('files-o', text: 'Importar'), import_admin_publications_path, class: 'btn-publication-import', title: 'Importar publicaciones'
 

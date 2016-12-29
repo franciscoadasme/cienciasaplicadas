@@ -1,6 +1,3 @@
-- provide :widget do
-  = link_to fa_icon('camera', text: 'Subir una foto'), new_admin_moment_path, class: 'btn btn-primary' if @moments.any?
-
 - if @moments.any?
   %ul.list-group
     = render @moments

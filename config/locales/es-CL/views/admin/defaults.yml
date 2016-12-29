@@ -3,8 +3,7 @@ es-CL:
     admin:
       _sidebar:
         headings:
-          account: Tu cuenta
-          group: 'Grupo %{group}'
+          account: Mi cuenta
         items:
           dashboard: Inicio
           profile: Perfil
@@ -12,7 +11,9 @@ es-CL:
 
           invite: Invitar
           new_page: Nueva Página
-          new_post: Nueva noticia
+          new_post: Redactar
+          new_moment: Subir foto
+          new_event: Programar
           import: Importar
         hints:
           has_invitations:
