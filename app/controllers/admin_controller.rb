@@ -6,6 +6,10 @@ class AdminController < ApplicationController
 
   layout 'admin'
 
+  def index
+    redirect_to index_path_for_current_user
+  end
+
   def dashboard
     last_seven_days = DateTime.current.advance(days: -7)
     @recent_users = User.where('invitation_accepted_at >= ?', last_seven_days)
@@ -27,4 +31,8 @@ class AdminController < ApplicationController
     def authorize_user!
       redirect_to admin_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
     end
+
+  def index_path_for_current_user
+    current_user.super_user? ? admin_users_path : profile_admin_account_path
+  end
 end

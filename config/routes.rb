@@ -80,8 +80,7 @@ CbsmWebsite::Application.routes.draw do
     # Development only
     get 'mailer(/:action(/:id(.:format)))', to: 'mailer#:action', as: nil
   end
-  # get 'admin', to: 'admin#dashboard'
-  get 'admin', to: redirect('admin/users')
+  get 'admin', to: 'admin#index'
 
   scope 'miembros/:user_id' do
     get 'proyectos(/:year)', to: 'projects#index', as: :user_projects, constraints: { year: /\d{4}/ }
