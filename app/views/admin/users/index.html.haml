@@ -1,4 +1,4 @@
-- provide :title, pluralize(@users_count, 'Usuario') + ' además de mí'
+- provide :title, I18n.t('views.users.headings.index', count: @users_count)
 
 - @users_accepted.group_by(&:position).each do |position, users|
   %ul.list-group.list-group-users
@@ -9,5 +9,5 @@
 
 - if @users_not_accepted.any?
   %ul.list-group.list-group-users
-    %li.list-group-header= 'Usuarios invitados'
+    %h4.list-group-header= I18n.t 'views.users.headings.invited_users'
     = render @users_not_accepted

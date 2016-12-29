@@ -1,6 +1,9 @@
 es-CL:
   views:
     users:
+      headings:
+        index: '%{count} usuarios además de mí'
+        invited_users: Usuarios invitados
       single:
         meta:
           not_accepted: "Invitado hace %{distance_of_time} atrás"
