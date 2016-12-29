@@ -1,11 +1,13 @@
 - provide :title, pluralize(@users_count, 'Usuario') + ' además de mí'
 
-%ul.list-group.list-group-users
-  - if current_user.super_user?
-    %h4.list-group-header= 'Usuarios registrados'
-  = render @users_accepted
+- @users_accepted.group_by(&:position).each do |position, users|
+  %ul.list-group.list-group-users
+    - title = position.name.titleize
+    - title = title.pluralize_all(:'es-CL') unless position.single?
+    %h4.list-group-header= title
+    = render users
 
-- if current_user.super_user? && @users_not_accepted.any?
+- if @users_not_accepted.any?
   %ul.list-group.list-group-users
     %li.list-group-header= 'Usuarios invitados'
     = render @users_not_accepted
