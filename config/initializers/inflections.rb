@@ -34,4 +34,6 @@ ActiveSupport::Inflector.inflections(:'es-CL') do |inflect|
 
   inflect.irregular('el', 'los')
   inflect.irregular('lista de correos', 'listas de correos')
+  # FIXME: find a better way to pluralize 'profesores claustro' than this hack
+  inflect.irregular('claustro', 'claustro')
 end
