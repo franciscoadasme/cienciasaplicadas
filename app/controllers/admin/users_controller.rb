@@ -37,9 +37,12 @@ class Admin::UsersController < AdminController
   end
 
   protected
-    def authorize_user!
-      redirect_to_index alert: t('devise.failure.unauthorized') unless current_user.super_user?
-    end
+
+  def authorize_user!
+    return if current_user.super_user?
+    alert_msg = t 'devise.failure.unauthorized'
+    redirect_to profile_admin_account_path, alert: alert_msg
+  end
 
     def change_user_role action
       @user.send "#{action}!"
