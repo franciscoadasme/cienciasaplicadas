@@ -63,6 +63,11 @@ class String
   def tclassify_and_constantize
     ActiveSupport::Inflector.tclassify_and_constantize(self)
   end
+
+  def pluralize_all(locale = :en)
+    # OPTIMIZE: avoid hard-coding word separator after split
+    split.map { |word| word.pluralize(locale) }.join ' '
+  end
 end
 
 class Array
