@@ -25,12 +25,14 @@
             %td{ valign: 'top', width: 600 - hpadding * 2 }
               = tspace_v vpadding * 0.65
               = mtable_tag width: '100%' do
-                %tr
-                  %td#cheader
-                    = content_for(:title) || content_tag(:h1, @subject)
-                %tr
-                  %td
-                    = tspace_v hpadding
+                -# FIXME: find an alternative way to this awful hack
+                - if content_for(:title) != 'none'
+                  %tr
+                    %td#cheader
+                      = content_for(:title) || content_tag(:h1, @subject)
+                  %tr
+                    %td
+                      = tspace_v hpadding
                 %tr
                   %td#ccontent{ class: content_for(:ccontent_class) }
                     = yield
