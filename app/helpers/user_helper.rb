@@ -3,8 +3,9 @@ module UserHelper
     is_me?(user) ? 'Mí' : user.display_name
   end
 
-  def display_user_image_url user
-    (user.image_url.blank? ? nil : user.image_url) || gravatar_image_url(user.email)
+  def display_user_image_url(user)
+    return user.image_url unless user.image_url.blank?
+    image_url 'default_avatar.png'
   end
 
   def display_user_headline(user)

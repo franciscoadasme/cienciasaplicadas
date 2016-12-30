@@ -38,8 +38,6 @@ gem 'devise_invitable', '~> 1.1'
 gem 'omniauth-facebook', '~> 1.6.0'
 gem 'omniauth-google-oauth2', '~> 0.2.2'
 
-gem 'gravatar_image_tag', '~> 1.2'
-
 gem 'nokogiri', '~> 1.6.1'
 gem 'premailer-rails', '~> 1.9.1'
 
