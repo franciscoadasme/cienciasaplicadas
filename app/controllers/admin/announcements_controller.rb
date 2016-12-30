@@ -28,7 +28,8 @@ module Admin
 
     def valid_recipients?
       return true if notification_recipients.any?
-      flash[:error] = I18n.t('activemodel.errors.models.message.no_recipients')
+      flash.now[:error] = I18n.t(:no_recipients,
+                                 scope: 'activemodel.errors.models.message')
       false
     end
   end
