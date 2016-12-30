@@ -1,0 +1,23 @@
+<%= vertical_form_for @message, url: admin_announcements_path do |f| %>
+  <% provide :notification, f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :subject, wrapper: :simple_wrapper, input_html: { class: 'input-lg' } %>
+    <%= f.input :body, as: :trix_editor, wrapper: :simple_wrapper %>
+
+    <hr/>
+    <%= render partial: 'admin/notifiable/form', locals: { f: f } %>
+  </div>
+
+  <hr/>
+
+  <div class="form-group form-actions">
+    <% content = t 'helpers.submit.post.cancel' %>
+    <%= link_to content, :back, class: 'text-danger' %>
+    <div class="pull-right">
+      <%= f.button :submit, t('helpers.submit.message.create'),
+                   class: 'btn-primary',
+                   data: { disable_with: t('helpers.submit.message.submitting') } %>
+    </div>
+  </div>
+<% end %>

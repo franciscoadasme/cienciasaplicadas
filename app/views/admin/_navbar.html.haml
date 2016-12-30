@@ -7,6 +7,10 @@
 
         - if current_user
           %ul.nav.navbar-nav.navbar-right
+            - if current_user.super_user?
+              %li{ class: ('active' if current_page?(new_admin_announcement_path)) }
+                = link_to fa_icon('bullhorn', text: 'Anuncio'), new_admin_announcement_path, title: 'Redactar anuncio'
+
             %li{ class: ('active' if current_page?(import_admin_publications_path)) }
               = link_to fa_icon('files-o', text: 'Importar'), import_admin_publications_path, class: 'btn-publication-import', title: 'Importar publicaciones'
 

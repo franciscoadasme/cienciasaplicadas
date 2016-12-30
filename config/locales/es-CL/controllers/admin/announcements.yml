@@ -1,0 +1,6 @@
+es-CL:
+  controllers:
+    admin:
+      announcements:
+        create:
+          success: El mensaje fue enviado con éxito.

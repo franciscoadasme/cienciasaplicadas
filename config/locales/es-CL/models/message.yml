@@ -6,11 +6,22 @@ es-CL:
       message:
         subject: Asunto
         body: Contenido
-        from: De
-        to: Para
+        notification: Notificar a
+    errors:
+      models:
+        message:
+          no_recipients: No hay destinatarios. Favor seleccionar una o más posiciones.
+
 
   simple_form:
     placeholders:
       message:
         subject: Asunto
         body: Contenido
+
+  helpers:
+    submit:
+      message:
+        create: Enviar Mensaje
+        cancel: Cancelar
+        submitting: Enviando mensaje...

@@ -1,0 +1,7 @@
+es-CL:
+  views:
+    admin:
+      announcements:
+        headings:
+          title: Redactando
+          subtitle: Anuncio

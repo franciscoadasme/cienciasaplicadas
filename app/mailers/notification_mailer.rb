@@ -18,6 +18,11 @@ class NotificationMailer < DefaultMailer
       'new_post_notification')
   end
 
+  def send_new_message_notification(message, users)
+    @body = message.body
+    send_notification(message.subject, users, 'new_message_notification')
+  end
+
   private
 
   def send_notification(subject, users, template)
