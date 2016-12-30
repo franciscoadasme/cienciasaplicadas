@@ -1,3 +1,6 @@
+// Used in site; needed for trix-editor so headings are the same as in site
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:300,400");
+
 .form-horizontal {
   padding: 15px;
   background-color: $body-color-content;
@@ -277,6 +280,17 @@ trix-editor {
   text-align: justify;
   hyphens: auto;
   @include antialiased();
+
+  h1 {
+    margin: 0 0 10px;
+    font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.25;
+    color: #333333;
+    text-align: left;
+    hyphens: none;
+  }
 }
 
 .trix_editor {
