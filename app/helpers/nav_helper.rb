@@ -35,7 +35,7 @@ module NavHelper
   private
     def nav_date_widget_item_for(date, path_helper, format_name = :month)
       content = I18n.l date, format: format_name
-      path_options = params.merge year: date.year, month: date.month
+      path_options = { year: date.year, month: date.month }
       href = send path_helper, path_options
       options = {}
       options[:class] = 'current' if date.current_month?
