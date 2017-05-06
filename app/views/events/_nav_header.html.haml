@@ -1,4 +1,2 @@
 %nav.nav-header
-  - today = DateTime.current.to_date
-  = nav_date_widget today.advance(months: -6), today.advance(months: 3),
-                    :events_path
+  = event_nav_widget
