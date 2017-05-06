@@ -1,9 +1,7 @@
 class EventsController < SiteController
   def index
     @events = Event.during_date date_params
-
-    @event_type_count = Hash[Event::TYPES.map(&:to_s).map{ |t| [t, 0]}]
-    @event_type_count.merge! @events.group(:event_type).count
+    set_event_type_counts
 
     @events = @events.typed params[:tipo] if params[:tipo]
     @events = @events.sorted
@@ -12,5 +10,12 @@ class EventsController < SiteController
 
   def show
     @event = Event.friendly.find params[:id]
+  end
+
+  private
+
+  def set_event_type_counts
+    @event_type_count = Hash[Event::TYPES.map(&:to_s).map{ |t| [t, 0]}]
+    @event_type_count.merge! @events.group(:event_type).count
   end
 end
