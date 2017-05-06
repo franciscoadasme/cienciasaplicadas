@@ -9,7 +9,7 @@
     - @event_type_count.each do |type, count|
       %li{ class: ('active' if params[:tipo] == type) }
         = link_to events_path(params.merge(tipo: type)) do
-          = type.titleize
+          = type.titleize.pluralize
           %span.badge.pull-right= count
 
 %hr.divider
