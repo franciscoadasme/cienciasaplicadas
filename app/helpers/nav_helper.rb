@@ -21,9 +21,9 @@ module NavHelper
     content_tag :li, link_to(content, href, html_options)
   end
 
-  def nav_date_widget(from, to, path_helper, step = 1.month, placeholder = 'Todo')
+  def nav_date_widget(from, to, path_helper, step = 1.month)
     content_tag :ul, class: 'nav nav-pills nav-justified nav-date' do
-      concat nav_date_widget_item_tag(placeholder, send(path_helper))
+      concat nav_date_widget_item_tag(I18n.t('views.nav.date.all'), send(path_helper))
 
       (from..to).time_step(step) do |date|
         format_name = date == from || date == to ? :abbr : :month
