@@ -1,0 +1,6 @@
+es-CL:
+  views:
+    nav:
+      date:
+        all: Todos
+        upcoming: Próximos
