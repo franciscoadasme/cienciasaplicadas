@@ -172,15 +172,13 @@
 
     &.current > a
       color: $text-color
-      background-color: darken($gray-lighter, 5%) !important
+      background-color: darken($gray-lighter, 5%)
 
-    &.active > a
-      color: $link-color
-      background-color: white
-
-      &:hover
-        color: $link-hover-color
-        background-color: white
+    &.active > a,
+    &.active > a:hover
+      color: white
+      background-color: $link-color
+      border-color: $link-color
 
     &.disabled > a
       color: $text-muted
