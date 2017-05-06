@@ -7,7 +7,7 @@ gem 'pg', '~> 0.17.1'
 
 gem 'haml-rails', '~> 0.5.3'
 gem 'simple_form', '~> 3.0.4'
-gem 'trix', '~> 0.9.10'
+gem 'trix', '~> 0.9'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
