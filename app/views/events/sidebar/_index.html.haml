@@ -14,5 +14,7 @@
 
 %hr.divider
 
-= btn_to 'Sólo mes actual', events_path(date_params_for_this_month), block: true
-= btn_to 'Mostrar todo', events_path, block: true
+- unless current_page?(events_path(date_params_for_this_month))
+  = btn_to 'Sólo mes actual', events_path(date_params_for_this_month), block: true
+- unless current_page?(events_path)
+  = btn_to 'Mostrar todo', events_path, block: true
