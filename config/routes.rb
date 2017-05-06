@@ -92,6 +92,8 @@ CbsmWebsite::Application.routes.draw do
     root to: 'users#show', as: :user
   end
 
+  get 'eventos/proximos', to: 'events#upcoming', as: :upcoming_events
+
   constraints(year: /\d{4}/, month: /([1-9]|1[012])/) do
     get 'noticias(/:year(/:month))', to: 'posts#index', as: :posts
     get 'noticias/:year/:month/:day/:id', to: 'posts#show', as: :post

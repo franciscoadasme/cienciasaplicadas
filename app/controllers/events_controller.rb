@@ -12,6 +12,16 @@ class EventsController < SiteController
     @event = Event.friendly.find params[:id]
   end
 
+  def upcoming
+    @events = Event.upcoming
+    set_event_type_counts
+
+    @events = @events.typed params[:tipo] if params[:tipo]
+    @events = @events.sorted
+
+    render action: :index
+  end
+
   private
 
   def set_event_type_counts
