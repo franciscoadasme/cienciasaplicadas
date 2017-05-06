@@ -4,6 +4,7 @@
     .event-date.media-object
       %span.event-day= event.start_date.day
       %span.event-month= l event.start_date, format: :month
+      %span.event-month= event.start_date.year
   .media-body
     %h3.media-heading
       %small.text-primary= event.event_type.upcase
