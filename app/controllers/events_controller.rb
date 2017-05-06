@@ -7,6 +7,7 @@ class EventsController < SiteController
 
     @events = @events.typed params[:tipo] if params[:tipo]
     @events = @events.sorted
+    @events.reverse_order if date_params.blank?
   end
 
   def show
