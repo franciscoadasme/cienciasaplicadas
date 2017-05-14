@@ -1,0 +1,13 @@
+.debug_dump {
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  margin-bottom: 0;
+  max-width: 384px;
+  max-height: 400px;
+  opacity: .25;
+
+  &:hover {
+    opacity: 1;
+  }
+}
