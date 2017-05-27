@@ -1,0 +1,11 @@
+@import "site/variables";
+
+a {
+  transition-property:                     color, background-color;
+  transition-timing-function:              ease-in-out;
+  transition-duration:                     .2s;
+}
+
+a:visited {
+  color:                                   desaturate(lighten($link-color, 5%), 25%);
+}
