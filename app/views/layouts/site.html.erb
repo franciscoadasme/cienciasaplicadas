@@ -1,0 +1,21 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <title><%= title %></title>
+
+    <%= stylesheet_link_tag 'site', media: 'all' %>
+    <%= javascript_include_tag 'site' %>
+    <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render 'site/nav' %>
+  <%= render 'site/header' %>
+  <%= render 'site/content' %>
+  <%= render 'site/footer' %>
+
+  <%= render 'site/debug' if Rails.env.development? %>
+</body>
+</html>
