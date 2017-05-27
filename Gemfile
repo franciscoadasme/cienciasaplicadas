@@ -56,6 +56,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'dotenv-rails'
+
+  gem 'guard', require: false
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rack-livereload'
 end
 
 group :production do
