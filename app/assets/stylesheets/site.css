@@ -10,5 +10,31 @@
  *
  *= require_self
  *= require font-awesome
- *= require site/main
+ *= require site/bootstrap_custom
+ *= require common/non-responsive
+ *= require common/images
+ *
+ *= require site/buttons
+ *= require site/footer
+ *= require site/forms
+ *= require site/header
+ *= require site/index
+ *= require site/layout
+ *= require site/lists
+ *= require site/media
+ *= require site/nav
+ *= require site/progress
+ *= require site/typography
+ *
+ *= require site/sections/contact
+ *= require site/sections/events
+ *= require site/sections/moments
+ *= require site/sections/posts
+ *= require site/sections/projects
+ *= require site/sections/publications
+ *= require site/sections/showcase
+ *= require site/sections/stats
+ *= require site/sections/theses
+ *= require site/sections/users
+ *
  */
