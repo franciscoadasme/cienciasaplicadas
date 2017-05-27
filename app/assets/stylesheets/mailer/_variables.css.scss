@@ -1,16 +1,16 @@
 $body-color-bg: #FFFFFF;
 $body-color-content: #FFFFFF;
 $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-size: 14px;
+$font-size-base: 14px;
 $base-font-weight: 400;
-$base-line-height: $base-font-size * 1.6;
+$base-line-height: $font-size-base * 1.6;
 
 $header-color-bg: #FFFFFF;
 $header-color-content: #692733;
 
-$font-size-small: $base-font-size - 2px;
-$font-size-smallish: $base-font-size - 1px;
-$font-size-big: $base-font-size + 4px;
+$font-size-small: $font-size-base - 2px;
+$font-size-smallish: $font-size-base - 1px;
+$font-size-big: $font-size-base + 4px;
 
 $text-color-muted: #999;
 

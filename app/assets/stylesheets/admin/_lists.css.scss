@@ -128,7 +128,7 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
   padding: $list-group-item-user-padding;
   padding-left: $list-group-item-user-padding-left;
   width: $list-group-item-user-width;
-  font-size: $base-font-size;
+  font-size: $font-size-base;
   border: $list-group-item-user-border-width solid $list-group-item-user-border-color;
   border-radius: $list-group-item-user-border-radius !important;
   // vertical-align: top;
@@ -174,7 +174,7 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
   .list-group-item-user-name {
     margin-bottom: 0;
     width: $list-group-item-user-width-content;
-    font-size: $base-font-size;
+    font-size: $font-size-base;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
