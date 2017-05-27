@@ -2,18 +2,10 @@
 @import "common/mixins"
 
 body
-  font-family: $base-font-family
-  font-weight: $base-font-weight
-  color: $text-color
   +antialiased
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6
-  font-family: $headings-font-family
-  font-weight: $headings-font-weight
-  line-height: $headings-line-height
-  color: $headings-color
-  text-align: left
   hyphens: none
 
   &:first-child
@@ -26,10 +18,7 @@ a
 p:last-child
   margin-bottom: 0
 
-[class*="content"]
-  font-family: $font-family-serif
-  font-size: 1.15*$base-font-size
-  line-height: 1.15*$base-line-height
+.content
   text-align: justify
   hyphens: auto
 
