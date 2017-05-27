@@ -1,0 +1,33 @@
+/*
+ * colors.css v1.0 For a friendlier looking web
+ * MIT License • http://clrs.cc • http://github.com/mrmrs/colors
+ */
+$color-navy:                               #001F3F;
+$color-blue:                               #0074D9;
+$color-aqua:                               #7FDBFF;
+$color-teal:                               #39CCCC;
+$color-olive:                              #3D9970;
+$color-green:                              #2ECC40;
+$color-lime:                               #01FF70;
+$color-yellow:                             #FFDC00;
+$color-orange:                             #FF851B;
+$color-red:                                #FF4136;
+$color-fuchsia:                            #F012BE;
+$color-purple:                             #B10DC9;
+$color-maroon:                             #85144B;
+$color-white:                              #FFFFFF;
+$color-gray:                               #AAAAAA;
+$color-silver:                             #DDDDDD;
+$color-black:                              #111111;
+
+/*
+ * Palette 1: Time Will Fly Away
+ * http://www.colourlovers.com/palette/3209992/time_will_fly_away
+ */
+$palette1-1:                               #44192C;
+$palette1-2:                               #692733;
+$palette1-3:                               #9F4340;
+$palette1-4:                               #CA774A;
+$palette1-5:                               #E4A052;
+
+$brand-primary:                            lighten($palette1-2, 10%);
