@@ -23,7 +23,7 @@
  *= require site/links
  *= require site/lists
  *= require site/media
- *= require site/nav
+ *= require site/navbar
  *= require site/progress
  *= require site/typography
  *

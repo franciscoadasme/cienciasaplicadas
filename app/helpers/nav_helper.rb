@@ -1,24 +1,14 @@
 module NavHelper
-  def nav_main_item(content, href, html_options = {})
-    css = [ html_options[:class].try(:split) || 'nav-item' ]
-    css << 'active' if current_page?(href)
-    content_tag :li do
-      link_to content, href, html_options.merge(class: css.compact.join(' '))
-    end
+  def nav_item(content, href, html_options = {})
+    nav_item_tag content, href, current_page?(href), html_options
   end
 
-  def nav_alt_item(content, icon_name, controller)
-    css = [ 'nav-item' ]
-    css << 'active' if controller?(controller)
-
-    html_options = {
-      title: "Ir a #{content}",
-      class: css.join(' ')
-    }
-    content = fa_icon("#{icon_name}", text: content)
-    href = send("#{controller}_path") rescue '#'
-
-    content_tag :li, link_to(content, href, html_options)
+  # TODO: change controller argument to href
+  def nav_item_icon(content, icon_name, controller, html_options = {})
+    html_options[:title] = "Ir a #{content}"
+    content = fa_icon(icon_name.to_s)
+    href = send("#{controller}_url")
+    nav_item_tag content, href, controller.to_s == controller_name, html_options
   end
 
   def nav_date_widget(from, to, path, step = 1.month, acc_items = [])
@@ -51,4 +41,12 @@ module NavHelper
         link_to content, href
       end
     end
+
+  def nav_item_tag(content, href, is_active, html_options = {})
+    wrapper_options = {}
+    wrapper_options[:class] = 'active' if is_active
+    content_tag :li, wrapper_options do
+      link_to content, href, html_options
+    end
+  end
 end
