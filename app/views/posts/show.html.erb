@@ -1,0 +1,30 @@
+<header class="container-tight" role="main">
+  <div class="media">
+    <div class="img-avatar">
+      <%= link_to @post.author do %>
+        <% img_url = display_user_image_url(@post.author) %>
+        <%= image_tag img_url, size: "64" %>
+      <% end %>
+    </div>
+    <div class="media-body">
+      <%= link_to @post.author.display_name, @post.author, class: 'post-author' %>
+      <span class="badge badge-outline-primary"><%= @post.author.position.name %></span>
+      <div class="media-meta">
+        <%= @post.author.headline %>
+        <br/>
+        <%= time_tag @post.updated_at, l(@post.updated_at, format: :abbr_with_day),
+                     pubdate: true, title: l(@post.updated_at, format: :long) %>
+        ·
+        <%= t 'views.posts.show.view_info', count: @post.view_count %>
+      </div>
+    </div>
+    <% if current_user.try :super_user? %>
+      <%= btn_to 'Editar', [:edit, :admin, @post] %>
+    <% end %>
+  </div>
+</header>
+
+<section class="container-tight" role="content">
+  <h1><%= @post.title %></h1>
+  <%= @post.body.html_safe %>
+</section>
