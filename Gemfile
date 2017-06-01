@@ -45,6 +45,8 @@ gem 'paperclip', '~> 4.1.1'
 gem 'aws-sdk', '~> 1.35.0'
 gem 'cocaine', '~> 0.5.3'
 
+gem 'draper', '~> 2.1'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
