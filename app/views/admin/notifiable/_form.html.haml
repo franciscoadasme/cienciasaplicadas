@@ -12,5 +12,5 @@
         = b.label do
           = b.check_box(checked: position_ids.include?(b.value))
           - text = b.object.name.titleize
-          - text = text.pluralize_all(:'es-CL') unless b.object.single?
+          - text = text.pluralize_each(:'es-CL') unless b.object.single?
           = text

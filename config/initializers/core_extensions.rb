@@ -64,9 +64,9 @@ class String
     ActiveSupport::Inflector.tclassify_and_constantize(self)
   end
 
-  def pluralize_all(locale = :en)
+  def pluralize_each(count = nil, locale = :en)
     # OPTIMIZE: avoid hard-coding word separator after split
-    split.map { |word| word.pluralize(locale) }.join ' '
+    split.map { |word| word.pluralize(count, locale) }.join ' '
   end
 end
 

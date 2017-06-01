@@ -3,7 +3,7 @@
 - @users_accepted.group_by(&:position).each do |position, users|
   %ul.list-group.list-group-users
     - title = position.name.titleize
-    - title = title.pluralize_all(:'es-CL') unless position.single?
+    - title = title.pluralize_each(:'es-CL') unless position.single?
     %h4.list-group-header= title
     = render users
 
