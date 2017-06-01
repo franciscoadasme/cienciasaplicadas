@@ -1,0 +1,6 @@
+<% collection.group_by(&:position).each do |position, users| %>
+<h2><%= position.name.pluralize_each users.count, :'es-CL' %></h2>
+<ul class="media-list user-list">
+  <%= render users %>
+</ul>
+<% end %>
