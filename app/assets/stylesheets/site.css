@@ -19,6 +19,7 @@
  *= require site/forms
  *= require site/header
  *= require site/index
+ *= require site/images
  *= require site/layout
  *= require site/links
  *= require site/lists
