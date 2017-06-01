@@ -36,7 +36,7 @@ gem 'devise', '~> 3.4.1 '
 gem 'devise-async', '~> 0.9.0'
 gem 'devise_invitable', '~> 1.1'
 gem 'omniauth-facebook', '~> 1.6.0'
-gem 'omniauth-google-oauth2', '~> 0.2.2'
+gem 'omniauth-google-oauth2', '~> 0.5'
 
 gem 'nokogiri', '~> 1.6.1'
 gem 'premailer-rails', '~> 1.9.1'
@@ -54,8 +54,8 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'meta_request'
   gem 'dotenv-rails'
+  gem 'meta_request'
 
   gem 'guard', require: false
   gem 'guard-livereload', '~> 2.5', require: false
