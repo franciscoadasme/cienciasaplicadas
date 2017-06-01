@@ -1,12 +1,19 @@
-@import "site/variables"
+@import "site/variables";
 
-.btn
-  padding-left: 24px
-  padding-right: 24px
-  border-radius: 2px
-  font-weight: $font-weight-bold
-  font-size: $font-size-small
-  text-transform: uppercase
+.btn {
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: 2px;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-small;
+  text-transform: uppercase;
+}
+
+.btn-unstyled {
+  padding: 0;
+  background: none;
+  border: none;
+}
 
 
 // .btn-lg
