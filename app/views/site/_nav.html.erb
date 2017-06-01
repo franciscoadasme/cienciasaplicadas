@@ -8,21 +8,18 @@
       <%= nav_item_icon 'Momentos', :'camera-retro', :moments %>
 
       <% if current_user %>
-        <li class="navbar-user-actions dropdown">
-          <button class="dropdown-toggle" type="button" data-toggle="dropdown">
-            <% img_url = display_user_image_url(current_user) %>
-            <%= autosizing_image_tag img_url, size: 32, class: 'user-avatar' %>
-          </button>
-          <ul class="dropdown-menu">
-            <li><%= link_to fa_icon('edit', text: 'Perfil'), [:profile, :admin, :account] %></li>
-            <li><%= link_to fa_icon('cog', text: 'Preferencias'), [:profile, :admin, :account] %></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to fa_icon('power-off', text: 'Cerrar sesión'), [:profile, :admin, :account] %></li>
-          </ul>
-        </li>
+      <li class="navbar-user-actions dropdown">
+        <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+          <% img_url = display_user_image_url(current_user) %>
+          <%= autosizing_image_tag img_url, size: 32, class: 'user-avatar' %>
+        </button>
+        <ul class="dropdown-menu">
           <li><%= link_to fa_icon('edit', text: 'Perfil'), profile_admin_account_url %></li>
           <li><%= link_to fa_icon('cog', text: 'Preferencias'), settings_admin_account_url %></li>
+          <li role="separator" class="divider"></li>
           <li><%= link_to fa_icon('power-off', text: 'Cerrar sesión'), destroy_user_session_url, method: :delete %></li>
+        </ul>
+      </li>
       <% end %>
     </ul>
   </div>
@@ -30,7 +27,7 @@
   <div class="container">
     <ul class="navbar-nav" role="navigation">
       <% Page.navigable.each do |page| %>
-        <%= nav_item page.title, page_path(page) %>
+      <%= nav_item page.title, page_path(page) %>
       <% end %>
       <%= nav_item 'Contacto', contact_path %>
     </ul>
