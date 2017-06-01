@@ -1,0 +1,32 @@
+@import "site/variables";
+
+.media {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: $text-color;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.media-body {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.media-meta {
+  font-size: $font-size-small;
+  color: $text-muted;
+
+  em, strong {
+    color: $text-color;
+  }
+
+  em {
+    font-style: normal;
+  }
+}
