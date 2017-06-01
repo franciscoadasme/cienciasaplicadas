@@ -18,11 +18,11 @@ $font-weight-light:                        300;
 $font-weight-regular:                      400;
 $font-weight-bold:                         700;
 
-$headings-font-weight:                     $font-weight-light;
-$headings-line-height:                     1.25;
 $line-height-content:                      1.6;
 $line-height-content-computed:             floor(($font-size-content * $line-height-content));
 
+$headings-font-weight:                     $font-weight-bold;
+$headings-line-height:                     1.1;
 
 /*
  * Navigation;
