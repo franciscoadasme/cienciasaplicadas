@@ -257,7 +257,7 @@ Devise.setup do |config|
                   ENV['FACEBOOK_SECRET'],
                   image_size: :large
   config.omniauth :google_oauth2,
-                  ENV['GOOGLE_KEY'],
+                  ENV['GOOGLE_CLIENT_ID'],
                   ENV['GOOGLE_SECRET'],
                   access_type: 'offline',
                   approval_prompt: ''
