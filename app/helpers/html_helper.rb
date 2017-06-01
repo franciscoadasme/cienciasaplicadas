@@ -1,4 +1,9 @@
 module HtmlHelper
+  def link_with_icon_to(content, icon_name, href, html_options = {})
+    content = fa_icon(icon_name.to_sym, text: content)
+    link_to content, href, html_options
+  end
+
   def autolink_to(name, options = {}, html_options = {}, &block)
     link_to name, options, html_options, &block unless current_page?(options)
   end
