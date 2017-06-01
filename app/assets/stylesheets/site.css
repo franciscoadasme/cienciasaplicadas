@@ -11,7 +11,6 @@
  *= require_self
  *= require font-awesome
  *= require site/bootstrap
- *= require common/non-responsive
  *= require common/images
  *
  *= require site/badges

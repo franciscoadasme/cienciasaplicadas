@@ -2,6 +2,7 @@
 @import "site/variables";
 
 .navbar {
+  margin: 0;
   padding-top: 30px;
   background-color: $nav-bg;
 
@@ -38,7 +39,7 @@
 }
 
 .navbar-nav {
-  float: none;  // bootstrap: fix forced float
+  margin: 0;
   list-style-type: none;
 
   display: flex;
@@ -47,7 +48,6 @@
   padding: 10px 0;
 
   & > li {
-    float: none;  // bootstrap: fix forced float
     padding: 5px 0;
     border-bottom: solid 2px transparent;
 
