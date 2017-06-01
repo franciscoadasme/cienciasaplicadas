@@ -1,0 +1,7 @@
+es-CL:
+  views:
+    posts:
+      show:
+        view_info:
+          one: Visitada una vez
+          other: Visitada %{count} veces
