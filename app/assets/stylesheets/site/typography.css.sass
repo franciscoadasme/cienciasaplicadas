@@ -14,9 +14,12 @@ h1, h2, h3, h4, h5, h6,
 p:last-child
   margin-bottom: 0
 
-.content
-  text-align: justify
-  hyphens: auto
+section[role="content"]
+  font-size: $font-size-content
+  line-height: $line-height-content-computed
+
+  h1
+    margin-bottom: 35px
 
   img
     width: 100%
