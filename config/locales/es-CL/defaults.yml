@@ -1,8 +1,8 @@
 es-CL:
   date:
     formats:
-      abbr: "%b '%y"
-      abbr_with_day: "%d de %b '%y"
+      abbr: "%b %y"
+      abbr_with_day: "%d de %b %y"
       month: '%b'
 
     units:
@@ -17,8 +17,8 @@ es-CL:
 
   time:
     formats:
-      abbr: "%b '%y"
-      abbr_with_day: "%d de %b '%y"
+      abbr: "%b %y"
+      abbr_with_day: "%d de %b %y"
       month: '%b'
 
   period:
