@@ -14,6 +14,10 @@ class UserDecorator < Draper::Decorator
     h.image_url 'default_avatar.png'
   end
 
+  def headline
+    object.headline.try(:capitalize) || object.position.name
+  end
+
   def link
     h.link_to object.display_name, h.user_url(object)
   end
