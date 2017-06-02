@@ -7,6 +7,10 @@ class AuthorStatistics
     Journal.where(id: journal_ids.uniq).average(:impact_factor)
   end
 
+  def journal_total
+    journal_ids.uniq.count
+  end
+
   def journals
     @journals ||= Journal.find journal_ids.uniq
   end
