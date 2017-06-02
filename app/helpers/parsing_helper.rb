@@ -80,7 +80,7 @@ module ParsingHelper
       model_proxy = result.is_model? ? result.class : result
       table_name = model_proxy.table_name
       if result.is_a? ActiveRecord::Relation
-        render "#{table_name}/collection", collection: result
+        render "#{table_name}/collection", collection: result.sorted.decorate
       elsif result.is_model?
         model_name = model_proxy.model_name.singular
         render "#{table_name}/single", model_name.to_sym => result
