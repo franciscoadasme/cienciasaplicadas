@@ -1,0 +1,10 @@
+es-CL:
+  views:
+    users:
+      single:
+        pub_info_html:
+          one: <a href="%{url}">Un articulo</a> en una revista
+          other: <a href="%{url}">%{count} articulos</a> en %{journals} revistas
+        project_info_html:
+          one: <a href="%{url}">un proyecto</a> científico
+          other: <a href="%{url}">%{count} proyectos</a> científicos
