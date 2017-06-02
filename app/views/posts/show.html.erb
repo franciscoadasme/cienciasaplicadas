@@ -5,15 +5,14 @@
 
       <div class="media-body">
         <%= post.author_link %>
-        <span class="badge badge-outline-primary">
-          <%= post.author.position.name %>
-        </span>
+        <%= post.author.position_badge %>
         <div class="media-meta">
-          <%= post.author.headline %>
-          <br/>
-          <%= post.published_at %>
-          &middot;
-          <%= post.view_info %>
+          <p><%= post.author.headline %></p>
+          <p>
+            <%= post.published_at %>
+            &middot;
+            <%= post.view_info %>
+          </p>
         </div>
       </div>
 
