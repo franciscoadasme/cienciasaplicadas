@@ -42,3 +42,37 @@
     font-style: normal;
   }
 }
+
+.media-list {
+  padding-left: 0;
+  list-style: none;
+
+  & > li {
+    margin-top: 20px;
+    flex-grow: 1;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.media-list-two-column {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  & > li {
+    width: calc(50% - 10px);
+    margin-left: 10px;
+
+    &:nth-child(2) {
+      margin-top: 0;
+    }
+
+    &:nth-child(odd) {
+      margin-left: 0;
+    }
+  }
+}
