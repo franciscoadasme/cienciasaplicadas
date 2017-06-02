@@ -1,34 +1,15 @@
-%li.media.user-item
-  = link_to user, class: 'pull-left magnifiable' do
-    = autosizing_image_tag display_user_image_url(user), size: 64, class: 'media-object'
+%li.media
+  = user.avatar
 
   .media-body
-    %h3.media-heading
-      = user.full_name
-      %small.text-primary= user.position.name
-    %h4.media-subheading= display_user_headline user
-    = mail_to user.email if user.settings.show_contact_page
+    = user.link
+    = user.position_badge if local_assigns.fetch(:show_position, true)
 
     .media-meta
-      - if user.publications.any?
-        %p
-          = link_to pluralize(user.publications.count, 'articulo'), [user, :publications]
-          con un factor de impacto promedio de
-          = link_to format_impact_factor(user.statistics.avg_impact_factor) || '?', [user, :stats]
+      %p= user.headline
+      %p= user.mail_link
 
-      - if user.projects.any?
-        %p
-          Ha participado en
-          = link_to pluralize(user.projects.count, 'proyecto'), [user, :projects]
-          = 'científico'.pluralize user.projects.count, :'es-CL'
-
-      - if user.thesis.present?
-        %p
-          Ha defendido su
-          = link_to 'memoria de tesis', [ user, user.thesis ]
-          el
-          = succeed '.' do
-            %strong= user.thesis.issued
-
-      -# - if user.publications.empty? && user.projects.empty?
-      -#   %p No hay registros de investigación.
+      - if user.pub_info || user.project_info
+        %span.separator
+      = content_tag :p, user.pub_info if user.pub_info
+      = content_tag :p, user.project_info if user.project_info
