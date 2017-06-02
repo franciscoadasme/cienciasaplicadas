@@ -6,7 +6,7 @@ class UserDecorator < Draper::Decorator
   def avatar(size: 64)
     content_tag :div, class: 'img-avatar' do
       link_to post.author do
-        image_tag post.author.avatar_url, size: size.to_s
+        h.autosizing_image_tag avatar_url, size: size.to_s
       end
     end
   end
