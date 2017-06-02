@@ -1,0 +1,19 @@
+<li class="media">
+  <%= user.avatar %>
+
+  <div class="media-body">
+    <%= user.link %>
+    <%= user.position_badge if local_assigns.fetch(:show_position, true) %>
+
+    <div class="media-meta">
+      <p><%= user.headline %></p>
+      <p><%= user.mail_link %></p>
+
+      <% if user.pub_info || user.project_info %>
+        <span class="separator"></span>
+      <% end %>
+      <%= content_tag :p, user.pub_info if user.pub_info %>
+      <%= content_tag :p, user.project_info if user.project_info %>
+    </div>
+  </div>
+</li>
