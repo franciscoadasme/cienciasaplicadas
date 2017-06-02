@@ -3,6 +3,8 @@
 .media {
   display: flex;
   align-items: center;
+  font-size: $font-size-base;
+  line-height: $line-height-computed;
 
   a {
     color: $text-color;
@@ -11,18 +13,28 @@
       text-decoration: none;
     }
   }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .separator {
+    display: block;
+    height: $font-size-base * 0.35;
+  }
 }
 
 .media-body {
-  margin-left: 20px;
   flex: 1;
+  margin-left: 20px;
 }
 
 .media-meta {
-  font-size: $font-size-small;
   color: $text-muted;
+  font-size: $font-size-small;
 
-  em, strong {
+  em,
+  strong {
     color: $text-color;
   }
 
