@@ -1,14 +1,10 @@
-class PostDecorator < Draper::Decorator
+class PostDecorator < ContentDecorator
   include Draper::LazyHelpers
 
   delegate_all
   decorates_association :author
 
   delegate :link, to: :author, prefix: true
-
-  def body
-    object.body.html_safe
-  end
 
   def published_at
     time_tag created_at,
