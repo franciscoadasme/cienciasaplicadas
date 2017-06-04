@@ -11,15 +11,15 @@ h1, h2, h3, h4, h5, h6,
   &:first-child
     margin-top: 0
 
-p:last-child
-  margin-bottom: 0
-
 article > .content
   font-size: $font-size-content
   line-height: $line-height-content-computed
 
   h1
     margin-bottom: 35px
+
+  & > p:last-child
+    margin-bottom: 0
 
   & > img
     width: 100%
