@@ -57,6 +57,12 @@
   }
 }
 
+.media-list-condensed {
+  & > li {
+    margin-top: 10px;
+  }
+}
+
 .media-list-two-column {
   display: flex;
   flex-wrap: wrap;
