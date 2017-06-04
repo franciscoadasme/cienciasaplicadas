@@ -12,5 +12,4 @@
     %h4.media-subheading
       = event.promoter
 
-    = excerpt event.description, length: 128, separator: '... ',
-              omission: link_to('seguir leyendo', event), force: true
+    = excerpt event.description, truncate_at: 128

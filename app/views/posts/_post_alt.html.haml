@@ -15,4 +15,4 @@
       = time_tag post.created_at, localized_date
 
     - anchor = link_to('seguir leyendo', post_permalink(post))
-    = excerpt post.body, omission: anchor, separator: '... ', force: true
+    = excerpt post.body, omission: anchor
