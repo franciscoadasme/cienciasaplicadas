@@ -1,11 +1,11 @@
 <% provide :jumbotron do %>
   = render 'users/scope', label: 'Contenido de' if @user
 <% end %>
-<% provide :banner_url, @page.banner.url if @page.banner.present? %>
+<% provide :banner_url, page.banner.url if page.banner.present? %>
 
 <article role="main">
   <section class="content">
-    <h1><%= @page.title %></h1>
-    <%= parse_content @page.body %>
+    <h1><%= page.title %></h1>
+    <%= parse_content page.body %>
   </section>
 </article>
