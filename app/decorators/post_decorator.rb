@@ -6,6 +6,10 @@ class PostDecorator < ContentDecorator
 
   delegate :link, to: :author, prefix: true
 
+  def excerpt
+    h.excerpt(object.body, truncate_at: 160).html_safe
+  end
+
   def permalink
     date = object.created_at
     h.post_url id: object.slug, year: date.year, month: date.month, day: date.day
