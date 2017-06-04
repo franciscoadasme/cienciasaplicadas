@@ -66,14 +66,13 @@
   & > li {
     max-width: calc(50% - 10px);
     width: calc(50% - 10px);
-    margin-left: 10px;
 
     &:nth-child(2) {
       margin-top: 0;
     }
 
-    &:nth-child(odd) {
-      margin-left: 0;
+    &:nth-child(even) {
+      margin-left: 20px;
     }
   }
 }
