@@ -1,7 +1,9 @@
 .container
   %header
     %h1 Noticias
-    = render 'nav_header'
+    %nav
+      - today = DateTime.current.to_date
+      = nav_date_widget today.advance(months: -9), today, :posts_path
 
   - if @posts.any?
     %ul.media-list.media-list-two-column= render posts
