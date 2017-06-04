@@ -6,7 +6,6 @@ class PostsController < SiteController
   end
 
   def show
-    @posts = Post.published
     @post = Post.friendly.find params[:id]
     @post.increment_view_count!
   end
