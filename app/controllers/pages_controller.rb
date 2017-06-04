@@ -1,6 +1,7 @@
 class PagesController < SiteController
   before_action :set_user
   before_action :set_page
+  decorates_assigned :page
 
   def show
   end
