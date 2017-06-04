@@ -1,10 +1,7 @@
-= provide :jumbotron do
-  %h1 Noticias
-  = render 'nav_header'
-
 .container
   %header
     %h1 Noticias
+    = render 'nav_header'
 
   - if @posts.any?
     %ul.media-list.media-list-two-column= render posts
