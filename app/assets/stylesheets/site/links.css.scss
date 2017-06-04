@@ -9,3 +9,14 @@ a {
 a:visited {
   color:                                   desaturate(lighten($link-color, 5%), 25%);
 }
+
+a.link-unstyled {
+  &,
+  &:active
+  &:focus
+  &:hover,
+  &:visited {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
