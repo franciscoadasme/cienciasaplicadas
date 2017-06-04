@@ -12,7 +12,7 @@ module ParsingHelper
     # fixes trix editor adding multiple linebreaks before a heading
     content.gsub! '<br><br></div><h1>', '</div><h1>'
     # remove <div> enclosing tag around dynamic content (delimited by {{ and }})
-    content.gsub! %r{<div>\s*\{\{([\w \.\(\),'-]+)\}\}\s*</div>}, '{{\1}}'
+    content.gsub! %r{<p>\s*\{\{([\w \.\(\),'-]+)\}\}\s*</p>}, '{{\1}}'
     # replaces heading 1 by h2 (trix editor only supports h1 for now)
     # (h1 is reserved for page title, so content headings start at h2)
     content.gsub! %r{<(/?)h1>}, '<\1h2>'
