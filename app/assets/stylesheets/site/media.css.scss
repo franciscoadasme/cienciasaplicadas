@@ -59,7 +59,7 @@
 
 .media-list-condensed {
   & > li {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 
@@ -70,15 +70,26 @@
   justify-content: flex-start;
 
   & > li {
-    max-width: calc(50% - 10px);
-    width: calc(50% - 10px);
+    max-width: calc(50% - 20px);
+    width: calc(50% - 20px);
 
     &:nth-child(2) {
       margin-top: 0;
     }
 
     &:nth-child(even) {
-      margin-left: 20px;
+      margin-left: 40px;
+    }
+  }
+
+  &.media-list-condensed {
+    & > li {
+      max-width: calc(50% - 10px);
+      width: calc(50% - 10px);
+
+      &:nth-child(even) {
+        margin-left: 20px;
+      }
     }
   }
 }
