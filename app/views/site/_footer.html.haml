@@ -1,7 +1,7 @@
 %footer{ role: 'main' }
   .container
     .row
-      .col-xs-7.lastest-items
+      .col-xs-7
         - unless current_page?(root_url)
           - if !controller?(:posts) && @lastest_posts.any?
             = render 'site/widgets/footer/posts'
