@@ -39,7 +39,7 @@ class SiteController < ApplicationController
     def set_lastest
       @lastest_publications = Publication.unscoped.order(created_at: :desc).limit(3)
       @lastest_posts = Post.published.sorted.limit(3).decorate
-      @upcoming_events = Event.upcoming.sorted.limit(3)
+      @upcoming_events = Event.upcoming.sorted.limit(3).decorate
     end
 
     def set_pages

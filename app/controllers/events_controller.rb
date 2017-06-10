@@ -1,4 +1,6 @@
 class EventsController < SiteController
+  decorates_assigned :events, :event
+
   def index
     @events = Event.during_date date_params
     set_event_type_counts
