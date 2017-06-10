@@ -1,11 +1,7 @@
 # Methods to deal with user-created content (e.g., posts, pages)
 module ContentHelper
-  def excerpt(content, truncate_at: 140, separator: /\s+/, omission: '...')
-    options = {
-      separator: separator,
-      omission: content_tag(:span, omission, class: 'text-muted')
-    }
-    strip_tags(content).truncate truncate_at, options
+  def excerpt(content, truncate_at: 140, separator: /(?<=[a-z])\s+/, omission: '...')
+    strip_tags(content).truncate truncate_at, separator: separator, omission: omission
   end
 
   def paragraphify(content)
