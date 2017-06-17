@@ -7,7 +7,7 @@
 
       <ul class="navbar-nav navbar-nav--icons">
         <%= nav_item_icon 'Noticias', :'newspaper-o', :posts %>
-        <%= nav_item_icon 'Eventos', :'calendar-o', :events %>
+        <%= nav_item_icon 'Eventos', :'calendar-o', :events, href: upcoming_events_url %>
         <%= nav_item_icon 'Momentos', :'camera-retro', :moments %>
 
         <% if current_user %>
