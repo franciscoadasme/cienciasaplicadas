@@ -7,7 +7,7 @@ module NavHelper
   def nav_item_icon(content, icon_name, controller, html_options = {})
     html_options[:title] = "Ir a #{content}"
     content = fa_icon(icon_name.to_s)
-    href = send("#{controller}_url")
+    href = html_options.delete(:href) || send("#{controller}_url")
     nav_item_tag content, href, controller.to_s == controller_name, html_options
   end
 
