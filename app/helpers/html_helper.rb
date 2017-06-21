@@ -36,6 +36,7 @@ module HtmlHelper
   def btn_to(name, href, html_options = {}, &block)
     classes = ['btn', "btn-#{extract_variant(html_options) || :default}"]
     classes << 'btn-block' if html_options.delete(:block)
+    classes << 'active' if html_options.delete(:active)
     html_options[:class] = "#{classes.join ' '} #{html_options[:class]}"
     link_to name, href, html_options, &block
   end
