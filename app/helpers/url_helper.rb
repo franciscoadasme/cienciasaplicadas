@@ -1,4 +1,9 @@
 module UrlHelper
+  def url_with_params(name_or_params, params = {})
+    return url_for(name_or_params) if name_or_params.is_a?(Hash)
+    send "#{name_or_params}_url", request.query_parameters.merge(params)
+  end
+
   def action_name
     params[:action]
   end
