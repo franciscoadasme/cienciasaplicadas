@@ -1,14 +1,15 @@
 module NavHelper
-  def nav_item(content, href, html_options = {})
-    nav_item_tag content, href, current_page?(href), html_options
+  def nav_item(name, options = {}, html_options = {}, &block)
+    nav_item_tag name, options, html_options, &block
   end
 
   # TODO: change controller argument to href
   def nav_item_icon(content, icon_name, controller, html_options = {})
     html_options[:title] = "Ir a #{content}"
+    html_options[:active] = controller.to_s == controller_name
     content = fa_icon(icon_name.to_s)
     href = html_options.delete(:href) || send("#{controller}_url")
-    nav_item_tag content, href, controller.to_s == controller_name, html_options
+    nav_item_tag content, href, html_options
   end
 
   def nav_date_widget(from, to, path, step = 1.month, acc_items = [])
@@ -42,11 +43,12 @@ module NavHelper
       end
     end
 
-  def nav_item_tag(content, href, is_active, html_options = {})
-    wrapper_options = {}
-    wrapper_options[:class] = 'active' if is_active
-    content_tag :li, wrapper_options do
-      link_to content, href, html_options
+  def nav_item_tag(name, options = {}, html_options = {}, &block)
+    is_active = (block_given? ? options : html_options).delete(:active) do |_|
+      current_page?(options)
+    end
+    content_tag :li, class: (is_active ? 'active' : nil) do
+      link_to(name, options, html_options, &block)
     end
   end
 end
