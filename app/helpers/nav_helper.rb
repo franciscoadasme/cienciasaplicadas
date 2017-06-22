@@ -1,5 +1,5 @@
 module NavHelper
-  def nav_item(name, options = {}, html_options = {}, &block)
+  def nav_item(name, options = nil, html_options = {}, &block)
     nav_item_tag name, options, html_options, &block
   end
 
@@ -43,12 +43,23 @@ module NavHelper
       end
     end
 
-  def nav_item_tag(name, options = {}, html_options = {}, &block)
-    is_active = (block_given? ? options : html_options).delete(:active) do |_|
-      current_page?(options)
-    end
+  def nav_item_tag(name, options = nil, html_options = {}, &block)
+    html_options, options = options, name if block_given?
+
+    is_active = nav_item_active?(options, html_options)
+    options = url_for(options) if options.is_a?(Hash) # options are query params
+
     content_tag :li, class: (is_active ? 'active' : nil) do
+      name, options = options, html_options if block_given?
       link_to(name, options, html_options, &block)
+    end
+  end
+
+  def nav_item_active?(options = nil, html_options = {})
+    if options.is_a?(Hash)
+      params.slice(*options.keys).symbolize_keys == options.compact
+    else
+      html_options.delete(:active) { |_| current_page?(options) }
     end
   end
 end
