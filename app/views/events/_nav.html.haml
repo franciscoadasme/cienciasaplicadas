@@ -11,5 +11,6 @@
 
     %li.pull-right
       .btn-group.btn-group-sm
+        = btn_to 'Este mes', url_with_params(:current_month_events)
         = btn_to 'Próximos', url_with_params(:upcoming_events)
         = btn_to 'Todos', url_with_params(:events)

@@ -24,6 +24,16 @@ class EventsController < SiteController
     render action: :index
   end
 
+  def current_month
+    @events = Event.during_date month: Time.zone.now.month
+    set_event_type_counts
+
+    @events = @events.typed params[:tipo] if params[:tipo]
+    @events = @events.sorted
+
+    render action: :index
+  end
+
   private
 
   def set_event_type_counts
