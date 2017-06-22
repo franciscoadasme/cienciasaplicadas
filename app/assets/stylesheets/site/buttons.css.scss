@@ -9,6 +9,10 @@
   text-transform: uppercase;
 }
 
+.btn.active {
+  font-weight: bold;
+}
+
 .btn-unstyled {
   margin: 0;
   padding: 0;
