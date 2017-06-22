@@ -6,9 +6,6 @@ a {
   transition-duration:                     .2s;
 }
 
-a:visited {
-  color:                                   desaturate(lighten($link-color, 5%), 25%);
-}
 
 a.link-unstyled {
   &,
