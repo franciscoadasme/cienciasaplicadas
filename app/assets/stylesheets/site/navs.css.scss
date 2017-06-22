@@ -1,0 +1,53 @@
+@import "site/variables";
+
+.nav-tabs {
+  & > li {
+    & > a {
+      margin-right: 40px;
+      padding-right: 0;
+      padding-left: 0;
+      font-size: $font-size-small;
+      color: $text-muted;
+
+      .badge {
+        background-color: #ccc;
+      }
+
+      &:focus,
+      &:hover {
+        background: none;
+        border-color: transparent;
+        color: $text-color;
+        border-bottom-color: $gray;
+
+        .badge {
+          background-color: $gray-light;
+        }
+      }
+    }
+
+    &.active {
+      & > a {
+        &,
+        &:focus,
+        &:hover {
+          font-weight: bold;
+          color: $text-color;
+          border-top-color: transparent;
+          border-right-color: transparent;
+          border-left-color: transparent;
+          border-bottom-color: $gray;
+        }
+
+        .badge {
+          background-color: $gray-light;
+        }
+      }
+    }
+  }
+
+  .btn-group-sm {
+    margin-top: 5px;
+    margin-bottom: 4px;
+  }
+}

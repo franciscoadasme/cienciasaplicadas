@@ -26,6 +26,7 @@
  *= require site/lists
  *= require site/media
  *= require site/navbar
+ *= require site/navs
  *= require site/progress
  *= require site/typography
  *
