@@ -1,2 +1,15 @@
-%nav.nav-header
-  = event_nav_widget
+%nav
+  %ul.nav.nav-tabs
+    = nav_item tipo: nil do
+      Cualquiera
+      %span.badge= @event_type_count.values.sum
+
+    - @event_type_count.each do |type, count|
+      = nav_item({tipo: type}, disabled: count == 0) do
+        = type.titleize.pluralize
+        %span.badge= count
+
+    %li.pull-right
+      .btn-group.btn-group-sm
+        = btn_to 'Próximos', url_with_params(:upcoming_events)
+        = btn_to 'Todos', url_with_params(:events)

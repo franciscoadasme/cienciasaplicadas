@@ -1,23 +1,16 @@
-- provide :jumbotron do
-  %h1 Eventos
-  = render 'nav_header'
+.container
+  %header
+    %h1 Eventos
+    = render 'events/nav_header'
 
-- provide :sidebar, render('events/sidebar/index')
-
-- if @events.any?
-  %ul.media-list
-    = render @events
-
-  %hr
-  %p.lead.text-muted.text-center
-    No hay más eventos disponibles
-- else
-  %p.lead.text-muted.text-center
-    - message = [ 'No se encontraron eventos' ]
-    - message << 'durante este periodo' if params[:year]
-    - message << 'y' if params[:year] && params[:tipo]
-    - message << 'en esta categoria' if params[:tipo]
-    = message.join(' ').concat '.'
-  %p.text-muted.text-center
-    Seleccione otro periodo o vuelva a la
-    = link_to 'sección inicial', events_url
+  - if events.any?
+    %ul.media-list.media-list-two-column
+      = render events
+  - else
+    %p.lead.text-muted.text-center
+      Oops... no hay eventos para mostrar
+    %p.text-muted.text-center
+      Volver
+      = link_to 'atrás', :back
+      o a la
+      = link_to 'sección inicial', events_url
