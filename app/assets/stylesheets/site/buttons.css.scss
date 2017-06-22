@@ -1,6 +1,6 @@
 @import "site/variables";
 
-.btn {
+:not(.btn-group) > .btn {
   padding-right: 24px;
   padding-left: 24px;
   border-radius: 2px;
