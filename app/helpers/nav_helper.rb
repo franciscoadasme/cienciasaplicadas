@@ -45,11 +45,15 @@ module NavHelper
 
   def nav_item_tag(name, options = nil, html_options = {}, &block)
     html_options, options = options, name if block_given?
+    html_options ||= {}
 
-    is_active = nav_item_active?(options, html_options)
+    wrapper_options = {}
+    wrapper_options[:class] = 'active' if nav_item_active?(options, html_options)
+    wrapper_options[:class] = 'disabled' if html_options.delete(:disabled)
+
     options = url_for(options) if options.is_a?(Hash) # options are query params
 
-    content_tag :li, class: (is_active ? 'active' : nil) do
+    content_tag :li, wrapper_options do
       name, options = options, html_options if block_given?
       link_to(name, options, html_options, &block)
     end
