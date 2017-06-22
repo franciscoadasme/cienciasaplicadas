@@ -16,3 +16,7 @@ $(document).ready ->
         top: $('header[role="main"]').outerHeight()
         bottom: ->
           @.bottom = $('footer[role="main"]').outerHeight(true) + parseInt($('section[role="content"]').css('padding-bottom'), 10)
+
+  $('a.disabled, .disabled > a').each ->
+    $(this).click (e) ->
+      e.preventDefault()

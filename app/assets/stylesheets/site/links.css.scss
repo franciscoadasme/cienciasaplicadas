@@ -6,6 +6,10 @@
 //   transition-duration:                     .2s;
 // }
 
+a.disabled,
+.disabled > a {
+  pointer-events: none;
+}
 
 a.link-unstyled {
   &,
