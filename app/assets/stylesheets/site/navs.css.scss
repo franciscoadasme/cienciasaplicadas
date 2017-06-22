@@ -17,6 +17,12 @@
       &:hover {
         background: none;
         border-color: transparent;
+      }
+    }
+
+    &:not(.disabled) > a {
+      &:focus,
+      &:hover {
         color: $text-color;
         border-bottom-color: $gray;
 
