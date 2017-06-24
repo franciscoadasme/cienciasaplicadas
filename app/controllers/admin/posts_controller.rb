@@ -81,7 +81,7 @@ class Admin::PostsController < AdminController
         else
           :drafted_with_notification
       end
-      redirect_to_index success: i18n_key
+      redirect_to admin_posts_path(anchor: "post_#{@post.id}"), success: i18n_key
     end
 
     # def send_notification
