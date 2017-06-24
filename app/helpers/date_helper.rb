@@ -22,9 +22,10 @@ module DateHelper
     same_day = same_month && start_date.day == end_date.day
 
     is_current_year = start_date.year == DateTime.current.year
+
     result = case
       when same_day
-        I18n.l start_date, format: :short
+        I18n.l start_date, format: (is_current_year ? :short : :abbr_with_day)
       when same_month
         tkey = "period.formats.same_month#{'_with_year' unless is_current_year}"
         I18n.t tkey, start_day: start_date.day, end_day: end_date.day, month: I18n.l(start_date, format: :month).titleize, year: start_date.strftime("'%y")
