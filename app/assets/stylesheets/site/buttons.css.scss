@@ -1,6 +1,6 @@
 @import "site/variables";
 
-:not(.btn-group) > .btn {
+:not(.btn-group) > .btn:not(.btn-circle) {
   padding-right: 24px;
   padding-left: 24px;
   border-radius: 2px;
@@ -13,44 +13,60 @@
   font-weight: bold;
 }
 
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 40px;
+  text-align: center;
+
+  .fa {
+    font-size: 16px;
+    position: relative;
+  }
+
+  .fa-pencil {
+    top: -1px;
+  }
+
+  &.btn-lg {
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+
+    .fa {
+      font-size: 24px;
+    }
+  }
+}
+
+.btn-outline {
+  background: none;
+  border-color: $text-color;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: $text-color;
+    color: white;
+    border-color: $text-color;
+  }
+}
+
+.btn-outline-primary {
+  background: none;
+}
+
+.btn-raised {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+              0 1px 5px 0 rgba(0,0,0,0.12),
+              0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
 .btn-unstyled {
   margin: 0;
   padding: 0;
   border: none;
   background: none;
 }
-// .btn-lg
-//   border-radius: 4px
-// .btn-outline
-//   color: #563d7c
-//   background-color: #fff
-//   border-color: #e5e5e5
-// .btn-outline:hover,
-// .btn-outline:focus,
-// .btn-outline:active
-//   color: #fff
-//   background-color: #563d7c
-//   border-color: #563d7c
-// .btn-outline-inverse
-//   color: white
-//   background-color: transparent
-//   border-color: rgba(white, .65)
-// .btn-outline-inverse:hover,
-// .btn-outline-inverse:focus,
-// .btn-outline-inverse:active
-//   color: $base-color-text
-//   text-shadow: none
-//   background-color: white
-//   border-color: white
-// .btn-group
-//   & > .btn-link
-//     float: none
-//     padding: 0
-//     &,
-//     &:hover
-//       text-decoration: none
-//   &.open > .btn-link
-//     text-decoration: none
-//     @include box-shadow(none)
-// a.facebook
-//   background-color: #3b5998 !important
