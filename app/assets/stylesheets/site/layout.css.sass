@@ -18,7 +18,23 @@ section[role="main"]
   padding-bottom: 100px
 
   & > * > header
+    position: relative
     padding-bottom: 30px
+
+  .actions
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    position: absolute
+    top: 100px
+    left: -100px
+
+    & > *
+      margin-top: 20px
+
+      &:first-child
+        margin-top: 0
 
   section[id]
     margin-bottom: 40px
