@@ -1,0 +1,28 @@
+<header>
+  <h1>
+    <small><%= format_period @event.start_date, @event.end_date %></small>
+    <span class="badge badge-outline-primary"><%= event.event_type.upcase %></span>
+    <br>
+    <%= event.name %>
+  </h1>
+  <div class="row">
+    <div class="col-md-6">
+      <strong>Patrocinador</strong>
+      <br>
+      <%= event.promoter %>
+    </div>
+    <div class="col-md-6">
+      <strong>Lugar de realización</strong>
+      <br>
+      <%= event.location %>
+    </div>
+  </div>
+
+  <% if current_user.try :super_user? %>
+    <div class="actions">
+      <small class="text-muted"><strong>ACTIONS</strong></small>
+      <%= btn_to fa_icon(:pencil), edit_admin_event_url(@event),
+                 class: 'btn-circle btn-outline', title: 'Editar' %>
+    </div>
+  <% end %>
+</header>

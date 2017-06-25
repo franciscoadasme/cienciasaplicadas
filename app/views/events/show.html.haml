@@ -1,25 +1,5 @@
 %article{ role: 'main', class: "event event-#{@event.event_type}" }
-  %header
-    %h1
-      %small= format_period @event.start_date, @event.end_date
-      %span.badge.badge-outline-primary= event.event_type.upcase
-      %br
-      = event.name
-    .row
-      .col-md-6
-        %strong Patrocinador
-        %br
-        = event.promoter
-      .col-md-6
-        %strong Lugar de realización
-        %br
-        = event.location
-
-    - if current_user.try :super_user?
-      .actions
-        %small.text-muted
-          %strong ACTIONS
-        = btn_to fa_icon(:pencil), edit_admin_event_url(@event), class: 'btn-circle btn-outline', title: 'Editar'
+  = render 'events/header', event: @event
 
   %section.content
     = content_tag :p, image_tag(@event.picture) if @event.picture.present?
