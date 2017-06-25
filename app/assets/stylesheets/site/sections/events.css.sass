@@ -1,9 +1,34 @@
 @import "site/variables"
 
-header[role="main"]
-  .events-show h1
-    font-size: 3*$font-size-base
-    line-height: 1.15*3*$font-size-base
+article.event
+  &::before,
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 450px
+
+  &::before
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    opacity: 0.65
+    z-index: -2
+
+  &::after
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 15%,rgba(255,255,255,1) 100%)
+    z-index: -1
+
+  &.event-charla::before
+    background-image: image-url("events/charla.jpg")
+
+  &.event-congreso::before
+    background-image: image-url("events/congreso.jpg")
+
+  &.event-curso::before
+    background-image: image-url("events/curso.jpg")
 
 li.event
   h2

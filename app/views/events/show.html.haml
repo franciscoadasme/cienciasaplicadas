@@ -1,13 +1,26 @@
-- provide :jumbotron do
-  %h1= @event.name
-  %p.lead
-    %small.label.label-primary= @event.event_type.upcase
-    = format_period @event.start_date, @event.end_date
-- provide :banner_url, banner_url_for_event_type(@event.event_type)
-- provide :nav_header do
-  = render 'site/nav_header', nav_data: nav_header_data_for_event(@event)
-- provide :sidebar, render('events/sidebar/show')
-- provide :content, true
+%article{ role: 'main', class: "event event-#{@event.event_type}" }
+  %header
+    %h1
+      %small= format_period @event.start_date, @event.end_date
+      %span.badge.badge-outline-primary= event.event_type.upcase
+      %br
+      = event.name
+    .row
+      .col-md-6
+        %strong Patrocinador
+        %br
+        = event.promoter
+      .col-md-6
+        %strong Lugar de realización
+        %br
+        = event.location
 
-= content_tag :p, image_tag(@event.picture) if @event.picture.present?
-= @event.description.html_safe
+    - if current_user.try :super_user?
+      .actions
+        %small.text-muted
+          %strong ACTIONS
+        = btn_to fa_icon(:pencil), edit_admin_event_url(@event), class: 'btn-circle btn-outline', title: 'Editar'
+
+  %section.content
+    = content_tag :p, image_tag(@event.picture) if @event.picture.present?
+    = @event.description.html_safe
