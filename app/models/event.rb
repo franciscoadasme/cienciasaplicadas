@@ -22,7 +22,7 @@
 class Event < ActiveRecord::Base
   include Editable
 
-  TYPES = [ :charla, :seminario, :curso ]
+  TYPES = [ :charla, :congreso, :curso ]
 
   extend FriendlyId
   friendly_id :name, use: [ :slugged ]
