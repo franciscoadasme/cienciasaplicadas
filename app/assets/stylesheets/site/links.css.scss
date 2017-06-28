@@ -6,6 +6,8 @@
 //   transition-duration:                     .2s;
 // }
 
+a.active,
+.active > a,
 a.disabled,
 .disabled > a {
   pointer-events: none;
