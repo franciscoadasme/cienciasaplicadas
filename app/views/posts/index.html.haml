@@ -6,7 +6,9 @@
     %ul.media-list.media-list-two-column= render posts
   - else
     %p.lead.text-muted.text-center
-      No se encontraron noticias escritas durante este periodo
+      Oops... no hay noticias para mostrar
     %p.text-muted.text-center
-      Seleccione otro periodo o vuelva a la
+      Volver
+      = link_to 'atrás', :back
+      o a la
       = link_to 'sección inicial', posts_url
