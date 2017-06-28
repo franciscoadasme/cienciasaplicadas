@@ -1,6 +1,7 @@
 @import "site/variables";
 
-:not(.btn-group) > .btn:not(.btn-circle) {
+// FIXME: changed this hack by custom class
+:not(.btn-group) > .btn:not(.btn-circle):not(.btn-unstyled) {
   padding-right: 24px;
   padding-left: 24px;
   border-radius: 2px;
