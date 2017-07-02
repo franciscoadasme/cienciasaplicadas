@@ -1,4 +1,5 @@
 @import "site/variables";
+@import "bootstrap/mixins";
 
 // FIXME: changed this hack by custom class
 :not(.btn-group) > .btn:not(.btn-circle):not(.btn-unstyled) {
@@ -72,3 +73,21 @@
   border: none;
   background: none;
 }
+
+.btn-aqua    { @include button-variant(white, $color-aqua, darken($color-aqua, 10%)); }
+.btn-black   { @include button-variant(white, $color-black, darken($color-black, 10%)); }
+.btn-blue    { @include button-variant(white, $color-blue, darken($color-blue, 10%)); }
+.btn-fuchsia { @include button-variant(white, $color-fuchsia, darken($color-fuchsia, 10%)); }
+.btn-gray    { @include button-variant(white, $color-gray, darken($color-gray, 10%)); }
+.btn-green   { @include button-variant(white, $color-green, darken($color-green, 10%)); }
+.btn-lime    { @include button-variant(white, $color-lime, darken($color-lime, 10%)); }
+.btn-maroon  { @include button-variant(white, $color-maroon, darken($color-maroon, 10%)); }
+.btn-navy    { @include button-variant(white, $color-navy, darken($color-navy, 10%)); }
+.btn-olive   { @include button-variant(white, $color-olive, darken($color-olive, 10%)); }
+.btn-orange  { @include button-variant(white, $color-orange, darken($color-orange, 10%)); }
+.btn-purple  { @include button-variant(white, $color-purple, darken($color-purple, 10%)); }
+.btn-red     { @include button-variant(white, $color-red, darken($color-red, 10%)); }
+.btn-silver  { @include button-variant(white, $color-silver, darken($color-silver, 10%)); }
+.btn-teal    { @include button-variant(white, $color-teal, darken($color-teal, 10%)); }
+.btn-white   { @include button-variant(white, $color-white, darken($color-white, 10%)); }
+.btn-yellow  { @include button-variant(white, $color-yellow, darken($color-yellow, 10%)); }
