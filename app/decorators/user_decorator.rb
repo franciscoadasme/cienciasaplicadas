@@ -1,5 +1,6 @@
 class UserDecorator < Draper::Decorator
   delegate_all
+  decorates_association :thesis
 
   def avatar(size: 64)
     h.content_tag :div, class: 'img-avatar' do
