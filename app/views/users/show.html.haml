@@ -1,31 +1,21 @@
-- provide :jumbotron do
-  %h1= @user.display_name
-  %p.lead.text-muted= display_user_headline @user
+%article{ role: 'main' }
+  = render 'users/header'
 
-- provide :sidebar, render('sidebar')
-- provide :banner_url, @user.banner if @user.banner.present?
+  %section.content
+    - if user.bio.present?
+      = user.bio.html_safe
+    - else
+      %p.lead.text-muted No hay una biografía disponible
 
-%section.content#about
-  %h2
-    Hola, Soy
-    = @user.first_name
-    = autosizing_image_tag display_user_image_url(@user), size: 48
+  - if user.thesis.present?
+    %section#thesis
+      %h2 Mi memoria de tesis
+      %ul.media-list
+        = render user.thesis
 
-  - if @user.bio.present?
-    = @user.bio.html_safe
-  - else
-    %p.lead.text-muted No hay una biografía disponible
-
-- if @user.thesis.present?
-  %section#thesis
-    %h2 Mi memoria de tesis
-    %ul.media-list.theses
-      = render @user.thesis
-    = btn_to 'Ver todas las tesis', theses_path, block: true
-
-- if @user_pubs.any?
-  %section#publications
-    %h2= section_title_for_user_pubs @user_pubs
-    %ul.publications
-      = render @user_pubs
-    = btn_to 'Ver todas las publicaciones', [@user, :publications], block: true
+  - if @user_pubs.any?
+    %section#publications
+      %h2 Publicaciones destacadas
+      %ul.publications
+        = render @user_pubs
+      = btn_to 'Ver todas las publicaciones', user_publications_url(user), block: true

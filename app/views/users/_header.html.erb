@@ -1,0 +1,52 @@
+<header>
+  <div class="media media-reversed">
+    <%= user.avatar size: 96 %>
+    <div class="media-body">
+      <h1>
+        <%= user.full_name %>
+        <small class="subheading"><%= user.headline %></small>
+      </h1>
+    </div>
+  </div>
+
+  <nav>
+    <ul class="nav nav-tabs">
+      <%= nav_item 'Información', user_url(user) %>
+      <% if @user.publications.any? %>
+        <%= nav_item 'Publicaciones', user_publications_url(user) %>
+        <%= nav_item 'Productividad', user_stats_url(user) %>
+      <% end %>
+      <%= nav_item 'Proyectos', user_projects_url(user) %>
+
+      <% if @user.pages.any? %>
+        <% showing_page = defined?(@page) %>
+        <%= content_tag :li, class: ('active' if showing_page) do %>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+            <%= showing_page ? page.title.truncate(20) : 'Más' %>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <% @user.pages.each do |page| %>
+              <% next if showing_page && page == @page %>
+              <li><%= link_to page.title, user_page_url(user, page) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+
+  <div class="actions">
+    <%= mail_to user.email, fa_icon(:'paper-plane'),
+                class: 'btn btn-circle btn-primary btn-lg btn-raised', title: 'Contactar' %>
+
+    <% user.social_links.each do |service, url| %>
+      <%= btn_to fa_icon(service), url, class: 'btn-circle btn-link', title: service.titleize %>
+    <% end %>
+
+    <% if current_user == @user %>
+      <%= btn_to fa_icon(:pencil), profile_admin_account_path,
+                 class: 'btn-circle', title: 'Editar' %>
+    <% end %>
+  </div>
+</header>
