@@ -14,6 +14,7 @@ class UsersController < SiteController
   private
 
   def set_user
-    @user = User.friendly.find params[:user_id]
+    @user = User.includes(:projects, :publications)
+                .friendly.find(params[:user_id])
   end
 end
