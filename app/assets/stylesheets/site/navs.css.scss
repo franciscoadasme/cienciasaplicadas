@@ -54,6 +54,10 @@
     }
   }
 
+  &.nav-tabs-dark {
+    border-bottom-color: lighten($gray-light, 15%)
+  }
+
   .btn-group-sm {
     margin-top: 5px;
     margin-bottom: 4px;
