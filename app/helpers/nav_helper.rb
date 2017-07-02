@@ -54,8 +54,7 @@ module NavHelper
     options = url_for(options) if options.is_a?(Hash) # options are query params
 
     content_tag :li, wrapper_options do
-      name, options = options, html_options if block_given?
-      link_to(name, options, html_options, &block)
+      nav_link_tag name, options, html_options, &block
     end
   end
 
@@ -64,6 +63,19 @@ module NavHelper
       params.slice(*options.keys).symbolize_keys == options.compact
     else
       html_options.delete(:active) { |_| current_page?(options) }
+    end
+  end
+
+  def nav_link_tag(name, options, html_options, &block)
+    badge_content = html_options.delete :badge
+    return link_to options, html_options, &block if block_given?
+
+    link_to options, html_options do
+      concat name
+      if badge_content
+        concat ' '
+        concat content_tag(:span, badge_content, class: 'badge')
+      end
     end
   end
 end
