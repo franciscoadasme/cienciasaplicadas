@@ -58,4 +58,21 @@
     margin-top: 5px;
     margin-bottom: 4px;
   }
+
+  // fixes for dropdown inside nav-tabs
+  & > li.open > a {
+    &,
+    &:focus,
+    &:hover {
+      background: none;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-left-color: transparent;
+    }
+  }
+
+  & > li.active > a.dropdown-toggle {
+    pointer-events: auto;
+    cursor: pointer;
+  }
 }
