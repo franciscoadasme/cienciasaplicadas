@@ -8,7 +8,7 @@
     = f.input :issued, as: :select, collection: Date.today.year.downto(1980), prompt: true
     = f.input :pdf_file
     = f.input :keywords
-    = f.input :abstract
+    = f.input :abstract, as: :trix_editor
     = f.input :notes
 
   .form-group.form-actions
