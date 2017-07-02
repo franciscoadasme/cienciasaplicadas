@@ -1,11 +1,11 @@
 %li.media
-  = link_to user_thesis_url(thesis.user, thesis) do
+  = link_to thesis_url(thesis) do
     = image_tag thesis.pdf_file.url(:thumb), class: 'img-thumbnail img-maxsize', data: {size: 96}
 
   .media-body
     = link_to thesis.user.display_name, thesis.user
     %br
-    %strong= link_to thesis.title, user_thesis_url(thesis.user, thesis)
+    %strong= link_to thesis.title, thesis_url(thesis)
 
     .media-meta
       Aprobada el año

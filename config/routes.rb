@@ -88,7 +88,6 @@ CbsmWebsite::Application.routes.draw do
     get 'publicaciones', to: 'publications#index', as: :user_publications
     get 'productividad', to: 'users#stats', as: :user_stats
     get ':id', to: 'pages#show', as: :user_page
-    get 'tesis/:id', to: 'theses#show', as: :user_thesis
     root to: 'users#show', as: :user
   end
 
@@ -106,7 +105,7 @@ CbsmWebsite::Application.routes.draw do
     get 'momentos/:year/:month/:day/:id', to: 'moments#show', as: :moment
   end
 
-  get 'tesis', to: 'theses#index', as: :theses
+  resources :theses, only: [:index, :show], path: 'tesis'
 
   match :contacto, to: 'site#contact', via: [ :get, :post ], as: :contact
   get ':id', to: 'pages#show', as: :page
