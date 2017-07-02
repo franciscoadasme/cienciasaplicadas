@@ -48,4 +48,8 @@ class UserDecorator < Draper::Decorator
            url: h.user_publications_url(object),
            journals: object.statistics.journal_total).html_safe
   end
+
+  def social_links
+    Hash[object.social_links.split(/\n/).map { |line| line[1..-1].split }]
+  end
 end
