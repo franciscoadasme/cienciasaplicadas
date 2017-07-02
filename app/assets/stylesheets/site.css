@@ -30,6 +30,7 @@
  *= require site/navbar
  *= require site/navs
  *= require site/progress
+ *= require site/tables
  *= require site/typography
  *
  *= require site/sections/contact

@@ -1,0 +1,25 @@
+.table-transposed {
+    &,
+    tbody {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    tbody {
+        width: 100%;
+    }
+
+    tr {
+        flex: 1;
+        margin-left: 20px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
+    th {
+        display: block;
+    }
+}
