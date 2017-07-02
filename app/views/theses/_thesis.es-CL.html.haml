@@ -1,10 +1,11 @@
-%li.media.thesis
-  = link_to [ thesis.user, thesis ], class: 'pull-left magnifiable' do
-    = autosizing_image_tag thesis.pdf_file.url(:thumb), class: 'img-thumbnail media-object'
+%li.media
+  = link_to user_thesis_url(thesis.user, thesis) do
+    = image_tag thesis.pdf_file.url(:thumb), class: 'img-thumbnail img-maxsize', data: {size: 96}
+
   .media-body
-    %h4.media-subheading
-      %span.text-primary= link_to thesis.user.display_name, thesis.user
-    %h3.media-heading= thesis.title
+    = link_to thesis.user.display_name, thesis.user
+    %br
+    %strong= link_to thesis.title, user_thesis_url(thesis.user, thesis)
 
     .media-meta
       Aprobada el año
@@ -13,9 +14,6 @@
       %em= thesis.institution
 
     - if thesis.keywords.present?
-      %ul.keywords
+      %ul.list-inline.list-inline-condensed
         - thesis.keyword_list.each do |keyword|
-          %li
-            - css = [ 'keyword' ]
-            - css << 'active' if params_has_keyword?(keyword)
-            = link_to keyword, theses_path(params_with_keyword(keyword, override: true)), class: css.join(' ')
+          %li= content_tag :span, keyword, class: 'label label-secondary'
