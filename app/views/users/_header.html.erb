@@ -16,7 +16,7 @@
         <%= nav_item 'Publicaciones', user_publications_url(user) %>
         <%= nav_item 'Productividad', user_stats_url(user) %>
       <% end %>
-      <%= nav_item 'Proyectos', user_projects_url(user) %>
+      <%= nav_item 'Proyectos', user_projects_url(user) if user.projects.any? %>
 
       <% if @user.pages.any? %>
         <% showing_page = defined?(@page) %>
