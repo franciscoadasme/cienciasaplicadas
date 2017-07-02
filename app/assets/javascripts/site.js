@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require jquery.smooth-scroll.min
 //= require Chart
+//= require_tree ./shared
 //= require_tree ./site
