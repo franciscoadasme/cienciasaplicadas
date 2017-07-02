@@ -21,6 +21,15 @@
   }
 }
 
+.img-maxsize {
+  @each $size in (16, 24, 28, 32, 48, 56, 64, 96, 128, 192) {
+    &[data-size~="#{$size}"] {
+      max-width: #{$size}px;
+      max-height: #{$size}px;
+    }
+  }
+}
+
 .banner {
   &::before,
   &::after {
