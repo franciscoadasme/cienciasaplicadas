@@ -1,0 +1,10 @@
+@import "site/variables";
+
+.label {
+    line-height: 2em;
+}
+
+.label-secondary {
+    background-color: $gray-lighter;
+    color: $text-color;
+}
