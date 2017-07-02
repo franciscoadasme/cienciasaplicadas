@@ -23,3 +23,11 @@ a.link-unstyled {
     text-decoration: none;
   }
 }
+
+a.text-muted {
+  &:focus,
+  &:hover {
+    color: $text-muted;
+    text-decoration: none;
+  }
+}
