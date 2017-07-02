@@ -14,6 +14,10 @@ class UserDecorator < Draper::Decorator
     h.image_url 'default_avatar.png'
   end
 
+  def display_name
+    accepted? ? full_name : email
+  end
+
   def headline
     object.headline.try(:capitalize) || object.position.name
   end
