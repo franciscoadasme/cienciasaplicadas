@@ -1,0 +1,26 @@
+<nav>
+  <ul class="nav nav-tabs">
+    <%= nav_item 'Información', user_url(user) %>
+    <% if @user.publications.any? %>
+      <%= nav_item 'Publicaciones', user_publications_url(user), badge: user.publications.count %>
+      <%= nav_item 'Productividad', user_stats_url(user) %>
+    <% end %>
+    <%= nav_item 'Proyectos', user_projects_url(user), badge: user.projects.count if user.projects.any? %>
+
+    <% if @user.pages.any? %>
+      <% showing_page = defined?(@page) %>
+      <%= content_tag :li, class: ('active' if showing_page) do %>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+          <%= showing_page ? page.title.truncate(20) : 'Más' %>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <% @user.pages.each do |page| %>
+            <% next if showing_page && page == @page %>
+            <li><%= link_to page.title, user_page_url(user, page) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>
