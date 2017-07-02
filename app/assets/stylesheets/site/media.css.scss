@@ -7,8 +7,10 @@
   line-height: $line-height-computed;
 
   a {
+    display: inline-block;
     color: $text-color;
 
+    &:focus,
     &:hover {
       text-decoration: none;
     }
