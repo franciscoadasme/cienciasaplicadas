@@ -16,6 +16,5 @@
   - if @user_pubs.any?
     %section#publications
       %h2 Publicaciones destacadas
-      %ul.publications
+      %ul.list-unstyled
         = render @user_pubs
-      = btn_to 'Ver todas las publicaciones', user_publications_url(user), block: true
