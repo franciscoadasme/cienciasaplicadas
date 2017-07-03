@@ -1,0 +1,48 @@
+<article role="main">
+  <header>
+    <h1>
+      <%= thesis.title %>
+      <br>
+      <small><%= link_to thesis.user.display_name, thesis.user, class: 'text-muted' %></small>
+    </h1>
+
+    <ul class="list-inline list-inline-condensed">
+      <% @thesis.keyword_list.each do |keyword| %>
+        <li><%= content_tag :span, keyword, class: 'label label-secondary'%></li>
+      <% end %>
+    </ul>
+
+    <table class="table-transposed">
+      <tbody>
+        <tr>
+          <th><%= Thesis.human_attribute_name :issued %></th>
+          <td><%= thesis.issued %></td>
+        </tr>
+        <tr>
+          <th><%= Thesis.human_attribute_name :institution %></th>
+          <td><%= @thesis.institution %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <%= btn_to fa_icon(:'file-pdf-o'), thesis.pdf_file.url,
+                 class: 'btn-circle btn-primary btn-lg btn-raised',
+                 title: 'Descargar documento' %>
+      <%= btn_to fa_icon(:'user-circle-o'), thesis.user,
+                 class: 'btn-circle btn-link',
+                 title: 'Ver perfil de usuario' %>
+      <%= btn_to fa_icon(:'pencil'), edit_admin_thesis_path(thesis),
+                 class: 'btn-circle',
+                 title: 'Editar tesis' if current_user.admin? %>
+    </div>
+  </header>
+
+  <section class="content">
+    <% if thesis.abstract.present? %>
+      <%= thesis.abstract.html_safe %>
+    <% else %>
+      <p class="lead text-muted">No hay un resumen disponible</p>
+    <% end %>
+  </section>
+</header>
