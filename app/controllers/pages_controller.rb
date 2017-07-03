@@ -1,9 +1,15 @@
 class PagesController < SiteController
-  before_action :set_user
-  before_action :set_page
+  before_action :set_user, only: [:show]
+  before_action :set_page, only: [:show]
   decorates_assigned :page
 
   def show
+  end
+
+  def research
+    @page = Page.friendly.find 'investigacion'
+    @publications = Publication.sorted.decorate.first(10)
+    @theses = Thesis.sorted.decorate.first(5)
   end
 
   private

@@ -107,6 +107,8 @@ CbsmWebsite::Application.routes.draw do
 
   resources :theses, only: [:index, :show], path: 'tesis'
 
+  get 'investigacion', to: 'pages#research', as: :research
+
   match :contacto, to: 'site#contact', via: [ :get, :post ], as: :contact
   get ':id', to: 'pages#show', as: :page
 

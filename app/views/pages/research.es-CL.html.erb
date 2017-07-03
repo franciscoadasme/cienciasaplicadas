@@ -1,0 +1,21 @@
+<article role="main">
+  <header>
+    <h1>Investigación</h1>
+  </header>
+
+  <section class="content">
+    <%= parse_content page.body %>
+  </section>
+
+  <section id="publications">
+    <h2>Publicaciones recientes</h2>
+    <ul class="list-unstyled">
+      <%= render @publications %>
+    </ul>
+  </section>
+
+  <section id="publications">
+    <h2>Tesis recientes</h2>
+    <%= render 'theses/collection', collection: @theses %>
+  </section>
+</article>
