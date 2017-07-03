@@ -7,3 +7,17 @@ ul > li > .btn
   & > li
     padding-right: 0
     padding-left: 0
+
+.list-inline
+  &[class*="list-sep-"]
+    @extend .list-inline-condensed
+
+    & > li:last-child::after
+      content: none
+
+  &.list-sep-comma > li::after
+    content: ','
+
+  &.list-sep-semicolon > li::after
+    content: ';'
+
