@@ -1,5 +1,6 @@
 class UserDecorator < Draper::Decorator
   delegate_all
+  decorates_association :publications
   decorates_association :thesis
 
   def avatar(size: 64)
