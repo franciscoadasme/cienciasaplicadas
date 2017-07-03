@@ -1,0 +1,19 @@
+<article role="main">
+  <header>
+    <h1>
+      <small>Investigación</small>
+      <br>
+      Tesis
+    </h1>
+  </header>
+
+  <% if @theses.any? %>
+    <ul class="media-list">
+      <%= render theses %>
+    </ul>
+  <% else %>
+    <p class="lead text-muted text-center">
+      Oops... no hay noticias para mostrar
+    </p>
+  <% end %>
+</article>

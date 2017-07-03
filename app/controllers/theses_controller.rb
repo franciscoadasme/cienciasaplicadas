@@ -1,14 +1,11 @@
 class ThesesController < SiteController
-  include ThesesHelper
+  decorates_assigned :theses, :thesis
 
   def index
     @theses = Thesis.sorted
-    @theses = @theses.with_keywords *keywords_param if keywords_param.any?
-    @keywords = Thesis.keyword_list.uniq
   end
 
   def show
-    @thesis = Thesis.friendly.find params[:id]
-    @user = @thesis.user
+    @thesis = Thesis.includes(:user).friendly.find params[:id]
   end
 end
