@@ -29,9 +29,9 @@
       <%= btn_to fa_icon(:'file-pdf-o'), thesis.pdf_file.url,
                  class: 'btn-circle btn-primary btn-lg btn-raised',
                  title: 'Descargar documento' %>
-      <%= btn_to fa_icon(:'user-circle-o'), thesis.user,
-                 class: 'btn-circle btn-link',
-                 title: 'Ver perfil de usuario' %>
+      <%= btn_to thesis.user, class: 'btn-circle btn-link', title: 'Ver perfil de usuario' do %>
+        <%= image_tag thesis.user.avatar_url, class: 'img-circle', size: '40' %>
+      <% end %>
       <%= btn_to fa_icon(:'pencil'), edit_admin_thesis_path(thesis),
                  class: 'btn-circle',
                  title: 'Editar tesis' if current_user.admin? %>
