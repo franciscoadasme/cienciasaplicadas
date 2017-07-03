@@ -1,0 +1,12 @@
+<li>
+  <%= publication.link %>
+
+  <ul class="list-inline list-sep-semicolon">
+    <% publication.authors.each do |author| %>
+      <li><%= author.link %></li>
+    <% end %>
+  </ul>
+
+  <p class="text-muted"><%= publication.meta %></p>
+
+</li>

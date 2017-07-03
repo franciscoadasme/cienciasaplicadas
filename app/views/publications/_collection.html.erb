@@ -1,0 +1,9 @@
+<ul class="list-unstyled">
+  <% collection.group_by(&:year).each do |year, publications| %>
+    <li class="h3">
+      <%= year %>
+      <small><%= t 'views.publications.count', count: publications.count %></small>
+    </li>
+    <%= render publications %>
+  <% end %>
+</ul>

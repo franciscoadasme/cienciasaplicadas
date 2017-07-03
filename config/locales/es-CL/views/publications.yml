@@ -1,0 +1,6 @@
+es-CL:
+  views:
+    publications:
+      count:
+        one: "Una publicación"
+        other: "%{count} publicaciones"

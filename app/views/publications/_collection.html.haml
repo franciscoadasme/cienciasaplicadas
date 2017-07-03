@@ -1,8 +1,0 @@
-%ul.publications
-  - collection.group_by(&:year).each do |year, pubs|
-    %li.publication-group
-      %h3{ id: year }
-        = year
-        %small= pluralize pubs.count, 'publicación', 'publicaciones'
-
-    = render pubs
