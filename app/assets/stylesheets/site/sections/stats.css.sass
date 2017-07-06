@@ -1,66 +1,28 @@
 @import "site/variables"
 
-.stats
-  padding: 0
-  text-align: center
+.list-stats
+  display: flex
+  justify-content: space-between
+  align-items: baseline
+  padding-left: 0
+  list-style: none
 
-  &.stats-stacked
-    .stat
-      margin-bottom: 10px
+  & > li
+    margin-left: 20px
+    text-transform: uppercase
+    color: $text-muted
+    font-size: $font-size-small
+
+    &:first-child
+      margin-left: 0
+
+    .number
       display: block
-
-      &:last-child
-        margin-bottom: 0
-
-  .stat,
-  .stats-heading
-    display: inline-block
-    margin-right: 20px
-    list-style: none
-
-  .stat
-    &:last-child
-      margin-right: 0
-
-  .stats-heading
-    position: relative
-    top: -15px
-
-.stat
-  display: inline-block
-  text-align: left
-
-.stat-block
-  display: block
-
-.stat-right
-  text-align: right
-
-.stat-number
-  font-size: 3*$font-size-base
-  line-height: 3*$font-size-base
-
-.stat-unit
-  text-transform: uppercase
-
-.stat-label
-  font-size: $font-size-base - 1px
-  line-height: $line-height-base
-  text-transform: uppercase
-  color: darken($text-muted, 15%)
+      font-size: $font-size-base * 3.5
+      line-height: 1
+      color: $text-color
 
 #chart-publication-per-year
-  margin-top: 40px
-
-#cloud-publication-per-journal
+  margin: 20px auto 0
   width: 100%
-  height: 345px
-  overflow: visible
-
-div.jqcloud
-  span[class^="w"]
-    cursor: default
-
-  @for $i from 1 through 10
-    span.w#{$i}
-      color: lighten($brand-primary, (10 - $i) * 4%)
+  height: 300px

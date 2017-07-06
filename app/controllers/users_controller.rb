@@ -9,6 +9,7 @@ class UsersController < SiteController
   end
 
   def stats
+    @stats = @user.statistics
   end
 
   private

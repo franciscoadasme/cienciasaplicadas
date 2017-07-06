@@ -1,0 +1,52 @@
+<div class="container container-narrow">
+  <%= render 'users/header', user: user %>
+
+  <section id="stats">
+    <ul class="list-stats">
+      <li>
+        <span class="number"><%= @stats.publication_total %></span>
+        publicaciones
+      </li>
+      <li>
+        <span class="number"><%= @stats.publication_total_this_year %></span>
+        publicaciones este año
+      </li>
+      <li>
+        <span class="number"><%= @stats.avg_publication_per_year.round(1) %></span>
+        publicaciones por año
+      </li>
+      <li>
+        <span class="number"><%= @stats.journal_total %></span>
+        revistas
+      </li>
+    </ul>
+
+    <% pubs_per_year = Hash[@stats.publication_per_year(include_empty_years: true)] %>
+    <% if pubs_per_year.count > 4 %>
+      <% pubs_per_year.transform_keys! { |y| y.to_s[-2, 2] } if pubs_per_year.count > 20 %>
+      <canvas id="chart-publication-per-year" data-graph="<%= pubs_per_year.to_a %>">
+      </canvas>
+    <% end %>
+  </section>
+
+  <section id="journals">
+    <h2>Revistas científicas</h2>
+    <p class="lead text-muted">
+      <%= @user.first_name %> ha publicado en
+      <%= pluralize @stats.journals.count, 'revista', 'revistas' %>
+    </p>
+
+    <ul class="list-group">
+      <% @stats.publication_per_journal.each do |journal_name, count| %>
+        <% relative_count = count.to_f / @stats.publication_total * 100 %>
+        <li class="list-group-item progress">
+          <span class="progress-bar" style="width: <%= relative_count.round %>%"></span>
+          <em><%= journal_name %></em>
+          <div class="pull-right">
+            <strong><%= count %></strong>
+            <span class="text-muted">(<%= relative_count.round %>%)</span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </section>
