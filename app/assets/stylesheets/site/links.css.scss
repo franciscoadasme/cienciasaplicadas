@@ -14,6 +14,14 @@ a.disabled,
   pointer-events: none;
 }
 
+a.link-block {
+  display: inline-block;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
 a.link-unstyled {
   &,
   &:active
