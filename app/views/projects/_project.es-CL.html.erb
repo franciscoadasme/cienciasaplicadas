@@ -1,0 +1,18 @@
+<li>
+  <% classes = "link-unstyled link-block #{'disabled' unless project.viewable?}" %>
+  <%= project.timespan %>
+  <br>
+  <span class="h4">
+    <%= link_to_if project.viewable?, project.title, user_project_url(user, project), class: 'link-unstyled' %>
+  </span>
+  <br>
+  <small class="text-muted">
+    <%= project.end_year < DateTime.current.year ? 'Participó' : 'Participa' %>
+    como <em><%= project.position.capitalize %></em>
+    en <%= project.source_and_id %>
+  </small>
+
+  <% if project.description.present? %>
+    <p><%= excerpt project.description, truncate_at: 180 %></p>
+  <% end %>
+</li>

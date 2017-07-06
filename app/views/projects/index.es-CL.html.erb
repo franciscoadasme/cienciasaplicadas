@@ -1,0 +1,13 @@
+<div class="container container-narrow">
+  <%= render 'users/header', user: user %>
+
+  <% if projects.any? %>
+    <ul class="media-list media-list-condensed">
+      <%= render projects %>
+    </ul>
+  <% else %>
+    <p class="lead text-muted text-center">
+      Oops... no hay proyectos para mostrar
+    </p>
+  <% end %>
+</div>

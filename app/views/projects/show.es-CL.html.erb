@@ -1,0 +1,38 @@
+<article role="main">
+  <%= render 'users/header', user: user %>
+
+  <header>
+    <h2><%= project.title %></h2>
+
+    <table class="table-transposed">
+      <tbody>
+        <tr>
+          <th>Periodo</th>
+          <td><%= project.timespan %></td>
+        </tr>
+        <tr>
+          <th>Posición</th>
+          <td><%= project.position %></td>
+        </tr>
+        <tr>
+          <th>Concurso</th>
+          <td><%= project.object.source %></td>
+        </tr>
+        <tr>
+          <th>Identificador</th>
+          <td><%= project.identifier %></td>
+        </tr>
+      </tbody>
+    </table>
+  </header>
+
+  <section class="content">
+    <% if project.description.present? %>
+      <%= project.description.html_safe %>
+    <% else %>
+      <p class="lead text-muted text-center">
+        Oops... no hay description para mostrar
+      </p>
+    <% end %>
+  </section>
+</article>
