@@ -56,6 +56,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def social_links
+    return {} if object.social_links.blank?
     Hash[object.social_links.split(/\n/).map { |line| line[1..-1].split }]
   end
 end
