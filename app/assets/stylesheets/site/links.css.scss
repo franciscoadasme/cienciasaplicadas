@@ -9,7 +9,8 @@
 a.active,
 .active > a,
 a.disabled,
-.disabled > a {
+.disabled > a,
+.disabled > a * {
   pointer-events: none;
 }
 
