@@ -1,5 +1,10 @@
-%li.moment-item
-  = link_to moment_permalink(moment), class: 'magnifiable' do
-    = autosizing_image_tag moment.photo.url(:medium), class: 'moment-photo'
-
-  = render 'moment_meta', moment: moment, time_format: :short
+%li.moment
+  = link_to moment.permalink, class: 'link-block link-unstyled' do
+    = image_tag moment.photo.url(:medium)
+    .moment-body
+      - if moment.caption.present?
+        %p.caption= moment.caption
+      %footer
+        %small.text-muted
+          Publicada el
+          = moment.time_tag

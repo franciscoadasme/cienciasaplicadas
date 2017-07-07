@@ -1,12 +1,17 @@
-- provide :jumbotron do
-  %h1 Momentos
-  = render 'nav_header'
+.container.container-narrow
+  %header
+    %h1 Momentos
+    %p.lead
+      - if moment.caption.present?
+        = moment.caption
+        %br
+      %small.text-muted
+        Publicada el #{moment.time_tag}
 
-%article.moment
-  = image_tag @moment.photo, class: 'moment-photo'
-  = render 'moment_meta', moment: @moment
+  %section#moment
+    = image_tag moment.photo, class: 'img-thumbnail'
 
-%hr
-.text-center
-  = btn_to 'Mostrar solo mes actual', moments_path(date_params_for_this_month)
-  = btn_to 'Volver a Momentos', moments_path
+  %hr
+
+  .text-center
+    = btn_to 'Volver a Momentos', moments_path

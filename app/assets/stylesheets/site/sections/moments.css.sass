@@ -1,111 +1,34 @@
-@import "common/mixins"
 @import "site/variables"
 
-img.moment-photo
-  border-radius: 5px
-
-.moment-meta
-  margin-top: -15px
-  padding: 30px 15px 15px
-  background-color: lighten($gray-lighter, 5%)
-  border: solid 1px darken($gray-lighter, 6.5%)
-  border-radius: 5px
-
-  .media-heading
-    font-size: $font-size-base
-    line-height: $font-size-base
-
-    .moment-username
-      font-weight: $font-weight-bold
-
-    time
-      color: $text-muted
-
-  .moment-photo
-    width: 272px
-    height: 0
-    padding-bottom: 136px
-
-.moments
-  position: relative
-  margin: 0 0 20px
-  padding: 0
+.list-moments
+  padding-left: 0
   list-style: none
 
-  &:before
-    content: ""
-    display: block
-    +position-at-edges(absolute, 40px, null, 0, 50%)
-    margin-left: -2px
-    border: solid 2px $gray-lighter
+  column-count: 3
+  column-gap: 20px
 
-  header
-    margin-bottom: 50px
-    text-align: center
+  & > li
+    display: inline-block
+    margin-bottom: 20px
+    max-width: 300px
 
-    .heading
-      display: inline-block
-      padding: 5px 15px
-      background-color: darken($gray-lighter, 10%)
-      border-radius: 2px
-      color: white
-      font-weight: $font-weight-bold
+    img
+      max-width: 300px
+      max-height: 300px
+      border-top-right-radius: 5px
+      border-top-left-radius: 5px
+      opacity: 0.9
 
-  & > .left-column
-    li
-      margin-right: 10px
+    .moment-body
+      padding: 20px
+      border: solid 1px #dedede
+      border-top: none
+      border-bottom-right-radius: 5px
+      border-bottom-left-radius: 5px
 
-    .moment-item:before
-      right: -30px
-    .moment-item:after
-      right: -41px
+    .caption
+      margin-bottom: 0
 
-  & > .right-column
-    margin-top: 165px
-
-    li
-      margin-left: 10px
-
-    .moment-item:before
-      left: -30px
-    .moment-item:after
-      left: -41px
-
-  .moment-item
-    position: relative
-    margin-bottom: 40px
-
-    &:before,
-    &:after
-      +position-at-edges(absolute, $top: 0.5*222px + 3px)
-
-    &:before
-      content: ""
-      display: block
-      margin-top: 0.5*$font-size-base + 4px
-      width: 30px
-      height: 4px
-      background-color: $gray-lighter
-
-    &:after
-      +fa-icon
-      content: "\f192"
-      margin-top: -2px
-      padding: 2px 0 0
-      color: darken($gray-lighter, 10%)
-      font-size: 2*$font-size-base
-      background-color: white
-
-    .moment-photo
-      width: 297px
-      height: 0
-      padding-bottom: 222px
-
-.moment
-  margin: 0 auto 20px
-  width: 640px + 2*4px
-
-.moment,
-.moments .moment-item
-  border: solid 4px $gray-lighter
-  border-radius: 7px
+    a:hover
+      img
+        opacity: 1
