@@ -1,36 +1,27 @@
 @import "site/variables"
 
-.list-moments
-  padding-left: 0
-  list-style: none
+.moment
+  display: inline-block
+  margin-bottom: 20px
+  max-width: 300px
 
-  display: flex
-  flex-wrap: wrap
-  justify-content: space-between
-  align-items: flex-start
+  &:hover
+    .moment__photo
+      opacity: 1
 
-  & > li
-    display: inline-block
-    margin-bottom: 20px
-    max-width: 300px
+.moment__photo
+  max-width: 300px
+  max-height: 300px
+  border-top-right-radius: 5px
+  border-top-left-radius: 5px
+  opacity: 0.9
 
-    img
-      max-width: 300px
-      max-height: 300px
-      border-top-right-radius: 5px
-      border-top-left-radius: 5px
-      opacity: 0.9
+.moment__body
+  padding: 20px
+  border: solid 1px #dedede
+  border-top: none
+  border-bottom-right-radius: 5px
+  border-bottom-left-radius: 5px
 
-    .moment-body
-      padding: 20px
-      border: solid 1px #dedede
-      border-top: none
-      border-bottom-right-radius: 5px
-      border-bottom-left-radius: 5px
-
-    .caption
-      margin-bottom: 0
-
-    a:hover
-      img
-        opacity: 1
+.moment__caption
+  margin-bottom: 0
