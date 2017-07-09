@@ -17,7 +17,7 @@ ul > li > .btn
   @extend .list-flex
 
   & > *
-    margin: 0 20px 20px 0
+    margin: 20px 20px 0 0
 
     &:last-child
       margin-right: 0
@@ -27,6 +27,9 @@ ul > li > .btn
       flex-basis: calc(50% - 20px)
       max-width: 50%
 
+      &:nth-child(-n+2)
+        margin-top: 0
+
       &:nth-child(2n)
         margin-right: 0
 
@@ -35,6 +38,9 @@ ul > li > .btn
       flex-basis: calc(33% - 20px)
       max-width: 50%
 
+      &:nth-child(-n+3)
+        margin-top: 0
+
       &:nth-child(3n)
         margin-right: 0
 
@@ -42,6 +48,9 @@ ul > li > .btn
     & > *
       flex-basis: calc(25% - 20px)
       max-width: 50%
+
+      &:nth-child(-n+4)
+        margin-top: 0
 
       &:nth-child(4n)
         margin-right: 0
