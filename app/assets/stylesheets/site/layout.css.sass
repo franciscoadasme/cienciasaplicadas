@@ -58,6 +58,12 @@ section[role="main"]
   section[id]
     margin-top: 40px
 
+    &:first-child
+      margin-top: 0
+
+    & > *:last-child
+      margin-bottom: 0
+
   .section-title
     margin-bottom: 40px
     font-size: $font-size-base * 2
