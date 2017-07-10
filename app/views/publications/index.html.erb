@@ -1,7 +1,23 @@
 <article role="main">
-  <%= render 'users/header', user: user %>
+  <% if defined? user %>
+    <%= render 'users/header', user: user %>
+  <% else %>
+    <header>
+      <h1>
+        <small>Investigación</small>
+        <br>
+        Publicaciones
+      </h1>
+    </header>
+  <% end %>
 
-  <section class="publications">
-    <%= render 'collection', collection: publications %>
+  <section>
+    <% if publications.any? %>
+      <%= render 'publications/collection', collection: publications %>
+    <% else %>
+      <p class="lead text-muted text-center">
+        Oops... no hay publicaciones para mostrar
+      </p>
+    <% end %>
   </section>
 </article>

@@ -1,6 +1,13 @@
 class UsersController < SiteController
   before_action :set_user
-  decorates_assigned :user
+  decorates_assigned :publications, :user
+
+  def publications_index
+    @publications = @user.publications.includes({ authors: :user }, :journal)
+                         .sorted
+    @pubs_per_year = @user.statistics.publication_per_year.reverse
+    render 'publications/index'
+  end
 
   def show
     @user_pubs = @user.publications.flagged.sorted
