@@ -1,7 +1,0 @@
-- if @group.overview.present?
-  .jumbotron
-    .container
-      %h2 Haciendo ciencia desde Talca, Chile
-      %p= @group.overview.html_safe
-      %footer.widget-footer
-        = btn_to 'Leer más sobre el doctorado', page_path(:presentacion), class: 'btn-lg', primary: true

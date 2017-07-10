@@ -1,0 +1,17 @@
+<p class="h4">Últimas noticias</p>
+<ul class="media-list media-list-condensed">
+  <% @lastest_posts.each do |post| %>
+    <li>
+      <%= post.link class: 'link-unstyled link-block' do %>
+        <div><b><%= post.title.truncate 80, separator: /\s+/ %></b></div>
+        <small class="text-muted">
+          <%= post.published_at %>
+          &middot;
+          <%= post.author.display_name %>
+        </small>
+        <p><%= post.excerpt %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<%= btn_to 'Ver todas las noticias', posts_url, block: true %>

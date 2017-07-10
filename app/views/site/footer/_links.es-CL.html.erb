@@ -1,0 +1,23 @@
+<p class="h4">Enlaces rapidos</p>
+<ul class="list-group">
+  <%= link_to posts_url, class: 'list-group-item' do %>
+    Noticias
+    <%= fa_icon :'newspaper-o', class: 'pull-right' %>
+  <% end %>
+  <%= link_to events_url, class: 'list-group-item' do %>
+    Eventos
+    <%= fa_icon :'calendar-o', class: 'pull-right' %>
+  <% end %>
+  <%= link_to moments_url, class: 'list-group-item' do %>
+    Momentos
+    <%= fa_icon :'camera-retro', class: 'pull-right' %>
+  <% end %>
+  <%= link_to publications_url, class: 'list-group-item' do %>
+    Publicaciones
+    <%= fa_icon :'files-o', class: 'pull-right' %>
+  <% end %>
+  <%= link_to theses_url, class: 'list-group-item' do %>
+    Tesis
+    <%= fa_icon :'book', class: 'pull-right' %>
+  <% end %>
+</ul>

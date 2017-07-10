@@ -1,9 +1,0 @@
-%h5 Enlaces rápidos
-
-%ul.nav.nav-pills.nav-stacked
-  - [ @presentation_page, @future_students_page ].each do |page|
-    - next if page.nil?
-    - path = page_path page
-    - content = parse_content page.body
-    - html_headings(content).each do |heading|
-      %li= link_to heading, path + "##{heading.parameterize}"
