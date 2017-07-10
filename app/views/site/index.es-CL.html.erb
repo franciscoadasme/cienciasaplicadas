@@ -1,0 +1,48 @@
+<div class="container">
+  <% if @lastest_posts.any? %>
+    <section id="news">
+      <h2 class="section-title">Ultimas noticias</h2>
+      <ul class="list-flex list-flex-col list-flex-col-3">
+        <%= render @lastest_posts %>
+      </ul>
+    </section>
+  <% end %>
+
+  <% if @upcoming_events.any? %>
+    <section id="events">
+      <h2 class="section-title">Proximos eventos</h2>
+      <ul class="list-flex list-flex-col list-flex-col-2">
+        <%= render @upcoming_events %>
+      </ul>
+    </section>
+  <% end %>
+
+  <% if @lastest_publications.any? %>
+    <section id="publications">
+      <h2 class="section-title">Publicaciones recientes</h2>
+      <ul class="list-col list-col-2">
+        <%= render @lastest_publications %>
+      </ul>
+    </section>
+  <% end %>
+
+  <% if @graduated_users.any? %>
+    <section id="graduated">
+      <h2 class="section-title">Recien egresados</h2>
+      <ul class="list-flex list-flex-col list-flex-col-3">
+        <% @graduated_users.each do |user| %>
+          <%= render user, show_position: false %>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+
+  <% if @recent_moments.any? %>
+    <section id="publications">
+      <h2 class="section-title">Momentos recientes</h2>
+      <ul class="list-flex list-flex-col list-flex-col-3">
+        <%= render @recent_moments %>
+      </ul>
+    </section>
+  <% end %>
+</div>

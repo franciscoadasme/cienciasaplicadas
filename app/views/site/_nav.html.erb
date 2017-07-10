@@ -1,9 +1,14 @@
+<% showcase = current_page?(root_url) %>
 <header>
-  <nav class="navbar">
+  <nav class="navbar <%= 'navbar-showcase' if showcase %>">
     <div class="container">
-      <div class="navbar-header">
-        <%= link_to 'Doctorado en Ciencias Aplicadas', root_url, class: 'navbar-brand' %>
-      </div>
+      <% if showcase %>
+        <%= render 'site/showcase' %>
+      <% else %>
+        <div class="navbar-header">
+          <%= link_to 'Doctorado en Ciencias Aplicadas', root_url, class: 'navbar-brand' %>
+        </div>
+      <% end %>
 
       <ul class="navbar-nav navbar-nav--icons">
         <%= nav_item_icon 'Noticias', :'newspaper-o', :posts %>

@@ -12,10 +12,11 @@ class SiteController < ApplicationController
     @publication_per_year = compute_publication_avg_per_year
 
     @students_count = User.with_position('estudiante').count
-    @graduate_users = User.default.with_position 'egresado'
+    @graduated_users = User.default.with_position('egresado').limit(3).decorate
     @graduate_count = User.with_position('egresado').count
-    @recent_moments = Moment.sorted.limit(3)
-    @lastest_theses = Thesis.sorted.limit(3)
+    @recent_moments = Moment.sorted.limit(3).decorate
+    @lastest_theses = Thesis.sorted.limit(3).decorate
+    @lastest_publications = Publication.sorted.limit(5).decorate
   end
 
   def contact
@@ -37,7 +38,7 @@ class SiteController < ApplicationController
 
   private
     def set_lastest
-      @lastest_publications = Publication.unscoped.order(created_at: :desc).limit(3)
+      @lastest_publications = Publication.unscoped.order(created_at: :desc).limit(3).decorate
       @lastest_posts = Post.published.sorted.limit(3).decorate
       @upcoming_events = Event.upcoming.sorted.limit(3).decorate
     end

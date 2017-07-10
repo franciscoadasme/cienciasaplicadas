@@ -1,0 +1,31 @@
+@import "site/variables";
+
+.navbar-showcase {
+    margin-bottom: 40px;
+
+    .container {
+      position: relative;
+    }
+
+    .navbar-nav--icons {
+        position: absolute;
+        top: 0;
+        right: 15px;
+    }
+
+    .navbar-nav:last-child {
+        padding-bottom: 20px;
+    }
+}
+
+.showcase {
+    margin: 80px auto;
+    width: 700px;
+    text-align: center;
+    align-self: flex-start;
+    color: desaturate(lighten($nav-bg, 45%), 25%);
+
+    h1 {
+        color: white;
+    }
+}
