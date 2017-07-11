@@ -1,0 +1,47 @@
+@import "site/variables";
+
+.user {
+    display: flex;
+    align-items: center;
+
+    font-size: $font-size-base;
+    line-height: $line-height-computed;
+
+    &__avatar {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    &__body {
+        flex: 1;
+    }
+
+    &__headline {
+        margin-bottom: 0;
+
+        color: $text-muted;
+    }
+
+    &__image {
+        border-radius: 50%;
+    }
+
+    &__link {
+        &,
+        &:focus,
+        &:hover {
+            color: $text-color;
+
+            text-decoration: none;
+        }
+    }
+
+    &__link--icon {
+        color: lighten($text-muted, 25%);
+
+        &:focus,
+        &:hover {
+            color: $brand-primary;
+        }
+    }
+}

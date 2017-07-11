@@ -1,19 +1,51 @@
-<li class="media">
-  <%= user.avatar %>
+<div class="user">
+  <%= link_to user_url(user), class: 'user__avatar' do %>
+    <%= autosizing_image_tag user.avatar_url, class: 'user__image', size: 64 %>
+  <% end %>
 
-  <div class="media-body">
-    <%= user.link %>
-    <%= user.position_badge if local_assigns.fetch(:show_position, true) %>
-
-    <div class="media-meta">
-      <p><%= user.headline %></p>
-      <p><%= user.mail_link %></p>
-
-      <% if user.pub_info || user.project_info %>
-        <span class="separator"></span>
+  <div class="user__body">
+    <div class="user__title">
+      <%= link_to user.display_name, user_url(user), class: 'user__link' %>
+      <% if local_assigns.fetch(:show_position, true) %>
+        <span class="badge badge-outline-primary user__position">
+          <%= user.position.name %>
+        </span>
       <% end %>
-      <%= content_tag :p, user.pub_info if user.pub_info %>
-      <%= content_tag :p, user.project_info if user.project_info %>
     </div>
+
+    <p class="user__headline"><%= user.headline %></p>
+
+    <ul class="list-inline">
+      <li>
+        <%= link_to fa_icon(:'user-circle-o'), user, class: 'user__link user__link--icon', title: 'Ver perfil de miembro' %>
+      </li>
+      <li>
+        <%= mail_to user.email, fa_icon(:'paper-plane'), class: 'user__link user__link--icon', title: 'Enviar mensaje' %>
+      </li>
+      <% if user.publications.any? %>
+        <li>
+          <%= link_to fa_icon(:'files-o', text: user.publications.count),
+                      user_publications_url(user),
+                      class: 'user__link user__link--icon', title: 'Ver publicaciones' %>
+        </li>
+        <li>
+          <%= link_to fa_icon(:'bar-chart'), user_stats_url(user),
+                      class: 'user__link user__link--icon', title: 'Ver productividad' %>
+        </li>
+      <% end %>
+      <% if user.projects.any? %>
+        <li>
+          <%= link_to fa_icon(:'folder-open-o', text: user.projects.count),
+                      user_projects_url(user),
+                      class: 'user__link user__link--icon', title: 'Ver proyectos' %>
+        </li>
+      <% end %>
+      <% if user.thesis.present? %>
+        <li>
+          <%= link_to fa_icon(:'book'), thesis_url(user.thesis),
+                      class: 'user__link user__link--icon', title: 'Ver memoria de tesis' %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-</li>
+</div>
