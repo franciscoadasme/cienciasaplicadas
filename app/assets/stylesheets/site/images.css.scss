@@ -1,26 +1,5 @@
 @import "site/variables";
 
-.img-avatar {
-  display: inline-block;
-  position: relative;
-
-  &::before {
-    content: " ";
-    position: absolute;
-    z-index: -1;
-    top: -($img-frame-padding + $img-frame-width);
-    left: -($img-frame-padding + $img-frame-width);
-    right: -($img-frame-padding + $img-frame-width);
-    bottom: -($img-frame-padding + $img-frame-width);
-    border: $img-frame-width solid $gray-lighter;
-    border-radius: 50%;
-  }
-
-  img {
-    border-radius: 50%;
-  }
-}
-
 .img-maxsize {
   @each $size in (16, 24, 28, 32, 48, 56, 64, 96, 128, 192) {
     &[data-size~="#{$size}"] {

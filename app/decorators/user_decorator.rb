@@ -4,10 +4,8 @@ class UserDecorator < Draper::Decorator
   decorates_association :thesis
 
   def avatar(size: 64)
-    h.content_tag :div, class: 'img-avatar' do
-      h.link_to h.user_url(object) do
-        h.autosizing_image_tag avatar_url, size: size.to_s
-      end
+    h.link_to h.user_url(object), class: 'link-block' do
+      h.autosizing_image_tag avatar_url, class: 'img-circle', size: size.to_s
     end
   end
 
