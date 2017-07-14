@@ -25,7 +25,9 @@
         <%= nav_item 'Información', event_url(event) %>
       </ul>
     </nav>
+  <% end %>
 
+  <% if local_assigns.fetch(:show_actions, true) %>
     <div class="actions">
       <%= btn_to fa_icon(:'id-badge'), registration_event_url(event),
                  class: 'btn-circle btn-primary btn-lg btn-raised', title: 'Registrarse' %>
