@@ -5,8 +5,8 @@
     <h2>Registro como asistente</h2>
     <p>Para inscripción, favor rellenar el formulario con su información personal.</p>
     <p>
-      Dentro de los próximos días le llegará un mensaje a la dirección de
-      correo indicada confirmando la aceptación de su participación en
+      Dentro de los próximos días recibirá un mensaje en la dirección de
+      correo indicada confirmando la aceptación o rechazo de su participación en
       el evento.
     </p>
 
@@ -30,7 +30,7 @@
         <div class="form-actions col-md-12">
           <%= f.submit 'Enviar', class: 'btn btn-primary', data: { disable_with: 'Enviando...' } %>
           <span class="text-muted">o</span>
-          <%= link_to 'volver a evento', event_url(event), class: 'link-unstyled' %>
+          <%= link_to 'volver al evento', event_url(event), class: 'link-unstyled' %>
         </div>
       </div>
     <% end %>
