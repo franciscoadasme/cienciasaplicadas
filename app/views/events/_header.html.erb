@@ -5,20 +5,20 @@
     <br>
     <%= event.name %>
   </h1>
-  <div class="row">
-    <div class="col-md-6">
-      <strong>Patrocinador</strong>
-      <br>
-      <%= event.promoter %>
-    </div>
-    <div class="col-md-6">
-      <strong>Lugar de realización</strong>
-      <br>
-      <%= event.location %>
-    </div>
-  </div>
 
   <% if current_user.try :super_user? %>
+  <table class="table-transposed">
+    <tbody>
+      <tr>
+        <th>Patrocinador</th>
+        <td><%= event.promoter %></td>
+      </tr>
+      <tr>
+        <th>Lugar de realización</th>
+        <td><%= event.location %></td>
+      </tr>
+    </tbody>
+  </table>
     <div class="actions">
       <small class="text-muted"><strong>ACTIONS</strong></small>
       <%= btn_to fa_icon(:pencil), edit_admin_event_url(@event),
