@@ -78,9 +78,9 @@ CbsmWebsite::Application.routes.draw do
     resources :events do
       member do
         get :attendees
-        patch 'attendes/:attendee_id/accept', to: :accept_attendee, as: :accept_attendee
-        patch 'attendes/:attendee_id/reject', to: :reject_attendee, as: :reject_attendee
-        delete 'attendes/:attendee_id', to: :destroy_attendee, as: :attendee
+        patch 'attendes/:attendee_id/accept', action: :accept_attendee, as: :accept_attendee
+        patch 'attendes/:attendee_id/reject', action: :reject_attendee, as: :reject_attendee
+        delete 'attendes/:attendee_id', action: :destroy_attendee, as: :attendee
       end
     end
 
