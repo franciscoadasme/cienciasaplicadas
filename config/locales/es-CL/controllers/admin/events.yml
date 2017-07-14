@@ -8,3 +8,6 @@ es-CL:
           success: El evento fue actualizado satisfactoriamente.
         destroy:
           success: El evento ha sido eliminado.
+
+        alerts:
+          registration_disabled: Registro al evento está deshabilitado

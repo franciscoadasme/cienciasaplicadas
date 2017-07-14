@@ -82,7 +82,10 @@ class Admin::EventsController < AdminController
         :all_day,
         :event_type,
         :promoter,
-        :picture)
+        :picture,
+        :managed,
+        :registration_enabled,
+        :max_attendee)
     end
 
   def update_attendee_status(accepted:)

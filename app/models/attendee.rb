@@ -2,6 +2,7 @@ class Attendee < ActiveRecord::Base
   belongs_to :event
 
   scope :sorted, -> { order :created_at }
+  scope :accepted, -> { where accepted: true }
 
   VALID_NAME_REGEX = /\A[[:alpha:] ,\.'-]+\Z/i
   validates :name, allow_blank: true,

@@ -17,6 +17,16 @@
         %strong.text-muted= @event.event_type.upcase
         = @event.name
 
+      %dt= t "labels.admin.events.#{'not_' unless @event.managed?}managed"
+      %dd
+        - if @event.managed?
+          - if @event.registration_enabled?
+            = t 'labels.admin.events.registration_enabled',
+                accepted_attendees: @event.attendees.accepted.count,
+                max_attendee: @event.max_attendee
+          - else
+            = t 'labels.admin.events.registration_disabled'
+
       %dt= Event.human_attribute_name :duration
       %dd= format_period @event.start_date, @event.end_date
 

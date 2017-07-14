@@ -34,6 +34,11 @@ class EventsController < SiteController
   end
 
   def registration
+    unless @event.subscribable?
+      msg = I18n.t 'controllers.admin.events.alerts.registration_disabled'
+      redirect_to event_url(@event), alert: msg
+    end
+
     if params.key?(:attendee)
       @attendee = Attendee.new attendee_params
       @attendee.event = @event

@@ -3,3 +3,24 @@ es-CL:
     admin:
       events:
         attendees: Registro de asistentes
+
+  labels:
+    admin:
+      events:
+        managed: Administración activada
+        not_managed: Administración deshabilitada
+        registration_enabled: |
+          Registro de visitantes activo (%{accepted_attendees}/%{max_attendee})
+        registration_disabled: Registro de visitantes deshabilitado
+
+  simple_form:
+    hints:
+      event:
+        managed: Esto incluye noticias, listado de invitados, registro de visitantes, etc.
+        max_attendee: Si este número es superado, el registro será deshabilitado
+
+    labels:
+      event:
+        managed: Activar administración de evento
+        registration_enabled: Habilitar registro de visitantes
+        max_attendee: Número máximo de visitantes

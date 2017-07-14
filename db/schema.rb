@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227161903) do
+ActiveRecord::Schema.define(version: 20170714024545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendees", force: :cascade do |t|
+    t.string   "email",      null: false
+    t.string   "name"
+    t.boolean  "accepted"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attendees", ["event_id", "email"], name: "index_attendees_on_event_id_and_email", unique: true, using: :btree
+  add_index "attendees", ["event_id"], name: "index_attendees_on_event_id", using: :btree
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",           limit: 255, null: false
@@ -30,12 +42,12 @@ ActiveRecord::Schema.define(version: 20161227161903) do
   add_index "authors", ["user_id"], name: "index_authors_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",                 limit: 255, null: false
-    t.date     "start_date",                       null: false
+    t.string   "name",                 limit: 255,                 null: false
+    t.date     "start_date",                                       null: false
     t.date     "end_date"
-    t.string   "location",             limit: 255, null: false
+    t.string   "location",             limit: 255,                 null: false
     t.text     "description"
-    t.string   "event_type",           limit: 255, null: false
+    t.string   "event_type",           limit: 255,                 null: false
     t.string   "promoter",             limit: 255
     t.string   "picture_file_name",    limit: 255
     t.string   "picture_content_type", limit: 255
@@ -44,6 +56,9 @@ ActiveRecord::Schema.define(version: 20161227161903) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug",                 limit: 255
+    t.integer  "max_attendee"
+    t.boolean  "managed",                          default: false
+    t.boolean  "registration_enabled",             default: false
   end
 
   add_index "events", ["name", "start_date"], name: "index_events_on_name_and_start_date", unique: true, using: :btree
@@ -272,4 +287,5 @@ ActiveRecord::Schema.define(version: 20161227161903) do
   add_index "users", ["position_id"], name: "index_users_on_position_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "attendees", "events"
 end

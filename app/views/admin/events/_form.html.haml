@@ -14,6 +14,18 @@
           .col-xs-6
             = f.input :end_date, as: :string, wrapper: :inline
 
+    .form-group
+      %label.control-label.col-xs-3 Administración
+      .col-xs-9.form-controls
+        = f.input :managed, wrapper: :default
+        .inset
+          = f.input :registration_enabled, wrapper: :default
+          .inset
+            .form-group.form-group-inline
+              = f.label :max_attendee, class: 'boolean'
+              = f.text_field :max_attendee, class: 'form-control', size: 10
+              %p.help-block= t 'simple_form.hints.event.max_attendee'
+
     = f.input :location
     = f.input :event_type, as: :select, collection: Event::TYPES,
               label_method: -> t { t.to_s.titleize }, include_blank: false

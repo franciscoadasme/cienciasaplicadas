@@ -61,4 +61,8 @@ class Event < ActiveRecord::Base
   def one_day?
     end_date.blank? || start_date == end_date
   end
+
+  def subscribable?
+    registration_enabled? && attendees.accepted.count < max_attendee
+  end
 end

@@ -29,8 +29,10 @@
 
   <% if local_assigns.fetch(:show_actions, true) %>
     <div class="actions">
-      <%= btn_to fa_icon(:'id-badge'), registration_event_url(event),
-                 class: 'btn-circle btn-primary btn-lg btn-raised', title: 'Registrarse' %>
+      <% if event.subscribable? %>
+        <%= btn_to fa_icon(:'id-badge'), registration_event_url(event),
+                   class: 'btn-circle btn-primary btn-lg btn-raised', title: 'Registrarse' %>
+      <% end %>
       <% if event.picture.present? %>
         <%= btn_to fa_icon(:'download'), event.picture.url,
                    class: 'btn-circle btn-info btn-raised', title: 'Descargar afiche' %>
