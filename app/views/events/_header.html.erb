@@ -6,7 +6,6 @@
     <%= event.name %>
   </h1>
 
-  <% if current_user.try :super_user? %>
   <table class="table-transposed">
     <tbody>
       <tr>
@@ -20,9 +19,14 @@
     </tbody>
   </table>
     <div class="actions">
-      <small class="text-muted"><strong>ACTIONS</strong></small>
-      <%= btn_to fa_icon(:pencil), edit_admin_event_url(@event),
-                 class: 'btn-circle btn-outline', title: 'Editar' %>
+      <% if event.picture.present? %>
+        <%= btn_to fa_icon(:'download'), event.picture.url,
+                   class: 'btn-circle btn-info btn-raised', title: 'Descargar afiche' %>
+      <% end %>
+      <% if current_user.try :super_user? %>
+        <%= btn_to fa_icon(:pencil), edit_admin_event_url(event),
+                   class: 'btn-circle btn-outline', title: 'Editar' %>
+      <% end %>
     </div>
   <% end %>
 </header>
