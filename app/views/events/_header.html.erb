@@ -19,7 +19,7 @@
     </tbody>
   </table>
 
-  <% if local_assigns.fetch(:show_nav, true) %>
+  <% if event.managed? && local_assigns.fetch(:show_nav, true) %>
     <nav>
       <ul class="nav nav-tabs nav-tabs-dark">
         <%= nav_item 'Información', event_url(event) %>
