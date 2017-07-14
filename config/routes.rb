@@ -75,7 +75,14 @@ CbsmWebsite::Application.routes.draw do
     resources :announcements, only: [ :new, :create ]
 
     resources :moments, except: [ :show ]
-    resources :events
+    resources :events do
+      member do
+        get :attendees
+        patch 'attendes/:attendee_id/accept', to: :accept_attendee, as: :accept_attendee
+        patch 'attendes/:attendee_id/reject', to: :reject_attendee, as: :reject_attendee
+        delete 'attendes/:attendee_id', to: :destroy_attendee, as: :attendee
+      end
+    end
 
     # Development only
     get 'mailer(/:action(/:id(.:format)))', to: 'mailer#:action', as: nil
@@ -100,6 +107,7 @@ CbsmWebsite::Application.routes.draw do
 
     get 'eventos(/:year(/:month))', to: 'events#index', as: :events
     get 'eventos/:id', to: 'events#show', as: :event
+    match 'eventos/:id/registro', to: 'events#registration', via: [:get, :post], as: :registration_event
 
     get 'momentos(/:year(/:month))', to: 'moments#index', as: :moments
     get 'momentos/:year/:month/:day/:id', to: 'moments#show', as: :moment

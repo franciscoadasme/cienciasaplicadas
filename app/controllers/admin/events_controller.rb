@@ -2,10 +2,13 @@ class Admin::EventsController < AdminController
   include NotifiableController
 
   before_action :authorize_user!
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:attendees, :show, :edit, :update, :destroy]
+
+  def attendees
+  end
 
   def index
-    @events = Event.all
+    @events = Event.sorted.reverse
   end
 
   def show
@@ -45,9 +48,28 @@ class Admin::EventsController < AdminController
     redirect_to_index success: true
   end
 
+  def accept_attendee
+    update_attendee_status accepted: true
+  end
+
+  def reject_attendee
+    update_attendee_status accepted: false
+  end
+
+  def destroy_attendee
+    attendee = fetch_attendee
+    attendee.destroy
+    redirect_to action: :attendees
+  end
+
   private
+
+  def fetch_attendee
+    Attendee.find params[:attendee_id]
+  end
+
     def set_event
-      @event = Event.friendly.find(params[:id])
+      @event = Event.includes(:attendees).friendly.find(params[:id])
     end
 
     def event_params
@@ -62,4 +84,11 @@ class Admin::EventsController < AdminController
         :promoter,
         :picture)
     end
+
+  def update_attendee_status(accepted:)
+    attendee = fetch_attendee
+    attendee.accepted = accepted
+    attendee.save
+    redirect_to action: :attendees
+  end
 end

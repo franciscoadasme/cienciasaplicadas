@@ -1,4 +1,5 @@
 class EventsController < SiteController
+  before_action :set_event, only: [:show, :registration]
   decorates_assigned :events, :event
 
   def index
@@ -10,9 +11,7 @@ class EventsController < SiteController
     @events.reverse_order if date_params.blank?
   end
 
-  def show
-    @event = Event.friendly.find params[:id]
-  end
+  def show; end
 
   def upcoming
     @events = Event.upcoming
@@ -34,7 +33,28 @@ class EventsController < SiteController
     render action: :index
   end
 
+  def registration
+    if params.key?(:attendee)
+      @attendee = Attendee.new attendee_params
+      @attendee.event = @event
+      if @attendee.save
+        flash[:success] = 'Registro en el evento completado'
+        redirect_to event_url(@event)
+      end
+    else
+      @attendee = Attendee.new
+    end
+  end
+
   private
+
+  def attendee_params
+    params.require(:attendee).permit(:email, :name)
+  end
+
+  def set_event
+    @event = Event.friendly.find params[:id]
+  end
 
   def set_event_type_counts
     @event_type_count = Hash[Event::TYPES.map(&:to_s).map{ |t| [t, 0]}]

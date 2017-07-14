@@ -5,11 +5,13 @@
 
     .pull-right
       = show_action_for @event, scoped: false, target: :blank
+      - unless @event.attendees.any?
+        = link_to fa_icon(:users), attendees_admin_event_path, class: 'btn btn-default', title: 'Ver registro de visitantes'
       = edit_action_for @event, primary: true
       = delete_action_for @event
 
   .panel-body
-    %dl.dl-horizontal
+    %dl
       %dt= Event.human_attribute_name :name
       %dd
         %strong.text-muted= @event.event_type.upcase

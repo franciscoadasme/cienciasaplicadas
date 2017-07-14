@@ -32,6 +32,7 @@ class Event < ActiveRecord::Base
   include Traversable
   traversable_by :start_date
 
+  has_many :attendees, dependent: :delete_all
   has_attached_file :picture, styles: {
     original: '640x640#',
     thumb: '320x320#'

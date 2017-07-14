@@ -1,0 +1,5 @@
+es-CL:
+  actions:
+    admin:
+      events:
+        attendees: Registro de asistentes
