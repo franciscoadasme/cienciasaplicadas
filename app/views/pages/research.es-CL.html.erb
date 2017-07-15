@@ -10,7 +10,7 @@
   <section id="publications">
     <h2>Publicaciones recientes</h2>
     <ul class="list-unstyled">
-      <%= render @publications %>
+      <%= render publications %>
     </ul>
     <%= btn_to 'Ver todas las publicaciones', publications_url,
                class: 'btn-block' %>
@@ -18,6 +18,6 @@
 
   <section id="publications">
     <h2>Tesis recientes</h2>
-    <%= render 'theses/collection', collection: @theses %>
+    <%= render 'theses/collection', collection: theses %>
   </section>
 </article>

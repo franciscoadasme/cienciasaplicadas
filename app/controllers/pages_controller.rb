@@ -1,7 +1,7 @@
 class PagesController < SiteController
   before_action :set_user, only: [:show]
   before_action :set_page, only: [:show]
-  decorates_assigned :page
+  decorates_assigned :page, :publications, :theses
 
   def show
   end
