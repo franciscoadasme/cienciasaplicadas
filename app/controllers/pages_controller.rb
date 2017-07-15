@@ -8,8 +8,11 @@ class PagesController < SiteController
 
   def research
     @page = Page.friendly.find 'investigacion'
-    @publications = Publication.sorted.decorate.first(10)
-    @theses = Thesis.sorted.decorate.first(5)
+    @publications = Publication.preload({ authors: :user }, :journal)
+                               .members_only
+                               .sorted
+                               .first(10)
+    @theses = Thesis.includes(:user).sorted.decorate.first(5)
   end
 
   private
