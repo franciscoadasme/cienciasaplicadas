@@ -1,5 +1,6 @@
 class UsersController < SiteController
   before_action :set_user
+  before_action :ensure_member
   decorates_assigned :publications, :user
 
   def publications_index
@@ -20,6 +21,12 @@ class UsersController < SiteController
   end
 
   private
+
+  def ensure_member
+    return if @user.member?
+    msg = I18n.t 'controllers.alerts.users.no_profile', user: user.display_name
+    redirect_to :back, alert: msg
+  end
 
   def set_user
     @user = User.includes(:projects, :publications, :thesis)

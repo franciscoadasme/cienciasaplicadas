@@ -32,6 +32,7 @@ class Admin::UsersController < AdminController
 
   def change_position
     @user.position = Position.find params[:position_id]
+    @user.member = Position::MEMBERSHIP.include? @user.position
     @user.save! validate: false
     redirect_to_index success: true
   end

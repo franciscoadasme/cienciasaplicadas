@@ -17,6 +17,8 @@ class Position < ActiveRecord::Base
   friendly_id :name, use: :slugged
   acts_as_list column: 'level'
 
+  MEMBERSHIP = ['director', 'profesor-claustro', 'estudiante'].freeze
+
   scope :sorted, -> { order :level }
 
   has_many :users, dependent: :nullify

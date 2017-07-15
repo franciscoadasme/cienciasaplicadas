@@ -3,3 +3,7 @@ es-CL:
     users:
       show:
         error: "El miembro %{user} no existe."
+  controllers:
+    alerts:
+      users:
+        no_profile: El usuario %{user} no tiene perfil de miembro
