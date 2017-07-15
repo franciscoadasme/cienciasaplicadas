@@ -28,8 +28,9 @@ class Publication < ActiveRecord::Base
   has_many :users, through: :authors
 
   scope :sorted, -> { order year: :desc, month: :desc, title: :asc }
-  scope :default, -> { sorted }
+  scope :default, -> { sorted.members_only }
   scope :flagged, -> { joins(:authors).where(:'authors.flagged' => true).uniq }
+  scope :members_only, -> { joins(authors: :user).where('users.member': true).distinct }
 
   class << self
     def recent(limit = 5)
