@@ -22,10 +22,11 @@ class UserDecorator < Draper::Decorator
     object.headline.try(:capitalize) || object.position.name
   end
 
-  def link(name = nil)
+  def link(name = nil, options = nil)
+    name, options = options, name if name.is_a? Hash
     name ||= display_name
     return name unless object.member?
-    h.link_to name, h.user_url(object)
+    h.link_to name, h.user_url(object), options
   end
 
   def mail_link
