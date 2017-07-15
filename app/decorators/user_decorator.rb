@@ -23,7 +23,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def link
-    h.link_to object.display_name, h.user_url(object)
+    h.link_to display_name, h.user_url(object)
   end
 
   def mail_link
