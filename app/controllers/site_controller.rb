@@ -18,7 +18,11 @@ class SiteController < ApplicationController
     @graduate_count = User.with_position('egresado').count
     @recent_moments = Moment.sorted.limit(3).decorate
     @lastest_theses = Thesis.sorted.limit(3).decorate
-    @lastest_publications = Publication.sorted.limit(5).decorate
+    @lastest_publications = Publication.preload({ authors: :user }, :journal)
+                                       .members_only
+                                       .sorted
+                                       .limit(6)
+                                       .decorate
   end
 
   def contact
