@@ -1,11 +1,9 @@
 <div class="user">
-  <%= link_to user_url(user), class: 'user__avatar' do %>
-    <%= autosizing_image_tag user.avatar_url, class: 'user__image', size: 64 %>
-  <% end %>
+  <%= user.avatar %>
 
   <div class="user__body">
     <div class="user__title">
-      <%= link_to user.display_name, user_url(user), class: 'user__link' %>
+      <%= user.link class: 'user__link' %>
       <% if local_assigns.fetch(:show_position, true) %>
         <span class="badge badge-outline-primary user__position">
           <%= user.position.name %>
