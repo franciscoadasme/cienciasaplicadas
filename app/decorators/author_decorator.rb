@@ -7,6 +7,12 @@ class AuthorDecorator < Draper::Decorator
 
   def link
     return display_name unless has_user?
-    h.link_to display_name, user
+    user.link display_name
+  end
+
+  private
+
+  def user
+    @user ||= object.user.decorate
   end
 end
