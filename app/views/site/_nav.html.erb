@@ -35,7 +35,7 @@
         <% Page.navigable.each do |page| %>
         <%= nav_item page.title, page_path(page) %>
         <% end %>
-        <%= nav_item 'Contacto', contact_path %>
+        <%= nav_item 'Contacto', new_contact_path, active: controller_name == 'contact'  %>
       </ul>
     </div>
   </nav>

@@ -15,18 +15,6 @@ class DefaultMailer < ActionMailer::Base
     mail(to: email, subject: subject, template_path: 'mailer')
   end
 
-  def send_contact_message(message)
-    @sender = message.sender
-    @email = message.email
-    @content = message.body
-    @as_student = message.as_student
-
-    @group = Group.first
-    subject = 'Una persona ha enviado un mensaje'
-
-    mail to: @group.email, subject: subject, template_path: 'mailer'
-  end
-
   def send_journal_notification(journals)
     return if journals.empty?
     recipients = User.admins.map{ |user| "#{user.display_name} <#{user.email}>" }

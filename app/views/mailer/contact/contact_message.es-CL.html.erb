@@ -1,0 +1,23 @@
+<% provide :title do %>
+  <h1>Se ha recibido un nuevo mensaje</h1>
+<% end %>
+
+<%= mtable_tag width: '100%' do %>
+  <tr>
+    <td>
+      <p>
+        <%= @message.sender_name %> ha enviado
+        <% if @message.sended_by_student? %>
+          <strong>como estudiante</strong>
+        <% end %>
+        un mensaje a través del formulario de contacto con el siguiente contenido:
+      </p>
+      <blockquote>
+        <%= simple_format(@message.body).html_safe %>
+      </blockquote>
+      <p>
+        Favor responder a la brevedad posible a <%= mail_to @message.sender_email %>.
+      </p>
+    </td>
+  </tr>
+<% end %>

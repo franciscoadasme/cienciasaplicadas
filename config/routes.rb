@@ -118,7 +118,9 @@ CbsmWebsite::Application.routes.draw do
   get 'publicaciones', to: 'publications#index', as: :publications
   get 'investigacion', to: 'pages#research', as: :research
 
-  match :contacto, to: 'site#contact', via: [ :get, :post ], as: :contact
+  get :contacto, to: 'contact#new', as: :new_contact
+  post :contacto, to: 'contact#create', as: :contact
+
   get ':id', to: 'pages#show', as: :page
 
   root to: 'site#index'

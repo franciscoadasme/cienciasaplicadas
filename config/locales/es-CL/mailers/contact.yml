@@ -1,0 +1,5 @@
+es-CL:
+  mailers:
+    contact:
+      contact_message:
+        subject: Una persona ha enviado una nueva consulta

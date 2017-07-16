@@ -1,0 +1,32 @@
+= form_for @message, url: contact_path do |f|
+  .row
+    .col-xs-5
+      .form-group{ class: validation_class_for_field(@message, :sender_name) }
+        = f.label :sender_name, 'Nombre', class: 'sr-only'
+        = f.text_field :sender_name, class: 'form-control', placeholder: 'Nombre'
+        = feedback_icon_for_field @message, :sender_name
+        = error_for_field @message, :sender_name
+
+    .col-xs-7
+      .form-group{ class: validation_class_for_field(@message, :sender_email) }
+        = f.label :sender_email, 'Dirección de correo electrónico', class: 'sr-only'
+        = f.text_field :sender_email, class: 'form-control', placeholder: 'Dirección de correo electrónico'
+        = feedback_icon_for_field @message, :sender_email
+        = error_for_field @message, :sender_email
+
+  .form-group{ class: validation_class_for_field(@message, :body) }
+    = f.label :body, 'Mensaje', class: 'sr-only'
+    = f.text_area :body, class: 'form-control', placeholder: 'Mensaje', rows: 6
+    = feedback_icon_for_field @message, :body
+    - unless @message.errors.has_key? :body
+      %p.help-block
+        Favor sea consiso en sus preguntas, y otorge la mayor cantidad de información necesaria para responder claramente a su consulta.
+    = error_for_field @message, :body
+
+  .form-actions
+    .checkbox.pull-left
+      = f.label :as_student do
+        = f.check_box :as_student
+        Eres un estudiante interesado?
+    .pull-right
+      = f.submit 'Enviar', class: 'btn btn-primary', data: { disable_with: 'Enviando...' }

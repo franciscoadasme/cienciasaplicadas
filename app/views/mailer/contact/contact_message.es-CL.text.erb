@@ -1,0 +1,8 @@
+Se ha recibido un nuevo mensaje
+===============================
+
+<%= @message.sender_name %> ha enviado <%= 'como estudiante' if @message.sended_by_student? %> un mensaje a través del formulario de contacto con el siguiente contenido:
+
+<%= word_wrap(strip_tags(@message.body)).indent 4 %>
+
+Favor responder a la brevedad posible a <%= @message.sender_email %>.

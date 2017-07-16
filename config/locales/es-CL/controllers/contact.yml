@@ -1,0 +1,8 @@
+es-CL:
+  controllers:
+    success:
+      contact:
+        message_sent: Mensaje enviado satisfactoriamente
+    errors:
+      contact:
+        invalid_message: Oops, lo siento! Uno o más campos son inválidos
