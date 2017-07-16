@@ -1,5 +1,5 @@
 class DefaultMailer < ActionMailer::Base
-  default from: "#{Group.first.abbr} <noreply@#{ENV['MAIL_DOMAIN']}>"
+  default from: "#{Group.first.name} <noreply@#{ENV['MAIL_DOMAIN']}>"
 
   helper Admin::HtmlHelper
   helper UserHelper
