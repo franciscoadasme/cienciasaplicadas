@@ -49,11 +49,15 @@ class Admin::EventsController < AdminController
   end
 
   def accept_attendee
-    update_attendee_status accepted: true
+    attendee = update_attendee_status accepted: true
+    EventMailer.registration_accepted(attendee).deliver!
+    redirect_to action: :attendees
   end
 
   def reject_attendee
-    update_attendee_status accepted: false
+    attendee = update_attendee_status accepted: false
+    EventMailer.registration_rejected(attendee).deliver!
+    redirect_to action: :attendees
   end
 
   def destroy_attendee
@@ -89,9 +93,9 @@ class Admin::EventsController < AdminController
     end
 
   def update_attendee_status(accepted:)
-    attendee = fetch_attendee
-    attendee.accepted = accepted
-    attendee.save
-    redirect_to action: :attendees
+    fetch_attendee.tap do |attendee|
+      attendee.accepted = accepted
+      attendee.save
+    end
   end
 end

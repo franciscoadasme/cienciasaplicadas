@@ -1,0 +1,25 @@
+<% provide :title do %>
+  <h1>Registro rechazado</h1>
+<% end %>
+
+<%= mtable_tag width: '100%' do %>
+  <tr>
+    <td>
+      <p>Estimado(a),</p>
+      <p>
+        Su solicitud para participar en el <%= @event.event_type %> "<%= @event.name %>"
+        fue rechazada.
+        Lamentamos esta situación, pero los cupos fueron llenados luego de su registro.
+      </p>
+      <p>
+        De todas maneras, le recomendamos estar atento a las noticias del evento en caso
+        de que se vuelva abrir el registro por una segunda vez.
+      </p>
+      <p>Desde ya, agradecemos su interés y esperamos verlo(a) en un siguiente evento.</p>
+      <p>
+        Atte.,<br>
+        Comite organizador
+      </p>
+    </td>
+  </tr>
+<% end %>

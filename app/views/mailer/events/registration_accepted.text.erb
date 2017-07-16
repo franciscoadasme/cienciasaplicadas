@@ -1,0 +1,14 @@
+Registro aceptado
+=================
+
+Estimado(a),
+
+Su solicitud para participar en el <%= @event.event_type %> "<%= @event.name %>" fue aceptada.
+
+Le recordamos que el evento se realizará durante <%= strip_tags @event.date_span -%>
+ en el lugar <%= @event.location %>, y es patrocinado por <%= @event.promoter %>.
+
+Para mayor información, dirigirse a <%= event_url(@event) %>.
+
+Atte.,
+Comite organizador

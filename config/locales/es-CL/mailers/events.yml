@@ -1,0 +1,7 @@
+es-CL:
+  mailers:
+    events:
+      registration_accepted:
+        subject: Registro en el evento %{event} fue aceptado
+      registration_rejected:
+        subject: Registro en el evento %{event} fue rechazado
