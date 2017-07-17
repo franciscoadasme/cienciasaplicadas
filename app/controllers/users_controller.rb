@@ -31,7 +31,7 @@ class UsersController < SiteController
   def ensure_member
     return if @user.member?
     msg = I18n.t 'controllers.alerts.users.no_profile', user: user.display_name
-    redirect_to :back, alert: msg
+    redirect_to members_url, alert: msg
   end
 
   def set_user
