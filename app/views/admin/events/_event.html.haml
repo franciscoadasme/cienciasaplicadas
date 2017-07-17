@@ -9,6 +9,9 @@
 
   .list-group-item-actions
     = show_action_for event
+    - if event.managed?
+      = link_to fa_icon(:users), attendees_admin_event_path(event),
+                class: 'btn btn-default', title: 'Ver registro de visitantes'
     = edit_action_for event, primary: true
     .pull-right
       = delete_action_for event
