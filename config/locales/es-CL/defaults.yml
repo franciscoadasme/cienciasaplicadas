@@ -3,6 +3,7 @@ es-CL:
     formats:
       abbr: "%b %y"
       abbr_with_day: "%d de %b %y"
+      abbr_with_day_no_year: "%d de %b"
       month: '%b'
 
     units:
