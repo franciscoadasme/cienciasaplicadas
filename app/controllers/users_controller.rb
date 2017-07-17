@@ -1,7 +1,13 @@
 class UsersController < SiteController
-  before_action :set_user
-  before_action :ensure_member
-  decorates_assigned :publications, :user
+  before_action :set_user, except: [:members]
+  before_action :ensure_member, except: [:members]
+  decorates_assigned :publications, :user, :users
+
+  def members
+    @users = User.includes(:projects, :publications, :thesis)
+                 .members
+                 .order(:last_name, :first_name)
+  end
 
   def publications_index
     @publications = @user.publications.includes({ authors: :user }, :journal)

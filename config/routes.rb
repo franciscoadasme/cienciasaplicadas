@@ -97,6 +97,7 @@ CbsmWebsite::Application.routes.draw do
     get ':id', to: 'pages#show', as: :user_page
     root to: 'users#show', as: :user
   end
+  get 'miembros', to: 'users#members', as: :members
 
   get 'eventos/proximos', to: 'events#upcoming', as: :upcoming_events
   get 'eventos/este-mes', to: 'events#current_month', as: :current_month_events
