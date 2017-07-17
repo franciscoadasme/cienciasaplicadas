@@ -1,7 +1,7 @@
 <ul class="list-flex list-flex-vcenter list-flex-col list-flex-col-2">
   <% collection.each do |user| %>
     <li>
-      <%= render user, show_position: false %>
+      <%= render user, show_position: local_assigns.fetch(:show_position, false) %>
     </li>
   <% end %>
 </ul>
