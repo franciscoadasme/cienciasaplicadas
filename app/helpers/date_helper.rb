@@ -35,8 +35,5 @@ module DateHelper
       else
         I18n.t 'period.formats.long', start_date: I18n.l(start_date, format: :abbr_with_day), end_date: I18n.l(end_date, format: :abbr_with_day)
     end
-
-    regexp = Regexp.union I18n.t('period.formats.connectors')
-    result.gsub(regexp) { |match| content_tag :span, match, class: 'text-muted' }.html_safe
   end
 end
