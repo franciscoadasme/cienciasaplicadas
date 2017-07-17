@@ -23,6 +23,8 @@
     <nav>
       <ul class="nav nav-tabs nav-tabs-dark">
         <%= nav_item 'Información', event_url(event) %>
+        <%= nav_item 'Invitados', '#' %>
+        <%= nav_item 'Noticias', '#' %>
       </ul>
     </nav>
   <% end %>
@@ -41,6 +43,7 @@
         <%= btn_to fa_icon(:pencil), edit_admin_event_url(event),
                    class: 'btn-circle btn-outline', title: 'Editar' %>
       <% end %>
+      <%= btn_to fa_icon(:'arrow-left'), events_url, class: 'btn-circle btn-outline' %>
     </div>
   <% end %>
 </header>

@@ -1,3 +1,8 @@
 .fa-research-gate::before {
   content: "\f25d";
 }
+
+.btn-circle > .fa-arrow-left {
+  top: -1px;
+  left: -1px;
+}
