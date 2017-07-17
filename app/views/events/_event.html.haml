@@ -2,7 +2,7 @@
   = link_to event, class: 'link-unstyled' do
     %span.event-date= event.date_span
     %h2.h3
-      = event.name.truncate 60, separator: /\s+/
+      = event.name.truncate 50, separator: /\s+/
       %span.badge.badge-outline-primary= event.event_type.upcase
     %span.event-promoter= event.promoter
     %p= excerpt event.description, truncate_at: 160
