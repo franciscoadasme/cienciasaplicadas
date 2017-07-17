@@ -34,7 +34,7 @@
       <% end %>
       <%= btn_to fa_icon(:'pencil'), edit_admin_thesis_path(thesis),
                  class: 'btn-circle',
-                 title: 'Editar tesis' if current_user.admin? %>
+                 title: 'Editar tesis' if current_user.try(:super_user?) %>
     </div>
   </header>
 
