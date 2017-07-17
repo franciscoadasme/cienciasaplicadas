@@ -1,0 +1,23 @@
+<article role="main">
+  <header>
+    <h1>
+      Ruta desconocida
+      <small>Error 404</small>
+    </h1>
+    <p class="lead">Página o registro no encontrado</p>
+  </header>
+  <section class="content">
+    <p>
+      <% if params[:id] || params[:user_id] %>
+        La entidad con el nombre
+        <span class="text-primary"><%= params[:id] || params[:user_id] %></span>
+      <% else %>
+        La ruta <span class="text-primary"><%= url_for(only_path: true) %></span>
+      <% end %>
+      no existe en nuestra base de datos.
+      Favor verifique que la dirección web sea la correcta.
+    </p>
+    <br>
+    <%= btn_to fa_icon('home', text: 'Volver a la página principal'), root_url %>
+  </section>
+</div>
