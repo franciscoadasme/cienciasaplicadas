@@ -28,7 +28,7 @@
   &:focus,
   &:hover,
   &:visited {
-    color: $palette1-1;
+    color: darken($palette1-2, 10%);
     text-decoration: none;
   }
 }
@@ -43,7 +43,6 @@
 
   & > li {
     padding: 5px 0;
-    border-bottom: solid 2px transparent;
 
     &:first-child {
       padding-left: 0;
@@ -54,8 +53,6 @@
     }
 
     &.active {
-      border-bottom-color: desaturate(lighten($nav-bg, 10%), 15%);
-
       & > a {
         color: darken(white, 5%);
       }
@@ -63,7 +60,7 @@
 
     & > a {
       padding: 0;
-      color: desaturate(lighten($nav-bg, 10%), 15%);
+      color: desaturate(lighten($nav-bg, 15%), 20%);
       font-weight: $font-weight-bold;
       text-transform: uppercase;
 
