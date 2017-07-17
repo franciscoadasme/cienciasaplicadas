@@ -8,7 +8,7 @@ class Admin::EventsController < AdminController
   end
 
   def index
-    @events = Event.sorted.reverse
+    @events = Event.sorted
   end
 
   def show
