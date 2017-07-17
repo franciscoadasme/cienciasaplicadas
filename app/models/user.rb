@@ -59,8 +59,10 @@ class User < ActiveRecord::Base
   belongs_to :position
   has_one :thesis
 
+  scope :accepted, -> { where.not(invitation_accepted_at: nil) }
+  scope :members, -> { where member: true }
   scope :sorted, -> { joins(:position).order 'positions.level', :last_name, :first_name }
-  scope :default, -> { where.not(invitation_accepted_at: nil).sorted }
+  scope :default, -> { accepted.sorted }
   scope :with_role, -> role { where role: role }
   scope :admins, -> { with_role ROLE_ADMIN }
 
