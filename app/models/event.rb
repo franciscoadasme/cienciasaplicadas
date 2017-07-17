@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
     thumb: '320x320#'
   }
 
-  scope :sorted, -> { order start_date: :asc }
+  scope :sorted, -> { order start_date: :desc }
   scope :typed, -> type { where event_type: type }
   scope :upcoming, -> { where 'start_date > ?', DateTime.current }
 
