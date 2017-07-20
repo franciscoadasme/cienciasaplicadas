@@ -288,6 +288,9 @@ textarea.monospaced {
   }
 }
 
+.form-controls select {
+  max-width: 100%;
+}
 
 trix-editor {
   min-height: 250px;
