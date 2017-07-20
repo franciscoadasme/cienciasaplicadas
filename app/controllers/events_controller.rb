@@ -1,5 +1,6 @@
 class EventsController < SiteController
   before_action :set_event, only: [:show, :registration]
+  before_action :ensure_subscribable, only: [:registration]
   decorates_assigned :events, :event
 
   def index
@@ -34,11 +35,6 @@ class EventsController < SiteController
   end
 
   def registration
-    unless @event.subscribable?
-      msg = I18n.t 'controllers.admin.events.alerts.registration_disabled'
-      redirect_to event_url(@event), alert: msg
-    end
-
     if params.key?(:attendee)
       @attendee = Attendee.new attendee_params
       @attendee.event = @event
@@ -55,6 +51,12 @@ class EventsController < SiteController
 
   def attendee_params
     params.require(:attendee).permit(:email, :name)
+  end
+
+  def ensure_subscribable
+    return if @event.subscribable?
+    msg = I18n.t 'controllers.admin.events.alerts.registration_disabled'
+    redirect_to event_url(@event), alert: msg
   end
 
   def set_event
