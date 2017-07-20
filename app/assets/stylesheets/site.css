@@ -13,6 +13,7 @@
  *= require site/bootstrap
  *= require common/images
  *
+ *= require site/alerts
  *= require site/badges
  *= require site/buttons
  *= require site/dropdowns

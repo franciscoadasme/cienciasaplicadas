@@ -1,0 +1,10 @@
+<% flash.each do |type, message| %>
+  <div class="alert alert-fill alert-dismissable <%= flash_class type %>" role="alert">
+    <button type="button" class="close" aria-label="close" data-dismiss="alert">
+      <span arial-hidden="true">&times;</span>
+    </button>
+    <div class="container container-narrow">
+      <%= message %>
+    </div>
+  </div>
+<% end %>
