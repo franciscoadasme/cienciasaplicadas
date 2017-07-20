@@ -12,7 +12,7 @@ class SiteController < ApplicationController
     @publication_per_year = compute_publication_avg_per_year
 
     @lastest_posts = Post.published.sorted.limit(3).decorate
-    @upcoming_events = Event.upcoming.sorted.limit(3).decorate
+    @upcoming_events = Event.upcoming.sorted.limit(3).reverse_order.decorate
     @students_count = User.with_position('estudiante').count
     @graduated_users = User.default.with_position('egresado').limit(3).decorate
     @graduate_count = User.with_position('egresado').count

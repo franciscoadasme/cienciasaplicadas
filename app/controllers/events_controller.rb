@@ -19,7 +19,7 @@ class EventsController < SiteController
     set_event_type_counts
 
     @events = @events.typed params[:tipo] if params[:tipo]
-    @events = @events.sorted
+    @events = @events.sorted.reverse_order
 
     render action: :index
   end
