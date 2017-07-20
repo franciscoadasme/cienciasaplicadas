@@ -28,7 +28,7 @@ class SiteController < ApplicationController
   private
     def set_lastest
       unless view_context.current_page?(root_url) || view_context.current_page?(posts_url)
-        @lastest_posts = Post.published.sorted.limit(2).decorate
+        @lastest_posts = Post.published.sorted.limit(3).decorate
       end
     end
 
