@@ -1,21 +1,6 @@
 <article role="main">
   <header>
-    <div class="media">
-      <%= post.author.avatar %>
-
-      <div class="media-body">
-        <%= post.author_link %>
-        <%= post.author.position_badge %>
-        <div class="media-meta">
-          <p><%= post.author.headline %></p>
-          <p>
-            <%= post.published_at %>
-            &middot;
-            <%= post.view_info %>
-          </p>
-        </div>
-      </div>
-    </div>
+    <h1><%= post.title %></h1>
 
     <% if current_user.try :super_user? %>
       <div class="actions">
@@ -23,11 +8,9 @@
         <%= btn_to fa_icon(:'pencil'), edit_admin_post_path, class: 'btn-circle', title: 'Editar' %>
       </div>
     <% end %>
-
   </header>
 
   <section class="content">
-    <h1><%= post.title %></h1>
     <%= post.body %>
   </section>
 </article>

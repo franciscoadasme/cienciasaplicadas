@@ -3,13 +3,13 @@
   <% @lastest_posts.each do |post| %>
     <li>
       <%= post.link class: 'link-unstyled link-block' do %>
-        <div><b><%= post.title.truncate 80, separator: /\s+/ %></b></div>
-        <small class="text-muted">
-          <%= post.published_at %>
-          &middot;
-          <%= post.author.display_name %>
-        </small>
-        <p><%= post.excerpt %></p>
+        <div>
+          <strong><%= post.title.truncate 56, separator: /\s+/ %></strong>
+          <small class="text-muted">
+            <%= post.published_at %>
+          </small>
+        </div>
+        <p><%= post.excerpt truncate_at: 120 %></p>
       <% end %>
     </li>
   <% end %>

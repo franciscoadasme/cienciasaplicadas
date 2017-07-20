@@ -3,8 +3,3 @@
     = post.link class: 'link-unstyled' do
       %h2.h3= post.title.truncate 60, separator: /\s+/
       %p= post.excerpt
-    .media
-      = post.author.avatar size: 32
-      .media-body
-        %p= post.author.link
-        .media-meta= post.published_at
