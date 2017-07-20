@@ -1,5 +1,6 @@
 <header>
   <h1><%= post.title %></h1>
+  <span class="text-muted"><%= post.published_at %></span>
 
   <% if current_user.try :super_user? %>
     <div class="actions">
