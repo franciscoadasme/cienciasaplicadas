@@ -1,53 +1,47 @@
 <% provide :title, @event.name.truncate(40, separator: /\s+/) %>
+<% provide :subtitle, 'Asistentes' %>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    Registro de asistentes
-    <div class="pull-left">
-      <%= link_to fa_icon(:'long-arrow-left'), admin_event_path(@event), class: 'btn btn-default' %>
-    </div>
-  </div>
-  <div class="panel-body">
-    <% if @event.attendees.any? %>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Asistente</th>
-            <th>Fecha</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @event.attendees.each do |attendee| %>
-            <tr>
-              <td>
-                <% if attendee.name.present? %>
-                  <%= attendee.name %>
-                  <span class="text-muted">&lt;<%= mail_to attendee.email %>&gt;</span>
-                <% else %>
-                  <%= mail_to attendee.email %>
-                <% end %>
-              </td>
-              <td><%= l attendee.created_at.to_date %></td>
-              <td>
-                <% if attendee.accepted.nil? %>
-                  <%= link_to fa_icon(:'check'), accept_attendee_admin_event_path(@event, attendee),
-                              class: 'text-success', title: 'Aceptar', method: :patch %>
-                  <%= link_to fa_icon(:'ban'), reject_attendee_admin_event_path(@event, attendee),
-                              class: 'text-danger', title: 'Rechazar', method: :patch %>
-                <% else %>
-                  <small class="text-muted"><%= attendee.accepted? ? 'Aceptado' : 'Rechazado' %></small>
-                <% end %>
-                <%= link_to fa_icon(:'minus'), attendee_admin_event_path(@event, attendee),
-                            class: 'text-danger', title: 'Eliminar', method: :delete,
-                            data: { confirm: "Está seguro que desea eliminar \"#{attendee.email}\"?" } %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <p class="text-muted text-center">No visitantes registrados</p>
-    <% end %>
-  </div>
-</div>
+<% if @event.attendees.any? %>
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Asistente</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @event.attendees.each do |attendee| %>
+        <% row_class = '' %>
+        <% row_class = 'success' if attendee.accepted? %>
+        <% row_class = 'danger' if attendee.rejected? %>
+        <tr class="<%= row_class %>">
+          <td>
+            <% if attendee.name.present? %>
+              <%= attendee.name %>
+              <span class="text-muted">&lt;<%= mail_to attendee.email %>&gt;</span>
+            <% else %>
+              <%= mail_to attendee.email %>
+            <% end %>
+          </td>
+          <td><%= l attendee.created_at.to_date %></td>
+          <td>
+            <% if attendee.accepted.nil? %>
+              <%= link_to fa_icon(:'check'), accept_attendee_admin_event_path(@event, attendee),
+                          class: 'text-success', title: 'Aceptar', method: :patch %>
+              <%= link_to fa_icon(:'ban'), reject_attendee_admin_event_path(@event, attendee),
+                          class: 'text-danger', title: 'Rechazar', method: :patch %>
+            <% else %>
+              <small class="text-muted"><%= attendee.accepted? ? 'Aceptado' : 'Rechazado' %></small>
+            <% end %>
+            <%= link_to fa_icon(:'minus'), attendee_admin_event_path(@event, attendee),
+                        class: 'text-danger', title: 'Eliminar', method: :delete,
+                        data: { confirm: "Está seguro que desea eliminar \"#{attendee.email}\"?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="lead text-muted text-center">No hay asistentes registrados</p>
+<% end %>
