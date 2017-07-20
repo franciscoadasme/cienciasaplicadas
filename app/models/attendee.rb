@@ -12,4 +12,8 @@ class Attendee < ActiveRecord::Base
                     format: { with: Devise.email_regexp },
                     uniqueness: { scope: :event_id,
                                   case_sensitive: false }
+
+  def rejected?
+    accepted == false
+  end
 end
