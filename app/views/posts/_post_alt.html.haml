@@ -1,7 +1,0 @@
-%li.media
-  = post.author.avatar size: 32
-  .media-body
-    = link_to post.permalink do
-      %p.media-heading= post.title.truncate 120
-      %span.media-meta= post.published_at
-      = post.excerpt
