@@ -2,4 +2,7 @@
   %article
     = post.link class: 'link-unstyled' do
       %h2.h3= post.title.truncate 60, separator: /\s+/
+      - if post.event.present?
+        %p.text-muted
+          %i= post.event.name
       %p= post.excerpt

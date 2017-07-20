@@ -6,6 +6,10 @@ class PostDecorator < ContentDecorator
 
   delegate :link, to: :author, prefix: true
 
+  def event
+    @event ||= object.event.try :decorate
+  end
+
   def excerpt(truncate_at: 160)
     h.excerpt(object.body, truncate_at: truncate_at)
   end

@@ -21,9 +21,12 @@ class Post < ActiveRecord::Base
   include Traversable
   traversable_by :created_at, scope: -> { published }
 
+  belongs_to :event
+
   extend FriendlyId
   friendly_id :title, use: [ :slugged ]
 
+  scope :global, -> { where event: nil }
   scope :published, -> { where published: true }
   scope :sorted, -> { order created_at: :desc }
 end

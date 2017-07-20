@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714024545) do
+ActiveRecord::Schema.define(version: 20170720011907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,8 +164,10 @@ ActiveRecord::Schema.define(version: 20170714024545) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "view_count",               default: 0,     null: false
+    t.integer  "event_id"
   end
 
+  add_index "posts", ["event_id"], name: "index_posts_on_event_id", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
 
   create_table "projects", force: :cascade do |t|
@@ -243,12 +245,12 @@ ActiveRecord::Schema.define(version: 20170714024545) do
   add_index "theses", ["user_id"], name: "index_theses_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "",    null: false
     t.string   "encrypted_password",     limit: 255, default: ""
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -278,7 +280,8 @@ ActiveRecord::Schema.define(version: 20170714024545) do
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
     t.datetime "last_import_at"
-    t.integer  "view_count",                         default: 0,  null: false
+    t.integer  "view_count",                         default: 0,     null: false
+    t.boolean  "member",                             default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -288,4 +291,5 @@ ActiveRecord::Schema.define(version: 20170714024545) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "attendees", "events"
+  add_foreign_key "posts", "events"
 end

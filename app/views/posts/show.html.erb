@@ -1,7 +1,14 @@
 <article role="main">
-  <%= render 'posts/header' %>
+  <% if post.event.present? %>
+    <%= render 'events/header', event: post.event %>
+  <% else %>
+    <%= render 'posts/header' %>
+  <% end %>
 
   <section class="content">
+    <% if post.event.present? %>
+      <h2><%= post.title %></h2>
+    <% end %>
     <%= post.body %>
   </section>
 </article>

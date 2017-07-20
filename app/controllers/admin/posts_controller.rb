@@ -6,11 +6,12 @@ class Admin::PostsController < AdminController
   # after_action :send_notification, only: [ :create, :update ]
 
   def index
-    @posts = Post.sorted
+    @posts = Post.global.sorted
   end
 
   def new
     @post = Post.new
+    @post.event = Event.find(params[:event]) if params.key?(:event)
     @positions = Position.sorted
   end
 
@@ -24,7 +25,11 @@ class Admin::PostsController < AdminController
 
     if @post.save
       send_new_notification_if_needed @post
-      redirect_to_index_after_save
+      if @post.event.present?
+        redirect_to posts_admin_event_path(@post.event)
+      else
+        redirect_to_index_after_save
+      end
     else
       @positions = Position.sorted
       render action: 'new'
@@ -36,7 +41,11 @@ class Admin::PostsController < AdminController
     set_published_status
 
     if @post.update(post_params)
-      redirect_to_index_after_save
+      if @post.event.present?
+        redirect_to posts_admin_event_path(@post.event)
+      else
+        redirect_to_index_after_save
+      end
     else
       render action: 'edit'
     end
@@ -71,7 +80,7 @@ class Admin::PostsController < AdminController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :event_id)
     end
 
     def redirect_to_index_after_save

@@ -5,11 +5,17 @@
   .form-inputs
     = f.input :title, wrapper: :simple_wrapper,
               input_html: { class: 'input-lg' }
-
     = f.input :body, as: :trix_editor, wrapper: :simple_wrapper
 
-    - unless @post.persisted?
+    - if @post.event.present? || !@post.persisted?
       %hr
+      .form-group.row
+        = f.label :event, t('simple_form.labels.posts.event'), class: 'col-xs-3'
+        .form-controls.col-xs-9
+          = f.select :event_id, Event.upcoming.managed.collect { |p| [p.name, p.id] },
+                    { prompt: 'Ninguno' },
+                    disabled: @post.persisted? && @post.event.present?
+    - unless @post.persisted?
       = render partial: 'admin/notifiable/form', locals: { f: f }
 
   %hr
@@ -20,6 +26,7 @@
                  class: 'btn-default',
                  data: { disable_with: 'Guardando...' }
     - content = t('helpers.submit.post.cancel')
-    = link_to content, admin_posts_path, class: 'text-danger'
+    - back_to = @post.event.present? ? posts_admin_event_path(@post.event) : admin_posts_path
+    = link_to content, back_to, class: 'text-danger'
     .pull-right
       = post_submit_button f, @post

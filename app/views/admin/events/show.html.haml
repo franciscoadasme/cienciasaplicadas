@@ -6,7 +6,10 @@
     .pull-right
       = show_action_for @event, scoped: false, target: :blank
       - if @event.managed?
-        = link_to fa_icon(:users), attendees_admin_event_path, class: 'btn btn-default', title: 'Ver registro de visitantes'
+        = link_to fa_icon(:users, text: @event.attendees.count), attendees_admin_event_path,
+                  class: 'btn btn-default', title: 'Ver registro de visitantes'
+        = link_to fa_icon(:'newspaper-o', text: @event.posts.count), posts_admin_event_path,
+                  class: 'btn btn-default', title: 'Ver noticias'
       = edit_action_for @event, primary: true
       = delete_action_for @event
 

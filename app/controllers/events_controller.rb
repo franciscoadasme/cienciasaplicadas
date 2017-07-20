@@ -1,7 +1,8 @@
 class EventsController < SiteController
-  before_action :set_event, only: [:show, :registration]
+  before_action :set_event, only: [:show, :posts, :registration]
+  before_action :ensure_managed, only: [:posts]
   before_action :ensure_subscribable, only: [:registration]
-  decorates_assigned :events, :event
+  decorates_assigned :events, :event, :posts
 
   def index
     @events = Event.during_date date_params
@@ -34,6 +35,10 @@ class EventsController < SiteController
     render action: :index
   end
 
+  def posts
+    @posts = PostDecorator.decorate_collection @event.posts
+  end
+
   def registration
     if params.key?(:attendee)
       @attendee = Attendee.new attendee_params
@@ -51,6 +56,10 @@ class EventsController < SiteController
 
   def attendee_params
     params.require(:attendee).permit(:email, :name)
+  end
+
+  def ensure_managed
+    redirect_to event_url(@event) unless @event.managed?
   end
 
   def ensure_subscribable

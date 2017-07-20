@@ -1,0 +1,13 @@
+<% provide :title, @event.name.truncate(40, separator: /\s+/) %>
+<% provide :subtitle, 'Noticias' %>
+<% provide :widget do %>
+  <%= link_to 'Redactar noticia del evento', new_admin_post_path(event: @event.id), class: 'btn btn-primary' %>
+<% end %>
+
+<% if @event.posts.any? %>
+  <ul class="list-group list-group-posts">
+    <%= render @event.posts.sorted %>
+  </ul>
+<% else %>
+  <p class="lead text-muted text-center">No hay noticias para mostrar</p>
+<% end %>

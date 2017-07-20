@@ -1,6 +1,6 @@
 <header>
   <h1>
-    <small class="text-color"><%= format_period @event.start_date, @event.end_date %></small>
+    <small class="text-color"><%= format_period event.start_date, event.end_date %></small>
     <span class="badge badge-outline-primary"><%= event.event_type.upcase %></span>
     <br>
     <%= event.name %>
@@ -24,7 +24,9 @@
       <ul class="nav nav-tabs nav-tabs-dark">
         <%= nav_item 'Información', event_url(event) %>
         <%= nav_item 'Invitados', '#' %>
-        <%= nav_item 'Noticias', '#' %>
+        <%= nav_item 'Noticias', posts_event_url(event),
+                     active: controller_name == 'posts' || action_name == 'posts',
+                     data: { disable: false } %>
       </ul>
     </nav>
   <% end %>

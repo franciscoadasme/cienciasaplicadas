@@ -9,9 +9,9 @@
   .list-group-item-actions
     - if current_user.admin?
       - if post.published?
-        = item_action taction(:withhold), withhold_admin_post_path(post.id), icon: :lock, method: :patch
+        = item_action t('actions.admin.posts.withhold'), withhold_admin_post_path(post.id), icon: :lock, method: :patch
       - else
-        = item_action taction(:publish), publish_admin_post_path(post.id), icon: 'unlock-alt', primary: true, method: :patch
+        = item_action t('actions.admin.posts.publish'), publish_admin_post_path(post.id), icon: 'unlock-alt', primary: true, method: :patch
     - else
       %span.btn.btn-default.disabled= post.published? ? 'Publicado' : 'Retenido'
 

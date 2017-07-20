@@ -9,6 +9,11 @@
             <%= post.published_at %>
           </small>
         </div>
+        <% if post.event.present? %>
+          <div>
+            <i class="text-muted"><%= post.event.name %></i>
+          </div>
+        <% end %>
         <p><%= post.excerpt truncate_at: 120 %></p>
       <% end %>
     </li>

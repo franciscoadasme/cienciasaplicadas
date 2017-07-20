@@ -33,11 +33,13 @@ class Event < ActiveRecord::Base
   traversable_by :start_date
 
   has_many :attendees, dependent: :delete_all
+  has_many :posts, dependent: :delete_all
   has_attached_file :picture, styles: {
     original: '640x640#',
     thumb: '320x320#'
   }
 
+  scope :managed, -> { where managed: true }
   scope :sorted, -> { order start_date: :desc }
   scope :typed, -> type { where event_type: type }
   scope :upcoming, -> { where 'start_date > ?', DateTime.current }

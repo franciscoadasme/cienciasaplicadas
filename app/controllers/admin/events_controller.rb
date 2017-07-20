@@ -2,7 +2,8 @@ class Admin::EventsController < AdminController
   include NotifiableController
 
   before_action :authorize_user!
-  before_action :set_event, only: [:attendees, :show, :edit, :update, :destroy]
+  before_action :set_event, only: [:attendees, :show, :edit, :update, :destroy,
+                                   :posts]
 
   def attendees
   end
@@ -65,6 +66,8 @@ class Admin::EventsController < AdminController
     attendee.destroy
     redirect_to action: :attendees
   end
+
+  def posts; end
 
   private
 

@@ -11,3 +11,8 @@ es-CL:
             title: No hay proyectos disponibles
             body: |
               Escribiendo un mensaje usted puede realizar un anuncio a la comunidad quizás destacando un artículo científico o dando a conocer una noticia interesante.
+
+  simple_form:
+    labels:
+      posts:
+        event: Evento
