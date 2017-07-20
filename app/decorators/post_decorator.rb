@@ -6,8 +6,8 @@ class PostDecorator < ContentDecorator
 
   delegate :link, to: :author, prefix: true
 
-  def excerpt
-    h.excerpt(object.body, truncate_at: 160).html_safe
+  def excerpt(truncate_at: 160)
+    h.excerpt(object.body, truncate_at: truncate_at)
   end
 
   def link(html_options = {}, &block)
