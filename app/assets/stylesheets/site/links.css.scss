@@ -11,7 +11,13 @@ a.active,
 a.disabled,
 .disabled > a,
 .disabled > a * {
-  pointer-events: none;
+  &:not([data-disable=false]) {
+    pointer-events: none;
+  }
+
+  &[data-disable=false] {
+    cursor: pointer !important;
+  }
 }
 
 a.link-block {
