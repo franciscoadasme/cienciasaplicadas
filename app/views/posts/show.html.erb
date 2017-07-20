@@ -1,14 +1,5 @@
 <article role="main">
-  <header>
-    <h1><%= post.title %></h1>
-
-    <% if current_user.try :super_user? %>
-      <div class="actions">
-        <small class="text-muted"><strong>ACTIONS</strong></small>
-        <%= btn_to fa_icon(:'pencil'), edit_admin_post_path, class: 'btn-circle', title: 'Editar' %>
-      </div>
-    <% end %>
-  </header>
+  <%= render 'posts/header' %>
 
   <section class="content">
     <%= post.body %>
