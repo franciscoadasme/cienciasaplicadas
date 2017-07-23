@@ -2,8 +2,8 @@ es-CL:
   activerecord:
     attributes:
       attendee:
-        name: Nombre
-        email: Dirección de correo
+        name: nombre
+        email: dirección de correo
     errors:
       models:
         attendee:
@@ -12,3 +12,7 @@ es-CL:
               blank: Debe introducir una dirección de correo
               invalid: La dirección de correo es inválida
               taken: La dirección de correo ya está registrada
+
+    hints:
+      attendee:
+        email: Favor asegurar que la dirección de correo sea correcta

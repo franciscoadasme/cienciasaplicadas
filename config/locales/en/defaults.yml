@@ -1,0 +1,40 @@
+en:
+  actions:
+    submit: submit
+    submitting: sending
+
+  date:
+    formats:
+      abbr: "%b %y"
+      abbr_with_day: "%b %d, %y"
+      abbr_with_day_no_year: "%b %d"
+      month: '%b'
+
+    units:
+      day: day
+      month: month
+      year: year
+
+    relative_day_names:
+      today: Today
+      yesterday: Yesterday
+      tomorrow: Tomorrow
+
+  time:
+    formats:
+      abbr: "%b %y"
+      abbr_with_day: "%b %d, %y"
+      month: '%b'
+
+  period:
+    formats:
+      same_month: "%{month} %{start_day} through %{end_day}"
+      same_month_with_year: "%{month} %{start_day} through %{end_day}, %{year}"
+      same_year: "%{start_date} through %{end_date}"
+      same_year_with_year: "%{start_date} through %{end_date} %{year}"
+      long: "%{start_date} through %{end_date}"
+      connectors:
+        - through
+
+  words:
+    or: or

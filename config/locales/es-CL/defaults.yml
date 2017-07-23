@@ -1,4 +1,8 @@
 es-CL:
+  actions:
+    submit: enviar
+    submitting: enviando
+
   date:
     formats:
       abbr: "%b %y"
@@ -31,3 +35,6 @@ es-CL:
       long: "%{start_date} hasta el %{end_date}"
       connectors:
         - hasta el
+
+  words:
+    or: o

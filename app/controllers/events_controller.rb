@@ -1,4 +1,6 @@
 class EventsController < SiteController
+  # TODO: make this global
+  before_action :set_locale, only: [:show, :posts, :registration, :speakers]
   before_action :set_event, only: [:show, :posts, :registration, :speakers]
   before_action :ensure_managed, only: [:posts, :speakers]
   before_action :ensure_subscribable, only: [:registration]
@@ -79,5 +81,9 @@ class EventsController < SiteController
   def set_event_type_counts
     @event_type_count = Hash[Event::TYPES.map(&:to_s).map{ |t| [t, 0]}]
     @event_type_count.merge! @events.group(:event_type).count
+  end
+
+  def set_locale
+    I18n.locale = params[:lang] || I18n.default_locale
   end
 end

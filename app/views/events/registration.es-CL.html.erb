@@ -1,5 +1,5 @@
 <div class="container container-narrow banner event-bg event-<%= event.event_type %>">
-  <%= render 'events/header', event: @event, show_nav: false, show_actions: false %>
+  <%= render 'events/header', event: event, show_nav: false, show_actions: false %>
 
   <div class="content">
     <h2>Registro como asistente</h2>
@@ -10,29 +10,6 @@
       el evento.
     </p>
 
-    <%= form_for @attendee, url: registration_event_url(request.query_parameters) do |f| %>
-      <div class="row">
-        <div class="form-group col-md-7 <%= validation_class_for_field(@attendee, :email) %>">
-          <%= f.label :name, 'Email', class: 'control-label' %>
-          <%= f.email_field :email, required: true, class: 'form-control' %>
-          <%= error_for_field @attendee, :email %>
-          <% unless @attendee.errors.key? :email %>
-            <small class="help-block">
-              Favor asegurar que la dirección de correo sea correcta
-            </small>
-          <% end %>
-        </div>
-        <div class="form-group col-md-5  <%= validation_class_for_field(@attendee, :name) %>">
-          <%= f.label :name, 'Nombre', class: 'control-label text-muted' %>
-          <%= f.text_field :name, class: 'form-control', placeholder: 'Opcional' %>
-          <%= error_for_field @attendee, :name %>
-        </div>
-        <div class="form-actions col-md-12">
-          <%= f.submit 'Enviar', class: 'btn btn-primary', data: { disable_with: 'Enviando...' } %>
-          <span class="text-muted">o</span>
-          <%= link_to 'volver al evento', event_url(event, request.query_parameters), class: 'link-unstyled' %>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'registration_form' %>
   </div>
 </div>

@@ -1,0 +1,14 @@
+en:
+  labels:
+    event:
+      info: information
+      speakers: speakers
+      posts: news
+
+  actions:
+    event:
+      register: Register as attendee
+      download_flier: Download flier
+
+    events:
+      return_to_event: go back to the event

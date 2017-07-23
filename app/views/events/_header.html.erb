@@ -1,4 +1,4 @@
-<header data-banner-url="<%= image_url "events/#{event.event_type}.jpg" %>">
+<header data-banner-url="<%= image_url "events/#{event.event_type :'es-CL'}.jpg" %>">
   <h1>
     <small class="text-color"><%= format_period event.start_date, event.end_date %></small>
     <span class="badge badge-outline-primary"><%= event.event_type.upcase %></span>
@@ -9,11 +9,11 @@
   <table class="table-transposed">
     <tbody>
       <tr>
-        <th>Patrocinador</th>
+        <th><%= Event.human_attribute_name :promoter %></th>
         <td><%= event.promoter %></td>
       </tr>
       <tr>
-        <th>Lugar de realización</th>
+        <th><%= Event.human_attribute_name :location %></th>
         <td><%= event.location %></td>
       </tr>
     </tbody>
@@ -22,9 +22,9 @@
   <% if event.managed? && local_assigns.fetch(:show_nav, true) %>
     <nav>
       <ul class="nav nav-tabs nav-tabs-dark">
-        <%= nav_item 'Información', event_url(event, request.query_parameters) %>
-        <%= nav_item 'Invitados', speakers_event_url(event, request.query_parameters) %>
-        <%= nav_item 'Noticias', posts_event_url(event, request.query_parameters),
+        <%= nav_item t('labels.event.info'), event_url(event, request.query_parameters) %>
+        <%= nav_item t('labels.event.speakers'), speakers_event_url(event, request.query_parameters) %>
+        <%= nav_item t('labels.event.posts'), posts_event_url(event, request.query_parameters),
                      active: controller_name == 'posts' || action_name == 'posts',
                      data: { disable: false } %>
       </ul>
@@ -35,11 +35,13 @@
     <div class="actions">
       <% if event.subscribable? %>
         <%= btn_to fa_icon(:'id-badge'), registration_event_url(event, request.query_parameters),
-                   class: 'btn-circle btn-primary btn-lg btn-raised', title: 'Registrarse' %>
+                   class: 'btn-circle btn-primary btn-lg btn-raised',
+                   title: t('actions.event.register') %>
       <% end %>
       <% if event.picture.present? %>
         <%= btn_to fa_icon(:'download'), event.picture.url,
-                   class: 'btn-circle btn-info btn-raised', title: 'Descargar afiche' %>
+                   class: 'btn-circle btn-info btn-raised',
+                   title: t('actions.event.download_flier') %>
       <% end %>
       <% if current_user.try :super_user? %>
         <%= btn_to fa_icon(:pencil), edit_admin_event_url(event),

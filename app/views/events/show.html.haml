@@ -1,6 +1,6 @@
 %article{ role: 'main' }
-  = render 'events/header', event: @event
+  = render 'events/header'
 
   %section.content
-    = content_tag :p, image_tag(@event.picture) if @event.picture.present?
-    = @event.description.html_safe
+    = content_tag :p, image_tag(event.picture) if event.picture.present?
+    = event.description.html_safe

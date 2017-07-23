@@ -1,0 +1,26 @@
+<%= form_for @attendee, url: registration_event_url(request.query_parameters) do |f| %>
+  <div class="row">
+    <div class="form-group col-md-7 <%= validation_class_for_field(@attendee, :email) %>">
+      <%= f.label :email, Attendee.human_attribute_name(:email), class: 'control-label' %>
+      <%= f.email_field :email, required: true, class: 'form-control' %>
+      <%= error_for_field @attendee, :email %>
+      <% unless @attendee.errors.key? :email %>
+        <small class="help-block">
+          <%= t 'activerecord.hints.attendee.email' %>
+        </small>
+      <% end %>
+    </div>
+    <div class="form-group col-md-5  <%= validation_class_for_field(@attendee, :name) %>">
+      <%= f.label :name, Attendee.human_attribute_name(:name), class: 'control-label text-muted' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Opcional' %>
+      <%= error_for_field @attendee, :name %>
+    </div>
+    <div class="form-actions col-md-12">
+      <%= f.submit t('actions.submit'),
+                   class: 'btn btn-primary',
+                   data: { disable_with: t('actions.submitting').concat('...').capitalize } %>
+      <span class="text-muted"><%= t 'words.or' %></span>
+      <%= link_to t('actions.events.return_to_event'), event_url(event, request.query_parameters), class: 'link-unstyled' %>
+    </div>
+  </div>
+<% end %>

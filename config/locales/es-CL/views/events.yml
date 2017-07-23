@@ -1,0 +1,14 @@
+es-CL:
+  labels:
+    event:
+      info: información
+      speakers: invitados
+      posts: noticias
+
+  actions:
+    event:
+      register: Inscribirse como asistente
+      download_flier: Descargar afiche
+
+    events:
+      return_to_event: volver al evento

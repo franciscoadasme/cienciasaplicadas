@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_locale
   before_action do
     redirect_to admin_path, alert: t('devise.failure.unauthorized') if top_level_controller?(:group) && !current_user.super_user?
   end
@@ -34,5 +35,10 @@ class AdminController < ApplicationController
 
   def index_path_for_current_user
     current_user.super_user? ? admin_users_path : profile_admin_account_path
+  end
+
+  # TODO: remove when implementing global internationalization
+  def set_locale
+    I18n.locale = I18n.default_locale
   end
 end

@@ -1,0 +1,14 @@
+<div class="container container-narrow banner event-bg event-<%= event.event_type %>">
+  <%= render 'events/header', event: event, show_nav: false, show_actions: false %>
+
+  <div class="content">
+    <h2>Registration</h2>
+    <p>Please fill the form below with your personal information to register as attendee.</p>
+    <p>
+      Within the following days, you will receive a message at the entered email
+      address indicating whether your attendance to the event has been accepted or rejected.
+    </p>
+
+    <%= render 'registration_form' %>
+  </div>
+</div>

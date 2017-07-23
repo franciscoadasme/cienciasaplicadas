@@ -15,4 +15,15 @@ class EventDecorator < ContentDecorator
               end
     h.time_tag start_date, content
   end
+
+  def event_type(locale = nil)
+    locale ||= I18n.locale
+    I18n.t event_type_i18n_key, locale: locale
+  end
+
+  private
+
+  def event_type_i18n_key
+    "activerecord.attribute_values.event.event_type.#{object.event_type}"
+  end
 end

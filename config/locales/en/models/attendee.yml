@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    attributes:
+      attendee:
+        name: name
+        email: email address
+    errors:
+      models:
+        attendee:
+          attributes:
+            email:
+              blank: Email cannot be blank
+              invalid: Email is invalid
+              taken: Email is already registered
+
+    hints:
+      attendee:
+        email: Please ensure that the email address is valid

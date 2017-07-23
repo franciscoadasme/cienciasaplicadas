@@ -1,0 +1,22 @@
+en:
+  activerecord:
+    models:
+      event: Event
+    attributes:
+      event:
+        name: Name
+        start_date: Start date
+        end_date: End date
+        duration: Duration
+        location: Location
+        description: Description
+        event_type: Type
+        promoter: Sponsor
+        picture: Picture
+
+    attribute_values:
+      event:
+        event_type:
+          congreso: conference
+          charla: talk
+          curso: course

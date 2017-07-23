@@ -17,6 +17,13 @@ es-CL:
         managed: Administrado?
         registration_enabled: Registro de visitantes
 
+    attribute_values:
+      event:
+        event_type:
+          congreso: congreso
+          charla: charla
+          curso: curso
+
     errors:
       models:
         event:
