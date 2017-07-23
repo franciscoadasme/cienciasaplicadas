@@ -9,6 +9,10 @@
       font-size: $font-size-small;
       color: $text-muted;
 
+      &:first-letter {
+        text-transform: capitalize;
+      }
+
       .badge {
         background-color: #ccc;
       }
