@@ -2,6 +2,7 @@ es-CL:
   actions:
     submit: enviar
     submitting: enviando
+    switch_lang: Cambiar idioma a inglés
 
   date:
     formats:

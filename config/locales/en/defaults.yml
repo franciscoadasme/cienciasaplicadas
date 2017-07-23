@@ -2,6 +2,7 @@ en:
   actions:
     submit: submit
     submitting: sending
+    switch_lang: Switch language to spanish
 
   date:
     formats:

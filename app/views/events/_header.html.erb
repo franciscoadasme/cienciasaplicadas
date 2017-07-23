@@ -43,6 +43,13 @@
                    class: 'btn-circle btn-info btn-raised',
                    title: t('actions.event.download_flier') %>
       <% end %>
+
+      <%= btn_to toggle_lang_url,
+                 class: 'btn btn-circle btn-link',
+                 title: t('actions.switch_lang') do %>
+        <strong><%= I18n.locale == :'es-CL' ? 'EN' : 'ES' %></strong>
+      <% end %>
+
       <% if current_user.try :super_user? %>
         <%= btn_to fa_icon(:pencil), edit_admin_event_url(event),
                    class: 'btn-circle btn-outline', title: 'Editar' %>

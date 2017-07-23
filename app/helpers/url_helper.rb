@@ -4,6 +4,11 @@ module UrlHelper
     send "#{name_or_params}_url", request.query_parameters.merge(params)
   end
 
+  def toggle_lang_url
+    lang = I18n.locale == :'es-CL' ? :en : nil
+    url_for request.query_parameters.merge(lang: lang, only_path: false)
+  end
+
   def action_name
     params[:action]
   end
