@@ -7,29 +7,9 @@
       <% else %>
         <div class="navbar-header">
           <%= link_to 'Doctorado en Ciencias Aplicadas', root_url, class: 'navbar-brand' %>
+          <%= render 'site/nav/icons' %>
         </div>
       <% end %>
-
-      <ul class="navbar-nav navbar-nav--icons">
-        <%= nav_item_icon 'Noticias', :'newspaper-o', :posts %>
-        <%= nav_item_icon 'Eventos', :'calendar-o', :events, href: upcoming_events_url %>
-        <%= nav_item_icon 'Momentos', :'camera-retro', :moments %>
-
-        <% if current_user %>
-        <li class="dropdown">
-          <button class="btn btn-unstyled dropdown-toggle" type="button" data-toggle="dropdown">
-            <% img_url = display_user_image_url(current_user) %>
-            <%= image_tag img_url, size: "32", class: 'img-circle', alt: 'avatar' %>
-          </button>
-          <ul class="dropdown-menu">
-            <li><%= link_with_icon_to 'Perfil', :edit, profile_admin_account_url %></li>
-            <li><%= link_with_icon_to 'Preferencias', :cog, settings_admin_account_url %></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_with_icon_to 'Cerrar sesión', :'power-off', destroy_user_session_url, method: :delete %></li>
-          </ul>
-        </li>
-        <% end %>
-      </ul>
 
       <ul class="navbar-nav navbar-nav--block" role="navigation">
         <% Page.navigable.each do |page| %>
