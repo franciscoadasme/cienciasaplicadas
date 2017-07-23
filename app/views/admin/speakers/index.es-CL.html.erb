@@ -1,0 +1,15 @@
+<% provide :title, 'Invitados' %>
+<% provide :subtitle, @event.name.truncate(60) %>
+<% provide :widget do %>
+  <%= link_to 'Nuevo invitado', new_admin_event_speaker_path(@event), class: 'btn btn-primary' %>
+<% end %>
+
+<% if @event.speakers.any? %>
+  <ul class="list-group">
+    <%= render @event.speakers %>
+  </ul>
+<% else %>
+  <p class="lead text-muted text-center">No hay asistentes registrados</p>
+<% end %>
+
+<%= link_to fa_icon(:'long-arrow-left', text: 'Volver al evento'), admin_event_path(@event) %>

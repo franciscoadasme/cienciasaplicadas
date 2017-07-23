@@ -1,8 +1,8 @@
 class EventsController < SiteController
-  before_action :set_event, only: [:show, :posts, :registration]
-  before_action :ensure_managed, only: [:posts]
+  before_action :set_event, only: [:show, :posts, :registration, :speakers]
+  before_action :ensure_managed, only: [:posts, :speakers]
   before_action :ensure_subscribable, only: [:registration]
-  decorates_assigned :events, :event, :posts
+  decorates_assigned :events, :event, :posts, :speakers
 
   def index
     @events = Event.during_date date_params
@@ -52,6 +52,10 @@ class EventsController < SiteController
     end
   end
 
+  def speakers
+    @speakers = SpeakerDecorator.decorate_collection @event.speakers
+  end
+
   private
 
   def attendee_params
@@ -69,7 +73,7 @@ class EventsController < SiteController
   end
 
   def set_event
-    @event = Event.friendly.find params[:id]
+    @event = Event.includes(:posts, :speakers).friendly.find params[:id]
   end
 
   def set_event_type_counts

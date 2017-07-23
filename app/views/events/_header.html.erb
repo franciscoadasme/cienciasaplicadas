@@ -23,7 +23,7 @@
     <nav>
       <ul class="nav nav-tabs nav-tabs-dark">
         <%= nav_item 'Información', event_url(event) %>
-        <%= nav_item 'Invitados', '#' %>
+        <%= nav_item 'Invitados', speakers_event_url(event) %>
         <%= nav_item 'Noticias', posts_event_url(event),
                      active: controller_name == 'posts' || action_name == 'posts',
                      data: { disable: false } %>

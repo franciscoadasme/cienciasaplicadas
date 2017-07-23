@@ -1,0 +1,17 @@
+<%= simple_form_for [:admin, @event, @speaker] do |f| %>
+  <% provide :notification, f.error_notification %>
+
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :institution %>
+  <%= f.input :website_url %>
+  <%= f.input :photo %>
+
+  <div class="form-group form-actions">
+    <div class="col-xs-offset-3 text-left">
+      <%= f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Enviando...' } %>
+      <span class="text-muted">o</span>
+      <%= link_to 'volver a invitados', admin_event_speakers_path(@event) %>
+    </div>
+  </div>
+<% end %>

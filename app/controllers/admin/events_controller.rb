@@ -76,7 +76,8 @@ class Admin::EventsController < AdminController
   end
 
     def set_event
-      @event = Event.includes(:attendees).friendly.find(params[:id])
+      @event = Event.includes(:attendees, :speakers, :posts)
+                    .friendly.find(params[:id])
     end
 
     def event_params

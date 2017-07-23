@@ -1,0 +1,17 @@
+<div class="container container-narrow">
+  <%= render 'events/header' %>
+
+  <section class="content">
+    <% if speakers.any? %>
+      <ul class="list-flex">
+        <% speakers.each do |speaker| %>
+          <li><%= render 'speaker', speaker: speaker %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="lead text-muted text-center">
+        Oops... aún no hay invitados listados
+      </p>
+    <% end %>
+  </section>
+</div>

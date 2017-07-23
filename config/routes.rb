@@ -83,6 +83,7 @@ CbsmWebsite::Application.routes.draw do
         patch 'attendes/:attendee_id/reject', action: :reject_attendee, as: :reject_attendee
         delete 'attendes/:attendee_id', action: :destroy_attendee, as: :attendee
       end
+      resources :speakers, except: [:show]
     end
 
     # Development only
@@ -111,6 +112,7 @@ CbsmWebsite::Application.routes.draw do
     get 'eventos/:id', to: 'events#show', as: :event
     match 'eventos/:id/registro', to: 'events#registration', via: [:get, :post], as: :registration_event
     get 'eventos/:id/noticias', to: 'events#posts', as: 'posts_event'
+    get 'eventos/:id/invitados', to: 'events#speakers', as: 'speakers_event'
 
     get 'momentos(/:year(/:month))', to: 'moments#index', as: :moments
     get 'momentos/:year/:month/:day/:id', to: 'moments#show', as: :moment

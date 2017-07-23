@@ -1,0 +1,21 @@
+<li class="list-group-item media">
+  <% if speaker.photo.present? %>
+    <div class="media-left">
+      <%= image_tag speaker.photo(:thumb), size: '64', class: 'media-object img-circle' %>
+    </div>
+  <% end %>
+  <div class="media-body">
+    <strong><%= speaker.name %></strong>
+    <%= link_to fa_icon(:'external-link'), speaker.website_url, title: 'Ir a página web' if speaker.website_url.present? %>
+    <br>
+    <%= speaker.description %>
+    <br>
+    <em><%= speaker.institution %></em>
+  </div>
+  <div class="media-right">
+    <%= link_to fa_icon(:'pencil'), edit_admin_event_speaker_path(speaker.event, speaker),
+                title: 'Editar invitado' %>
+    <%= link_to fa_icon(:'trash-o'), admin_event_speaker_path(speaker.event, speaker), method: :delete,
+                title: 'Eliminar invitado' %>
+  </div>
+</li>

@@ -1,0 +1,22 @@
+es-CL:
+  activerecord:
+    models:
+      speaker: Invitado
+    attributes:
+      speaker:
+        name: Nombre
+        description: Descripción
+        institution: Institución
+        photo: Fotografía
+
+    errors:
+      models:
+        speaker:
+          attributes:
+            name:
+              taken: este invitado ya está registrado
+            photo:
+              blank: no se seleccionó ningún archivo
+              invalid: solo imágenes están permitidas (jpg, gif, png)
+              spoofed_media_type: solo imágenes están permitidas (jpg, gif, png)
+              in_between: el tamaño del archivo excedió el límite
