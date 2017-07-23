@@ -44,6 +44,14 @@
   }
 }
 
+.btn-link {
+  &,
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .btn-outline {
   background: none;
   border-color: $text-color;
