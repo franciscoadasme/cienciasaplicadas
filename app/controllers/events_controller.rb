@@ -45,7 +45,7 @@ class EventsController < SiteController
       @attendee.event = @event
       if @attendee.save
         flash[:success] = 'Registro en el evento completado'
-        redirect_to event_url(@event)
+        redirect_to event_url(@event, request.query_parameters)
       end
     else
       @attendee = Attendee.new

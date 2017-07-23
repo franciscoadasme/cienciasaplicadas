@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <%= render 'site/nav' %>
+  <%= render 'site/nav' unless minimal_layout? %>
   <%= render 'flashes' %>
   <section role="main">
     <%= yield %>

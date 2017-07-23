@@ -22,9 +22,9 @@
   <% if event.managed? && local_assigns.fetch(:show_nav, true) %>
     <nav>
       <ul class="nav nav-tabs nav-tabs-dark">
-        <%= nav_item 'Información', event_url(event) %>
-        <%= nav_item 'Invitados', speakers_event_url(event) %>
-        <%= nav_item 'Noticias', posts_event_url(event),
+        <%= nav_item 'Información', event_url(event, request.query_parameters) %>
+        <%= nav_item 'Invitados', speakers_event_url(event, request.query_parameters) %>
+        <%= nav_item 'Noticias', posts_event_url(event, request.query_parameters),
                      active: controller_name == 'posts' || action_name == 'posts',
                      data: { disable: false } %>
       </ul>
@@ -34,7 +34,7 @@
   <% if local_assigns.fetch(:show_actions, true) %>
     <div class="actions">
       <% if event.subscribable? %>
-        <%= btn_to fa_icon(:'id-badge'), registration_event_url(event),
+        <%= btn_to fa_icon(:'id-badge'), registration_event_url(event, request.query_parameters),
                    class: 'btn-circle btn-primary btn-lg btn-raised', title: 'Registrarse' %>
       <% end %>
       <% if event.picture.present? %>
@@ -45,7 +45,7 @@
         <%= btn_to fa_icon(:pencil), edit_admin_event_url(event),
                    class: 'btn-circle btn-outline', title: 'Editar' %>
       <% end %>
-      <%= btn_to fa_icon(:'arrow-left'), events_url, class: 'btn-circle btn-outline' %>
+      <%= btn_to fa_icon(:'arrow-left'), events_url, class: 'btn-circle btn-outline' unless minimal_layout? %>
     </div>
   <% end %>
 </header>

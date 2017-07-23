@@ -21,7 +21,9 @@ class PostDecorator < ContentDecorator
 
   def permalink
     date = object.created_at
-    h.post_url id: object.slug, year: date.year, month: date.month, day: date.day
+    post_params = { id: object.slug, year: date.year, month: date.month,
+                    day: date.day }
+    h.post_url post_params.merge(request.query_parameters)
   end
 
   def published_at

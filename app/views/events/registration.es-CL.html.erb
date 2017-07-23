@@ -10,11 +10,11 @@
       el evento.
     </p>
 
-    <%= form_for @attendee, url: registration_event_url do |f| %>
+    <%= form_for @attendee, url: registration_event_url(request.query_parameters) do |f| %>
       <div class="row">
         <div class="form-group col-md-7 <%= validation_class_for_field(@attendee, :email) %>">
           <%= f.label :name, 'Email', class: 'control-label' %>
-          <%= f.email_field :email, class: 'form-control' %>
+          <%= f.email_field :email, required: true, class: 'form-control' %>
           <%= error_for_field @attendee, :email %>
           <% unless @attendee.errors.key? :email %>
             <small class="help-block">
@@ -30,7 +30,7 @@
         <div class="form-actions col-md-12">
           <%= f.submit 'Enviar', class: 'btn btn-primary', data: { disable_with: 'Enviando...' } %>
           <span class="text-muted">o</span>
-          <%= link_to 'volver al evento', event_url(event), class: 'link-unstyled' %>
+          <%= link_to 'volver al evento', event_url(event, request.query_parameters), class: 'link-unstyled' %>
         </div>
       </div>
     <% end %>
