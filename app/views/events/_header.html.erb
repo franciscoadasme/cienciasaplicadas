@@ -1,4 +1,4 @@
-<header>
+<header data-banner-url="<%= image_url "events/#{event.event_type}.jpg" %>">
   <h1>
     <small class="text-color"><%= format_period event.start_date, event.end_date %></small>
     <span class="badge badge-outline-primary"><%= event.event_type.upcase %></span>
