@@ -1,0 +1,5 @@
+es-CL:
+  controllers:
+    success:
+      events:
+        registration: Registro al evento completado
