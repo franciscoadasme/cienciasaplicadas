@@ -1,0 +1,27 @@
+<% provide :title do %>
+  <h1>Registration accepted</h1>
+<% end %>
+
+<%= mtable_tag width: '100%' do %>
+  <tr>
+    <td>
+      <p>Dear user,</p>
+      <p>
+        Your request to attend to the <%= @event.event_type %>
+        "<%= @event.name %>" was accepted.
+      </p>
+      <p>
+        We remind you that the event will take place during <b><%= @event.date_span %></b>
+        at the <%= @event.location %>, and it is sponsored by <i><%= @event.promoter %></i>.
+      </p>
+      <p>
+        For more information, please go to the
+        <%= link_to 'event website', event_url(@event, from_ext: true, lang: :en) %>.
+      </p>
+      <p>
+        Best regards,<br>
+        Organizing committee
+      </p>
+    </td>
+  </tr>
+<% end %>

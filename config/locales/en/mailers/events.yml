@@ -1,0 +1,7 @@
+en:
+  mailers:
+    events:
+      registration_accepted:
+        subject: Registration to the event %{event} was accepted
+      registration_rejected:
+        subject: Registration to the event %{event} was rejected

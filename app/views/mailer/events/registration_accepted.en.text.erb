@@ -1,0 +1,14 @@
+Registration accepted
+=====================
+
+Dear user,
+
+Your request to attend to the <%= @event.event_type %> "<%= @event.name %>" was accepted.
+
+We remind you that the event will take place during <%= strip_tags @event.date_span -%>
+ at the <%= @event.location %>, and it is sponsored by <%= @event.promoter %>.
+
+For more information, please go to <%= event_url(@event, from_ext: true, lang: :en) %>.
+
+Best regards,
+Organizing committee

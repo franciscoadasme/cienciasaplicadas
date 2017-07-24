@@ -44,7 +44,6 @@ class EventsController < SiteController
   def registration
     if params.key?(:attendee)
       @attendee = Attendee.new attendee_params
-      @attendee.event = @event
       if @attendee.save
         flash[:success] = I18n.t 'controllers.success.events.registration'
         redirect_to event_url(@event, request.query_parameters)
@@ -61,7 +60,10 @@ class EventsController < SiteController
   private
 
   def attendee_params
-    params.require(:attendee).permit(:email, :name)
+    params.require(:attendee).permit(:email, :name).merge(
+      event: @event,
+      locale: I18n.locale
+    )
   end
 
   def ensure_managed

@@ -1,0 +1,26 @@
+<% provide :title do %>
+  <h1>Registration rejected</h1>
+<% end %>
+
+<%= mtable_tag width: '100%' do %>
+  <tr>
+    <td>
+      <p>Dear user,</p>
+      <p>
+        Your request to attend to the <%= @event.event_type %>
+        "<%= @event.name %>" was rejected.
+        We are sorry for this situation, but the attendance quota was reached after your
+        registration.
+      </p>
+      <p>
+        We recommend you to follow the event's news in case the registration is reopened
+        for a second time.
+      </p>
+      <p>Thank you for your interest, and we look forward to seeing you at an upcoming event.</p>
+      <p>
+        Best regards,<br>
+        Organizing committee
+      </p>
+    </td>
+  </tr>
+<% end %>
