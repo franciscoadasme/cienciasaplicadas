@@ -8,6 +8,8 @@
   <ul class="list-group list-group-posts">
     <%= render @posts %>
   </ul>
+  <%= link_to fa_icon(:'long-arrow-left', text: 'Volver al evento'), admin_event_path(@event),
+              class: 'btn btn-link' %>
 <% else %>
   <p class="lead text-muted text-center">No hay noticias para mostrar</p>
 <% end %>
