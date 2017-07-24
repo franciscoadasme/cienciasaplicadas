@@ -10,6 +10,7 @@ es-CL:
         duration: Duración
         location: Lugar de realización
         description: Descripción
+        localized_description: Descripción en inglés
         event_type: Tipo de evento
         promoter: Patrocinador
         picture: Imagen del tópico

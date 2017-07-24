@@ -3,4 +3,4 @@
 
   %section.content
     = content_tag :p, image_tag(event.picture) if event.picture.present?
-    = event.description.html_safe
+    = event.translate_description(I18n.locale).html_safe

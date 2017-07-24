@@ -89,6 +89,7 @@ class Admin::EventsController < AdminController
         :end_date,
         :location,
         :description,
+        :localized_description,
         :all_day,
         :event_type,
         :promoter,

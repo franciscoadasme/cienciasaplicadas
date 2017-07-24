@@ -30,9 +30,14 @@
     = f.input :event_type, as: :select, collection: Event::TYPES,
               label_method: -> t { t.to_s.titleize }, include_blank: false
     = f.input :promoter
-    = f.input :description, as: :trix_editor, wrapper: :simple_wrapper
     = f.input :picture
 
+    %p= label_tag :description, Event.human_attribute_name(:description), class: 'control-label'
+    = f.input :description, as: :trix_editor, wrapper: :simple_wrapper
+
+    %p= label_tag :localized_description, Event.human_attribute_name(:localized_description),
+                  class: 'control-label'
+    = f.input :localized_description, as: :trix_editor, wrapper: :simple_wrapper
     - unless @event.persisted?
       = render partial: 'admin/notifiable/form', locals: { f: f }
 

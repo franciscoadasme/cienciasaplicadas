@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724001206) do
+ActiveRecord::Schema.define(version: 20170724032337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,23 +43,24 @@ ActiveRecord::Schema.define(version: 20170724001206) do
   add_index "authors", ["user_id"], name: "index_authors_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",                 limit: 255,                 null: false
-    t.date     "start_date",                                       null: false
+    t.string   "name",                  limit: 255,                 null: false
+    t.date     "start_date",                                        null: false
     t.date     "end_date"
-    t.string   "location",             limit: 255,                 null: false
+    t.string   "location",              limit: 255,                 null: false
     t.text     "description"
-    t.string   "event_type",           limit: 255,                 null: false
-    t.string   "promoter",             limit: 255
-    t.string   "picture_file_name",    limit: 255
-    t.string   "picture_content_type", limit: 255
+    t.string   "event_type",            limit: 255,                 null: false
+    t.string   "promoter",              limit: 255
+    t.string   "picture_file_name",     limit: 255
+    t.string   "picture_content_type",  limit: 255
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug",                 limit: 255
+    t.string   "slug",                  limit: 255
     t.integer  "max_attendee"
-    t.boolean  "managed",                          default: false
-    t.boolean  "registration_enabled",             default: false
+    t.boolean  "managed",                           default: false
+    t.boolean  "registration_enabled",              default: false
+    t.text     "localized_description"
   end
 
   add_index "events", ["name", "start_date"], name: "index_events_on_name_and_start_date", unique: true, using: :btree

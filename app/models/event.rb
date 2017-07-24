@@ -55,6 +55,8 @@ class Event < ActiveRecord::Base
   validates :location, presence: true
   validates :description, presence: true,
                             length: { minimum: 10 }
+  validates :localized_description, allow_blank: true,
+                                    length: { minimum: 10 }
   validates :event_type, presence: true,
                         inclusion: { in: TYPES.map(&:to_s) }
   validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
@@ -67,5 +69,10 @@ class Event < ActiveRecord::Base
 
   def subscribable?
     registration_enabled? && attendees.accepted.count < max_attendee
+  end
+
+  def translate_description(locale)
+    return description if localized_description.blank?
+    locale.to_sym == :en ? localized_description : description
   end
 end
