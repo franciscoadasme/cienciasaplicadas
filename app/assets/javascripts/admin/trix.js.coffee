@@ -36,11 +36,9 @@ groupElement.insertAdjacentHTML("afterend", buttonHTML)
 
 # Add hooks when loading and submitting content from trix editor
 $ ->
-  element = document.querySelector "trix-editor"
-  return unless element
-
-  # Ensure well-formed HTML before submitting form
-  form = element.closest "form"
-  target = form.querySelector "input##{element.attributes["input"].value}"
-  form.addEventListener "submit", (event) ->
-    target.value = paragraphify element.value
+  element = document.querySelectorAll("trix-editor").forEach (element, i, _) ->
+    # Ensure well-formed HTML before submitting form
+    form = element.closest "form"
+    target = form.querySelector "input##{element.attributes["input"].value}"
+    form.addEventListener "submit", (event) ->
+      target.value = paragraphify element.value
