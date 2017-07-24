@@ -22,7 +22,7 @@
           - locales = @post.persisted? ? [@post.locale] : (I18n.available_locales - @post.parent.locales)
           = f.select :locale, locales, {}, disabled: @post.persisted?
 
-    - if @post.event.present? || !@post.persisted?
+    - if @post.event.present?
       .form-group.row
         = f.label :event, t('simple_form.labels.posts.event'), class: 'col-xs-3'
         .form-controls.col-xs-9
