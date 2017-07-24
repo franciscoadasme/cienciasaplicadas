@@ -1,22 +1,38 @@
 %li.list-group-item.list-group-item-post{ id: "post_#{post.id}" }
   %h3
     = link_to post.title, post_permalink(post)
+    - if post.parent.present?
+      %span.badge.badge-info= post.locale
 
   %p= excerpt post.body
 
   = render 'admin/publishable/meta', publishable: post
 
   .list-group-item-actions
-    - if current_user.admin?
-      - if post.published?
-        = item_action t('actions.admin.posts.withhold'), withhold_admin_post_path(post.id), icon: :lock, method: :patch
+    - if post.parent.nil?
+      - if current_user.admin?
+        - if post.published?
+          = item_action t('actions.admin.posts.withhold'), withhold_admin_post_path(post.id), icon: :lock, method: :patch
+        - else
+          = item_action t('actions.admin.posts.publish'), publish_admin_post_path(post.id), icon: 'unlock-alt', primary: true, method: :patch
       - else
-        = item_action t('actions.admin.posts.publish'), publish_admin_post_path(post.id), icon: 'unlock-alt', primary: true, method: :patch
-    - else
-      %span.btn.btn-default.disabled= post.published? ? 'Publicado' : 'Retenido'
+        %span.btn.btn-default.disabled= post.published? ? 'Publicado' : 'Retenido'
+
+    - if post.event.present? && post.parent.nil?
+      - if post.localized.any?
+        .btn-group
+          = link_to fa_icon(:language, text: post.localized.count), localized_admin_post_path(post), class: 'btn btn-default', title: 'Traducciones'
+          - if (I18n.available_locales - post.locales).any?
+            = link_to fa_icon(:plus), new_admin_post_path(event: post.event.id, parent: post.id), class: 'btn btn-default'
+      - else
+        = link_to new_admin_post_path(event: post.event.try(:id), parent: post.id), class: 'btn btn-default', title: 'Agregar traducción' do
+          = fa_icon(:language)
+          = fa_icon(:plus)
 
     = item_action t('views.admin.posts.buttons.edit'), edit_admin_post_path(post.id), primary: post.published? if !post.published? || current_user.admin?
-    = item_action taction(post.published? ? :show : :preview), post_permalink(post), target: '_blank'
+    - permalink = post_permalink(post)
+    - permalink = permalink.concat "?lang=#{post.locale}" if post.parent.present?
+    = item_action taction(post.published? ? :show : :preview), permalink, target: '_blank'
 
     .pull-right
       = delete_action_for post

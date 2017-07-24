@@ -14,7 +14,7 @@
                 class: 'btn btn-default', title: 'Ver registro de visitantes'
       = link_to fa_icon(:'microphone', text: event.speakers.count), admin_event_speakers_path(event),
                 class: 'btn btn-default', title: 'Ver lista de invitados'
-      = link_to fa_icon(:'newspaper-o', text: event.posts.count), posts_admin_event_path(event),
+      = link_to fa_icon(:'newspaper-o', text: event.posts.main.count), posts_admin_event_path(event),
                 class: 'btn btn-default', title: 'Ver noticias'
     = edit_action_for event, primary: true
     .pull-right

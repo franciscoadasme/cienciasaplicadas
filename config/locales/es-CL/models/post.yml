@@ -6,6 +6,8 @@ es-CL:
       post:
         title: Título
         body: Contenido
+        parent: Original
+        locale: Idioma
         notification: Notificar a
 
   simple_form:

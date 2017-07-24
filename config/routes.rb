@@ -25,6 +25,7 @@ CbsmWebsite::Application.routes.draw do
       member do
         patch :publish
         patch :withhold
+        get :localized
       end
     end
 

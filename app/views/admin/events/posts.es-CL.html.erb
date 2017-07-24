@@ -6,7 +6,7 @@
 
 <% if @event.posts.any? %>
   <ul class="list-group list-group-posts">
-    <%= render @event.posts.sorted %>
+    <%= render @posts %>
   </ul>
 <% else %>
   <p class="lead text-muted text-center">No hay noticias para mostrar</p>

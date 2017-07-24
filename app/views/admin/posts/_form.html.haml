@@ -7,21 +7,36 @@
               input_html: { class: 'input-lg' }
     = f.input :body, as: :trix_editor, wrapper: :simple_wrapper
 
-    - if @post.event.present? || !@post.persisted?
+    - if !@post.persisted? || @post.event.present? || !@post.parent.nil?
       %hr
+
+    - unless @post.parent.nil?
+      .form-group.row
+        = f.label :parent, Post.human_attribute_name(:parent), class: 'col-xs-3'
+        .form-controls.col-xs-9
+          = f.select :parent_id, [[@post.parent.title, @post.parent.id]], {}, disabled: @post.persisted?
+
+      .form-group.row
+        = f.label :locale, Post.human_attribute_name(:locale), class: 'col-xs-3'
+        .form-controls.col-xs-9
+          - locales = @post.persisted? ? [@post.locale] : (I18n.available_locales - @post.parent.locales)
+          = f.select :locale, locales, {}, disabled: @post.persisted?
+
+    - if @post.event.present? || !@post.persisted?
       .form-group.row
         = f.label :event, t('simple_form.labels.posts.event'), class: 'col-xs-3'
         .form-controls.col-xs-9
-          = f.select :event_id, Event.upcoming.managed.collect { |p| [p.name, p.id] },
+          = f.select :event_id, [[@post.event.name, @post.event.id]],
                     { prompt: 'Ninguno' },
                     disabled: @post.persisted? && @post.event.present?
-    - unless @post.persisted?
+
+    - if !@post.persisted? && @post.parent.nil?
       = render partial: 'admin/notifiable/form', locals: { f: f }
 
   %hr
 
   .form-group.form-actions
-    - if !@post.persisted? && current_user.admin?
+    - if !@post.persisted? && current_user.admin? && @post.parent.nil?
       = f.button :button, t('helpers.submit.post.draft'), name: 'draft',
                  class: 'btn-default',
                  data: { disable_with: 'Guardando...' }

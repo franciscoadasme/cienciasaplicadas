@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723231952) do
+ActiveRecord::Schema.define(version: 20170724001206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,9 +166,12 @@ ActiveRecord::Schema.define(version: 20170723231952) do
     t.datetime "updated_at"
     t.integer  "view_count",               default: 0,     null: false
     t.integer  "event_id"
+    t.string   "locale"
+    t.integer  "parent_id"
   end
 
   add_index "posts", ["event_id"], name: "index_posts_on_event_id", using: :btree
+  add_index "posts", ["parent_id"], name: "index_posts_on_parent_id", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
 
   create_table "projects", force: :cascade do |t|
@@ -309,4 +312,5 @@ ActiveRecord::Schema.define(version: 20170723231952) do
 
   add_foreign_key "attendees", "events"
   add_foreign_key "posts", "events"
+  add_foreign_key "posts", "posts", column: "parent_id"
 end

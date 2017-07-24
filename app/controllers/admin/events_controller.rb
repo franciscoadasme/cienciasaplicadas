@@ -67,7 +67,9 @@ class Admin::EventsController < AdminController
     redirect_to action: :attendees
   end
 
-  def posts; end
+  def posts
+    @posts = @event.posts.main.sorted
+  end
 
   private
 

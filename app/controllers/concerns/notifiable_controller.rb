@@ -10,7 +10,7 @@ module NotifiableController
   end
 
   def send_new_notification_if_needed(record)
-    return if position_ids.empty?
+    return if !params.key?(:notification) || position_ids.empty?
     notifier = "send_new_#{record.class.name.underscore}_notification"
     NotificationMailer.send(notifier, record, notification_recipients).deliver
   end

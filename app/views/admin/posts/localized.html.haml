@@ -1,0 +1,10 @@
+- provide :title, 'Traducciones'
+- provide :subtitle, @post.title.truncate(60)
+
+%ul.list-group.list-group-posts
+  = render @posts
+
+- if @post.event.present?
+  = link_to fa_icon(:'long-arrow-left', text: 'Volver a noticias del evento'), posts_admin_event_path(@post.event)
+- else
+  = link_to fa_icon(:'long-arrow-left', text: 'Volver a las noticias'), admin_posts_path

@@ -2,16 +2,17 @@ class Admin::PostsController < AdminController
   include NotifiableController
 
   before_action :authorize_user!
-  before_action :set_post, only: [ :edit, :update, :destroy, :publish, :withhold ]
+  before_action :set_post, only: [ :edit, :update, :destroy, :publish, :withhold, :localized ]
   # after_action :send_notification, only: [ :create, :update ]
 
   def index
-    @posts = Post.global.sorted
+    @posts = Post.global.main.sorted
   end
 
   def new
     @post = Post.new
     @post.event = Event.find(params[:event]) if params.key?(:event)
+    @post.parent = Post.find(params[:parent]) if params.key?(:parent)
     @positions = Position.sorted
   end
 
@@ -66,6 +67,10 @@ class Admin::PostsController < AdminController
     redirect_to_index success: true
   end
 
+  def localized
+    @posts = @post.localized.sorted
+  end
+
   private
     def authorize_user!
       redirect_to admin_path, alert: t('devise.failure.unauthorized') unless current_user.super_user?
@@ -80,7 +85,10 @@ class Admin::PostsController < AdminController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :event_id)
+      post_params = params.require(:post).permit(:title, :body, :event_id,
+                                                 :parent_id, :locale)
+      post_params[:locale] ||= I18n.default_locale
+      post_params
     end
 
     def redirect_to_index_after_save
