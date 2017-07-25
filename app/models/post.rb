@@ -41,6 +41,6 @@ class Post < ActiveRecord::Base
   def translate(locale)
     return self if self.locale == locale.to_s
     post = parent || self
-    Post.where('id = ? or parent_id = ?', post.id, post.id).locale(locale).first
+    Post.where('id = ? or parent_id = ?', post.id, post.id).locale(locale).first || self
   end
 end
