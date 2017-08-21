@@ -30,7 +30,7 @@ CbsmWebsite::Application.configure do
   config.action_mailer.default_url_options = {
     host: ENV['MAIL_DOMAIN']
   }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :mailgun
   config.action_mailer.smtp_settings = {
     authentication: :plain,
     port: 587,
@@ -38,6 +38,10 @@ CbsmWebsite::Application.configure do
     domain: ENV['MAIL_DOMAIN'],
     user_name: ENV['MAIL_USERNAME'],
     password: ENV['MAIL_PASSWORD']
+  }
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['MAIL_API_KEY'],
+    domain: ENV['MAIL_DOMAIN']
   }
   config.action_mailer.perform_deliveries = true
 

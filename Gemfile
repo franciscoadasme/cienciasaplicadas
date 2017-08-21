@@ -49,6 +49,8 @@ gem 'draper', '~> 2.1'
 
 gem 'redcarpet', '~> 3.1.1'
 
+gem 'mailgun_rails', '~> 0.9'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

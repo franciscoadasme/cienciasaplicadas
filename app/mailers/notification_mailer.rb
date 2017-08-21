@@ -25,11 +25,17 @@ class NotificationMailer < DefaultMailer
 
   private
 
-  def send_notification(subject, users, template)
-    # users = User.where(nickname: 'fadasme') if Rails.env.development?
-    mail(to: recipients(users),
+  def new_request(subject, email, template)
+    mail(to: email,
          subject: subject,
          template_path: 'mailer/notification',
          template_name: template)
+  end
+
+  def send_notification(subject, users, template)
+    addr_list = recipients(users)
+    new_request(subject, addr_list, template).tap do |email|
+      email.mailgun_recipient_variables = Hash[addr_list.map { |a| [a, {}] }]
+    end
   end
 end
