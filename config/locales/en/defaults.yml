@@ -21,6 +21,9 @@ en:
       yesterday: Yesterday
       tomorrow: Tomorrow
 
+    relative:
+      future: "%{distance} left"
+
   time:
     formats:
       abbr: "%b %y"

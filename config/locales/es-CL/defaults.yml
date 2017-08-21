@@ -21,6 +21,9 @@ es-CL:
       yesterday: Ayer
       tomorrow: Mañana
 
+    relative:
+      future: quedan %{distance}
+
   time:
     formats:
       abbr: "%b %y"
