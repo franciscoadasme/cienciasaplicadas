@@ -3,7 +3,7 @@
 
   <section class="content">
     <% if speakers.any? %>
-      <ul class="list-flex">
+      <ul class="list-flex list-flex-col list-flex-col-1">
         <% speakers.each do |speaker| %>
           <li><%= render 'speaker', speaker: speaker %></li>
         <% end %>
