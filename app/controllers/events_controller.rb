@@ -54,7 +54,7 @@ class EventsController < SiteController
   end
 
   def speakers
-    @speakers = SpeakerDecorator.decorate_collection @event.speakers
+    @speakers = SpeakerDecorator.decorate_collection @event.speakers.sorted
   end
 
   private
