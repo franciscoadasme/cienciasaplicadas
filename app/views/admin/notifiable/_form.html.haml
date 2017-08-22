@@ -14,3 +14,10 @@
           - text = b.object.name.titleize
           - text = text.pluralize_each(:'es-CL') unless b.object.single?
           = text
+
+    - if f.object.is_a?(Post) && f.object.event.present?
+      .checkbox
+        = label_tag 'notification_attendees' do
+          - checked = params.key?(:notification) && params[:notification].key?(:attendees)
+          = check_box_tag 'notification[attendees]', 1, checked
+          Participantes del evento
