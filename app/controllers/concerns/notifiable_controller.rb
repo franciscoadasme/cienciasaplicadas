@@ -10,13 +10,22 @@ module NotifiableController
   end
 
   def send_new_notification_if_needed(record)
-    return if !params.key?(:notification) || position_ids.empty?
+    return unless send_notification?
     notifier = "send_new_#{record.class.name.underscore}_notification"
     NotificationMailer.send(notifier, record, notification_recipients).deliver
   end
 
   def notification_recipients
-    @recipients ||= User.default.joins(:position)
-                        .where('positions.id' => position_ids)
+    @recipients ||= begin
+      recipients = User.default.joins(:position)
+                       .where('positions.id' => position_ids).to_a
+    end
+  end
+
+  private
+
+  def send_notification?
+    return false unless params.key?(:notification)
+    position_ids.any?
   end
 end
