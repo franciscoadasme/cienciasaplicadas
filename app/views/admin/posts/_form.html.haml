@@ -21,6 +21,8 @@
         .form-controls.col-xs-9
           - locales = @post.persisted? ? [@post.locale] : (I18n.available_locales - @post.parent.locales)
           = f.select :locale, locales, {}, disabled: @post.persisted?
+        - if @post.persisted?
+          = f.hidden_field :locale
 
     - if @post.event.present?
       .form-group.row
