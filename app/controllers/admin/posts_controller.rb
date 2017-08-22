@@ -54,7 +54,11 @@ class Admin::PostsController < AdminController
 
   def destroy
     @post.destroy
-    redirect_to_index success: true
+    if @post.event.present?
+      redirect_to posts_admin_event_path(@post.event)
+    else
+      redirect_to_index success: true
+    end
   end
 
   def publish
