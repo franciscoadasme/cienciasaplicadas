@@ -35,10 +35,16 @@ class DefaultMailer < ActionMailer::Base
 
   private
 
+  def recipient_for_user(user)
+    # return user.email if user.display_name.blank?
+    # "#{user.display_name} <#{user.email}>"
+    user.email
+  end
+
   def recipients(users)
     if Rails.env.development?
       return ['Francisco Adasme <francisco.adasme@gmail.com>']
     end
-    users.map { |user| "#{user.display_name} <#{user.email}>" }
+    users.map { |user| recipient_for_user(user) }.uniq
   end
 end
