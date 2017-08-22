@@ -38,7 +38,7 @@ class EventsController < SiteController
   end
 
   def posts
-    @posts = PostDecorator.decorate_collection @event.posts.locale(I18n.locale).sorted
+    @posts = PostDecorator.decorate_collection @event.posts.global.locale(I18n.locale).sorted
   end
 
   def registration
