@@ -13,6 +13,10 @@ class Attendee < ActiveRecord::Base
                     uniqueness: { scope: :event_id,
                                   case_sensitive: false }
 
+  def display_name
+    name
+  end
+
   def rejected?
     accepted == false
   end
