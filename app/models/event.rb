@@ -72,7 +72,7 @@ class Event < ActiveRecord::Base
   end
 
   def subscribable?
-    registration_enabled? && attendees.accepted.count < max_attendee
+    registration_enabled? && attendees.accepted.count <= max_attendee
   end
 
   def translate_description(locale)
