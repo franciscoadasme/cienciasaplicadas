@@ -25,6 +25,18 @@
     </tbody>
   </table>
 
+  <% if event.subscribable? && action_name != 'registration' %>
+    <div class="well well-sm text-center" style="margin-top: 20px;">
+      <% if event.slots_left <= 10 %>
+        <%= t 'labels.event.registration_open_with_slots', count: event.slots_left %>.
+      <% else %>
+        <%= t 'labels.event.registration_open' %>.
+      <% end %>
+      <%= link_to t('actions.event.register_now'),
+                  registration_event_url(event, request.query_parameters) %>
+    </div>
+  <% end %>
+
   <% if event.managed? && local_assigns.fetch(:show_nav, true) %>
     <nav>
       <ul class="nav nav-tabs nav-tabs-dark">

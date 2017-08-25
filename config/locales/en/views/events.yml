@@ -5,9 +5,15 @@ en:
       speakers: speakers
       posts: news
 
+      registration_open: Registration is open
+      registration_open_with_slots:
+        one: Registration is open (one slot left)
+        other: Registration is open (%{count} slots left)
+
   actions:
     event:
       register: Register as attendee
+      register_now: Register now
       download_flier: Download flier
 
     events:

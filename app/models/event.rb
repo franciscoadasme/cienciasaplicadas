@@ -63,6 +63,10 @@ class Event < ActiveRecord::Base
                                                       message: I18n.t('activerecord.errors.models.event.attributes.picture.spoofed_media_type') },
                                          size: { less_than: 5.megabytes }
 
+  def slots_left
+    max_attendee - attendees.accepted.count
+  end
+
   def one_day?
     end_date.blank? || start_date == end_date
   end

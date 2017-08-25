@@ -5,9 +5,15 @@ es-CL:
       speakers: invitados
       posts: noticias
 
+      registration_open: El registro está abierto
+      registration_open_with_slots:
+        one: El registro está abierto (un espacio disponible)
+        other: El registro está abierto (%{count} espacios disponibles)
+
   actions:
     event:
       register: Inscribirse como asistente
+      register_now: Inscribirse ahora
       download_flier: Descargar afiche
 
     events:
