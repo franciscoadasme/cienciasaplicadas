@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724032337) do
+ActiveRecord::Schema.define(version: 20170907014427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,10 +61,12 @@ ActiveRecord::Schema.define(version: 20170724032337) do
     t.boolean  "managed",                           default: false
     t.boolean  "registration_enabled",              default: false
     t.text     "localized_description"
+    t.string   "tagline",               limit: 128
   end
 
   add_index "events", ["name", "start_date"], name: "index_events_on_name_and_start_date", unique: true, using: :btree
   add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
+  add_index "events", ["tagline"], name: "index_events_on_tagline", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false

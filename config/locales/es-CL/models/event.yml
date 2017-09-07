@@ -17,6 +17,7 @@ es-CL:
         notification: Notificar a
         managed: Administrado?
         registration_enabled: Registro de visitantes
+        tagline: Abreviación
 
     attribute_values:
       event:

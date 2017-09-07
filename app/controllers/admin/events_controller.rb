@@ -96,7 +96,8 @@ class Admin::EventsController < AdminController
         :picture,
         :managed,
         :registration_enabled,
-        :max_attendee)
+        :max_attendee,
+        :tagline)
     end
 
   def update_attendee_status(accepted:)

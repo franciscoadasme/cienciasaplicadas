@@ -21,6 +21,9 @@
       %dd
         %strong.text-muted= @event.event_type.upcase
         = @event.name
+        - if @event.tagline.present?
+          = surround '(', ')' do
+            %strong= @event.tagline
 
       %dt= t "labels.admin.events.#{'not_' unless @event.managed?}managed"
       %dd

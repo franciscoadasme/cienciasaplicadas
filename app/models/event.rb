@@ -25,12 +25,14 @@ class Event < ActiveRecord::Base
   TYPES = [ :charla, :congreso, :curso ]
 
   extend FriendlyId
-  friendly_id :name, use: [ :slugged ]
+  friendly_id :tagline
 
   include Filterable
   filterable_by date: :start_date
   include Traversable
   traversable_by :start_date
+
+  before_save :set_tagline
 
   has_many :attendees, dependent: :delete_all
   has_many :posts, dependent: :delete_all
@@ -48,6 +50,7 @@ class Event < ActiveRecord::Base
   auto_strip_attributes :name, :location, :description
   validates :name, presence: true,
                      length: { in: 4..128 }
+  validates :tagline, length: { in: 4..128, allow_blank: true }
   validates :start_date, presence: true,
                        timeliness: true
   validates :end_date, timeliness: { on_or_after: :start_date },
@@ -78,5 +81,15 @@ class Event < ActiveRecord::Base
   def translate_description(locale)
     return description if localized_description.blank?
     locale.to_sym == :en ? localized_description : description
+  end
+
+  private
+
+  def autogenerate_tagline?
+    tagline.blank? || (name_changed? && tagline == name_was.parameterize)
+  end
+
+  def set_tagline
+    self.tagline = name.parameterize if autogenerate_tagline?
   end
 end

@@ -3,6 +3,7 @@
 
   .form-inputs
     = f.input :name
+    = f.input :tagline
     .form-group.event_duration
       = label_tag :duration, Event.human_attribute_name(:duration),
                   class: 'control-label col-xs-3'
