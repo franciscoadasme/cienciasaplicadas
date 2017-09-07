@@ -91,5 +91,6 @@ class Event < ActiveRecord::Base
 
   def set_tagline
     self.tagline = name.parameterize if autogenerate_tagline?
+    true
   end
 end
