@@ -57,7 +57,7 @@ group :doc do
 end
 
 group :development do
-  gem 'annotate'
+  gem 'annotate', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'dotenv-rails'
