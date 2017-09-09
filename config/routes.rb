@@ -105,6 +105,11 @@ CbsmWebsite::Application.routes.draw do
   get 'eventos/proximos', to: 'events#upcoming', as: :upcoming_events
   get 'eventos/este-mes', to: 'events#current_month', as: :current_month_events
 
+  # TODO: remove this hack!
+  t = 'second-international-conference-in-bioinformatics-simulations-and-modeling-icbsm-2017'
+  get "eventos/#{t}/:name", to: redirect(path: 'eventos/icbsm2017/%{name}')
+  get "eventos/#{t}", to: redirect(path: 'eventos/icbsm2017')
+
   constraints(year: /\d{4}/, month: /([1-9]|1[012])/) do
     get 'noticias(/:year(/:month))', to: 'posts#index', as: :posts
     get 'noticias/:year/:month/:day/:id', to: 'posts#show', as: :post
