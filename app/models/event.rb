@@ -51,7 +51,8 @@ class Event < ActiveRecord::Base
   validates :name, presence: true,
                      length: { in: 4..128 }
   validates :tagline, length: { in: 4..128, allow_blank: true },
-                      uniqueness: true
+                      uniqueness: true,
+                      format: { with: /\A[a-z0-9\-_]+\Z/i }
   validates :start_date, presence: true,
                        timeliness: true
   validates :end_date, timeliness: { on_or_after: :start_date },

@@ -33,3 +33,7 @@ es-CL:
             picture:
               spoofed_media_type: 'solo imágenes están permitidas (jpg, gif, png)'
               less_than: el tamaño del archivo excedió el límite
+            tagline:
+              invalid: |
+                debe contener solo letras, números y los caracteres "-", "_"
+                (excluye espacios)

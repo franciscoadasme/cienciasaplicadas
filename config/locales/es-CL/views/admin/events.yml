@@ -19,9 +19,8 @@ es-CL:
         managed: Esto incluye noticias, listado de invitados, registro de visitantes, etc.
         max_attendee: Si este número es superado, el registro será deshabilitado
         tagline: |
-          Este título abreviado es usado en el enlace. Notar que debe ser en minúsculas, no usar
-          espacios ni separar palabras. Estos serán reemplazados por guiones. Por ejemplo:
-          cienciasaplicadas.cl/eventos/icbsm2017.
+          Este título abreviado es usado en el enlace. Por ejemplo:
+          cienciasaplicadas.cl/eventos/icbsm2017
 
     labels:
       event:
