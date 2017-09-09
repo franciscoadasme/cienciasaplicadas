@@ -25,7 +25,9 @@
     </tbody>
   </table>
 
-  <% if event.subscribable? && action_name != 'registration' %>
+  <% if local_assigns.fetch(:show_actions, true) \
+        && event.subscribable? \
+        && action_name != 'registration'%>
     <div class="well well-sm text-center" style="margin-top: 20px;">
       <% if event.slots_left <= 10 %>
         <%= t 'labels.event.registration_open_with_slots', count: event.slots_left %>.
