@@ -50,7 +50,8 @@ class Event < ActiveRecord::Base
   auto_strip_attributes :name, :location, :description
   validates :name, presence: true,
                      length: { in: 4..128 }
-  validates :tagline, length: { in: 4..128, allow_blank: true }
+  validates :tagline, length: { in: 4..128, allow_blank: true },
+                      uniqueness: true
   validates :start_date, presence: true,
                        timeliness: true
   validates :end_date, timeliness: { on_or_after: :start_date },
