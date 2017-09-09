@@ -86,7 +86,7 @@ class Event < ActiveRecord::Base
   private
 
   def autogenerate_tagline?
-    tagline.blank? || (name_changed? && tagline == name_was.parameterize)
+    tagline.blank? || (name_changed? && tagline == name_was.try(:parameterize))
   end
 
   def set_tagline
