@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
   TYPES = [ :charla, :congreso, :curso ]
 
   extend FriendlyId
-  friendly_id :tagline
+  friendly_id :tagline, use: :slugged
 
   include Filterable
   filterable_by date: :start_date
@@ -93,5 +93,10 @@ class Event < ActiveRecord::Base
   def set_tagline
     self.tagline = name.parameterize if autogenerate_tagline?
     true
+  end
+
+  def should_generate_new_friendly_id?
+    set_tagline if new_record?
+    slug.blank? || tagline_changed?
   end
 end

@@ -77,7 +77,8 @@ class EventsController < SiteController
   end
 
   def set_event
-    @event = Event.includes(:posts, :speakers).friendly.find params[:id]
+    @event = Event.includes(:posts, :speakers)
+                  .friendly.find params[:id].downcase
   end
 
   def set_event_type_counts
