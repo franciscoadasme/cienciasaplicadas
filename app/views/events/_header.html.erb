@@ -12,18 +12,20 @@
     <%= event.name %>
   </h1>
 
-  <table class="table-transposed">
-    <tbody>
-      <tr>
-        <th><%= Event.human_attribute_name :promoter %></th>
-        <td><%= event.promoter %></td>
-      </tr>
-      <tr>
-        <th><%= Event.human_attribute_name :location %></th>
-        <td><%= event.location %></td>
-      </tr>
-    </tbody>
-  </table>
+  <% if local_assigns.fetch(:show_info, true) %>
+    <table class="table-transposed">
+      <tbody>
+        <tr>
+          <th><%= Event.human_attribute_name :promoter %></th>
+          <td><%= event.promoter %></td>
+        </tr>
+        <tr>
+          <th><%= Event.human_attribute_name :location %></th>
+          <td><%= event.location %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
 
   <% if local_assigns.fetch(:show_actions, true) \
         && event.subscribable? \
