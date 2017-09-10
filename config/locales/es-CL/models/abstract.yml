@@ -12,6 +12,7 @@ es-CL:
           attributes:
             document:
               less_than: El archivo debe pesar menos de %{count}
+              spoofed_media_type: El archivo deber estar en formato PDF o Microsoft Word
             document_content_type:
               invalid: El archivo deber estar en formato PDF o Microsoft Word
     hints:
