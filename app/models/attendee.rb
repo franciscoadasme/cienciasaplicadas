@@ -14,7 +14,7 @@
 
 class Attendee < ActiveRecord::Base
   belongs_to :event
-  has_one :abstract, dependent: :destroy
+  has_one :abstract, foreign_key: :author_id, dependent: :destroy
 
   scope :sorted, -> { order :created_at }
   scope :accepted, -> { where accepted: true }
