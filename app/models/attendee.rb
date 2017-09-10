@@ -28,6 +28,10 @@ class Attendee < ActiveRecord::Base
                     uniqueness: { scope: :event_id,
                                   case_sensitive: false }
 
+  def self.with_abstract_submitted
+    joins(:abstract).where.not abstracts: { submitted_at: nil }
+  end
+
   def display_name
     name.present? ? name : email
   end
