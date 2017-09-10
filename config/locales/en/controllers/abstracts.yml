@@ -6,7 +6,7 @@ en:
         submitted: Abstract was submitted successfully
     alerts:
       abstracts:
-        token_invalid: No participants are associated with the entered link
+        invalid_token: No participants are associated with the entered link
         token_expired: The abstract submission link expired. Please request another one
         no_template: There is not abstract template associated with the event
         submission_disabled: Abstract submission is disabled
