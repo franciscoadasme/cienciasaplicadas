@@ -64,4 +64,8 @@
         %dt= Event.human_attribute_name :localized_abstract_section
         %dd= @event.localized_abstract_section.html_safe
 
+      - if @event.abstract_template.present?
+        %dt= Event.human_attribute_name :abstract_template
+        %dd= link_to @event.abstract_template.original_filename, @event.abstract_template.url
+
 = link_to fa_icon('long-arrow-left', text: 'Volver a los Eventos'), admin_events_path, class: 'btn btn-link'

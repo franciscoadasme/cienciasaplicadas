@@ -48,6 +48,7 @@
                   Event.human_attribute_name(:localized_abstract_section),
                   class: 'control-label'
     = f.input :localized_abstract_section, as: :trix_editor, wrapper: :simple_wrapper
+    = f.input :abstract_template
 
     - unless @event.persisted?
       = render partial: 'admin/notifiable/form', locals: { f: f }

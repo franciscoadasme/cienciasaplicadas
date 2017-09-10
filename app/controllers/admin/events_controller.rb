@@ -99,7 +99,8 @@ class Admin::EventsController < AdminController
         :max_attendee,
         :tagline,
         :abstract_section,
-        :localized_abstract_section
+        :localized_abstract_section,
+        :abstract_template
       )
     end
 

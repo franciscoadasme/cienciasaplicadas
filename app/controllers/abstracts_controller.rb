@@ -6,6 +6,15 @@ class AbstractsController < SiteController
   before_action :set_locale
   decorates_assigned :event
 
+  def download_template
+    if event.abstract_template.present?
+      redirect_to event.abstract_template.url
+    else
+      flash[:alert] = I18n.t 'controllers.alerts.abstracts.no_template'
+      redirect_to_event
+    end
+  end
+
   def edit; end
 
   def request_token

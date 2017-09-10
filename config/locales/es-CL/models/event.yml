@@ -20,6 +20,7 @@ es-CL:
         tagline: Abreviación
         abstract_section: Sección resumenes
         localized_abstract_section: Sección resumenes en inglés
+        abstract_template: Plantilla del resumen
 
     attribute_values:
       event:

@@ -126,6 +126,9 @@ CbsmWebsite::Application.routes.draw do
 
   # event's abstracts
   get 'eventos/:id/resumenes', to: 'events#abstracts', as: 'event_abstracts'
+  get 'eventos/:event_id/resumenes/plantilla',
+      to: 'abstracts#download_template',
+      as: 'download_template_event_abstract'
   get 'eventos/:event_id/resumenes/envio',
       to: 'abstracts#edit',
       as: 'edit_event_abstract',

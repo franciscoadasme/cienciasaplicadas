@@ -7,9 +7,11 @@
     <%= link_to fa_icon(:upload, text: t('actions.abstracts.upload').titleize),
                 request_token_event_abstract_url(event, request.query_parameters),
                 class: 'btn btn-primary' %>
-    &nbsp;
-    <%= link_to fa_icon(:'file-word-o', text: t('actions.abstracts.download_template').titleize),
-                '#',
-                class: 'btn btn-default' %>
+    <% if event.abstract_template.present? %>
+      &nbsp;
+      <%= link_to fa_icon(:'file-word-o', text: t('actions.abstracts.download_template').titleize),
+                  download_template_event_abstract_url(event, request.query_parameters),
+                  class: 'btn btn-default' %>
+    <% end %>
   </section>
 </article>
