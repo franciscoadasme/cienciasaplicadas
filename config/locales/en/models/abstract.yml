@@ -1,5 +1,7 @@
 en:
   activerecord:
+    models:
+      abstract: Abstract
     attributes:
       abstract:
         title: title
