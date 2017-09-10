@@ -1,9 +1,11 @@
 class EventsController < SiteController
   # TODO: make this global
-  before_action :set_locale, only: [:show, :posts, :registration, :speakers]
-  before_action :set_event, only: [:show, :posts, :registration, :speakers]
-  before_action :ensure_managed, only: [:posts, :speakers]
-  before_action :ensure_subscribable, only: [:registration]
+  before_action :set_locale, only: [:show, :posts, :registration, :speakers,
+                                    :abstracts]
+  before_action :set_event, only: [:show, :posts, :registration, :speakers,
+                                   :abstracts]
+  before_action :ensure_managed, only: [:posts, :speakers, :abstracts]
+  before_action :ensure_subscribable, only: [:registration, :abstracts]
   decorates_assigned :events, :event, :posts, :speakers
 
   def index
@@ -56,6 +58,8 @@ class EventsController < SiteController
   def speakers
     @speakers = SpeakerDecorator.decorate_collection @event.speakers.sorted
   end
+
+  def abstracts; end
 
   private
 

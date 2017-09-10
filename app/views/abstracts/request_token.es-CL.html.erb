@@ -1,0 +1,17 @@
+<div class="container container-narrow banner event-bg event-<%= event.event_type %>">
+  <%= render 'events/header', event: event, show_actions: false, show_info: false, show_nav: false %>
+
+  <div class="content">
+    <h2>Envío de resumenes</h2>
+    <p>
+      Favor ingresar la dirección de correo <strong>ya inscrita</strong> al evento.
+      Se enviará un enlace temporal que redirige al formulario a la dirección ingresada.
+    </p>
+    <p>
+      Si aún no se ha inscrito en el evento, favor ir a la sección de
+      <%= link_to 'registro', registration_event_url(event, request.query_parameters) %>.
+    </p>
+
+    <%= render 'token_form' %>
+  </div>
+</div>

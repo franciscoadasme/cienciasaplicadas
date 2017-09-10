@@ -1,0 +1,15 @@
+<article role="main">
+  <%= render 'events/header' %>
+
+  <section class="content">
+    <%= event.translate_abstract_section(I18n.locale).html_safe %>
+    <hr>
+    <%= link_to fa_icon(:upload, text: t('actions.abstracts.upload').titleize),
+                request_token_event_abstract_url(event, request.query_parameters),
+                class: 'btn btn-primary' %>
+    &nbsp;
+    <%= link_to fa_icon(:'file-word-o', text: t('actions.abstracts.download_template').titleize),
+                '#',
+                class: 'btn btn-default' %>
+  </section>
+</article>

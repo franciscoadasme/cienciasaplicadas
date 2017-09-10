@@ -50,6 +50,10 @@
         <%= nav_item t('labels.event.posts'), posts_event_url(event, request.query_parameters),
                      active: controller_name == 'posts' || action_name == 'posts',
                      data: { disable: false } %>
+        <% if event.subscribable? %>
+          <%= nav_item Abstract.model_name.human.pluralize(I18n.locale),
+                       event_abstracts_url(event, request.query_parameters) %>
+        <% end %>
       </ul>
     </nav>
   <% end %>

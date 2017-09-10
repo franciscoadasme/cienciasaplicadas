@@ -1,0 +1,19 @@
+es-CL:
+  activemodel:
+    attributes:
+      token_request:
+        attendee_email: dirección de correo
+    errors:
+      models:
+        token_request:
+          attributes:
+            attendee_email:
+              blank: Debe introducir una dirección de correo
+              invalid: La dirección de correo es inválida
+              not_registered: La dirección de correo no está registrada en el evento
+              not_accepted: La dirección de correo aún no ha sido aceptada en el evento
+              already_submitted: El resumen para esta dirección de correo ya fue enviado
+
+    hints:
+      token_request:
+        attendee_email: La dirección de correo debe estar inscrita en el evento

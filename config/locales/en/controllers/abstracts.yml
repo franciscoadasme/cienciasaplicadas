@@ -1,0 +1,10 @@
+en:
+  controllers:
+    success:
+      abstracts:
+        token_sent: Link to the abstract submission form was sent to %{email}
+        submitted: Abstract was submitted successfully
+    alerts:
+      abstracts:
+        token_invalid: No participants are associated with the entered link
+        token_expired: The abstract submission link expired. Please request another one

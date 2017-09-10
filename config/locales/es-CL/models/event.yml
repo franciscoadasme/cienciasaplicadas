@@ -18,6 +18,8 @@ es-CL:
         managed: Administrado?
         registration_enabled: Registro de visitantes
         tagline: Abreviación
+        abstract_section: Sección resumenes
+        localized_abstract_section: Sección resumenes en inglés
 
     attribute_values:
       event:

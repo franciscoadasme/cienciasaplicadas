@@ -1,0 +1,5 @@
+en:
+  actions:
+    abstracts:
+      upload: upload abstract
+      download_template: download template

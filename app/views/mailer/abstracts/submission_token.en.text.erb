@@ -1,0 +1,17 @@
+Abstract submission to the event <%= @event.tagline %>
+=================================<%= '=' * @event.tagline.length %>
+
+Dear participant,
+
+We have received a request for abstract submission to the <%= @event.event_type %> "<%= @event.name %>" associated with your email address. To upload your abstract to the system, please visit the following webpage:
+
+<%= edit_event_abstract_url @event, token: @abstract.token, from_ext: true, lang: :en %>
+
+Note that this link will be only valid within the next 48 hours. If the link expires, you can request another one from the event's webpage.
+
+If you did not request the link, please disregard this message. If this situation has repeated several times, please contact the organizing committee as soon as possible.
+
+For more information, please go to <%= event_url @event, from_ext: true, lang: :en %>.
+
+Best regards,
+Organizing committee

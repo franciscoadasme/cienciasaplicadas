@@ -1,0 +1,19 @@
+en:
+  activemodel:
+    attributes:
+      token_request:
+        attendee_email: email address
+    errors:
+      models:
+        token_request:
+          attributes:
+            attendee_email:
+              blank: Must enter a valid email address
+              invalid: Email address is invalid
+              not_registered: Email address is not in the event's register
+              not_accepted: Email address is yet to be accepted in the event
+              already_submitted: An abstract is already submitted for the email address
+
+    hints:
+      token_request:
+        attendee_email: Email address must be registered in the event

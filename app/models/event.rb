@@ -34,6 +34,7 @@ class Event < ActiveRecord::Base
 
   before_save :set_tagline
 
+  has_many :abstracts, dependent: :destroy
   has_many :attendees, dependent: :delete_all
   has_many :posts, dependent: :delete_all
   has_many :speakers, dependent: :delete_all
@@ -62,6 +63,9 @@ class Event < ActiveRecord::Base
                             length: { minimum: 10 }
   validates :localized_description, allow_blank: true,
                                     length: { minimum: 10 }
+  validates :abstract_section, allow_blank: true, length: { minimum: 10 }
+  validates :localized_abstract_section, allow_blank: true,
+                                         length: { minimum: 10 }
   validates :event_type, presence: true,
                         inclusion: { in: TYPES.map(&:to_s) }
   validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
@@ -78,6 +82,11 @@ class Event < ActiveRecord::Base
 
   def subscribable?
     registration_enabled? && attendees.accepted.count <= max_attendee
+  end
+
+  def translate_abstract_section(locale)
+    return abstract_section if localized_abstract_section.blank?
+    locale.to_sym == :en ? localized_abstract_section : abstract_section
   end
 
   def translate_description(locale)

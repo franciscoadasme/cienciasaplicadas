@@ -1,0 +1,5 @@
+en:
+  mailers:
+    abstracts:
+      submission_token:
+        subject: Information for abstract submission to the event %{event}

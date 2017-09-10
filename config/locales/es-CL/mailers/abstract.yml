@@ -1,0 +1,5 @@
+es-CL:
+  mailers:
+    abstracts:
+      submission_token:
+        subject: Información para el envío de resumen al evento %{event}

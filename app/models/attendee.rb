@@ -1,5 +1,6 @@
 class Attendee < ActiveRecord::Base
   belongs_to :event
+  has_one :abstract, dependent: :destroy
 
   scope :sorted, -> { order :created_at }
   scope :accepted, -> { where accepted: true }

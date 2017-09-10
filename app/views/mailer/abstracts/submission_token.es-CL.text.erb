@@ -1,0 +1,17 @@
+Envío de resumen al evento <%= @event.tagline %>
+===========================<%= '=' * @event.tagline.length %>
+
+Estimado(a),
+
+Hemos recibido una solicitud para el envío de resumen al <%= @event.event_type %> "<%= @event.name %>" para la inscripción asociada a su dirección de correo. Para subir el resumen al sistema, favor visitar la página web:
+
+<%= edit_event_abstract_url @event, token: @abstract.token, from_ext: true, lang: :'es-CL' %>
+
+Notar que este enlace será válido solo por las próximas 48 horas. Si el enlace caduca, usted puede solicitarlo nuevamente en la página del evento.
+
+Si usted no solicitó el enlace, favor ignorar este mensaje. Si esta situación se ha repetido varias veces, favor comunicarse a la brevedad con el comité organizador.
+
+Para mayor información, dirigirse a <%= event_url @event, from_ext: true, lang: :'es-CL' %>.
+
+Atte.,
+Comité organizador

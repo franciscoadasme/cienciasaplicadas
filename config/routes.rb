@@ -124,6 +124,22 @@ CbsmWebsite::Application.routes.draw do
     get 'momentos/:year/:month/:day/:id', to: 'moments#show', as: :moment
   end
 
+  # event's abstracts
+  get 'eventos/:id/resumenes', to: 'events#abstracts', as: 'event_abstracts'
+  get 'eventos/:event_id/resumenes/envio',
+      to: 'abstracts#edit',
+      as: 'edit_event_abstract',
+      constraints: ->(request) { request.params.key?(:token) }
+  match 'eventos/:event_id/resumenes/envio',
+        via: %w(patch put),
+        to: 'abstracts#update',
+        as: 'event_abstract',
+        constraints: ->(request) { request.params.key?(:token) }
+  get 'eventos/:event_id/resumenes/envio',
+      to: 'abstracts#request_token',
+      as: 'request_token_event_abstract'
+  post 'eventos/:event_id/resumenes/envio', to: 'abstracts#send_token'
+
   resources :theses, only: [:index, :show], path: 'tesis'
 
   get 'publicaciones', to: 'publications#index', as: :publications

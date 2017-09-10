@@ -22,3 +22,5 @@
 *.sublime-project
 *.sublime-workspace
 .env
+config/locales/en/defaults.yml
+config/locales/en/defaults.yml

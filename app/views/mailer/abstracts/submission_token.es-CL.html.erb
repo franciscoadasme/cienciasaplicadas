@@ -1,0 +1,42 @@
+<% submit_url = edit_event_abstract_url @event, token: @abstract.token,
+                                        from_ext: true, lang: :'es-CL' %>
+
+<% provide :title do %>
+  <h1>Envío de resumen al evento <%= @event.tagline %></h1>
+<% end %>
+
+<%= mtable_tag width: '100%' do %>
+  <tr>
+    <td>
+      <p>Estimado(a),</p>
+      <p>
+        Hemos recibido una solicitud para el envío de resumen al <%= @event.event_type %>
+        "<%= @event.name %>" para la inscripción asociada a su dirección de correo.
+        Para subir el resumen al sistema, favor visitar la página web:
+      </p>
+
+      <p><%= link_to nil, submit_url %></p>
+
+      <p>
+        Notar que este enlace será válido solo por las próximas <strong>48 horas</strong>.
+        Si el enlace caduca, usted puede solicitarlo nuevamente en la página del evento.
+      </p>
+
+      <p>
+        Si usted no solicitó el enlace, favor ignorar este mensaje.
+        Si esta situación se ha repetido varias veces, favor comunicarse a la brevedad
+        con el comité organizador.
+      </p>
+
+      <p>
+        Para mayor información, dirigirse a la
+        <%= link_to 'página web del evento', event_url(@event, from_ext: true, lang: :'es-CL') %>.
+      </p>
+
+      <p>
+        Atte.,<br>
+        Comité organizador
+      </p>
+    </td>
+  </tr>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="container container-narrow banner event-bg event-<%= event.event_type %>">
+  <%= render 'events/header', event: event, show_actions: false, show_info: false, show_nav: false %>
+
+  <div class="content">
+    <h2>Envío de resumen</h2>
+    <p>
+      Favor rellenar el formulario con la información del trabajo.
+      Se asume que el participante <strong><%= @abstract.author.display_name %></strong>
+      es quién presentará el trabajo durante el evento, ya sea en formato póster o
+      presentación oral.
+    </p>
+
+    <p class="alert alert-warning">
+      Se le recuerda que el documento debe seguir el formato según la
+      <strong><%= link_to 'plantilla', '#' %></strong> disponible.
+    </p>
+
+    <%= render 'form' %>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+es-CL:
+  controllers:
+    success:
+      abstracts:
+        token_sent: Enlace al formulario para envío de resumen fue enviado a %{email}
+        submitted: El resumen fue enviado con éxito
+    alerts:
+      abstracts:
+        invalid_token: No hay participantes asociados a este enlace
+        token_expired: El enlace al formulario para envío de resumen ha expirado. Favor solicitar uno nuevo

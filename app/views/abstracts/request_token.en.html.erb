@@ -1,0 +1,18 @@
+<div class="container container-narrow banner event-bg event-<%= event.event_type %>">
+  <%= render 'events/header', event: event, show_actions: false, show_info: false, show_nav: false %>
+
+  <div class="content">
+    <h2>Abstract submission</h2>
+    <p>
+      Please enter the email address <strong>registered</strong> in the event.
+      A temporal link redirecting to the form will be sent to the entered address.
+    </p>
+    <p>
+      If you have yet to sign up for the event, please go to the
+      <%= link_to 'registration', registration_event_url(event, request.query_parameters) %>
+      page.
+    </p>
+
+    <%= render 'token_form' %>
+  </div>
+</div>

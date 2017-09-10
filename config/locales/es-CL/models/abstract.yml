@@ -1,0 +1,19 @@
+es-CL:
+  activerecord:
+    models:
+      abstract: Resumen
+    attributes:
+      abstract:
+        title: título
+        document: resumen
+    errors:
+      models:
+        abstract:
+          attributes:
+            document:
+              less_than: El archivo debe pesar menos de %{count}
+            document_content_type:
+              invalid: El archivo deber estar en formato PDF o Microsoft Word
+    hints:
+      abstract:
+        document: Debe ser un archivo PDF or Microsoft Word

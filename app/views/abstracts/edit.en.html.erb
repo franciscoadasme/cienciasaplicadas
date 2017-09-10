@@ -1,0 +1,20 @@
+<div class="container container-narrow banner event-bg event-<%= event.event_type %>">
+  <%= render 'events/header', event: event, show_actions: false, show_info: false, show_nav: false %>
+
+  <div class="content">
+    <h2>Abstract submission</h2>
+    <p>
+      Please fill out the form with the abstract details.
+      It is assumed that the participant <strong><%= @abstract.author.display_name %></strong>
+      will be responsible for presenting the work at the event, either as poster or
+      oral presentation.
+    </p>
+
+    <p class="alert alert-warning">
+      You are reminded that the document should match the format of the available
+      <strong><%= link_to 'template', '#' %></strong>.
+    </p>
+
+    <%= render 'form' %>
+  </div>
+</div>

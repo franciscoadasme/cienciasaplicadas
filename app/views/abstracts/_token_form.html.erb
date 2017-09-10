@@ -1,0 +1,25 @@
+<% form_url = event_abstract_url(event, request.query_parameters) %>
+
+<%= form_for @token_request, url: form_url do |f| %>
+  <div class="row">
+    <div class="form-group col-md-8 <%= validation_class_for_field(@token_request, :attendee_email) %>">
+      <%= f.label :attendee_email, TokenRequest.human_attribute_name(:attendee_email), class: 'control-label' %>
+      <%= f.email_field :attendee_email, required: true, class: 'form-control' %>
+      <%= error_for_field @token_request, :attendee_email %>
+      <% unless @token_request.errors.key? :attendee_email %>
+        <small class="help-block">
+          <%= t 'activemodel.hints.token_request.attendee_email' %>
+        </small>
+      <% end %>
+    </div>
+    <div class="form-actions col-md-12">
+      <%= f.submit t('actions.submit'),
+                  class: 'btn btn-primary',
+                  data: { disable_with: t('actions.submitting').concat('...').capitalize } %>
+      <span class="text-muted"><%= t 'words.or' %></span>
+      <%= link_to t('actions.events.return_to_event'),
+                  event_abstracts_url(event, request.query_parameters),
+                  class: 'link-unstyled' %>
+    </div>
+  </div>
+<% end %>

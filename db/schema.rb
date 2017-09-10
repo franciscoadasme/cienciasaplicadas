@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170907014427) do
+ActiveRecord::Schema.define(version: 20170910020440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abstracts", force: :cascade do |t|
+    t.integer  "author_id"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.integer  "event_id"
+    t.string   "submitted_at"
+    t.string   "title",                 limit: 255
+    t.string   "token"
+    t.datetime "token_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "abstracts", ["author_id"], name: "index_abstracts_on_author_id", using: :btree
+  add_index "abstracts", ["event_id", "author_id"], name: "index_abstracts_on_event_id_and_author_id", unique: true, using: :btree
+  add_index "abstracts", ["event_id"], name: "index_abstracts_on_event_id", using: :btree
 
   create_table "attendees", force: :cascade do |t|
     t.string   "email",      null: false
@@ -43,25 +62,27 @@ ActiveRecord::Schema.define(version: 20170907014427) do
   add_index "authors", ["user_id"], name: "index_authors_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",                  limit: 255,                 null: false
-    t.date     "start_date",                                        null: false
+    t.string   "name",                       limit: 255,                 null: false
+    t.date     "start_date",                                             null: false
     t.date     "end_date"
-    t.string   "location",              limit: 255,                 null: false
+    t.string   "location",                   limit: 255,                 null: false
     t.text     "description"
-    t.string   "event_type",            limit: 255,                 null: false
-    t.string   "promoter",              limit: 255
-    t.string   "picture_file_name",     limit: 255
-    t.string   "picture_content_type",  limit: 255
+    t.string   "event_type",                 limit: 255,                 null: false
+    t.string   "promoter",                   limit: 255
+    t.string   "picture_file_name",          limit: 255
+    t.string   "picture_content_type",       limit: 255
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug",                  limit: 255
+    t.string   "slug",                       limit: 255
     t.integer  "max_attendee"
-    t.boolean  "managed",                           default: false
-    t.boolean  "registration_enabled",              default: false
+    t.boolean  "managed",                                default: false
+    t.boolean  "registration_enabled",                   default: false
     t.text     "localized_description"
-    t.string   "tagline",               limit: 128
+    t.string   "tagline",                    limit: 128
+    t.text     "abstract_section"
+    t.text     "localized_abstract_section"
   end
 
   add_index "events", ["name", "start_date"], name: "index_events_on_name_and_start_date", unique: true, using: :btree
@@ -313,6 +334,8 @@ ActiveRecord::Schema.define(version: 20170907014427) do
   add_index "users", ["position_id"], name: "index_users_on_position_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "abstracts", "authors"
+  add_foreign_key "abstracts", "events"
   add_foreign_key "attendees", "events"
   add_foreign_key "posts", "events"
   add_foreign_key "posts", "posts", column: "parent_id"

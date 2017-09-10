@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    attributes:
+      abstract:
+        title: title
+        document: document
+    errors:
+      models:
+        abstract:
+          attributes:
+            document:
+              less_than: The file must be less than %{count}
+            document_content_type:
+              invalid: The file must be either a PDF or Microsoft Word document
+    hints:
+      abstract:
+        document: The file must be either a PDF or Microsoft Word document
