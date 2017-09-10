@@ -2,7 +2,7 @@
   <%= render 'events/header' %>
 
   <section class="content">
-    <%= event.translate_abstract_section(I18n.locale).html_safe %>
+    <%= event.translate_abstract_section(I18n.locale).try :html_safe %>
     <hr>
     <% if event.accepts_abstract? %>
       <%= link_to fa_icon(:upload, text: t('actions.abstracts.upload').capitalize),
