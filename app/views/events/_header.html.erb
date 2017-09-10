@@ -64,6 +64,16 @@
         <%= btn_to fa_icon(:'id-badge'), registration_event_url(event, request.query_parameters),
                    class: 'btn-circle btn-primary btn-lg btn-raised',
                    title: t('actions.event.register') %>
+        <%= btn_to fa_icon(:upload),
+                   request_token_event_abstract_url(event, request.query_parameters),
+                   class: 'btn-circle btn-success btn-lg btn-raised',
+                   title: t('actions.abstracts.upload').capitalize %>
+      <% end %>
+      <% if event.abstract_template.present? %>
+        <%= btn_to fa_icon(:'file-word-o'),
+                   download_template_event_abstract_url(event),
+                   class: 'btn-circle btn-warning',
+                   title: t('actions.abstracts.download_template').capitalize %>
       <% end %>
       <% if event.picture.present? %>
         <%= btn_to fa_icon(:'download'), event.picture.url,
