@@ -94,6 +94,11 @@ class Event < ActiveRecord::Base
                        content_type: { content_type: TEMPLATE_CONTENT_TYPES },
                        size: { less_than: 2.megabytes }
 
+  def self.at_current_month
+    date = Date.today
+    where start_date: date.beginning_of_month..date.end_of_month
+  end
+
   def accepts_abstract?
     abstract_deadline && abstract_deadline >= Date.today
   end
