@@ -11,7 +11,7 @@ en:
         abstract:
           attributes:
             document:
-              less_than: The file must be less than %{count}
+              less_than: The file must be less than 2 MB
               spoofed_media_type: The file must be either a PDF or Microsoft Word document
             document_content_type:
               invalid: The file must be either a PDF or Microsoft Word document
