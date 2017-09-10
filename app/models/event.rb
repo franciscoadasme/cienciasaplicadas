@@ -71,6 +71,8 @@ class Event < ActiveRecord::Base
   validates :abstract_section, allow_blank: true, length: { minimum: 10 }
   validates :localized_abstract_section, allow_blank: true,
                                          length: { minimum: 10 }
+  validates :abstract_deadline, allow_blank: true,
+                                timeliness: { on_or_after: Date.today }
   validates :event_type, presence: true,
                         inclusion: { in: TYPES.map(&:to_s) }
   validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
@@ -79,6 +81,10 @@ class Event < ActiveRecord::Base
   validates_attachment :abstract_template,
                        content_type: { content_type: TEMPLATE_CONTENT_TYPES },
                        size: { less_than: 2.megabytes }
+
+  def accepts_abstract?
+    abstract_deadline && abstract_deadline >= Date.today
+  end
 
   def slots_left
     max_attendee - attendees.accepted.count
