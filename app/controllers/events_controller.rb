@@ -6,6 +6,7 @@ class EventsController < SiteController
                                    :abstracts]
   before_action :ensure_managed, only: [:posts, :speakers, :abstracts]
   before_action :ensure_subscribable, only: [:registration, :abstracts]
+  before_action :ensure_abstract_section, only: [:abstracts]
   decorates_assigned :events, :event, :posts, :speakers
 
   def index
@@ -68,6 +69,10 @@ class EventsController < SiteController
       event: @event,
       locale: I18n.locale
     )
+  end
+
+  def ensure_abstract_section
+    redirect_to event_url(@event) if @event.abstract_section.blank?
   end
 
   def ensure_managed
