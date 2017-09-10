@@ -12,7 +12,8 @@
 
     <p class="alert alert-warning">
       Se le recuerda que el documento debe seguir el formato según la
-      <strong><%= link_to 'plantilla', '#' %></strong> disponible.
+      <strong><%= link_to 'plantilla', download_template_event_abstract_url(event) %></strong>
+      disponible.
     </p>
 
     <%= render 'form' %>
