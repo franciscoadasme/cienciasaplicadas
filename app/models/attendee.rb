@@ -20,7 +20,7 @@ class Attendee < ActiveRecord::Base
   scope :accepted, -> { where accepted: true }
 
   VALID_NAME_REGEX = /\A[[:alpha:] ,\.'-]+\Z/i
-  validates :name, allow_blank: true,
+  validates :name, presence: true,
                    format: { with: VALID_NAME_REGEX },
                    length: { in: 3..100 }
   validates :email, presence: true,

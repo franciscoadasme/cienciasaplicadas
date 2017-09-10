@@ -1,5 +1,10 @@
 <%= form_for @attendee, url: registration_event_url(request.query_parameters) do |f| %>
   <div class="row">
+    <div class="form-group col-md-5  <%= validation_class_for_field(@attendee, :name) %>">
+      <%= f.label :name, Attendee.human_attribute_name(:name), class: 'control-label' %>
+      <%= f.text_field :name, required: true, class: 'form-control' %>
+      <%= error_for_field @attendee, :name %>
+    </div>
     <div class="form-group col-md-7 <%= validation_class_for_field(@attendee, :email) %>">
       <%= f.label :email, Attendee.human_attribute_name(:email), class: 'control-label' %>
       <%= f.email_field :email, required: true, class: 'form-control' %>
@@ -10,10 +15,6 @@
         </small>
       <% end %>
     </div>
-    <div class="form-group col-md-5  <%= validation_class_for_field(@attendee, :name) %>">
-      <%= f.label :name, Attendee.human_attribute_name(:name), class: 'control-label text-muted' %>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'Opcional' %>
-      <%= error_for_field @attendee, :name %>
     </div>
     <div class="form-actions col-md-12">
       <%= f.submit t('actions.submit'),
