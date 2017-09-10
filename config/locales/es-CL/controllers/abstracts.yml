@@ -9,3 +9,4 @@ es-CL:
         invalid_token: No hay participantes asociados a este enlace
         token_expired: El enlace al formulario para envío de resumen ha expirado. Favor solicitar uno nuevo
         no_template: El evento no tiene una plantilla de resumen asociada
+        submission_disabled: Envio de resumenes está deshabilitado

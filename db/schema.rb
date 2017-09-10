@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910025328) do
+ActiveRecord::Schema.define(version: 20170910041521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170910025328) do
     t.string   "abstract_template_content_type"
     t.integer  "abstract_template_file_size"
     t.datetime "abstract_template_updated_at"
+    t.date     "abstract_deadline"
   end
 
   add_index "events", ["name", "start_date"], name: "index_events_on_name_and_start_date", unique: true, using: :btree

@@ -100,7 +100,8 @@ class Admin::EventsController < AdminController
         :tagline,
         :abstract_section,
         :localized_abstract_section,
-        :abstract_template
+        :abstract_template,
+        :abstract_deadline
       )
     end
 

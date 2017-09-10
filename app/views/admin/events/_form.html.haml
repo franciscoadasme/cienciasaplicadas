@@ -49,6 +49,7 @@
                   class: 'control-label'
     = f.input :localized_abstract_section, as: :trix_editor, wrapper: :simple_wrapper
     = f.input :abstract_template
+    = f.input :abstract_deadline, as: :string
 
     - unless @event.persisted?
       = render partial: 'admin/notifiable/form', locals: { f: f }

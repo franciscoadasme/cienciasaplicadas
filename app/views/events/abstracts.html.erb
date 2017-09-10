@@ -4,9 +4,16 @@
   <section class="content">
     <%= event.translate_abstract_section(I18n.locale).html_safe %>
     <hr>
-    <%= link_to fa_icon(:upload, text: t('actions.abstracts.upload').titleize),
-                request_token_event_abstract_url(event, request.query_parameters),
-                class: 'btn btn-primary' %>
+    <% if event.accepts_abstract? %>
+      <%= link_to fa_icon(:upload, text: t('actions.abstracts.upload').capitalize),
+                  request_token_event_abstract_url(event, request.query_parameters),
+                  class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to fa_icon(:upload, text: t('actions.abstracts.upload').capitalize),
+                  '#',
+                  class: 'btn btn-primary disabled',
+                  title: t('tooltips.abstract.submission_disabled') %>
+    <% end %>
     <% if event.abstract_template.present? %>
       &nbsp;
       <%= link_to fa_icon(:'file-word-o', text: t('actions.abstracts.download_template').titleize),

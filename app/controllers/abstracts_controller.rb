@@ -1,5 +1,7 @@
 class AbstractsController < SiteController
   before_action :set_event
+  before_action :ensure_accept_abstract, only: [:edit, :request_token,
+                                                :send_token, :update]
   before_action :set_abstract, only: [:edit, :update]
   before_action :ensure_abstract_exists, only: [:edit, :update]
   before_action :ensure_token_is_valid, only: [:edit, :update]
@@ -56,6 +58,12 @@ class AbstractsController < SiteController
     return if @abstract.present?
     flash[:alert] = I18n.t 'controllers.alerts.abstracts.invalid_token'
     redirect_to_event
+  end
+
+  def ensure_accept_abstract
+    return if event.accepts_abstract?
+    flash[:alert] = I18n.t 'controllers.alerts.abstracts.submission_disabled'
+    redirect_to event_abstracts_url(event, request.query_parameters)
   end
 
   def ensure_token_is_valid

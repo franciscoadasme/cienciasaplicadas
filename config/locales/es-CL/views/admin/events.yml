@@ -21,6 +21,9 @@ es-CL:
         tagline: |
           Este título abreviado es usado en el enlace. Por ejemplo:
           cienciasaplicadas.cl/eventos/icbsm2017
+        abstract_deadline: |
+          Usar formato año-mes-día (por ejm, 2017-09-10). El envío de resumenes será
+          desactivado automáticamente una vez alcanzado este día
 
     labels:
       event:

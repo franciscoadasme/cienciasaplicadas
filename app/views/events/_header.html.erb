@@ -64,6 +64,8 @@
         <%= btn_to fa_icon(:'id-badge'), registration_event_url(event, request.query_parameters),
                    class: 'btn-circle btn-primary btn-lg btn-raised',
                    title: t('actions.event.register') %>
+      <% end %>
+      <% if event.accepts_abstract? %>
         <%= btn_to fa_icon(:upload),
                    request_token_event_abstract_url(event, request.query_parameters),
                    class: 'btn-circle btn-success btn-lg btn-raised',

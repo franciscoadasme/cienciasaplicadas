@@ -3,3 +3,6 @@ es-CL:
     abstracts:
       upload: subir resumen
       download_template: descargar plantilla
+  tooltips:
+    abstracts:
+      submission_disabled: Envio de resumenes está deshabilitado

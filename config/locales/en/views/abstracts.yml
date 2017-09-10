@@ -3,3 +3,6 @@ en:
     abstracts:
       upload: upload abstract
       download_template: download template
+  tooltips:
+    abstracts:
+      submission_disabled: Abstract submission is disabled

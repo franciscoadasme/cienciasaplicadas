@@ -64,6 +64,12 @@
         %dt= Event.human_attribute_name :localized_abstract_section
         %dd= @event.localized_abstract_section.html_safe
 
+      %dt Envío de resumenes
+      - if @event.abstract_deadline.present?
+        %dd Activo hasta el #{l @event.abstract_deadline, format: :long}
+      - else
+        %dd Desactivado
+
       - if @event.abstract_template.present?
         %dt= Event.human_attribute_name :abstract_template
         %dd= link_to @event.abstract_template.original_filename, @event.abstract_template.url

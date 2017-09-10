@@ -21,6 +21,7 @@ es-CL:
         abstract_section: Sección resumenes
         localized_abstract_section: Sección resumenes en inglés
         abstract_template: Plantilla del resumen
+        abstract_deadline: Fecha límite para resumenes
 
     attribute_values:
       event:
