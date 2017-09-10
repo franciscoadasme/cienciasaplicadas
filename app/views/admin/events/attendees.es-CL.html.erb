@@ -2,12 +2,16 @@
 <% provide :subtitle, 'Asistentes' %>
 
 <% if @event.attendees.any? %>
-  <table class="table table-bordered table-striped table-hover">
+  <table class="table table-bordered table-striped table-hover table-condensed">
     <thead>
       <tr>
-        <th>Asistente</th>
+        <th>
+          Asistentes
+          (<%= @event.attendees.count %>,
+          <%= pluralize @event.attendees.with_abstract_submitted.count, 'resumen', 'resumenes' %>)
+        </th>
         <th>Fecha</th>
-        <th>Estado</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -15,26 +19,33 @@
         <% row_class = '' %>
         <% row_class = 'success' if attendee.accepted? %>
         <% row_class = 'danger' if attendee.rejected? %>
+
         <tr class="<%= row_class %>">
           <td>
             <% if attendee.name.present? %>
               <%= attendee.name %>
-              <span class="text-muted">&lt;<%= mail_to attendee.email %>&gt;</span>
+              <small class="text-muted">&lt;<%= mail_to attendee.email %>&gt;</small>
             <% else %>
-              <%= mail_to attendee.email %>
+              <small><%= mail_to attendee.email %></small>
+            <% end %>
+            <% if attendee.abstract.try :submitted? %>
+              <br>
+              <small class="text-muted"><%= attendee.abstract.title %></small>
             <% end %>
           </td>
-          <td><%= l attendee.created_at.to_date %></td>
-          <td>
+          <td><small><%= l attendee.created_at.to_date %></small></td>
+          <td class="text-right">
             <% if attendee.accepted.nil? %>
               <%= link_to fa_icon(:'check'), accept_attendee_admin_event_path(@event, attendee),
                           class: 'text-success', title: 'Aceptar', method: :patch %>
               <%= link_to fa_icon(:'ban'), reject_attendee_admin_event_path(@event, attendee),
                           class: 'text-danger', title: 'Rechazar', method: :patch %>
-            <% else %>
-              <small class="text-muted"><%= attendee.accepted? ? 'Aceptado' : 'Rechazado' %></small>
             <% end %>
-            <%= link_to fa_icon(:'minus'), attendee_admin_event_path(@event, attendee),
+            <% if attendee.abstract.try :submitted? %>
+              <%= link_to fa_icon(:'file-text-o'), attendee.abstract.document.url,
+                          title: 'Descargar resumen' %>
+            <% end %>
+            <%= link_to fa_icon(:'trash-o'), attendee_admin_event_path(@event, attendee),
                         class: 'text-danger', title: 'Eliminar', method: :delete,
                         data: { confirm: "Está seguro que desea eliminar \"#{attendee.email}\"?" } %>
           </td>
