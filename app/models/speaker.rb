@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: speakers
+#
+#  created_at         :datetime
+#  description        :string           not null
+#  event_id           :integer
+#  id                 :integer          not null, primary key
+#  institution        :string           not null
+#  name               :string           not null
+#  photo_content_type :string
+#  photo_file_name    :string
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
+#  updated_at         :datetime
+#  website_url        :string
+#
+
 class Speaker < ActiveRecord::Base
   belongs_to :event
   has_attached_file :photo, styles: { thumb: '128x128#' }

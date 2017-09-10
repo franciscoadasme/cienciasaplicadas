@@ -2,21 +2,33 @@
 #
 # Table name: events
 #
-#  id                   :integer          not null, primary key
-#  name                 :string(255)      not null
-#  start_date           :date             not null
-#  end_date             :date
-#  location             :string(255)      not null
-#  description          :text
-#  event_type           :string(255)      not null
-#  promoter             :string(255)
-#  picture_file_name    :string(255)
-#  picture_content_type :string(255)
-#  picture_file_size    :integer
-#  picture_updated_at   :datetime
-#  created_at           :datetime
-#  updated_at           :datetime
-#  slug                 :string(255)
+#  abstract_deadline              :date
+#  abstract_section               :text
+#  abstract_template_content_type :string
+#  abstract_template_file_name    :string
+#  abstract_template_file_size    :integer
+#  abstract_template_updated_at   :datetime
+#  created_at                     :datetime
+#  description                    :text
+#  end_date                       :date
+#  event_type                     :string(255)      not null
+#  id                             :integer          not null, primary key
+#  localized_abstract_section     :text
+#  localized_description          :text
+#  location                       :string(255)      not null
+#  managed                        :boolean          default(FALSE)
+#  max_attendee                   :integer
+#  name                           :string(255)      not null
+#  picture_content_type           :string(255)
+#  picture_file_name              :string(255)
+#  picture_file_size              :integer
+#  picture_updated_at             :datetime
+#  promoter                       :string(255)
+#  registration_enabled           :boolean          default(FALSE)
+#  slug                           :string(255)
+#  start_date                     :date             not null
+#  tagline                        :string(128)
+#  updated_at                     :datetime
 #
 
 class Event < ActiveRecord::Base

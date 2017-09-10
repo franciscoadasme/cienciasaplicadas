@@ -2,16 +2,19 @@
 #
 # Table name: posts
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)
-#  slug         :string(255)
 #  author_id    :integer
-#  edited_by_id :integer
 #  body         :text
-#  published    :boolean          default(FALSE)
 #  created_at   :datetime
+#  edited_by_id :integer
+#  event_id     :integer
+#  id           :integer          not null, primary key
+#  locale       :string
+#  parent_id    :integer
+#  published    :boolean          default(FALSE)
+#  slug         :string(255)
+#  title        :string(255)
 #  updated_at   :datetime
-#  view_count   :integer
+#  view_count   :integer          default(0), not null
 #
 
 class Post < ActiveRecord::Base
