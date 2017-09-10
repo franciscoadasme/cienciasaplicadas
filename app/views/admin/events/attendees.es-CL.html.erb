@@ -7,7 +7,7 @@
       <tr>
         <th>
           Asistentes
-          (<%= @event.attendees.count %>,
+          (<%= @event.attendees.count %> en total,
           <%= pluralize @event.attendees.with_abstract_submitted.count, 'resumen', 'resumenes' %>)
         </th>
         <th>Fecha</th>
@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @event.attendees.each do |attendee| %>
+      <% @event.attendees.sorted.each do |attendee| %>
         <% row_class = '' %>
         <% row_class = 'success' if attendee.accepted? %>
         <% row_class = 'danger' if attendee.rejected? %>
@@ -34,7 +34,7 @@
             <% end %>
             <% if attendee.abstract.try :submitted? %>
               <br>
-              <small class="text-muted"><%= attendee.abstract.title %></small>
+              <small class="text-muted"><i><%= attendee.abstract.title %></i></small>
             <% end %>
           </td>
           <td><small><%= l attendee.created_at.to_date %></small></td>
