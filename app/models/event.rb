@@ -23,6 +23,10 @@ class Event < ActiveRecord::Base
   include Editable
 
   TYPES = [ :charla, :congreso, :curso ]
+  TEMPLATE_CONTENT_TYPES = [
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  ].freeze
 
   extend FriendlyId
   friendly_id :tagline, use: :slugged
@@ -42,6 +46,7 @@ class Event < ActiveRecord::Base
     original: '640x640#',
     thumb: '320x320#'
   }
+  has_attached_file :abstract_template
 
   scope :managed, -> { where managed: true }
   scope :sorted, -> { order start_date: :desc }
@@ -71,6 +76,9 @@ class Event < ActiveRecord::Base
   validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
                                                       message: I18n.t('activerecord.errors.models.event.attributes.picture.spoofed_media_type') },
                                          size: { less_than: 5.megabytes }
+  validates_attachment :abstract_template,
+                       content_type: { content_type: TEMPLATE_CONTENT_TYPES },
+                       size: { less_than: 2.megabytes }
 
   def slots_left
     max_attendee - attendees.accepted.count
