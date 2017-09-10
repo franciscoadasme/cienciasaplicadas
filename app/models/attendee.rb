@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: attendees
+#
+#  accepted   :boolean
+#  created_at :datetime         not null
+#  email      :string           not null
+#  event_id   :integer
+#  id         :integer          not null, primary key
+#  locale     :string
+#  name       :string
+#  updated_at :datetime         not null
+#
+
 class Attendee < ActiveRecord::Base
   belongs_to :event
   has_one :abstract, dependent: :destroy
@@ -15,7 +29,7 @@ class Attendee < ActiveRecord::Base
                                   case_sensitive: false }
 
   def display_name
-    name
+    name.present? ? name : email
   end
 
   def rejected?
