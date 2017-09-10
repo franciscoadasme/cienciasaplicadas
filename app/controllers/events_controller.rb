@@ -30,7 +30,7 @@ class EventsController < SiteController
   end
 
   def current_month
-    @events = Event.during_date month: Time.zone.now.month
+    @events = Event.at_current_month
     set_event_type_counts
 
     @events = @events.typed params[:tipo] if params[:tipo]
