@@ -64,7 +64,7 @@ class EventsController < SiteController
   private
 
   def attendee_params
-    params.require(:attendee).permit(:email, :name).merge(
+    params.require(:attendee).permit(:email, :name, :institution).merge(
       event: @event,
       locale: I18n.locale
     )

@@ -15,6 +15,15 @@
         </small>
       <% end %>
     </div>
+    <div class="form-group col-md-8  <%= validation_class_for_field(@attendee, :institution) %>">
+      <%= f.label :institution, Attendee.human_attribute_name(:institution), class: 'control-label' %>
+      <%= f.text_field :institution, required: true, class: 'form-control' %>
+      <%= error_for_field @attendee, :institution %>
+      <% unless @attendee.errors.key? :institution %>
+        <small class="help-block">
+          <%= t 'activerecord.hints.attendee.institution' %>
+        </small>
+      <% end %>
     </div>
     <div class="form-actions col-md-12">
       <%= f.submit t('actions.submit'),

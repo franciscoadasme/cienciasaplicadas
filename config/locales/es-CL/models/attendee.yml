@@ -4,6 +4,7 @@ es-CL:
       attendee:
         name: nombre
         email: dirección de correo
+        institution: institución
     errors:
       models:
         attendee:
@@ -16,3 +17,6 @@ es-CL:
     hints:
       attendee:
         email: Favor asegurar que la dirección de correo sea correcta
+        institution: |
+          Ingresar el nombre de la institución principal seguida del pais
+          (e.g., Universidad de Talca, Chile)

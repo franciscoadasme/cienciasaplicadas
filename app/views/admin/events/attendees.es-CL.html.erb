@@ -28,6 +28,10 @@
             <% else %>
               <small><%= mail_to attendee.email %></small>
             <% end %>
+            <% if attendee.institution.present? %>
+              <br>
+              <small><%= attendee.institution %></small>
+            <% end %>
             <% if attendee.abstract.try :submitted? %>
               <br>
               <small class="text-muted"><%= attendee.abstract.title %></small>

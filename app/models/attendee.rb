@@ -2,14 +2,15 @@
 #
 # Table name: attendees
 #
-#  accepted   :boolean
-#  created_at :datetime         not null
-#  email      :string           not null
-#  event_id   :integer
-#  id         :integer          not null, primary key
-#  locale     :string
-#  name       :string
-#  updated_at :datetime         not null
+#  accepted    :boolean
+#  created_at  :datetime         not null
+#  email       :string           not null
+#  event_id    :integer
+#  id          :integer          not null, primary key
+#  institution :string(255)
+#  locale      :string
+#  name        :string
+#  updated_at  :datetime         not null
 #
 
 class Attendee < ActiveRecord::Base
@@ -27,6 +28,9 @@ class Attendee < ActiveRecord::Base
                     format: { with: Devise.email_regexp },
                     uniqueness: { scope: :event_id,
                                   case_sensitive: false }
+  validates :institution, presence: true,
+                          format: { with: VALID_NAME_REGEX },
+                          length: { within: 10..255 }
 
   def self.with_abstract_submitted
     joins(:abstract).where.not abstracts: { submitted_at: nil }

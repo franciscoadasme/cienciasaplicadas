@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910041521) do
+ActiveRecord::Schema.define(version: 20170910044512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,14 @@ ActiveRecord::Schema.define(version: 20170910041521) do
   add_index "abstracts", ["event_id"], name: "index_abstracts_on_event_id", using: :btree
 
   create_table "attendees", force: :cascade do |t|
-    t.string   "email",      null: false
+    t.string   "email",                   null: false
     t.string   "name"
     t.boolean  "accepted"
     t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "locale"
+    t.string   "institution", limit: 255
   end
 
   add_index "attendees", ["event_id", "email"], name: "index_attendees_on_event_id_and_email", unique: true, using: :btree

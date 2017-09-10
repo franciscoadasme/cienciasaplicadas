@@ -4,6 +4,7 @@ en:
       attendee:
         name: name
         email: email address
+        institution: institution
     errors:
       models:
         attendee:
@@ -16,3 +17,6 @@ en:
     hints:
       attendee:
         email: Please ensure that the email address is valid
+        institution: |
+          Enter the name of your main institution followed by its country
+          (e.g., University of Talca, Chile)
