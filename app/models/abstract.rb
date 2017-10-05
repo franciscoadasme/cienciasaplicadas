@@ -20,7 +20,11 @@
 class Abstract < ActiveRecord::Base
   belongs_to :author, class_name: 'Attendee'
   belongs_to :event
-  has_attached_file :document
+  has_attached_file :document, path: ':document_s3_path'
+
+  Paperclip.interpolates(:document_s3_path) do |attachment, _|
+    attachment.instance.send :document_s3_path
+  end
 
   TOKEN_LIFETIME_IN_SECONDS = 48.hours
   ACCEPTED_CONTENT_TYPES = [
@@ -52,5 +56,14 @@ class Abstract < ActiveRecord::Base
 
   def token_expired?
     token_created_at.advance(seconds: TOKEN_LIFETIME_IN_SECONDS) < DateTime.now
+  end
+
+  private
+
+  def document_s3_path
+    custom_id = format '%03i', id
+    author_name = author.name.parameterize.underscore.camelcase
+    extension = Paperclip::Interpolations.extension document, nil
+    "events/#{event.id}/abstracts/#{author_name}.#{custom_id}.#{extension}"
   end
 end
