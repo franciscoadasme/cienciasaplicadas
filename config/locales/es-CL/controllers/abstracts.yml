@@ -3,7 +3,7 @@ es-CL:
     success:
       abstracts:
         token_sent: Enlace al formulario para envío de resumen fue enviado a %{email}
-        submitted: El resumen fue enviado con éxito
+        submitted: El resumen fue enviado con éxito. Una confirmación fue enviada a su dirección de correo
     alerts:
       abstracts:
         invalid_token: No hay participantes asociados a este enlace

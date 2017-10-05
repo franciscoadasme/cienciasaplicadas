@@ -41,6 +41,7 @@ class AbstractsController < SiteController
     @abstract.submitted_at = DateTime.now
 
     if @abstract.save
+      AbstractMailer.submission_confirmation(@abstract).deliver_now
       flash[:success] = I18n.t 'controllers.success.abstracts.submitted'
       redirect_to_event
     else

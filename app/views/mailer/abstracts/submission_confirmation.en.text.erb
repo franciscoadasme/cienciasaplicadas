@@ -1,0 +1,13 @@
+Dear participant,
+
+We have received your submission for the work entitled "<%= @abstract.title %>" to be presented at the <%= @event.event_type %> "<%= @event.name %>".
+
+You can check the submitted file at the following link: <%= @abstract.document.url %>.
+
+We remind you that the event will take place during <%= strip_tags @event.date_span %> at the <%= @event.location %>, and it is sponsored by <%= @event.promoter %>.
+
+To keep up to date with the latest news, please visit <%= event_url(@event, from_ext: true, lang: I18n.locale) %>.
+
+Best regards,
+Organizing committee
+

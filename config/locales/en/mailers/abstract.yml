@@ -3,3 +3,5 @@ en:
     abstracts:
       submission_token:
         subject: Information for abstract submission to the event %{event}
+      submission_confirmation:
+        subject: Confirmation for abstract submission to %{event}

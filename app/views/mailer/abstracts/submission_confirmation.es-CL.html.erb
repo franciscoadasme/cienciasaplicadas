@@ -1,0 +1,34 @@
+<% provide :title, 'none' %>
+
+<%= mtable_tag width: '100%' do %>
+  <tr>
+    <td>
+      <p>Estimado(a),</p>
+
+      <p>
+        Hemos recibido su resumen para el trabajo titulado <em>"<%= @abstract.title %>"</em>
+        a ser presentado en el/la <%= @event.event_type %> "<%= @event.name %>".
+      </p>
+
+      <p>
+        Puede verificar el archivo enviado en el siguiente enlace:
+        <%= link_to @abstract.document_file_name, @abstract.document.url %>.
+      </p>
+
+      <p>
+        Le recordamos que el evento se realizará durante <b><%= @event.date_span %></b>
+        en el lugar <%= @event.location %>, y es patrocinado por <%= @event.promoter %>.
+      </p>
+
+      <p>
+        Para mantenerse informado de las últimas noticias, favor visitar
+        <%= link_to 'la página del evento', event_url(@event, from_ext: true, lang: I18n.locale) %>.
+      </p>
+
+      <p>
+        Atte.,<br>
+        Comité organizador
+      </p>
+    </td>
+  </tr>
+<% end %>

@@ -1,0 +1,34 @@
+<% provide :title, 'none' %>
+
+<%= mtable_tag width: '100%' do %>
+  <tr>
+    <td>
+      <p>Dear participant,</p>
+
+      <p>
+        We have received your submission for the work entitled <em>"<%= @abstract.title %>"</em>
+        to be presented at the <%= @event.event_type %> "<%= @event.name %>".
+      </p>
+
+      <p>
+        You can check the submitted file at the following link:
+        <%= link_to @abstract.document_file_name, @abstract.document.url %>.
+      </p>
+
+      <p>
+        We remind you that the event will take place during <b><%= @event.date_span %></b>
+        at the <%= @event.location %>, and it is sponsored by <%= @event.promoter %>.
+      </p>
+
+      <p>
+        To keep up to date with the latest news, please visit the
+        <%= link_to 'event website', event_url(@event, from_ext: true, lang: I18n.locale) %>.
+      </p>
+
+      <p>
+        Best regards,<br>
+        Organizing committee
+      </p>
+    </td>
+  </tr>
+<% end %>

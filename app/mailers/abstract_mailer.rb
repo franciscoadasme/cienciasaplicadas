@@ -3,6 +3,10 @@ class AbstractMailer < DefaultMailer
     notification :submission_token, abstract
   end
 
+  def submission_confirmation(abstract)
+    notification :submission_confirmation, abstract
+  end
+
   private
 
   def notification(notification_name, abstract)

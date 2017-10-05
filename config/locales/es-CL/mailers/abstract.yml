@@ -3,3 +3,5 @@ es-CL:
     abstracts:
       submission_token:
         subject: Información para el envío de resumen al evento %{event}
+      submission_confirmation:
+        subject: Confirmación del envío de su resumen al evento %{event}

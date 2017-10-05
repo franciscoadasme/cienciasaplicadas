@@ -1,0 +1,12 @@
+Estimado(a),
+
+Hemos recibido su resumen para el trabajo titulado "<%= @abstract.title %>" a ser presentado en el/la <%= @event.event_type %> "<%= @event.name %>".
+
+Puede verificar el archivo enviado en el siguiente enlace: <%= @abstract.document.url %>.
+
+Le recordamos que el evento se realizará durante <%= strip_tags @event.date_span %> en el lugar <%= @event.location %>, y es patrocinado por <%= @event.promoter %>.
+
+Para mantenerse informado de las últimas noticias, favor visitar <%= event_url(@event, from_ext: true, lang: I18n.locale) %>.
+
+Atte.,
+Comité organizador

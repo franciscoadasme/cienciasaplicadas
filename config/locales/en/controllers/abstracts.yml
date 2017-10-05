@@ -3,7 +3,7 @@ en:
     success:
       abstracts:
         token_sent: Link to the abstract submission form was sent to %{email}
-        submitted: Abstract was submitted successfully
+        submitted: Abstract was submitted successfully. A confirmation was sent to your email address
     alerts:
       abstracts:
         invalid_token: No participants are associated with the entered link
