@@ -123,7 +123,8 @@ class Admin::EventsController < AdminController
   def compress_abstract_documents_at(pathname)
     Zip::File.open(pathname, Zip::File::CREATE) do |zipfile|
       @event.abstracts.submitted.each do |abstract|
-        zipfile.get_output_stream(abstract.document_file_name) do |f|
+        filename = File.basename abstract.document.path
+        zipfile.get_output_stream(filename) do |f|
           abstract.document.s3_object(nil).read { |chunk| f.write chunk }
         end
       end
