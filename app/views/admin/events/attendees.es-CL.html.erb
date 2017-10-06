@@ -1,6 +1,6 @@
 <% provide :title, @event.name.truncate(40, separator: /\s+/) %>
 <% provide :subtitle, 'Asistentes' %>
-<% if @event.abstracts.any? %>
+<% if @event.abstracts.submitted.any? %>
   <% provide :widget do %>
     <%= link_to fa_icon(:download, text: 'Resumenes'),
                 download_abstracts_admin_event_path(@event),

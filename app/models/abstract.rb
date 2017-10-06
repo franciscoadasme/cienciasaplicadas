@@ -26,6 +26,8 @@ class Abstract < ActiveRecord::Base
     attachment.instance.send :document_s3_path
   end
 
+  scope :submitted, -> { where.not submitted_at: nil }
+
   TOKEN_LIFETIME_IN_SECONDS = 48.hours
   ACCEPTED_CONTENT_TYPES = [
     'application/pdf',

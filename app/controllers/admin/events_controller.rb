@@ -11,7 +11,7 @@ class Admin::EventsController < AdminController
   end
 
   def download_abstracts
-    redirect_to :attendees if @event.abstracts.empty?
+    redirect_to :attendees if @event.abstracts.submitted.empty?
 
     zip_path = Rails.root.join 'tmp', "#{@event.tagline}_abstracts.zip"
     compress_abstract_documents_at zip_path
@@ -122,7 +122,7 @@ class Admin::EventsController < AdminController
 
   def compress_abstract_documents_at(pathname)
     Zip::File.open(pathname, Zip::File::CREATE) do |zipfile|
-      @event.abstracts.each do |abstract|
+      @event.abstracts.submitted.each do |abstract|
         zipfile.get_output_stream(abstract.document_file_name) do |f|
           abstract.document.s3_object(nil).read { |chunk| f.write chunk }
         end
