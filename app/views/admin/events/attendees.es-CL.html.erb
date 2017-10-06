@@ -1,5 +1,13 @@
 <% provide :title, @event.name.truncate(40, separator: /\s+/) %>
 <% provide :subtitle, 'Asistentes' %>
+<% if @event.abstracts.any? %>
+  <% provide :widget do %>
+    <%= link_to fa_icon(:download, text: 'Resumenes'),
+                download_abstracts_admin_event_path(@event),
+                class: 'btn btn-primary',
+                title: 'Esto podría demorar algunos segundos' %>
+  <% end %>
+<% end %>
 
 <% if @event.attendees.any? %>
   <table class="table table-bordered table-striped table-hover table-condensed">

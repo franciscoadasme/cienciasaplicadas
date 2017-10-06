@@ -295,6 +295,7 @@ GEM
     rollbar (2.8.3)
       multi_json
     ruby_dep (1.5.0)
+    rubyzip (1.2.1)
     sass (3.4.24)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -383,6 +384,7 @@ DEPENDENCIES
   rails_12factor (~> 0.0.3)
   redcarpet (~> 3.1.1)
   rollbar (~> 2.8.3)
+  rubyzip (>= 1.0.0)
   sass-rails (~> 5.0.6)
   sdoc
   select2-rails (~> 3.5.4)

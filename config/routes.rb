@@ -79,6 +79,7 @@ CbsmWebsite::Application.routes.draw do
     resources :events do
       member do
         get :attendees
+        get :download_abstracts
         get :posts
         patch 'attendes/:attendee_id/accept', action: :accept_attendee, as: :accept_attendee
         patch 'attendes/:attendee_id/reject', action: :reject_attendee, as: :reject_attendee

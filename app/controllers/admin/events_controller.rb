@@ -1,11 +1,26 @@
+require 'zip'
+
 class Admin::EventsController < AdminController
   include NotifiableController
 
   before_action :authorize_user!
   before_action :set_event, only: [:attendees, :show, :edit, :update, :destroy,
-                                   :posts]
+                                   :posts, :download_abstracts]
 
   def attendees
+  end
+
+  def download_abstracts
+    redirect_to :attendees if @events.abstract.empty?
+
+    zip_path = Rails.root.join 'tmp', "#{@event.tagline}_abstracts.zip"
+    compress_abstract_documents_at zip_path
+
+    data = File.open(zip_path, 'rb+').read
+
+    headers['Cache-Control'] = 'no-cache'
+    send_data data, type: 'application/zip', filename: File.basename(zip_path)
+    File.delete zip_path
   end
 
   def index
@@ -78,7 +93,8 @@ class Admin::EventsController < AdminController
   end
 
     def set_event
-      @event = Event.includes(:attendees, :speakers, :posts)
+      @event = Event.eager_load(:abstracts, :speakers, :posts,
+                                attendees: [:abstract])
                     .friendly.find(params[:id])
     end
 
@@ -104,6 +120,16 @@ class Admin::EventsController < AdminController
         :abstract_deadline
       )
     end
+
+  def compress_abstract_documents_at(pathname)
+    Zip::File.open(pathname, Zip::File::CREATE) do |zipfile|
+      @event.abstracts.each do |abstract|
+        zipfile.get_output_stream(abstract.document_file_name) do |f|
+          abstract.document.s3_object(nil).read { |chunk| f.write chunk }
+        end
+      end
+    end
+  end
 
   def update_attendee_status(accepted:)
     fetch_attendee.tap do |attendee|
