@@ -93,8 +93,7 @@ class Admin::EventsController < AdminController
   end
 
     def set_event
-      @event = Event.eager_load(:abstracts, :speakers, :posts,
-                                attendees: [:abstract])
+      @event = Event.eager_load(:attendees, :abstracts, :speakers, :posts)
                     .friendly.find(params[:id])
     end
 
