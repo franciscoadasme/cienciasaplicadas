@@ -11,7 +11,7 @@ class Admin::EventsController < AdminController
   end
 
   def download_abstracts
-    redirect_to :attendees if @events.abstract.empty?
+    redirect_to :attendees if @event.abstracts.empty?
 
     zip_path = Rails.root.join 'tmp', "#{@event.tagline}_abstracts.zip"
     compress_abstract_documents_at zip_path
