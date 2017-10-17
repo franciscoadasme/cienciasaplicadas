@@ -22,6 +22,8 @@ class Abstract < ActiveRecord::Base
   belongs_to :event
   has_attached_file :document, path: ':document_s3_path'
 
+  before_save :update_file_name
+
   Paperclip.interpolates(:document_s3_path) do |attachment, _|
     attachment.instance.send :document_s3_path
   end
@@ -67,5 +69,10 @@ class Abstract < ActiveRecord::Base
     author_name = author.name.parameterize.underscore.camelcase
     extension = Paperclip::Interpolations.extension document, nil
     "events/#{event.id}/abstracts/#{author_name}.#{custom_id}.#{extension}"
+  end
+
+  def update_file_name
+    return unless document_updated_at_changed?
+    self.document_file_name = File.basename(document.path)
   end
 end
