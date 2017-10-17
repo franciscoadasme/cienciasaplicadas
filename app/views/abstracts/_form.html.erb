@@ -10,8 +10,15 @@
 
     <div class="form-group col-md-8 <%= validation_class_for_field(@abstract, :document) %>">
       <%= f.label :document, Abstract.human_attribute_name(:document), class: 'control-label' %>
+      <% if @abstract.submitted? %>
+        <div class="well well-sm">
+          <% file_type = @abstract.document.content_type == 'application/pdf' ? 'pdf' : 'word' %>
+          <%= fa_icon "file-#{file_type}-o" %>
+          <%= link_to @abstract.document_file_name, @abstract.document.url %>
+        </div>
+      <% end %>
       <%= f.file_field :document,
-                        required: true,
+                        required: !@abstract.submitted?,
                         accept: Abstract::ACCEPTED_CONTENT_TYPES.join(','),
                         class: 'form-control' %>
       <%= error_for_field @abstract, :document %>

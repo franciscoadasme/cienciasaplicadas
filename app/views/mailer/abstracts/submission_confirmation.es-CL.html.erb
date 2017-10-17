@@ -13,6 +13,11 @@
       <p>
         Puede verificar el archivo enviado en el siguiente enlace:
         <%= link_to @abstract.document_file_name, @abstract.document.url %>.
+
+        Si lo desea, puede editar su resumen en
+        <%= link_to 'esta página', edit_event_abstract_url(@event, token: @abstract.token,
+        from_ext: true, lang: I18n.locale) %> hasta el
+        <strong><%= l @event.abstract_deadline, format: :abbr_with_day %></strong>.
       </p>
 
       <p>

@@ -2,7 +2,7 @@ Dear participant,
 
 We have received your submission for the work entitled "<%= @abstract.title %>" to be presented at the <%= @event.event_type %> "<%= @event.name %>".
 
-You can check the submitted file at the following link: <%= @abstract.document.url %>.
+You can check the submitted file at the following link: <%= @abstract.document.url %>. If you wish, you can edit your submission at <%= edit_event_abstract_url(@event, token: @abstract.token, from_ext: true, lang: I18n.locale) %> by <%= l @event.abstract_deadline, format: :abbr_with_day %>.
 
 We remind you that the event will take place during <%= strip_tags @event.date_span %> at the <%= @event.location %>, and it is sponsored by <%= @event.promoter %>.
 

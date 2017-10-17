@@ -38,10 +38,11 @@ class AbstractsController < SiteController
   def update
     @abstract.assign_attributes abstract_params
     @abstract.reset_token!
+    should_notify = !@abstract.submitted? # only the first time
     @abstract.submitted_at = DateTime.now
 
     if @abstract.save
-      AbstractMailer.submission_confirmation(@abstract).deliver_now
+      AbstractMailer.submission_confirmation(@abstract).deliver_now if should_notify
       flash[:success] = I18n.t 'controllers.success.abstracts.submitted'
       redirect_to_event
     else

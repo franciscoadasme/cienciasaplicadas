@@ -50,8 +50,7 @@ class Abstract < ActiveRecord::Base
   end
 
   def reset_token!
-    self.token = nil
-    self.token_created_at = nil
+    randomize_token! unless submitted? # only the first time after updated
   end
 
   def submitted?
@@ -59,6 +58,7 @@ class Abstract < ActiveRecord::Base
   end
 
   def token_expired?
+    return false if submitted?
     token_created_at.advance(seconds: TOKEN_LIFETIME_IN_SECONDS) < DateTime.now
   end
 
