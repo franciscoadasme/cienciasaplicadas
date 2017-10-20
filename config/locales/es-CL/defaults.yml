@@ -10,6 +10,7 @@ es-CL:
       abbr_with_day: "%d de %b %y"
       abbr_with_day_no_year: "%d de %b"
       month: '%b'
+      dotted: "%d.%m.%Y"
 
     units:
       day: día
@@ -29,6 +30,7 @@ es-CL:
       abbr: "%b %y"
       abbr_with_day: "%d de %b %y"
       month: '%b'
+      dotted: "%d.%m.%Y"
 
   period:
     formats:

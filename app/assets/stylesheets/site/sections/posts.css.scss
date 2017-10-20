@@ -1,0 +1,50 @@
+@import "site/variables";
+
+.post {
+    &:hover {
+        .post__link {
+            color: $link-color;
+        }
+    }
+}
+
+.post__event {
+    font-weight: $font-weight-bold;
+
+    &::after {
+        font-weight: $font-weight-regular;
+        content: " \00B7";
+    }
+}
+
+.post__excerpt {
+    margin-bottom: 0;
+}
+
+.post__info {
+    margin-bottom: $line-height-computed / 2;
+
+    color: $text-muted;
+
+    letter-spacing: 2px;
+}
+
+.post__link {
+    color: $text-color;
+
+    transition-duration: 0.2s;
+    transition-property: color;
+
+    &:focus,
+    &:hover {
+        color: $link-color;
+
+        text-decoration: none;
+    }
+}
+
+.post__title {
+    margin-top: 0;
+
+    font-size: $font-size-h3;
+}

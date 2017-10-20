@@ -1,0 +1,15 @@
+<li>
+  <article class="post">
+    <div class="post__info">
+      <% if post.event.present? && controller_name != 'events' %>
+        <span class="post__event"><%= post.event.display_name %></span>
+      <% end %>
+      <%= time_tag post.created_at, l(post.created_at, format: :dotted), pubdate: true,
+                   class: 'post__pubdate' %>
+    </div>
+    <h2 class="post__title">
+      <%= link_to post.title.truncate(60, separator: /\s+/), post.permalink, class: 'post__link' %>
+    </h2>
+    <p class="post__excerpt"><%= post.excerpt %></p>
+  </article>
+</li>

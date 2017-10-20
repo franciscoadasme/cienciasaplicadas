@@ -1,6 +1,11 @@
 class EventDecorator < ContentDecorator
   delegate_all
 
+  def display_name
+    return tagline if tagline.length < 20
+    name
+  end
+
   def date_span
     content = if one_day?
                 l(start_date, format: :abbr_with_day)

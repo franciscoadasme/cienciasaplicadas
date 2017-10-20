@@ -11,7 +11,7 @@ class PostDecorator < ContentDecorator
   end
 
   def excerpt(truncate_at: 160)
-    h.excerpt(object.body, truncate_at: truncate_at)
+    h.excerpt(object.body, truncate_at: truncate_at, omission: ' [...]')
   end
 
   def link(html_options = {}, &block)
