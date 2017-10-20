@@ -2,7 +2,7 @@
   <h1>
     <small class="text-color">
       <%= format_period event.start_date, event.end_date %>
-      <% if event.start_date > Date.today %>
+      <% if event.managed? && event.start_date > Date.today %>
         <% distance = distance_of_time_in_words_to_now(event.start_date.to_time) %>
         (<%= t 'date.relative.future', distance: distance %>)
       <% end %>
