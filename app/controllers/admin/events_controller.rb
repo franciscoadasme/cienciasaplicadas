@@ -8,6 +8,7 @@ class Admin::EventsController < AdminController
                                    :posts, :download_abstracts]
 
   def attendees
+    @attendees = @event.attendees.eager_load(:abstract).sorted
   end
 
   def download_abstracts
@@ -93,8 +94,7 @@ class Admin::EventsController < AdminController
   end
 
     def set_event
-      @event = Event.eager_load(:attendees, :speakers, :posts)
-                    .friendly.find(params[:id])
+      @event = Event.friendly.find(params[:id])
     end
 
     def event_params

@@ -9,21 +9,21 @@
   <% end %>
 <% end %>
 
-<% if @event.attendees.any? %>
+<% if @attendees.any? %>
   <table class="table table-bordered table-striped table-hover table-condensed">
     <thead>
       <tr>
         <th>
           Asistentes
-          (<%= @event.attendees.count %> en total,
-          <%= pluralize @event.attendees.with_abstract_submitted.count, 'resumen', 'resumenes' %>)
+          (<%= @attendees.count %> en total,
+          <%= pluralize @event.abstracts.submitted.count, 'resumen', 'resumenes' %>)
         </th>
         <th>Fecha</th>
         <th width="60"></th>
       </tr>
     </thead>
     <tbody>
-      <% @event.attendees.sorted.each do |attendee| %>
+      <% @attendees.each do |attendee| %>
         <% row_class = '' %>
         <% row_class = 'success' if attendee.accepted? %>
         <% row_class = 'danger' if attendee.rejected? %>
