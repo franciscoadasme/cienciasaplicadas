@@ -70,12 +70,13 @@
                    request_token_event_abstract_url(event, request.query_parameters),
                    class: 'btn-circle btn-success btn-lg btn-raised',
                    title: t('actions.abstracts.upload').capitalize %>
-      <% end %>
-      <% if event.abstract_template.present? %>
-        <%= btn_to fa_icon(:'file-word-o'),
-                   download_template_event_abstract_url(event),
-                   class: 'btn-circle btn-warning',
-                   title: t('actions.abstracts.download_template').capitalize %>
+
+        <% if event.abstract_template.present? %>
+          <%= btn_to fa_icon(:'file-word-o'),
+                    download_template_event_abstract_url(event),
+                    class: 'btn-circle btn-warning',
+                    title: t('actions.abstracts.download_template').capitalize %>
+        <% end %>
       <% end %>
       <% if event.picture.present? %>
         <%= btn_to fa_icon(:'download'), event.picture.url,
