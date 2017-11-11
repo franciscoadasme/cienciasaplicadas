@@ -84,7 +84,8 @@ class Event < ActiveRecord::Base
   validates :localized_abstract_section, allow_blank: true,
                                          length: { minimum: 10 }
   validates :abstract_deadline, allow_blank: true,
-                                timeliness: { on_or_after: Date.today }
+                                timeliness: { on_or_after: Date.today,
+                                              if: -> { abstract_deadline_changed? } }
   validates :event_type, presence: true,
                         inclusion: { in: TYPES.map(&:to_s) }
   validates_attachment :picture, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
