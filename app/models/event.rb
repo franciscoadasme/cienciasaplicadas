@@ -54,10 +54,7 @@ class Event < ActiveRecord::Base
   has_many :attendees, dependent: :delete_all
   has_many :posts, dependent: :delete_all
   has_many :speakers, dependent: :delete_all
-  has_attached_file :picture, styles: {
-    original: '640x640#',
-    thumb: '320x320#'
-  }
+  has_attached_file :picture
   has_attached_file :abstract_template
 
   scope :managed, -> { where managed: true }
