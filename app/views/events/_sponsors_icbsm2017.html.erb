@@ -1,0 +1,25 @@
+<h2><%= I18n.locale == :'es-CL' ? 'Patrocinadores' : 'Sponsors' %></h2>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+  <%= link_to 'http://www.iniciativamilenio.cl' do %>
+    <%= image_tag image_url('events/icbsm2017/Logo_ICM.jpg'), height: "150" %>
+  <% end %>
+  <%= link_to 'http://www.conicyt.cl/fondecyt' do %>
+    <%= image_tag image_url('events/icbsm2017/Logo_Fondecyt.png'), height: "110" %>
+  <% end %>
+  <%= link_to 'http://www.utalca.cl' do %>
+    <%= image_tag image_url('events/icbsm2017/Logo_Utalca.png'), height: "130" %>
+  <% end %>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+  <%= link_to 'http://www.cienciasaplicadas.cl' do %>
+    <%= image_tag image_url('events/icbsm2017/Logo_CienciasAplicadas.png'), width: "190" %>
+  <% end %>
+  <%= link_to 'http://icb.utalca.cl' do %>
+    <%= image_tag image_url('events/icbsm2017/Logo_ICB.png'), width: "200" %>
+  <% end %>
+  <%= link_to 'http://di.utalca.cl' do %>
+    <%= image_tag image_url('events/icbsm2017/Logo_DI.png'), width: "240" %>
+  <% end %>
+</ul>

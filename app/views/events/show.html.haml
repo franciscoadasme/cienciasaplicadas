@@ -4,3 +4,7 @@
   %section.content
     = content_tag :p, image_tag(event.picture) if event.picture.present?
     = event.translate_description(I18n.locale).html_safe
+
+    - if event.slug == 'icbsm2017'
+      = render 'sponsors_icbsm2017'
+
