@@ -34,6 +34,8 @@ es-CL:
       models:
         event:
           attributes:
+            abstract_deadline:
+              on_or_after: no puede ser una fecha en el pasado
             picture:
               spoofed_media_type: 'solo imágenes están permitidas (jpg, gif, png)'
               less_than: el tamaño del archivo excedió el límite
