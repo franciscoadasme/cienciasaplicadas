@@ -10,7 +10,7 @@
           = time_tag moment.taken_on, short_time_ago_in_words(moment.taken_on), pubdate: true
 
       = content_tag :p, moment.caption, class: 'moment-caption' if moment.caption.present?
-      = autosizing_image_tag moment.photo.url, class: 'moment-photo'
+      = autosizing_image_tag moment.photo.url(:medium), class: 'moment-photo'
 
       .list-group-item-actions
         .btn-group
