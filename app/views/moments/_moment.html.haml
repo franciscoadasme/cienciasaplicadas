@@ -1,6 +1,7 @@
 %li.moment
   = link_to moment.permalink, class: 'link-block link-unstyled' do
-    = image_tag moment.photo.url(:medium), class: 'moment__photo'
+    .moment__frame
+      = image_tag moment.photo.url(:medium), class: 'moment__photo'
     .moment__body
       - if moment.caption.present?
         %p.moment__caption= moment.caption
