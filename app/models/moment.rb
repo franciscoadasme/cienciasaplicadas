@@ -22,8 +22,6 @@ class Moment < ActiveRecord::Base
 
   belongs_to :user
   has_attached_file :photo, styles: {
-    original: '640x640#',
-    thumb: '160x160#',
     medium: '320x320#'
   }
 
