@@ -1,5 +1,5 @@
 %li.moment
-  = link_to moment.permalink, class: 'link-block link-unstyled' do
+  = link_to moment.photo.url, class: 'link-block link-unstyled' do
     .moment__frame
       = image_tag moment.photo.url(:medium), class: 'moment__photo'
     .moment__body
