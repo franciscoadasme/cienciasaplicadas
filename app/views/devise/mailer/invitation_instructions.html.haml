@@ -2,12 +2,12 @@
   = image_tag display_user_image_url(@user.invited_by), width: 64, height: 64, class: 'img-thumbnail'
   &nbsp;
   %h1
-    Usted ha sido invitado a ser parte de la comunidad del Doctorado en Ciencias Aplicadas
+    Usted ha sido invitado a ser parte de la comunidad del Doctorado en Ciencias Mención Modelado de Sistemas Químicos y Biológicos
 
 = mtable_tag width: '100%', class: 'text-center' do
   %tr
     %td
-      #{link_to @user.invited_by.display_name, @user.invited_by} le ha enviado una invitación para inscribirse como miembro de la comunidad del Doctorado en Ciencias Aplicadas (#{link_to root_url, root_url}). Al presionar el enlace a continuación usted aceptará la invitación y comenzará a configurar su cuenta, donde tendrá que introducir su información personal y académica. Luego, usted tendrá acceso al panel de administración donde puede personalizar su perfil público, e introducir contenido científico de interés.
+      #{link_to @user.invited_by.display_name, @user.invited_by} le ha enviado una invitación para inscribirse como miembro de la comunidad del Doctorado en Ciencias Mención Modelado de Sistemas Químicos y Biológicos (#{link_to root_url, root_url}). Al presionar el enlace a continuación usted aceptará la invitación y comenzará a configurar su cuenta, donde tendrá que introducir su información personal y académica. Luego, usted tendrá acceso al panel de administración donde puede personalizar su perfil público, e introducir contenido científico de interés.
 
   %tr
     %td
