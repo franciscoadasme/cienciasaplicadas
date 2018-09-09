@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   end
 
   # Need to overide this to use our own invitation mailer
-  def deliver_invitation
+  def deliver_invitation(options = {})
     # Code extracted from devise_invitable model's deliver_invitation method
     generate_invitation_token! unless @raw_invitation_token
     self.update_attribute :invitation_sent_at, Time.now.utc unless self.invitation_sent_at
