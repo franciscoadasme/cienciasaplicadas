@@ -255,9 +255,9 @@ class User < ActiveRecord::Base
     end
 
     def format_names
-      self.first_name = first_name.titleize
-      self.last_name = last_name.titleize
-      self.nickname = nickname.parameterize
+      self.first_name = first_name.try :titleize
+      self.last_name = last_name.try :titleize
+      self.nickname = nickname.try :parameterize
     end
 
     def matching_lastname?(lastname)
