@@ -81,7 +81,7 @@ CbsmWebsite::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = {
-    host: ENV['MAIL_DOMAIN']
+    host: "doctorado.cbsm.cl"
   }
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.smtp_settings = {

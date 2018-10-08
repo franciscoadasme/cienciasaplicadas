@@ -28,7 +28,7 @@ CbsmWebsite::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = {
-    host: ENV['MAIL_DOMAIN']
+    host: "doctorado.cbsm.cl"
   }
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.smtp_settings = {
