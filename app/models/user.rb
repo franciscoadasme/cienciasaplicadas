@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
   def deliver_invitation(options = {})
     # Code extracted from devise_invitable model's deliver_invitation method
     generate_invitation_token! unless @raw_invitation_token
-    self.update_attribute :invitation_sent_at, Time.now.utc unless self.invitation_sent_at
+    self.update_attribute :invitation_sent_at, Time.now.utc
     #send_devise_notification(:invitation_instructions, @raw_invitation_token)
 
     InvitationMailer.invite_message(self).deliver
