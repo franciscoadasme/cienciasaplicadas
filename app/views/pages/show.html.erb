@@ -13,6 +13,7 @@
   <% end %>
 
   <section class="content">
+    <%= image_tag page.banner.url, alt: page.title unless page.banner.blank? %>
     <%= parse_content page.body %>
   </section>
 </article>

@@ -25,9 +25,7 @@ class Page < ActiveRecord::Base
   include Publishable
   include Seedable
 
-  has_attached_file :banner, styles: { original: '1920x1080#',
-                                          thumb: '640x360#' },
-                    convert_options: { original: '-modulate 100,50,100 -blur 0x2' }
+  has_attached_file :banner, styles: { thumb: '640x360>' }
 
   extend FriendlyId
   friendly_id :tagline, use: [ :slugged, :scoped ], scope: :owner
