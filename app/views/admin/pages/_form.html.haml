@@ -9,7 +9,14 @@
 
     %hr
     = f.input :body, as: :trix_editor, wrapper: :simple_wrapper
-    = f.input :banner, wrapper: :simple_wrapper
+    - if @page.banner.present?
+      .form-group.row
+        .col-xs-4
+          = image_tag @page.banner.url(:thumb), width: "100%", style: "border-radius: 5px;"
+        .col-xs-8
+          = f.input :banner, wrapper: :simple_wrapper
+    - else
+      = f.input :banner, wrapper: :simple_wrapper
 
   .form-group.form-actions
     - i18n_scope = 'helpers.submit.page'
