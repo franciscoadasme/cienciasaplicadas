@@ -11,14 +11,14 @@ $container-width:                          856px;
 $font-family-sans-serif:                   -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif !default;
 
 $font-size-base:                           16px;
-$font-size-content:                        ceil($font-size-base * 1.25); // 20px
+$font-size-content:                        ceil($font-size-base * 1.125); // 18px
 
 $font-weight-lighter:                      100;
 $font-weight-light:                        300;
 $font-weight-regular:                      400;
 $font-weight-bold:                         700;
 
-$line-height-content:                      1.6;
+$line-height-content:                      1.8;
 $line-height-content-computed:             floor(($font-size-content * $line-height-content));
 
 $headings-font-weight:                     $font-weight-bold;
