@@ -1,11 +1,9 @@
 %article{ role: 'main' }
   = render 'users/header'
 
-  %section.content
-    - if user.bio.present?
+  - if user.bio.present?
+    %section.content
       = user.bio.html_safe
-    - else
-      %p.lead.text-muted No hay una biografía disponible
 
   - if user.thesis.present?
     %section#thesis

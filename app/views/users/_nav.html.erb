@@ -1,9 +1,11 @@
 <nav>
   <ul class="nav nav-tabs">
-    <%= nav_item 'Información', user_url(user) %>
+    <% if user.bio.present? %>
+      <%= nav_item 'Información', user_url(user) %>
+    <% end %>
     <% if @user.publications.any? %>
       <%= nav_item 'Publicaciones', user_publications_url(user), badge: user.publications.count %>
-      <%= nav_item 'Productividad', user_stats_url(user) %>
+      <%= nav_item 'Productividad', user_stats_url(user) if @user.publications.count > 10 %>
     <% end %>
     <%= nav_item 'Proyectos', user_projects_url(user), badge: user.projects.count if user.projects.any? %>
 

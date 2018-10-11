@@ -3,7 +3,7 @@
 
   <div class="user__body">
     <div class="user__title">
-      <%= user.link class: 'user__link' %>
+      <%= user.display_name %>
       <% if local_assigns.fetch(:show_position, true) %>
         <span class="badge badge-outline-primary user__position">
           <%= user.position.name %>
@@ -15,22 +15,28 @@
 
     <% if user.member? %>
       <ul class="list-inline">
-        <li>
-          <%= link_to fa_icon(:'user-circle-o'), user, class: 'user__link user__link--icon', title: 'Ver perfil de miembro' %>
-        </li>
+        <% if user.bio.present? %>
+          <li>
+            <%= link_to fa_icon(:'user-circle-o'), user, class: 'user__link user__link--icon', title: 'Ver perfil de miembro' %>
+          </li>
+        <% end %>
+        <!--
         <li>
           <%= mail_to user.email, fa_icon(:'paper-plane'), class: 'user__link user__link--icon', title: 'Enviar mensaje' %>
         </li>
+        -->
         <% if user.publications.any? %>
           <li>
             <%= link_to fa_icon(:'files-o', text: user.publications.count),
                         user_publications_url(user),
                         class: 'user__link user__link--icon', title: 'Ver publicaciones' %>
           </li>
-          <li>
-            <%= link_to fa_icon(:'bar-chart'), user_stats_url(user),
-                        class: 'user__link user__link--icon', title: 'Ver productividad' %>
-          </li>
+          <% if user.publications.count > 10 %>
+            <li>
+              <%= link_to fa_icon(:'bar-chart'), user_stats_url(user),
+                          class: 'user__link user__link--icon', title: 'Ver productividad' %>
+            </li>
+          <% end %>
         <% end %>
         <% if user.projects.any? %>
           <li>

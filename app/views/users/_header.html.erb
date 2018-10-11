@@ -12,8 +12,10 @@
   <%= render 'users/nav' %>
 
   <div class="actions">
+    <!--
     <%= mail_to user.email, fa_icon(:'paper-plane'),
                 class: 'btn btn-circle btn-primary btn-lg btn-raised', title: 'Contactar' %>
+    -->
 
     <% user.social_links.each do |service, url| %>
       <%= btn_to fa_icon(service), url, class: 'btn-circle btn-link', title: service.titleize %>
