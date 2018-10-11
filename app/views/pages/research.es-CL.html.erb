@@ -16,8 +16,10 @@
                class: 'btn-block' %>
   </section>
 
-  <section id="publications">
-    <h2>Tesis recientes</h2>
-    <%= render 'theses/collection', collection: theses %>
-  </section>
+  <% if theses.any? %>
+    <section id="publications">
+      <h2>Tesis recientes</h2>
+      <%= render 'theses/collection', collection: theses %>
+    </section>
+  <% end %>
 </article>
