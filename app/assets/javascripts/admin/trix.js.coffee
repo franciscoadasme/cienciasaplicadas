@@ -1,3 +1,7 @@
+# Make external links to open in a new tab
+external_links = (content) ->
+  content = content.replace /href="(.+)">/g, "href=\"$1\" target=\"_blank\" rel=\"noopener noreferrer\">"
+
 # Produce well-formed HMTL for trix editor content (replace div and br with p)
 paragraphify = (content) ->
   content = content.replace /&nbsp;/g, ""
@@ -41,4 +45,6 @@ $ ->
     form = element.closest "form"
     target = form.querySelector "input##{element.attributes["input"].value}"
     form.addEventListener "submit", (event) ->
-      target.value = paragraphify element.value
+      content = paragraphify element.value
+      content = external_links content
+      target.value = content
