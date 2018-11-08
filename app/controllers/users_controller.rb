@@ -11,14 +11,14 @@ class UsersController < SiteController
 
   def publications_index
     @publications = @user.publications.includes({ authors: :user }, :journal)
-                         .sorted
+                         .displayable.sorted
     @pubs_per_year = @user.statistics.publication_per_year.reverse
     render 'publications/index'
   end
 
   def show
-    @user_pubs = @user.publications.flagged.sorted
-    @user_pubs = @user.publications.sorted.limit(3) if @user_pubs.empty?
+    @user_pubs = @user.publications.displayable.flagged.sorted
+    @user_pubs = @user.publications.displayable.sorted.limit(3) if @user_pubs.empty?
     @user_pubs = @user_pubs.includes(:authors, :journal).decorate
   end
 

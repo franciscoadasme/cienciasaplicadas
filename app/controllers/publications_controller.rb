@@ -4,6 +4,7 @@ class PublicationsController < SiteController
   def index
     @publications = Publication.preload({ authors: :user }, :journal)
                                .members_only
+                               .displayable
                                .sorted
   end
 end

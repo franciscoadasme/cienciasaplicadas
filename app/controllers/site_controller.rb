@@ -20,6 +20,7 @@ class SiteController < ApplicationController
     @lastest_theses = Thesis.sorted.limit(3).decorate
     @lastest_publications = Publication.preload({ authors: :user }, :journal)
                                        .members_only
+                                       .displayable
                                        .sorted
                                        .limit(6)
                                        .decorate
@@ -52,7 +53,7 @@ class SiteController < ApplicationController
     @publications ||= begin
       slugs = ['director', 'profesor-claustro', 'estudiante']
       position_ids = Position.where(slug: slugs).pluck :id
-      Publication.joins(:users).where('users.position_id' => position_ids)
+      Publication.joins(:users).where('users.position_id' => position_ids).displayable
     end
   end
 end

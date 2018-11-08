@@ -4,7 +4,7 @@ class Admin::PublicationsController < AdminController
     :toggle_flag, :author_list ]
 
   def index
-    @publications = current_user.publications.includes(:authors, :journal).sorted
+    @publications = current_user.publications.includes(:authors, :journal).displayable.sorted
   end
 
   def edit

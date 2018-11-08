@@ -11,6 +11,7 @@ class PagesController < SiteController
     @publications = Publication.preload({ authors: :user }, :journal)
                                .members_only
                                .sorted
+                               .displayable
                                .first(10)
     @theses = Thesis.includes(:user).sorted.decorate.first(5)
   end

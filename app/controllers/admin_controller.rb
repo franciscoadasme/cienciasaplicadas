@@ -15,7 +15,7 @@ class AdminController < ApplicationController
     last_seven_days = DateTime.current.advance(days: -7)
     @recent_users = User.where('invitation_accepted_at >= ?', last_seven_days)
     @pending_users = User.invitation_not_accepted.where('invitation_sent_at >= ?', last_seven_days)
-    @recent_publications = Publication.limit(5)
+    @recent_publications = Publication.default.limit(5)
   end
 
   protected

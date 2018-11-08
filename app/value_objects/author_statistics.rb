@@ -16,7 +16,7 @@ class AuthorStatistics
   end
 
   def publication_total
-    @count ||= @user.publications.count
+    @count ||= @user.publications.displayable.count
   end
 
   def publication_total_this_year
@@ -26,6 +26,7 @@ class AuthorStatistics
   def publication_per_journal
     @pubs_per_journal ||= Journal.joins(:publications)
                                  .where('publications.id' => publication_ids)
+                                 .where('publications.year > ?', 2007)
                                  .group(:name).count.to_a
                                  .sort_by { |a| [-a[1], a[0]] }
   end
@@ -50,14 +51,14 @@ class AuthorStatistics
   private
 
   def journal_ids
-    @journal_ids ||= @user.publications.pluck(:journal_id)
+    @journal_ids ||= @user.publications.displayable.pluck(:journal_id)
   end
 
   def publication_group_by(*args)
-    @user.publications.group(args).count
+    @user.publications.displayable.group(args).count
   end
 
   def publication_ids
-    @publication_ids ||= @user.publications.pluck(:id)
+    @publication_ids ||= @user.publications.displayable.pluck(:id)
   end
 end
