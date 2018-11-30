@@ -64,7 +64,8 @@ class Event < ActiveRecord::Base
 
   auto_strip_attributes :name, :location, :description
   validates :name, presence: true,
-                     length: { in: 4..128 }
+                     length: { in: 4..128 },
+                     uniqueness: { scope: :start_date }
   validates :tagline, length: { in: 4..128, allow_blank: true },
                       uniqueness: true,
                       format: { with: /\A[a-z0-9\-_]+\Z/i }
