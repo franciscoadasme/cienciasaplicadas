@@ -9,10 +9,17 @@
           = autolink_to tsidebar_item(:new_post), new_admin_post_path, class: 'newlink'
         = sidebar_menu_item :moments do
           = autolink_to tsidebar_item(:new_moment), new_admin_moment_path, class: 'newlink'
-
-        %li.sidebar-menu-item-spacer
         = sidebar_menu_item :events do
           = autolink_to tsidebar_item(:new_event), new_admin_event_path, class: 'newlink'
+
+        %li.sidebar-menu-item-spacer
+        
+        = sidebar_menu_item :users, condition: current_path?('users'), class: "sidebar-menu-item-users #{'collapsed' unless current_page?(new_user_invitation_path)}" do
+          - inv_not_accepted_count = User.invitation_not_accepted.count
+          = sidebar_badge fa_icon('ticket', text: inv_not_accepted_count), title: tsidebar_hint(:has_invitations, count: inv_not_accepted_count) if inv_not_accepted_count > 0
+          = autolink_to tsidebar_item(:invite), new_user_invitation_path, class: 'newlink'
+        = sidebar_menu_item :positions
+        = sidebar_menu_item :journals
 
     %ul.sidebar-menu
       = content_tag :li, t('views.admin._sidebar.headings.account'), class: 'sidebar-menu-header' if current_user.super_user?
@@ -36,12 +43,4 @@
         = sidebar_menu_item :pages, admin_group_pages_path, condition: (current_path?('group/pages', @page) || @page.try(:associated_controller) == 'group') do
           = autolink_to tsidebar_item(:new_page), new_admin_group_page_path, class: 'newlink'
         = sidebar_menu_item :theses
-        = sidebar_menu_item :positions
         = sidebar_menu_item :customize, scope: :group, condition: controller?(:group)
-
-      %ul.sidebar-menu
-        = sidebar_menu_item :users, condition: current_path?('users'), class: "sidebar-menu-item-users #{'collapsed' unless current_page?(new_user_invitation_path)}" do
-          - inv_not_accepted_count = User.invitation_not_accepted.count
-          = sidebar_badge fa_icon('ticket', text: inv_not_accepted_count), title: tsidebar_hint(:has_invitations, count: inv_not_accepted_count) if inv_not_accepted_count > 0
-          = autolink_to tsidebar_item(:invite), new_user_invitation_path, class: 'newlink'
-        = sidebar_menu_item :journals
