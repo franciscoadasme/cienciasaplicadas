@@ -123,21 +123,22 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
 }
 
 .list-group-item-user {
-  flex: 0 0 auto;
+  flex: 1 0 auto;
   position: relative;
-  // margin-right: $list-group-item-user-padding;
+  margin-right: $list-group-item-user-padding;
   margin-bottom: $list-group-item-user-padding;
   padding: $list-group-item-user-padding;
   padding-left: $list-group-item-user-padding-left;
-  width: $list-group-item-user-width;
+  // width: $list-group-item-user-width;
+  max-width: calc(50% - #{$list-group-item-user-padding / 2});
   font-size: $font-size-base;
   border: $list-group-item-user-border-width solid $list-group-item-user-border-color;
   border-radius: $list-group-item-user-border-radius !important;
   // vertical-align: top;
 
-  // &:nth-of-type(3n) {
-  //   margin-right: 0;
-  // }
+  &:nth-of-type(2n) {
+    margin-right: 0;
+  }
 
   &:last-child {
     margin-bottom: $list-group-item-user-padding;
@@ -155,17 +156,6 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
     border-color: $list-group-item-user-border-color-super-user;
     &.collaborator:before { border-right-color: $list-group-item-user-border-color-super-user; }
   }
-  &.collaborator:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 16px 16px 0;
-    border-color: transparent $list-group-item-user-border-color transparent transparent;
-  }
 }
 
   .list-group-item-user-avatar {
@@ -175,7 +165,7 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
 
   .list-group-item-user-name {
     margin-bottom: 0;
-    width: $list-group-item-user-width-content;
+    // width: $list-group-item-user-width-content;
     font-size: $font-size-base;
     white-space: nowrap;
     overflow: hidden;
@@ -184,7 +174,7 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
 
   .list-group-item-user-meta {
     display: block;
-    width: $list-group-item-user-width-content;
+    // width: $list-group-item-user-width-content;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -195,7 +185,7 @@ $list-group-item-user-width-content: $list-group-item-user-width - $list-group-i
     bottom: -$list-group-item-user-padding;
     left: -$list-group-item-user-padding-left;
     padding: $list-group-item-user-padding / 2 $list-group-item-user-padding;
-    width: $list-group-item-user-width - $list-group-item-user-border-width * 2;
+    width: calc(100% + #{$list-group-item-user-padding-left} + #{$list-group-item-user-padding});
     background-color: $list-group-item-user-actions-color-bg;
     border-top: solid 1px $list-group-item-user-actions-color-border;
 

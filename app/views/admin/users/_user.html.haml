@@ -1,10 +1,14 @@
-%li.list-group-item.list-group-item-user{ class: "#{user.role_symbol} #{'collaborator' if current_user.collaborator?(user)}" }
+%li.list-group-item.list-group-item-user
   = autosizing_image_tag display_user_image_url(user), size: 28, class: 'list-group-item-user-avatar'
 
   %h3.list-group-item-user-name{ title: user.full_name }
     = user.display_name
     %p
-      %small.text-primary= user.position.name if user.accepted?
+      %small.text-primary
+        - if !user.headline.blank?
+          = user.headline
+        - else
+          %em Sin descripción
 
   .list-group-item-meta.list-group-item-user-meta
     %span.text-muted= user.accepted? ? user.role_name.titleize : t('views.users.single.meta.not_accepted', distance_of_time:distance_of_time_in_words_to_now(user.invitation_sent_at))
