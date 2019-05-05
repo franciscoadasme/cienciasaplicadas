@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
                      uniqueness: true
   validates :image_url, url: true,
                 allow_blank: true
-  validates :headline, length: { in: 4..40 },
+  validates :headline, length: { in: 4..128 },
                   allow_blank: true
   validates :social_links, format: { with: /^:[a-z-]+ .+$/,
                                 multiline: true },
