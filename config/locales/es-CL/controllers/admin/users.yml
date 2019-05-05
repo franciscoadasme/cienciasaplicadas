@@ -11,6 +11,8 @@ es-CL:
           success: "Rol de usuario fue cambiado a %{role} satisfactoriamente."
         change_position:
           success: La posición del usuario fue actualizada satisfactoriamente.
+        update:
+          success: La información del usuario %{user} fue actualizada satisfactoriamente.
 
         alerts:
           not_admin: Sólo el administrador puede cambiar los permisos de usuario.

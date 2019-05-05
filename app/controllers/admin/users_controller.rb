@@ -26,6 +26,9 @@ class Admin::UsersController < AdminController
     change_user_role :demote
   end
 
+  def edit
+  end
+
   def promote
     change_user_role :promote
   end
@@ -35,6 +38,22 @@ class Admin::UsersController < AdminController
     @user.member = Position::MEMBERSHIP.include? @user.position
     @user.save! validate: false
     redirect_to_index success: true
+  end
+
+  def update
+    params = user_params
+    unless @user.accepted?
+      params[:nickname] = @user.email[/^(.*)(@)/, 1].delete! ".-_0123456789"
+      params[:password] = params[:nickname]
+      params[:invitation_accepted_at] = DateTime.current
+      params[:invitation_token] = nil
+    end
+
+    if @user.update(params)
+      redirect_to admin_users_path, success: {user: @user.display_name}
+    else
+      render action: 'edit'
+    end
   end
 
   protected
@@ -61,4 +80,13 @@ class Admin::UsersController < AdminController
     def validate_accepted_user
       redirect_to_index alert: t('devise.invitations.not_accepted') unless @user.accepted?
     end
+  
+  def user_params
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :headline,
+      :image_url
+    )
+  end
 end

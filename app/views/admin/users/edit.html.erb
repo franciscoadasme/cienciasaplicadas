@@ -1,0 +1,21 @@
+<% provide :title, I18n.t('views.users.headings.edit') %>
+
+<%= simple_form_for @user, url: admin_user_path, html: { role: 'form' } do |f| %>
+    <% provide :notification, f.error_notification %>
+    
+    <h3>
+        <%= autosizing_image_tag display_user_image_url(@user), size: 48, class: 'img-circle' %>
+        <%= @user.display_name %>
+    </h3>
+
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :headline %>
+    <%= f.input :image_url %>
+  
+    <div class="form-group form-actions">
+        <div class="col-xs-9 col-xs-offset-3">
+            <%= f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Actualizando...' } %>
+        </div>
+    </div>
+<% end %>

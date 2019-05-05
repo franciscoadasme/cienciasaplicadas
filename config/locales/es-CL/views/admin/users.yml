@@ -4,6 +4,7 @@ es-CL:
       headings:
         index: '%{count} usuarios además de mí'
         invited_users: Usuarios invitados
+        edit: Editando información
       single:
         meta:
           not_accepted: "Invitado hace %{distance_of_time} atrás"
@@ -18,3 +19,4 @@ es-CL:
           view_user_page: Ver perfil público
           delete: Eliminar usuario
           change_position: Cambiar posición
+          edit: Editar información de usuario
