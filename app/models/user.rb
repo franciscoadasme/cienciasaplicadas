@@ -32,6 +32,7 @@
 #  position_id            :integer
 #  provider               :string(255)
 #  remember_created_at    :datetime
+#  research_gate          :string(255)
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
 #  role                   :integer          default(0)
@@ -132,6 +133,7 @@ class User < ActiveRecord::Base
   validates :bio, length: { minimum: 100 },
              allow_blank: true
   validates :position, presence: true
+  validates :research_gate, format: { with: /\A[A-Za-z_]+\d*\Z/ }
   validates_attachment :banner, content_type: { content_type: [ 'image/jpg', 'image/jpeg', 'image/gif', 'image/png'],
                                                      message: I18n.t('activerecord.errors.models.user.attributes.banner.spoofed_media_type') },
                                         size: { in: 0..5.megabytes },

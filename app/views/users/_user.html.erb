@@ -4,6 +4,9 @@
   <div class="user__body">
     <div class="user__title">
       <%= user.display_name %>
+      <% if user.research_gate %>
+        <%= link_to fa_icon('research-gate'), user.research_gate_url, title: 'Ir a ResearchGate', target: '_no_blank' %>
+      <% end %>
       <% if local_assigns.fetch(:show_position, true) %>
         <span class="badge badge-outline-primary user__position">
           <%= user.position.name %>

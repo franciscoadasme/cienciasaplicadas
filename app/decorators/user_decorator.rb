@@ -64,4 +64,8 @@ class UserDecorator < Draper::Decorator
     return {} if object.social_links.blank?
     Hash[object.social_links.split(/\n/).map { |line| line[1..-1].split }]
   end
+
+  def research_gate_url
+    "https://www.researchgate.net/profile/#{research_gate}" if research_gate
+  end
 end

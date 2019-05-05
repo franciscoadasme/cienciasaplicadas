@@ -86,7 +86,8 @@ class Admin::UsersController < AdminController
       :first_name,
       :last_name,
       :headline,
-      :image_url
+      :image_url,
+      :research_gate
     )
   end
 end

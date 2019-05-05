@@ -26,7 +26,8 @@ class Admin::AccountController < AdminController
         :social_links,
         :bio,
         :image_url,
-        :banner
+        :banner,
+        :research_gate
       )
     end
 end
