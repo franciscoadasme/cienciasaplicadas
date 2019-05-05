@@ -66,6 +66,6 @@ class UserDecorator < Draper::Decorator
   end
 
   def research_gate_url
-    "https://www.researchgate.net/profile/#{research_gate}" if research_gate
+    "https://www.researchgate.net/profile/#{research_gate}" unless research_gate.blank?
   end
 end
