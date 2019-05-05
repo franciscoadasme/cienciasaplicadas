@@ -15,6 +15,9 @@
     </div>
 
     <p class="user__headline"><%= user.headline %></p>
+    <% unless user.institution.blank? %>
+      <em><%= user.institution %></em>
+    <% end %>
 
     <% if user.member? %>
       <ul class="list-inline">

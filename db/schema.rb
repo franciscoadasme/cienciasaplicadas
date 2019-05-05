@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190505185943) do
+ActiveRecord::Schema.define(version: 20190505192244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(version: 20190505185943) do
     t.integer  "view_count",                         default: 0,     null: false
     t.boolean  "member",                             default: false
     t.string   "research_gate"
+    t.string   "institution"
   end
 
   add_foreign_key "abstracts", "authors", name: "abstracts_author_id_fkey"

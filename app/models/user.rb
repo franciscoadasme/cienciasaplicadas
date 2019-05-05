@@ -16,6 +16,7 @@
 #  headline               :string(255)
 #  id                     :integer          not null, primary key
 #  image_url              :string(255)
+#  institution            :string(255)
 #  invitation_accepted_at :datetime
 #  invitation_created_at  :datetime
 #  invitation_limit       :integer

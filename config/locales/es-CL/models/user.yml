@@ -17,6 +17,7 @@ es-CL:
         password: Contraseña
         password_confirmation: Confirmar contraseña
         remember_me: Recordarme
+        institution: Institución
 
         roles:
           admin: Administrador
@@ -46,6 +47,7 @@ es-CL:
         email: Tenga en cuenta que al cambiar esto usted no será capaz de iniciar sesión con el correo electrónico anterior y la integración social se perderá si la nueva dirección de correo no corresponde a la del servicio en cuestión.
         social_links: 'Lista de enlaces sociales de interés científico. Cada línea debe ajustarse al siguiente formato: :[servicio-social] [dirección-web] (e.g. :twitter https://twitter.com/...).'
         research_gate: Nombre de usuario al final de la página web de perfil de usuario en ResearchGate, por ej., (destacado en negrita) https://www.researchgate.net/profile/<b>Claudio_Ramirez</b>
+        institution: Solo rellene este campo si desea que se muestre la institución del usuario (por ej., institución externa)
     helpers:
       submit:
         user:
