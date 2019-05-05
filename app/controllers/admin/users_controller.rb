@@ -1,6 +1,6 @@
 class Admin::UsersController < AdminController
   before_action :authorize_user!
-  before_action :set_user, except: [ :index ]
+  before_action :set_user, except: [ :index, :new, :create ]
   before_action :ensure_admin!, only: [ :promote, :demote ]
   before_action :validate_accepted_user, only: [ :promote, :demote ]
 
@@ -9,6 +9,28 @@ class Admin::UsersController < AdminController
     @users_accepted = User.invitation_accepted.where.not(id: current_user.id).sorted
     @users_not_accepted = User.invitation_not_accepted if current_user.super_user?
     @positions = Position.sorted
+  end
+
+  def new
+    @user = User.new
+    @positions = Position.sorted.where('single = false')
+  end
+
+  def create
+    @user = User.new(user_params)
+    @user.nickname = @user.email[/^(.*)(@)/, 1].delete ".-_0123456789"
+    @user.password = @user.nickname
+    @user.invitation_created_at = DateTime.current
+    @user.invitation_sent_at = DateTime.current
+    @user.invited_by = current_user
+    @user.invitation_accepted_at = DateTime.current
+    
+    if @user.save
+      redirect_to admin_users_path, success: {user: @user.display_name}
+    else
+      @positions = Position.sorted.where('single = false')
+      render action: 'new'
+    end
   end
 
   def destroy
@@ -85,6 +107,8 @@ class Admin::UsersController < AdminController
     params.require(:user).permit(
       :first_name,
       :last_name,
+      :email,
+      :position_id,
       :headline,
       :image_url,
       :research_gate,

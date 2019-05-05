@@ -42,7 +42,7 @@ CbsmWebsite::Application.routes.draw do
       get :customize, to: 'group#edit'
     end
 
-    resources :users, only: [ :index, :edit, :update, :destroy ] do
+    resources :users, only: [ :new, :create, :index, :edit, :update, :destroy ] do
       member do
         patch :promote
         patch :demote

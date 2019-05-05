@@ -2,6 +2,8 @@ es-CL:
   controllers:
     admin:
       users:
+        create:
+          success: Usuario %{user} fue creado satisfactoriamente
         destroy:
           success: Usuario fue eliminado permanentemente.
           error:

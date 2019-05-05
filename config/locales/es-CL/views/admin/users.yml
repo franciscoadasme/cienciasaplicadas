@@ -5,6 +5,9 @@ es-CL:
         index: '%{count} usuarios además de mí'
         invited_users: Usuarios invitados
         edit: Editando información
+        new: Nuevo usuario
+      buttons:
+        new: Crear usuario
       single:
         meta:
           not_accepted: "Invitado hace %{distance_of_time} atrás"

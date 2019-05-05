@@ -1,4 +1,7 @@
 - provide :title, I18n.t('views.users.headings.index', count: @users_count)
+- if current_user.super_user?
+  - provide :widget do
+    = link_to fa_icon('plus', text: t('views.users.buttons.new')), new_admin_user_path, class: 'btn btn-primary position'
 
 - @users_accepted.group_by(&:position).each do |position, users|
   %ul.list-group.list-group-users

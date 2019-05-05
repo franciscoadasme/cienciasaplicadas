@@ -1,0 +1,20 @@
+<% provide :title, I18n.t('views.users.headings.new') %>
+
+<%= simple_form_for @user, url: admin_users_path, html: { role: 'form' } do |f| %>
+    <% provide :notification, f.error_notification %>
+
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email, hint: 'Usado solo para registro interno. Deber ser único.' %>
+    <%= f.association :position, collection: @positions, selected: Position.find_by(slug: 'profesor-adjunto').id %>
+    <%= f.input :institution %>
+    <%= f.input :headline %>
+    <%= f.input :research_gate %>
+    <%= f.input :image_url %>
+  
+    <div class="form-group form-actions">
+        <div class="col-xs-9 col-xs-offset-3">
+            <%= f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Actualizando...' } %>
+        </div>
+    </div>
+<% end %>
